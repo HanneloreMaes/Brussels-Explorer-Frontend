@@ -80,6 +80,7 @@ A few of the things you can do with the frontend:
 2. Installation React Native Reanimated - [Installation](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation)
 3. Documentation ActivityIndicator React Native - [ActivityIndicator](https://reactnative.dev/docs/activityindicator)
 4. ESLint Rules - [Rules Reference](https://eslint.org/docs/latest/rules/)
+5. Documentation SplashScreen - CrazyCodeBoy - [Github](https://github.com/crazycodeboy/react-native-splash-screen)
 
 ### Video's
 1. Firebase Authentication Login and Sign Up - 26:33 until 1:18:31 - Sonny Sangha - [Youtube](https://www.youtube.com/watch?v=MJzmZ9qmdaE)
