@@ -5,6 +5,15 @@ module.exports = {
       'react-native-reanimated/plugin', {
           relativeSourceLocation: true,
       },
-    ]
+    ],
+    [
+			'module-resolver',
+			{
+				root: ['./src'],
+				alias: {
+					'@': './src',
+				},
+			},
+		],
   ],
 };
