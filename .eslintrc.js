@@ -121,6 +121,7 @@ module.exports = {
 		'global-require': 'off',
 
 		// REACT
+		'react/no-unsafe': 'off',
 		'react/jsx-props-no-spreading': 'off',
 		'react/no-render-return-value': 'error',
 		'react/jsx-filename-extension': [0, { extensions: ['.js', '.jsx'] }],
