@@ -22,7 +22,7 @@ const App = () => {
 
 	const checkIfActiveLanguageIsNull = () => {
 		if (activeLanguage === null) {
-			dispatch(setLanguage('nl'));
+			dispatch(setLanguage('en'));
 		}
 	};
 
