@@ -65,6 +65,8 @@ module.exports = {
 		],
 
 		//TYPESCRIPT ESLINT
+		"@typescript-eslint/no-explicit-any": "off",
+		"@typescript-eslint/no-unsafe-assignment": "off",
 		'@typescript-eslint/quotes': ['error', 'single'],
 		'@typescript-eslint/semi': ['error', 'always'],
 		'@typescript-eslint/member-delimiter-style': [
@@ -90,6 +92,7 @@ module.exports = {
 				},
 			},
 		],
+		'@typescript-eslint/no-floating-promises': ['off'],
 
 		// IMPORT RULES
 		'import/no-unresolved': 0,
@@ -121,6 +124,7 @@ module.exports = {
 		'global-require': 'off',
 
 		// REACT
+		'react/no-unsafe': 'off',
 		'react/jsx-props-no-spreading': 'off',
 		'react/no-render-return-value': 'error',
 		'react/jsx-filename-extension': [0, { extensions: ['.js', '.jsx'] }],
