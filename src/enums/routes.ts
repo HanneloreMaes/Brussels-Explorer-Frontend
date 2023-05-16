@@ -2,7 +2,7 @@ import { IRouteTypes } from './routes.types';
 import { SHARED_ROUTES } from './sharedRoutes';
 import { DashboardScreen, MapView, OnboardingScreen, SearchPage, SettingsPage } from '@/components';
 import { LanguageSettings } from '@/components/settings/components';
-import { SearchStackScreen, SettingsStackScreen } from '@/lib/navigator/stack';
+import { MapviewStackScreen, SearchStackScreen, SettingsStackScreen } from '@/lib/navigator/stack';
 
 export const ONBOARDING_ROUTES: IRouteTypes[] = [
 	{
@@ -15,6 +15,11 @@ export const ONBOARDING_ROUTES: IRouteTypes[] = [
 
 export const MAIN_ROUTES: IRouteTypes[] = [
 	SHARED_ROUTES.DashboardStackScreen,
+	{
+		name: 'MapviewStack',
+		component: MapviewStackScreen,
+		label: 'MapviewStack',
+	},
 	{
 		name: 'Search',
 		component: SearchStackScreen,
