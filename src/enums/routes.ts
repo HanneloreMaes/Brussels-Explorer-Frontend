@@ -10,13 +10,13 @@ export const ONBOARDING_ROUTES: IRouteTypes[] = [
 		component: OnboardingScreen,
 		label: 'Onboarding',
 	},
-	SHARED_ROUTES.MainStack,
+	SHARED_ROUTES.Main,
 ];
 
 export const MAIN_ROUTES: IRouteTypes[] = [
 	SHARED_ROUTES.DashboardStackScreen,
 	{
-		name: 'SearchStack',
+		name: 'Search',
 		component: SearchStackScreen,
 		label: 'OverviewStack',
 	},
@@ -60,4 +60,5 @@ export const SETTINGS_ROUTES: IRouteTypes[] = [
 
 export const APP_ROUTES: IRouteTypes[] = [
 	SHARED_ROUTES.OnboardingStack,
+	SHARED_ROUTES.Main,
 ];
