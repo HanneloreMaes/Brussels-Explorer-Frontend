@@ -1,6 +1,6 @@
 import { IRouteTypes } from './routes.types';
 import { SHARED_ROUTES } from './sharedRoutes';
-import { OnboardingScreen } from '@/components';
+import { DashboardScreen, OnboardingScreen } from '@/components';
 
 export const ONBOARDING_ROUTES: IRouteTypes[] = [
 	{
@@ -8,6 +8,20 @@ export const ONBOARDING_ROUTES: IRouteTypes[] = [
 		component: OnboardingScreen,
 		label: 'Onboarding',
 	},
+	SHARED_ROUTES.MainStack,
+];
+
+export const MAIN_ROUTES: IRouteTypes[] = [
+	SHARED_ROUTES.DashboardStackScreen,
+];
+
+export const DASHBOARD_ROUTES: IRouteTypes[] = [
+	{
+		name: 'DashboardScreen',
+		component: DashboardScreen,
+		label: 'Dashboard',
+		showHeader: false,
+	}
 ];
 
 export const APP_ROUTES: IRouteTypes[] = [

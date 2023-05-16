@@ -100,8 +100,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 				updateProfile(auth?.currentUser, {
 					displayName: username,
 				});
-				console.log('Navigation to MainStack');
-				// navigation.navigate('MainStack');
+				navigation.navigate('MainStack');
 			}).catch( error => Alert.alert(error.message));
 	};
 
@@ -113,8 +112,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 	useEffect(() => {
 		const unSubscribe = auth.onAuthStateChanged((authUser) => {
 			if (authUser) {
-				console.log('Ingelogd');
-				// navigation.navigate('MainStack');
+				navigation.navigate('MainStack');
 			}
 		});
 		return unSubscribe;
