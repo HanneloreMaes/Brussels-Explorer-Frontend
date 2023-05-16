@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { DefaultMargins, Highlight } from '@/style';
+import { DefaultMargins, Highlight, TextColor } from '@/style';
 
 export const LanugageItemStyles = StyleSheet.create({
 	container: {
@@ -12,7 +12,8 @@ export const LanugageItemStyles = StyleSheet.create({
 		marginVertical: 10,
 	},
 	languageText: {
-		fontSize: 20
+		fontSize: 20,
+		color: TextColor.darkText
 	},
 	touchableContainer: {
 		flexDirection: 'row'
