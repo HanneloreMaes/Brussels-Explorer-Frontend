@@ -65,8 +65,8 @@ module.exports = {
 		],
 
 		//TYPESCRIPT ESLINT
-		"@typescript-eslint/no-explicit-any": "off",
-		"@typescript-eslint/no-unsafe-assignment": "off",
+		'@typescript-eslint/no-unsafe-assignment': 'off',
+		'@typescript-eslint/no-explicit-any': 'off',
 		'@typescript-eslint/quotes': ['error', 'single'],
 		'@typescript-eslint/semi': ['error', 'always'],
 		'@typescript-eslint/member-delimiter-style': [
