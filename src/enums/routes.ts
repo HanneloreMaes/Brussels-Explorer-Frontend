@@ -1,8 +1,8 @@
 import { IRouteTypes } from './routes.types';
 import { SHARED_ROUTES } from './sharedRoutes';
-import { DashboardScreen, OnboardingScreen, SettingsPage } from '@/components';
+import { DashboardScreen, OnboardingScreen, SearchPage, SettingsPage } from '@/components';
 import { LanguageSettings } from '@/components/settings/components';
-import { SettingsStackScreen } from '@/lib/navigator/stack';
+import { SearchStackScreen, SettingsStackScreen } from '@/lib/navigator/stack';
 
 export const ONBOARDING_ROUTES: IRouteTypes[] = [
 	{
@@ -10,11 +10,16 @@ export const ONBOARDING_ROUTES: IRouteTypes[] = [
 		component: OnboardingScreen,
 		label: 'Onboarding',
 	},
-	SHARED_ROUTES.MainStack,
+	SHARED_ROUTES.Main,
 ];
 
 export const MAIN_ROUTES: IRouteTypes[] = [
 	SHARED_ROUTES.DashboardStackScreen,
+	{
+		name: 'Search',
+		component: SearchStackScreen,
+		label: 'OverviewStack',
+	},
 	{
 		name: 'SettingStack',
 		component: SettingsStackScreen,
@@ -29,6 +34,14 @@ export const DASHBOARD_ROUTES: IRouteTypes[] = [
 		label: 'Dashboard',
 		showHeader: false,
 	}
+];
+
+export const SEARCH_ROUTES: IRouteTypes[] = [
+	{
+		name: 'SearchPage',
+		component: SearchPage,
+		label: 'routes_label_searchPage',
+	},
 ];
 
 export const SETTINGS_ROUTES: IRouteTypes[] = [
@@ -47,4 +60,5 @@ export const SETTINGS_ROUTES: IRouteTypes[] = [
 
 export const APP_ROUTES: IRouteTypes[] = [
 	SHARED_ROUTES.OnboardingStack,
+	SHARED_ROUTES.Main,
 ];
