@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { DashboardParamList } from '../../types';
+import { DashboardParamList } from '../../../types';
 import { DASHBOARD_ROUTES } from '@/enums/routes';
 import { TextColor, Highlight, BackgroundColor } from '@/style';
 
