@@ -2,19 +2,15 @@ module.exports = {
 	root: true,
 	extends: ['airbnb', 'prettier', 'plugin:prettier/recommended'],
 	parser: '@typescript-eslint/parser',
+	parserOptions: {
+		project: 'tsconfig.json',
+		sourceType: 'module',
+	},
 	overrides: [
 		{
 			files: ['*.ts', '*.tsx'],
 			rules: {
 				'no-undef': 'off',
-			},
-			extends: [
-				'plugin:@typescript-eslint/recommended',
-				'plugin:@typescript-eslint/recommended-requiring-type-checking',
-			],
-		
-			parserOptions: {
-				project: ['./tsconfig.json'],
 			},
 		},
 	],
