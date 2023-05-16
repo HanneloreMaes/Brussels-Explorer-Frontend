@@ -10,6 +10,10 @@ export const ONBOARDING_ROUTES: IRouteTypes[] = [
 	},
 ];
 
+export const MAIN_ROUTES: IRouteTypes[] = [
+	SHARED_ROUTES.DashboardStackScreen,
+];
+
 export const DASHBOARD_ROUTES: IRouteTypes[] = [
 	{
 		name: 'DashboardScreen',
