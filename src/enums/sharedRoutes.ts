@@ -11,7 +11,7 @@ export const SHARED_ROUTES = {
 		component: DashboardStackScreen,
 		label: 'DashboardStack',
 	},
-	MainStack: {
+	Main: {
 		name: 'MainStack',
 		component: MainStackScreen,
 		label: 'MainStack'
