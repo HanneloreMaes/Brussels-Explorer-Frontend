@@ -1,6 +1,7 @@
 import { IRouteTypes } from './routes.types';
 import { SHARED_ROUTES } from './sharedRoutes';
-import { DashboardScreen, OnboardingScreen } from '@/components';
+import { DashboardScreen, OnboardingScreen, SettingsPage } from '@/components';
+import { LanguageSettings } from '@/components/settings/components';
 
 export const ONBOARDING_ROUTES: IRouteTypes[] = [
 	{
@@ -22,6 +23,20 @@ export const DASHBOARD_ROUTES: IRouteTypes[] = [
 		label: 'Dashboard',
 		showHeader: false,
 	}
+];
+
+export const SETTINGS_ROUTES: IRouteTypes[] = [
+	{
+		name: 'Settings',
+		component: SettingsPage,
+		label: 'routes_label_settings',
+	},
+	{
+		name: 'Language',
+		component: LanguageSettings,
+		label: 'routes_label_language',
+	},
+	SHARED_ROUTES.OnboardingStack,
 ];
 
 export const APP_ROUTES: IRouteTypes[] = [
