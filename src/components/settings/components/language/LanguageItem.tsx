@@ -13,7 +13,7 @@ export const LanguageItem: FC <LanguageItemType> = ({ languageName, keyLang }) =
 	const dispatch = useDispatch();
 	const [ checkMark, setCheckMark ] = useState<boolean>(false);
 
-	const { activeLanguage } = useSelector(state => state.allReducer);
+	const { activeLanguage } = useSelector((state: any) => state.allReducer);
 
 	const changeLang = (languageKey: Languages) => {
 		dispatch(setLanguage(languageKey));
