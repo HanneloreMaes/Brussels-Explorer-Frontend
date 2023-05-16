@@ -128,7 +128,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 						<Ellipse cx={width / 2} rx={height} ry={height + 100} />
 					</ClipPath>
 					<Image
-						href={require('../../assets/images/login_background.jpg')}
+						href={require('@/assets/images/login_background.jpg')}
 						width={width + 100}
 						height={height + 100}
 						preserveAspectRatio='xMidYMid slice'
