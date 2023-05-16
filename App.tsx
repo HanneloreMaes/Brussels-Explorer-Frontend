@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { View, StyleSheet, StatusBar } from 'react-native';
