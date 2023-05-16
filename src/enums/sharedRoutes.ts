@@ -1,4 +1,4 @@
-import { DashboardStackScreen, OnboardingStackScreen } from '@/lib/navigator/stack';
+import { DashboardStackScreen, MainStackScreen, OnboardingStackScreen } from '@/lib/navigator/stack';
 
 export const SHARED_ROUTES = {
 	OnboardingStack:{
@@ -10,5 +10,10 @@ export const SHARED_ROUTES = {
 		name: 'DashboardStack',
 		component: DashboardStackScreen,
 		label: 'DashboardStack',
+	},
+	MainStack: {
+		name: 'MainStack',
+		component: MainStackScreen,
+		label: 'MainStack'
 	},
 };

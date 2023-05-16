@@ -8,6 +8,7 @@ export const ONBOARDING_ROUTES: IRouteTypes[] = [
 		component: OnboardingScreen,
 		label: 'Onboarding',
 	},
+	SHARED_ROUTES.MainStack,
 ];
 
 export const MAIN_ROUTES: IRouteTypes[] = [
