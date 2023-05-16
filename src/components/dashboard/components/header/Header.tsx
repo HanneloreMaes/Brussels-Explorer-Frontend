@@ -58,7 +58,7 @@ export const Header: FC = () => {
 
 	return(
 		<View style={HeaderStyles.container}>
-			<Image source={require('../../../../assets/images/header_Img.jpg')} style={HeaderStyles.headerImage} />
+			<Image source={require('@/assets/images/header_Img.jpg')} style={HeaderStyles.headerImage} />
 			<View style={HeaderStyles.headerContainer}>
 				<Text style={[ TextStyles.titleH2, { fontSize: 30 } ]}>{i18n.t(timeOfDay)}, </Text>
 				<Text style={[ TextStyles.titleH2, { fontSize: 25 } ]}>{nameUser}</Text>
