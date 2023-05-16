@@ -172,7 +172,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 						<View style={{ paddingTop: isRegister ? 15 : 50, marginBottom: isRegister ? 20 : 30 }}>
 							{isRegister && (
 								<TextInput
-									placeholder={i18n.t('onboarding_placeholder_name')}
+									placeholder={i18n.t('onboarding_placeholder_name') as string | undefined}
 									placeholderTextColor='black'
 									autoCapitalize="none"
 									textContentType="name"
@@ -181,7 +181,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 									style={OnboardingStyles.textInput} />
 							)}
 							<TextInput
-								placeholder={i18n.t('onboarding_placeholder_email') }
+								placeholder={i18n.t('onboarding_placeholder_email') as string | undefined}
 								placeholderTextColor='black'
 								autoCapitalize="none"
 								keyboardType="email-address"
@@ -190,7 +190,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 								onChangeText={(text) => setEmail(text)}
 								style={OnboardingStyles.textInput} />
 							<TextInput
-								placeholder={i18n.t('onboarding_placeholder_password') }
+								placeholder={i18n.t('onboarding_placeholder_password') as string | undefined}
 								secureTextEntry
 								placeholderTextColor='black'
 								autoCapitalize="none"
