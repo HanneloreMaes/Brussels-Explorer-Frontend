@@ -1,7 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { Text, ScrollView, View, Image, SafeAreaView } from 'react-native';
+import { Text, ScrollView, View, Image, SafeAreaView, TouchableOpacity } from 'react-native';
+import Feather from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SearchStyles } from './Search.styles';
@@ -10,7 +12,7 @@ import { LoadingSpinner } from '@/components/shared';
 import { SearchNavProps } from '@/lib/navigator/types';
 import '@/utils/i18n/i18n';
 import { Highlight } from '@/style';
-import { getPoints } from '@/utils/redux/Actions';
+import { getRoutes } from '@/utils/redux/Actions';
 
 export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, route }) => {
 
@@ -20,15 +22,15 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, rout
 
 	const [ filteredData, setFilteredData ] = useState([]);
 
-	const { points } = useSelector((state: any) => state.allReducer);
+	const { routes } = useSelector((state: any) => state.allReducer);
 	const fetchPoints = () => {
-		dispatch(getPoints());
+		dispatch(getRoutes());
 		setIsLoading(false);
 	};
 
 	const searchFilterFunction = (text: string) => {
 		if(text){
-			const newData = points.filter(( item : any) => {
+			const newData = routes.filter(( item : any) => {
 				const itemData = item.name ? item.name.toUpperCase() : ''.toUpperCase();
 				const textData = text.toUpperCase();
 
@@ -37,14 +39,14 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, rout
 			setFilteredData(newData);
 			setIsLoading(false);
 		} else {
-			setFilteredData(points);
+			setFilteredData(routes);
 			setIsLoading(false);
 		}
 	};
 
 	useEffect(() => {
 		fetchPoints();
-		setFilteredData(points);
+		setFilteredData(routes);
 	}, []);
 
 	useEffect(() => {
@@ -74,17 +76,32 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, rout
 						filteredData.length !== 0 ? (
 							filteredData.map((item: any) => {
 								return (
-									<View key={item._id} style={SearchStyles.itemContainer}>
-										<Image
-											source={{ uri: item.imageUrl }}
-											style={SearchStyles.image}
-											resizeMode='cover'
-										/>
-										<View>
-											<Text style={SearchStyles.textName}>{item.name}</Text>
-											<Text style={SearchStyles.textAddress}>{item.address}</Text>
-										</View>
-									</View>
+									<>
+										<TouchableOpacity key={item._id} style={SearchStyles.itemContainer} onPress={() => navigation.navigate('DetailPage', { titleScreen: item.name, dataOfCard: item })}>
+											<Image
+												source={{ uri: item.imageUrl }}
+												style={SearchStyles.image}
+												resizeMode='cover' />
+											<View style={{ marginLeft: 10 }}>
+												<Text style={SearchStyles.textName}>{item.name}</Text>
+												<View style={SearchStyles.infoContainer}>
+													<View style={SearchStyles.infoTextContainer}>
+														<Icon name='arrows-h' color={Highlight.tealHighlight} size={16} />
+														<Text style={SearchStyles.textInfo}>{item.distance}</Text>
+													</View>
+													<View style={SearchStyles.infoTextContainer}>
+														<Feather name='clock' color={Highlight.tealHighlight} size={16} />
+														<Text style={SearchStyles.textInfo}>{item.time}</Text>
+													</View>
+													<View style={SearchStyles.infoTextContainer}>
+														<Icon name='tag' color={Highlight.tealHighlight} size={16} />
+														<Text style={SearchStyles.textInfo}>{item.theme}</Text>
+													</View>
+												</View>
+											</View>
+										</TouchableOpacity>
+										<View style={SearchStyles.underline} />
+									</>
 								);
 							})
 						) : (
