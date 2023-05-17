@@ -46,6 +46,7 @@ export const DASHBOARD_ROUTES: IRouteTypes[] = [
 		showHeader: false,
 	},
 	SHARED_ROUTES.Search,
+	SHARED_ROUTES.DetailPageScreen,
 ];
 
 export const MAPVIEW_ROUTES: IRouteTypes[] = [
