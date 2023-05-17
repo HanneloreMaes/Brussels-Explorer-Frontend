@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Image, ScrollView, Text, View } from 'react-native';
 
 import { DetailStyles } from './Detail.styles';
+import { DetailMap } from '../components/DetailMap';
 import { DetailTypes } from '../types/Detail.types';
 import '@/utils/i18n/i18n';
 
@@ -29,6 +30,7 @@ export const DetailPage: FC <DetailTypes> = ({ route }) => {
 				<Image source={{ uri: dataOfCard.imageUrl }} style={DetailStyles.imageDetail} resizeMode='cover' />
 				<Text style={DetailStyles.titleDetail}>{dataOfCard.name}</Text>
 				<Text style={DetailStyles.textDetail}>{dataOfCard.description}</Text>
+				<DetailMap />
 			</View>
 		</ScrollView>
 	);
