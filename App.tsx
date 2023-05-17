@@ -2,7 +2,7 @@
 import React, { FC, useEffect } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { View, StyleSheet, StatusBar } from 'react-native';
+import { View, StyleSheet, StatusBar, BackHandler } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -26,6 +26,10 @@ const App = () => {
 		}
 	};
 
+	const handleBackButton = () => {
+		return true;
+	};
+
 	useEffect(() => {
 		checkIfActiveLanguageIsNull();
 		i18n.changeLanguage(activeLanguage);
@@ -33,6 +37,7 @@ const App = () => {
 
 	useEffect(() => {
 		SplashScreen.hide();
+		BackHandler.addEventListener('hardwareBackPress', handleBackButton);
 	}, []);
 
 	return(
