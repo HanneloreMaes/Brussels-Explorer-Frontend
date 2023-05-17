@@ -1,12 +1,14 @@
 import React, { FC } from 'react';
 
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Pressable, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { QuestionStyles } from './QuestionRegister.styles';
-import { TextStyles } from '@/style';
+import { OnboardingNavProps } from '@/lib/navigator/types';
+import { ButtonStyles, TextStyles } from '@/style';
 
-export const QuestionRegister: FC = () => {
+export const QuestionRegister: FC <OnboardingNavProps<'QuestionRegister'>> = ({ navigation }) => {
+
 	return (
 		<SafeAreaView style={QuestionStyles.container}>
 			<View style={QuestionStyles.titleContainer}>
@@ -80,6 +82,12 @@ export const QuestionRegister: FC = () => {
 					</View>
 				</View>
 			</View>
+			<View style={QuestionStyles.buttonNextContainer}>
+				<Pressable style={ButtonStyles.buttonContainerPrimary} onPress={() => navigation.navigate('MainStack')}>
+					<Text style={ButtonStyles.buttonTextPrimary}>Next</Text>
+				</Pressable>
+			</View>
+
 		</SafeAreaView>
 	);
 };
