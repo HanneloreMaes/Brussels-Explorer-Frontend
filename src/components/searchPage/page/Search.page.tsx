@@ -77,7 +77,14 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, rout
 							filteredData.map((item: any) => {
 								return (
 									<>
-										<TouchableOpacity key={item._id} style={SearchStyles.itemContainer} onPress={() => navigation.navigate('DetailPage', { titleScreen: item.name, dataOfCard: item })}>
+										<TouchableOpacity
+											key={item._id}
+											style={SearchStyles.itemContainer}
+											onPress={() => navigation.navigate('DetailPage', {
+												titleScreen: item.name,
+												dataOfCard: item
+											})}
+										>
 											<Image
 												source={{ uri: item.imageUrl }}
 												style={SearchStyles.image}
