@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { View, Image, Text, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Image, Text, ScrollView, TouchableOpacity } from 'react-native';
 
 import { RecommendedStyles } from './RecommendedSection.styles';
 import { RecommendedType } from '../types/Recommended.types';
