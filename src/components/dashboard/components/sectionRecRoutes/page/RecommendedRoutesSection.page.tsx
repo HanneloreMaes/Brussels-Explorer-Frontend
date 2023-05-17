@@ -16,7 +16,7 @@ export const RecommendedRoutes: FC <RecommendedType> = ({ data, translation, nav
 				{
 					data.map((recommendedRoute: any) => {
 						return(
-							<TouchableOpacity key={recommendedRoute._id} style={RecommendedStyles.dataContainer} onPress={() => RootNavigation.navigate('DetailPage', { dataOfCard: recommendedRoute })}>
+							<TouchableOpacity key={recommendedRoute._id} style={RecommendedStyles.dataContainer} onPress={() => navigation.navigate('DetailPage', { titleScreen: recommendedRoute.name,dataOfCard: recommendedRoute })}>
 								<Image source={{ uri: recommendedRoute.imageUrl }} style={RecommendedStyles.imageRoute} resizeMode='cover' />
 								<Text
 									style={RecommendedStyles.nameRoute}
