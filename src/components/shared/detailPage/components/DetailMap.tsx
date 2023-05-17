@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import MapboxGL from '@rnmapbox/maps';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
 import { DetailMapStyles } from './DetailMap.styles';
 import { MapboxAccesToken } from '@/config';
