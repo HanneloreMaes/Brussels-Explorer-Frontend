@@ -1,4 +1,4 @@
-import { SearchPage } from '@/components';
+import { OnboardingScreen, SearchPage } from '@/components';
 import { DetailPage } from '@/components/shared';
 import { DashboardStackScreen, MainStackScreen, OnboardingStackScreen } from '@/lib/navigator/stack';
 
@@ -7,6 +7,11 @@ export const SHARED_ROUTES = {
 		name: 'Onboarding',
 		component: OnboardingStackScreen,
 		label: 'OnboardingStack'
+	},
+	OnboardingPage: {
+		name: 'OnboardingScreen',
+		component: OnboardingScreen,
+		label: 'Onboarding',
 	},
 	DashboardStackScreen: {
 		name: 'DashboardStack',
