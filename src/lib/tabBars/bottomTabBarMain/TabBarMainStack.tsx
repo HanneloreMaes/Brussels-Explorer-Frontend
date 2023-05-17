@@ -17,6 +17,12 @@ export const MainStackTabBar: FC<BottomTabBarProps> = ({ state, descriptors, nav
 			}
 			return <Icon name='compass' size={30} color='black'/>;
 		}
+		if (routeName === 'MapviewStack') {
+			if (activeState) {
+				return <Icon name="map" size={28} color={Highlight.tealHighlight} />;
+			}
+			return <Icon name="map" size={28} color="black" />;
+		}
 		if (routeName === 'Search') {
 			if (activeState) {
 				return <Icon name="list" size={30} color={Highlight.tealHighlight} />;

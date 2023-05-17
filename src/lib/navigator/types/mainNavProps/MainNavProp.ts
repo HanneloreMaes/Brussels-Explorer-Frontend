@@ -3,6 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type MainStackParamList = {
 	DashboardStack: {titleScreen: string} | undefined;
+	MapviewStack: {titleScreen: string} | undefined;
 	Search: {titleScreen: string} | undefined;
 	SettingsStack: {titleScreen: string} | undefined;
 };
