@@ -1,26 +1,27 @@
 import React, { FC } from 'react';
 
-import { View, Image, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Image, Text, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 
-import { PopularStyles } from './RecommendedSection.styles';
-import { PopularType } from '../types/Recommended.types';
+import { RecommendedStyles } from './RecommendedSection.styles';
+import { RecommendedType } from '../types/Recommended.types';
 import * as RootNavigation from '@/lib/rootNavigator/RootNavigator';
-import { TextStyles } from '@/style';
 
-export const PopularRoutes: FC <PopularType> = ({ data, translation }) => {
-	console.log('Data', data);
+export const RecommendedRoutes: FC <RecommendedType> = ({ data, translation }) => {
+
 	return(
-		<View style={PopularStyles.container}>
-			<Text style={[ TextStyles.titleH2, PopularStyles.title ]}>{translation.t('dashboard_section_popular_title')}</Text>
-			<ScrollView horizontal style={PopularStyles.allDataContainer}>
+		<View style={RecommendedStyles.container}>
+			<Text style={RecommendedStyles.title}>{translation.t('dashboard_section_recommended_title')}</Text>
+			<ScrollView horizontal style={RecommendedStyles.allDataContainer}>
 				{
-					data.map((popularRoute: any) => {
+					data.map((recommendedRoute: any) => {
 						return(
-							<TouchableOpacity key={popularRoute._id} style={PopularStyles.dataContainer} onPress={() => RootNavigation.navigate('DetailPage', { dataOfCard: popularRoute })}>
-								<Image source={{ uri: popularRoute.imageUrl }} style={PopularStyles.imageRoute} resizeMode='cover' />
-								<Text style={PopularStyles.nameRoute}>{popularRoute.name}</Text>
-								<Text style={PopularStyles.infoRoute}>
-									{popularRoute.distance} - {popularRoute.time} - {translation.t('dashboard_section_genre_address')}
+							<TouchableOpacity key={recommendedRoute._id} style={RecommendedStyles.dataContainer} onPress={() => RootNavigation.navigate('DetailPage', { dataOfCard: recommendedRoute })}>
+								<Image source={{ uri: recommendedRoute.imageUrl }} style={RecommendedStyles.imageRoute} resizeMode='cover' />
+								<Text
+									style={RecommendedStyles.nameRoute}
+								>
+									{recommendedRoute.name}
+									<Text style={RecommendedStyles.infoRoute}> - {recommendedRoute.theme}</Text>
 								</Text>
 							</TouchableOpacity>
 						);
