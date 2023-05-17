@@ -7,11 +7,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DashboardStyles } from './Dashboard.styles';
 import { Header, RecommendedRoutes, RecentlyViewedSection } from '../components';
 import { LoadingSpinner } from '@/components/shared';
+import { DashboardNavProps } from '@/lib/navigator/types';
 import { Highlight } from '@/style';
 import { getRoutes } from '@/utils/redux/Actions';
 import '@/utils/i18n/i18n';
 
-export const DashboardScreen: FC = () => {
+export const DashboardScreen: FC <DashboardNavProps<'DashboardScreen'>> = ({ navigation }) => {
 
 	const { i18n } = useTranslation();
 	const dispatch = useDispatch();
@@ -35,7 +36,7 @@ export const DashboardScreen: FC = () => {
 					</View>
 				) : (
 					<View style={DashboardStyles.marginContainer}>
-						<RecommendedRoutes data={routes} translation={i18n} />
+						<RecommendedRoutes data={routes} translation={i18n} navigation={navigation} />
 						<RecentlyViewedSection data={routes} translation={i18n}/>
 					</View>
 				)
