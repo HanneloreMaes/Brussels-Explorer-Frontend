@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 
-import { View, Image, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Image, Text, ScrollView, TouchableOpacity, Pressable } from 'react-native';
 
 import { RecommendedStyles } from './RecommendedSection.styles';
 import { RecommendedType } from '../types/Recommended.types';
 import * as RootNavigation from '@/lib/rootNavigator/RootNavigator';
+import { ButtonStyles } from '@/style';
 
 export const RecommendedRoutes: FC <RecommendedType> = ({ data, translation }) => {
 
@@ -28,6 +29,9 @@ export const RecommendedRoutes: FC <RecommendedType> = ({ data, translation }) =
 					})
 				}
 			</ScrollView>
+			<Pressable style={[ ButtonStyles.buttonContainerPrimary, RecommendedStyles.buttonSeeMore ]}>
+				<Text style={[ ButtonStyles.buttonTextPrimary, RecommendedStyles.buttonSeeMoreText ]}>{translation.t('dashboard_section_recommended_button_title')}</Text>
+			</Pressable>
 		</View>
 	);
 };

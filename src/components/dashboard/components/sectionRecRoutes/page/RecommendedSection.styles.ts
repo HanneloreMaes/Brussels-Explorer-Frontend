@@ -4,12 +4,13 @@ import { BorderContainerStyle, DefaultMargins, TextColor, TextStyles } from '@/s
 
 export const RecommendedStyles = StyleSheet.create({
 	container: {
-		height: Dimensions.get('window').height/4 + 20,
+		height: Dimensions.get('window').height/3,
+		marginBottom: 30,
 	},
 	title: {
 		...TextStyles.titleH2,
 		color: TextColor.darkText,
-		marginBottom: DefaultMargins.bottomMargin + 15,
+		marginBottom: DefaultMargins.bottomMargin,
 	},
 	allDataContainer: {
 		flexDirection: 'row',
@@ -33,5 +34,11 @@ export const RecommendedStyles = StyleSheet.create({
 		fontSize: 14,
 		marginBottom: 20,
 		color: TextColor.grayText
+	},
+	buttonSeeMore: {
+		height: 35,
+	},
+	buttonSeeMoreText: {
+		fontSize: 16,
 	},
 });
