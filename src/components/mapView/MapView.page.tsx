@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 
 import MapboxGL from '@rnmapbox/maps';
-import { Text } from 'react-native';
 
 import { MapboxAccesToken } from '@/config';
 
