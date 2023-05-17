@@ -98,3 +98,4 @@ A few of the things you can do with the frontend:
 6. Translucent StatusBar Android - Kuray Ogun - [FreakyCoder](https://freakycoder.com/react-native-notes-23-how-to-translucent-statusbar-1b8b7a44139f)
 7. Search Filter React Native - Betomoedano - [Medium](https://medium.com/@betomoedano01/search-filter-react-native-search-bar-tutorial-fe3069fa55b5)
 8. parserOptions.project error - Rafael Tavares - [StackOverflow](https://stackoverflow.com/questions/58510287/parseroptions-project-has-been-set-for-typescript-eslint-parser)
+9. Disable Hardware Back Button - Jickson - [StackOverflow](https://stackoverflow.com/a/40146089)

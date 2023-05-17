@@ -100,7 +100,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 				updateProfile(auth?.currentUser, {
 					displayName: username,
 				});
-				navigation.navigate('MainStack');
+				navigation.navigate('QuestionRegister');
 			}).catch( error => Alert.alert(error.message));
 	};
 
@@ -122,6 +122,9 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 
 	return(
 		<KeyboardAvoidingView style={OnboardingStyles.container}>
+			<View style={OnboardingStyles.titleContainer}>
+				<Text style={OnboardingStyles.titleOnboarding}>Brussels Explorer</Text>
+			</View>
 			<Animated.View style={[ StyleSheet.absoluteFill, animatedImageStyle, { zIndex: -2 } ]}>
 				<Svg height={height + 100} width={width}>
 					<ClipPath id='clipPathId'>
@@ -136,7 +139,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 				</Svg>
 				<Animated.View style={[ OnboardingStyles.closeBtnContainer, animatedCloseButtonStyle ]}>
 					<TouchableOpacity
-						onPress={() => {imagePosition.value = 1;}}
+						onPress={() => { imagePosition.value = 1; } }
 						style={OnboardingStyles.touchableXContainer}
 					>
 						<Text>X</Text>

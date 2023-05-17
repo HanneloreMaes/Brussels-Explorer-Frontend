@@ -24,10 +24,10 @@ export const DashboardStackScreen : FC = () => (
 					key={dashboardItem.name}
 					name={dashboardItem.name as keyof DashboardParamList}
 					component={dashboardItem.component}
-					options={{
+					options={({ route }) => ({
 						headerShown: dashboardItem.showHeader,
-						title: dashboardItem.label
-					}}
+						title: route.params?.titleScreen || dashboardItem.label
+					})}
 				/>
 			))
 		}
