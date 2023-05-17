@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 import { Highlight, TextColor, TextStyles } from '@/style';
 
@@ -50,5 +50,12 @@ export const QuestionStyles = StyleSheet.create({
 		fontSize: 18,
 		paddingHorizontal: 10,
 		fontWeight: 'bold',
+	},
+	buttonNextContainer: {
+		position: 'absolute',
+		top: Dimensions.get('window').height -50,
+		left: 0,
+		right: 0,
+		bottom: 0,
 	},
 });
