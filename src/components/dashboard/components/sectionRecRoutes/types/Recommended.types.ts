@@ -1,4 +1,4 @@
-export interface PopularType {
+export interface RecommendedType {
 	data: any;
 	translation: any;
 };

@@ -1,17 +1,13 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
-import { BorderContainerStyle, DefaultAppStyling, DefaultMargins, DefaultPadding, TextColor, TextStyles } from '@/style';
+import { BorderContainerStyle, DefaultMargins, TextColor, TextStyles } from '@/style';
 
-export const PopularStyles = StyleSheet.create({
+export const RecommendedStyles = StyleSheet.create({
 	container: {
-		borderWidth: BorderContainerStyle.borderWidth,
-		borderRadius: BorderContainerStyle.borderRadius,
-		borderColor: BorderContainerStyle.borderColor,
-		padding: DefaultPadding.globalPadding,
-		height: 300,
-		marginBottom: DefaultAppStyling.globalMargin,
+		height: Dimensions.get('window').height/4 + 20,
 	},
 	title: {
+		...TextStyles.titleH2,
 		color: TextColor.darkText,
 		marginBottom: DefaultMargins.bottomMargin + 15,
 	},
@@ -19,23 +15,23 @@ export const PopularStyles = StyleSheet.create({
 		flexDirection: 'row',
 	},
 	dataContainer: {
-		borderWidth: BorderContainerStyle.borderWidth,
-		borderRadius: BorderContainerStyle.borderRadius,
-		borderColor: BorderContainerStyle.borderColor,
-		padding: 6,
-		marginRight: DefaultMargins.horizontalMargin - 5,
+		width: 150,
+		flexDirection: 'column',
+		alignItems: 'center',
+		marginRight: DefaultMargins.topMargin
 	},
 	imageRoute: {
-		height: 130,
-		borderRadius: BorderContainerStyle.imageBorderRadius,
-		marginBottom: DefaultMargins.bottomMargin,
+		height: 100,
+		width: 150,
+		borderRadius: BorderContainerStyle.imageBorderRadius
 	},
 	nameRoute: {
 		...TextStyles.bodyText,
-		fontSize: 18,
+		fontSize: 20,
 	},
 	infoRoute: {
-		fontSize: 11,
+		fontSize: 14,
 		marginBottom: 20,
+		color: TextColor.grayText
 	},
 });
