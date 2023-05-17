@@ -29,6 +29,7 @@ export const MAIN_ROUTES: IRouteTypes[] = [
 		name: 'Search',
 		component: SearchStackScreen,
 		label: 'OverviewStack',
+		showHeader: false,
 	},
 	{
 		name: 'SettingStack',
@@ -43,7 +44,8 @@ export const DASHBOARD_ROUTES: IRouteTypes[] = [
 		component: DashboardScreen,
 		label: 'Dashboard',
 		showHeader: false,
-	}
+	},
+	SHARED_ROUTES.Search,
 ];
 
 export const MAPVIEW_ROUTES: IRouteTypes[] = [
@@ -56,11 +58,7 @@ export const MAPVIEW_ROUTES: IRouteTypes[] = [
 ];
 
 export const SEARCH_ROUTES: IRouteTypes[] = [
-	{
-		name: 'SearchPage',
-		component: SearchPage,
-		label: 'routes_label_searchPage',
-	},
+	SHARED_ROUTES.Search,
 ];
 
 export const SETTINGS_ROUTES: IRouteTypes[] = [
