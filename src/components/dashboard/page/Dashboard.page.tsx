@@ -37,7 +37,7 @@ export const DashboardScreen: FC = () => {
 				</View>
 			) : (
 				<View style={DashboardStyles.marginContainer}>
-					<PopularRoutes data={routes.routes} translation={i18n} />
+					{/* <PopularRoutes data={routes.routes} translation={i18n} /> */}
 				</View>
 			) }
 		</ScrollView>
