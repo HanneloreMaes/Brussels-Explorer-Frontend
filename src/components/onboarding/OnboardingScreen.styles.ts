@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-import { BackgroundColor, DefaultMargins, DefaultShadow, Highlight } from '@/style';
+import { BackgroundColor, DefaultMargins, DefaultShadow, Highlight, TextColor, TextStyles } from '@/style';
 
 const { height } = Dimensions.get('window');
 
@@ -9,6 +9,19 @@ export const OnboardingStyles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'flex-end',
 		backgroundColor: BackgroundColor.light
+	},
+	titleContainer: {
+		position: 'absolute',
+		top: '8%',
+		left: 0,
+		right: 0,
+		bottom: 0,
+		alignItems: 'center',
+	},
+	titleOnboarding: {
+		...TextStyles.titleH1,
+		color: TextColor.lightText,
+		fontSize: 30,
 	},
 	buttonContainer: {
 		justifyContent: 'center',

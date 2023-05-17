@@ -15,9 +15,7 @@ import {
 	Platform,
 	Keyboard,
 	KeyboardAvoidingView,
-	TouchableWithoutFeedback,
-	ViewStyle,
-	ViewProps
+	TouchableWithoutFeedback
 } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, interpolate, withTiming, withDelay } from 'react-native-reanimated';
 import { Svg, Image, Ellipse, ClipPath } from 'react-native-svg';
@@ -124,8 +122,8 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 
 	return(
 		<KeyboardAvoidingView style={OnboardingStyles.container}>
-			<View style={{ position: 'absolute', top: '8%', left: 0, right: 0, bottom: 0, alignItems: 'center' }}>
-				<Text style={{ color: 'white', fontSize: 30, alignSelf: 'center' }}>Brussels Explorer</Text>
+			<View style={OnboardingStyles.titleContainer}>
+				<Text style={OnboardingStyles.titleOnboarding}>Brussels Explorer</Text>
 			</View>
 			<Animated.View style={[ StyleSheet.absoluteFill, animatedImageStyle, { zIndex: -2 } ]}>
 				<Svg height={height + 100} width={width}>
