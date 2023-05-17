@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 
-import { SettingStackParamList } from '../../types';
+import { SettingStackParamList } from '../../../types';
 import { SETTINGS_ROUTES } from '@/enums/routes';
 import { BackgroundColor, Highlight, TextColor } from '@/style';
 import '@/utils/i18n/i18n';
