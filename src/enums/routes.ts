@@ -60,6 +60,7 @@ export const MAPVIEW_ROUTES: IRouteTypes[] = [
 
 export const SEARCH_ROUTES: IRouteTypes[] = [
 	SHARED_ROUTES.Search,
+	SHARED_ROUTES.DetailPageScreen,
 ];
 
 export const SETTINGS_ROUTES: IRouteTypes[] = [
