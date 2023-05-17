@@ -7,7 +7,7 @@ import { RecommendedType } from '../types/Recommended.types';
 import * as RootNavigation from '@/lib/rootNavigator/RootNavigator';
 import { ButtonStyles } from '@/style';
 
-export const RecommendedRoutes: FC <RecommendedType> = ({ data, translation }) => {
+export const RecommendedRoutes: FC <RecommendedType> = ({ data, translation, navigation }) => {
 
 	return(
 		<View style={RecommendedStyles.container}>
@@ -29,7 +29,7 @@ export const RecommendedRoutes: FC <RecommendedType> = ({ data, translation }) =
 					})
 				}
 			</ScrollView>
-			<Pressable style={[ ButtonStyles.buttonContainerPrimary, RecommendedStyles.buttonSeeMore ]}>
+			<Pressable style={[ ButtonStyles.buttonContainerPrimary, RecommendedStyles.buttonSeeMore ]} onPress={() => navigation.navigate('Search')}>
 				<Text style={[ ButtonStyles.buttonTextPrimary, RecommendedStyles.buttonSeeMoreText ]}>{translation.t('dashboard_section_recommended_button_title')}</Text>
 			</Pressable>
 		</View>
