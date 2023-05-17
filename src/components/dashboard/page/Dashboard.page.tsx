@@ -5,7 +5,7 @@ import { ScrollView, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { DashboardStyles } from './Dashboard.styles';
-import { Header, RecommendedRoutes } from '../components';
+import { Header, RecommendedRoutes, RecentlyViewedSection } from '../components';
 import { LoadingSpinner } from '@/components/shared';
 import { Highlight } from '@/style';
 import { getRoutes } from '@/utils/redux/Actions';
@@ -36,6 +36,7 @@ export const DashboardScreen: FC = () => {
 				) : (
 					<View style={DashboardStyles.marginContainer}>
 						<RecommendedRoutes data={routes} translation={i18n} />
+						<RecentlyViewedSection data={routes} translation={i18n}/>
 					</View>
 				)
 			}
