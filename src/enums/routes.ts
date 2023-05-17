@@ -1,6 +1,6 @@
 import { IRouteTypes } from './routes.types';
 import { SHARED_ROUTES } from './sharedRoutes';
-import { DashboardScreen, MapView, OnboardingScreen, SearchPage, SettingsPage } from '@/components';
+import { DashboardScreen, MapView, OnboardingScreen, QuestionRegister, SearchPage, SettingsPage } from '@/components';
 import { LanguageSettings } from '@/components/settings/components';
 import { MapviewStackScreen, SearchStackScreen, SettingsStackScreen } from '@/lib/navigator/stack';
 
@@ -9,6 +9,11 @@ export const ONBOARDING_ROUTES: IRouteTypes[] = [
 		name: 'OnboardingScreen',
 		component: OnboardingScreen,
 		label: 'Onboarding',
+	},
+	{
+		name: 'QuestionRegister',
+		component: QuestionRegister,
+		label: 'Question',
 	},
 	SHARED_ROUTES.Main,
 ];
