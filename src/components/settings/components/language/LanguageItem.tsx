@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { LanugageItemStyles } from './LanguageItem.styles';
 import { LanguageItemType } from './languageItem.types';
+import { UnderlineStyle } from '@/style';
 import { setLanguage } from '@/utils/redux/Actions';
 import { Languages } from '@/utils/redux/Actions.types';
 
@@ -36,7 +37,7 @@ export const LanguageItem: FC <LanguageItemType> = ({ languageName, keyLang }) =
 				}
 				<Text style={LanugageItemStyles.languageText}>{languageName}</Text>
 			</TouchableOpacity>
-			<View style={LanugageItemStyles.underlineView} />
+			<View style={UnderlineStyle.underline} />
 		</View>
 	);
 };
