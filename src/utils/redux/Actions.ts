@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
 
-import { GET_POINTS, GET_ROUTES, Languages, SET_LANGUAGE } from './Actions.types';
+import { GET_POINTS, GET_ROUTES, GET_POINTS_SPEC_ROUTES, Languages, SET_LANGUAGE } from './Actions.types';
 import { baseUrl } from '@/config';
 
 /* eslint-disable no-unreachable */
@@ -38,6 +38,24 @@ export const getRoutes = () => {
 		};
 	} catch (error: any) {
 		console.warn('ERROR getRoutes', error.message);
+	}
+};
+
+export const getPointsFromSpecRoutes = (routeId: string) => {
+	try {
+		return async (dispatch: any) => {
+			const response = await axios.get(`${baseUrl}/route/${routeId}`);
+			if (response.data) {
+				dispatch({
+					type: GET_POINTS_SPEC_ROUTES,
+					payload: response.data
+				});
+			} else {
+				console.warn('Unable to fetch points from specific route!');
+			}
+		};
+	} catch (error: any) {
+		console.warn('ERROR getPointsFromSpecRoutes', error.message);
 	}
 };
 
