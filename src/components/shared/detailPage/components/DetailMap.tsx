@@ -49,7 +49,7 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 				index - (arrayCoordinates.length - 1)
 				: index + 1;
 
-			await fetch(`https://api.mapbox.com/matching/v5/mapbox/driving/${arrayCoordinates[ index ]}%3B${arrayCoordinates[ rightIndex ]}?geometries=geojson&language=en&steps=true&access_token=${MapboxAccesToken}`)
+			await fetch(`https://api.mapbox.com/matching/v5/mapbox/driving/${arrayCoordinates[ index ]}%3B${arrayCoordinates[ rightIndex ]}?geometries=geojson&language=en&overview=simplified&steps=true&access_token=${MapboxAccesToken}`)
 				.then(resp => resp.json())
 				.then((data) => {
 					console.log('COORDINATE data', data);
