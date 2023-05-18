@@ -82,6 +82,7 @@ A few of the things you can do with the frontend:
 4. ESLint Rules - [Rules Reference](https://eslint.org/docs/latest/rules/)
 5. Documentation SplashScreen - CrazyCodeBoy - [Github](https://github.com/crazycodeboy/react-native-splash-screen)
 6. Documentation React Native Icons - Oblador - [Github](https://github.com/oblador/react-native-vector-icons)
+7. Documentation rnmapbox/maps - - [Github](https://github.com/rnmapbox/maps)
 
 ### Video's
 1. Firebase Authentication Login and Sign Up - 26:33 until 1:18:31 - Sonny Sangha - [Youtube](https://www.youtube.com/watch?v=MJzmZ9qmdaE)
