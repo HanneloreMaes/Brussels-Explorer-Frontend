@@ -23,6 +23,10 @@ export const LanguageSettings: FC = () => {
 			language: i18n.t('settings_language_label_en'),
 			key: 'en'
 		},
+		{
+			language: i18n.t('settings_language_label_de'),
+			key: 'de'
+		},
 	];
 
 	return (

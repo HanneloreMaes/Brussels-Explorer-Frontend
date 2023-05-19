@@ -27,7 +27,7 @@
 	"dashboard_heading_morning": "Goedemorgen",
 	"dashboard_heading_midday": "Goedemiddag",
 	"dashboard_heading_afternoon": "Goedenamiddag",
-	"dashboard_heading_evening": "Goedeavond",
+	"dashboard_heading_evening": "Goedenavond",
 	"dashboard_heading_night": "Goedenacht",
 	"dashboard_section_recommended_title": "Aanbevolen Routes",
 	"dashboard_section_recommended_button_title": "Bekijk meer routes",
@@ -37,5 +37,6 @@
 	"search_notFound": "De zoekterm werd niet gevonden",
 	"settings_language_label_nl": "Nederlands",
 	"settings_language_label_en": "Engels",
-	"settings_language_label_fr": "Frans"
+	"settings_language_label_fr": "Frans",
+	"settings_language_label_de": "Duits"
 }

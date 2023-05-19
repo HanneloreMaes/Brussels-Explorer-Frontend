@@ -37,5 +37,6 @@
 	"search_notFound": "The search term was not found",
 	"settings_language_label_nl": "Dutch",
 	"settings_language_label_en": "English",
-	"settings_language_label_fr": "French"
+	"settings_language_label_fr": "French",
+	"settings_language_label_de": "German"
 }
