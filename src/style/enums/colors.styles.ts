@@ -10,6 +10,7 @@ const Colors = {
 
 export const BackgroundColor = {
 	light: Colors.white,
+	darkBckgr: Colors.black,
 	smoke: Colors.smokeWhite,
 	skipBtnWhite: 'rgba(242, 242, 242, 0.7)'
 };
