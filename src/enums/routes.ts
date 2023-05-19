@@ -5,11 +5,7 @@ import { LanguageSettings } from '@/components/settings/components';
 import { MapviewStackScreen, SearchStackScreen, SettingsStackScreen } from '@/lib/navigator/stack';
 
 export const ONBOARDING_ROUTES: IRouteTypes[] = [
-	{
-		name: 'OnboardingScreen',
-		component: OnboardingScreen,
-		label: 'Onboarding',
-	},
+	SHARED_ROUTES.OnboardingPage,
 	{
 		name: 'QuestionRegister',
 		component: QuestionRegister,
@@ -60,6 +56,7 @@ export const MAPVIEW_ROUTES: IRouteTypes[] = [
 
 export const SEARCH_ROUTES: IRouteTypes[] = [
 	SHARED_ROUTES.Search,
+	SHARED_ROUTES.DetailPageScreen,
 ];
 
 export const SETTINGS_ROUTES: IRouteTypes[] = [
@@ -73,7 +70,7 @@ export const SETTINGS_ROUTES: IRouteTypes[] = [
 		component: LanguageSettings,
 		label: 'routes_label_language',
 	},
-	SHARED_ROUTES.OnboardingStack,
+	SHARED_ROUTES.OnboardingPage,
 ];
 
 export const APP_ROUTES: IRouteTypes[] = [

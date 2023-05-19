@@ -3,6 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type SearchPageParamList = {
 	SearchPage: {titleScreen: string} | undefined;
+	DetailPage: {titleScreen: string; dataOfCard: any} | undefined;
 };
 
 export interface SearchNavProps<T extends keyof SearchPageParamList> {
