@@ -24,7 +24,7 @@ export const DetailPage: FC <DetailTypes> = ({ route }) => {
 						<Text style={DetailStyles.borderText}>{dataOfCard.time}</Text>
 					</View>
 					<View style={DetailStyles.borderTextContainer}>
-						<Text style={DetailStyles.borderText}> {i18n.t('dashboard_section_genre_address')} </Text>
+						<Text style={DetailStyles.borderText}> {i18n.t('dashboard_detail_page_address')} </Text>
 					</View>
 				</View>
 				<Image source={{ uri: dataOfCard.imageUrl }} style={DetailStyles.imageDetail} resizeMode='cover' />
