@@ -30,7 +30,7 @@ export const DetailPage: FC <DetailTypes> = ({ route }) => {
 				<Image source={{ uri: dataOfCard.imageUrl }} style={DetailStyles.imageDetail} resizeMode='cover' />
 				<Text style={DetailStyles.titleDetail}>{dataOfCard.name}</Text>
 				<Text style={DetailStyles.textDetail}>{dataOfCard.description}</Text>
-				<DetailMap />
+				<DetailMap dataRoute={dataOfCard}/>
 			</View>
 		</ScrollView>
 	);

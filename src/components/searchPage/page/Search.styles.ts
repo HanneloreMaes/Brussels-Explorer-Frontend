@@ -1,5 +1,7 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
+import { DefaultAppStyling, TextColor, TextStyles, UnderlineStyle } from '@/style';
+
 export const SearchStyles = StyleSheet.create({
 	loadingContainer: {
 		height: Dimensions.get('window').height / 2,
@@ -7,8 +9,8 @@ export const SearchStyles = StyleSheet.create({
 	itemContainer: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		marginLeft: 10,
-		marginTop: 10,
+		marginHorizontal: DefaultAppStyling.globalMargin,
+		marginVertical: 15,
 	},
 	image: {
 		width: 65,
@@ -16,13 +18,29 @@ export const SearchStyles = StyleSheet.create({
 		borderRadius: 40,
 	},
 	textName: {
-		fontSize: 17,
+		fontSize: 25,
 		marginLeft: 10,
 		fontWeight: '600',
+		color: TextColor.darkText,
 	},
-	textAddress: {
+	infoContainer: {
+		flexDirection: 'row',
+		width: '75%',
+		justifyContent: 'space-between',
+		marginLeft: 10
+	},
+	infoTextContainer: {
+		flexDirection: 'row',
+		alignItems:'center',
+	},
+	textInfo: {
+		...TextStyles.bodyText,
 		fontSize: 14,
-		marginLeft: 10,
-		color: 'grey',
+		marginLeft: 5,
 	},
+	underline: {
+		...UnderlineStyle.underline,
+		width: Dimensions.get('screen').width - (DefaultAppStyling.globalMargin * 2),
+		marginLeft: DefaultAppStyling.globalMargin
+	}
 });

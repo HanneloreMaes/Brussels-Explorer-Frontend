@@ -17,6 +17,14 @@ export const DefaultPadding = {
 	globalPadding: 10,
 };
 
+export const UnderlineStyle = StyleSheet.create({
+	underline: {
+		borderBottomWidth: 0.6,
+		borderColor: Highlight.grayHighlight,
+		marginVertical: 10,
+	},
+});
+
 export const DefaultShadow = StyleSheet.create({
 	shadowPrimary : {
 		shadowColor: Highlight.darkHighlight,

@@ -11,4 +11,5 @@ export interface RootAction extends Action {
 // GET-ROUTES => GETTING THE DATA
 export const GET_POINTS = 'GET_POINTS';
 export const GET_ROUTES = 'GET_ROUTES';
+export const GET_POINTS_SPEC_ROUTES = 'GET_POINTS_SPEC_ROUTES';
 export const SET_LANGUAGE = 'SET_LANGUAGE';
