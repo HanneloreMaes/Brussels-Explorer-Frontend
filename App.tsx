@@ -9,7 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import { IS_ANDROID } from '@/config';
 import { Navigator } from '@/lib/navigator/Navigator';
-import { setLanguage } from '@/utils/redux/Actions';
+import { setLanguage, setMode } from '@/utils/redux/Actions';
 import '@/utils/i18n/i18n';
 import { persistor, store } from '@/utils/redux/Store';
 
@@ -18,12 +18,27 @@ const App = () => {
 	const { i18n } = useTranslation();
 	const dispatch = useDispatch();
 
-	const { activeLanguage } = useSelector((state: any) => state.allReducer);
+	const { activeLanguage, nameMode } = useSelector((state: any) => state.allReducer);
 
 	const checkIfActiveLanguageIsNull = () => {
 		if (activeLanguage === null) {
 			dispatch(setLanguage('en'));
 		}
+	};
+
+	const getThemApp = () => {
+
+		const userDate = new Date();
+		const timeUserString = userDate.toTimeString();
+
+		const startDarkModus = '19:00:00';
+		const startLightModus = '07:00:00';
+
+		if (timeUserString > startLightModus && timeUserString < startDarkModus) {
+			dispatch(setMode('light'));
+		}
+		dispatch(setMode('dark'));
+
 	};
 
 	const handleBackButton = () => {
@@ -38,6 +53,7 @@ const App = () => {
 	useEffect(() => {
 		SplashScreen.hide();
 		BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+		getThemApp();
 	}, []);
 
 	return(
