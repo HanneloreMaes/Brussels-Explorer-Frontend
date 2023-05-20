@@ -24,7 +24,7 @@ export const SearchStackScreen: FC = () => {
 				},
 				headerTintColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.tealHighlight,
 				headerStyle: {
-					backgroundColor: BackgroundColor.headerBlack,
+					backgroundColor: nameMode === 'dark' ? BackgroundColor.headerBlack : BackgroundColor.light,
 				},
 			}}
 		>

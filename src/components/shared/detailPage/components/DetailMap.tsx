@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DetailMapStyles } from './DetailMap.styles';
 import { DetailMapTypes } from './DetailMap.types';
 import { MapboxAccesToken } from '@/config';
+import { Highlight } from '@/style';
 import { getPointsFromSpecRoutes } from '@/utils/redux/Actions';
 
 MapboxGL.setWellKnownTileServer('Mapbox');
@@ -52,7 +53,6 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 			await fetch(`https://api.mapbox.com/matching/v5/mapbox/driving/${arrayCoordinates[ index ]}%3B${arrayCoordinates[ rightIndex ]}?geometries=geojson&language=en&overview=simplified&steps=true&access_token=${MapboxAccesToken}`)
 				.then(resp => resp.json())
 				.then((data) => {
-					console.log('COORDINATE data', data);
 					const arrayMatchings = data.matchings[ 0 ];
 					const geometryCoordinatesRoute = arrayMatchings.geometry.coordinates;
 
@@ -89,8 +89,15 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 		<View style={DetailMapStyles.mapContainer}>
 			<MapboxGL.MapView style={{ flex: 1 }}>
 				<MapboxGL.Camera zoomLevel={12} centerCoordinate={centerCo} />
-				<MapboxGL.ShapeSource id='line1' shape={routeGeo}>
-					<MapboxGL.LineLayer id='linelayer1' style={{ lineColor:'red' }} />
+				{
+					pointsForSpecRoute.map((point: any) => {
+						console.log('Test', point);
+						const coordinates = [ point.lng, point.lat ];
+						return <MapboxGL.PointAnnotation key={point._id} id="point" coordinate={coordinates} title={point.name} />;
+					})
+				}
+				<MapboxGL.ShapeSource id='route' shape={routeGeo}>
+					<MapboxGL.LineLayer id='routeLine' style={{ lineColor: Highlight.tealHighlight }} />
 				</MapboxGL.ShapeSource>
 			</MapboxGL.MapView>
 		</View>
