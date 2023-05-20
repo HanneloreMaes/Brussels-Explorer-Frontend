@@ -22,7 +22,7 @@ export const SearchStackScreen: FC = () => {
 				headerTitleStyle: {
 					color: nameMode === 'light' ? TextColor.lightText : TextColor.darkText,
 				},
-				headerTintColor: Highlight.tealHighlight,
+				headerTintColor: nameMode === 'light' ? Highlight.lightHighlight : Highlight.tealHighlight,
 				headerStyle: {
 					backgroundColor: BackgroundColor.headerBlack,
 				},
