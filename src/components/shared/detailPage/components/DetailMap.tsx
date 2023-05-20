@@ -19,6 +19,7 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 	const routeId = dataRoute._id;
 	const dispatch = useDispatch();
 	const { pointsForSpecRoute } = useSelector((state: any) => state.allReducer);
+	console.log('POINT', pointsForSpecRoute);
 
 	const fetchPointsSpecRoute = () => {
 		dispatch(getPointsFromSpecRoutes(routeId));
@@ -52,7 +53,6 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 			await fetch(`https://api.mapbox.com/matching/v5/mapbox/driving/${arrayCoordinates[ index ]}%3B${arrayCoordinates[ rightIndex ]}?geometries=geojson&language=en&overview=simplified&steps=true&access_token=${MapboxAccesToken}`)
 				.then(resp => resp.json())
 				.then((data) => {
-					console.log('COORDINATE data', data);
 					const arrayMatchings = data.matchings[ 0 ];
 					const geometryCoordinatesRoute = arrayMatchings.geometry.coordinates;
 
@@ -89,6 +89,13 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 		<View style={DetailMapStyles.mapContainer}>
 			<MapboxGL.MapView style={{ flex: 1 }}>
 				<MapboxGL.Camera zoomLevel={12} centerCoordinate={centerCo} />
+				{
+					pointsForSpecRoute.map((point: any) => {
+						console.log('Test', point);
+						const coordinates = [ point.lng, point.lat ];
+						return <MapboxGL.PointAnnotation key={point._id} id="point" coordinate={coordinates} title={point.name} />;
+					})
+				}
 				<MapboxGL.ShapeSource id='line1' shape={routeGeo}>
 					<MapboxGL.LineLayer id='linelayer1' style={{ lineColor:'red' }} />
 				</MapboxGL.ShapeSource>
