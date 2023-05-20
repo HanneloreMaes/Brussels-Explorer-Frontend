@@ -4,7 +4,6 @@ import { View, Image, Text, ScrollView, TouchableOpacity, Pressable } from 'reac
 
 import { RecommendedStyles } from './RecommendedSection.styles';
 import { RecommendedType } from '../types/Recommended.types';
-import * as RootNavigation from '@/lib/rootNavigator/RootNavigator';
 import { ButtonStyles, TextColor } from '@/style';
 
 export const RecommendedRoutes: FC <RecommendedType> = ({ data, mode, translation, navigation }) => {
@@ -16,10 +15,21 @@ export const RecommendedRoutes: FC <RecommendedType> = ({ data, mode, translatio
 				{
 					data.map((recommendedRoute: any) => {
 						return(
-							<TouchableOpacity key={recommendedRoute._id} style={RecommendedStyles.dataContainer} onPress={() => navigation.navigate('DetailPage', { titleScreen: recommendedRoute.name,dataOfCard: recommendedRoute })}>
+							<TouchableOpacity
+								key={recommendedRoute._id}
+								style={RecommendedStyles.dataContainer}
+								onPress={() => navigation.navigate('DetailPage', {
+									titleScreen: recommendedRoute.name,
+									dataOfCard: recommendedRoute,
+									nameMode: mode
+								})}
+							>
 								<Image source={{ uri: recommendedRoute.imageUrl }} style={RecommendedStyles.imageRoute} resizeMode='cover' />
 								<Text
-									style={[ RecommendedStyles.nameRoute, { color: mode === 'light' ? TextColor.lightText : TextColor.darkText } ]}
+									style={[
+										RecommendedStyles.nameRoute,
+										{ color: mode === 'light' ? TextColor.lightText : TextColor.darkText }
+									]}
 								>
 									{recommendedRoute.name}
 									<Text style={RecommendedStyles.infoRoute}> - {recommendedRoute.theme}</Text>

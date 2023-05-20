@@ -85,7 +85,8 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, rout
 											style={SearchStyles.itemContainer}
 											onPress={() => navigation.navigate('DetailPage', {
 												titleScreen: item.name,
-												dataOfCard: item
+												dataOfCard: item,
+												nameMode
 											})}
 										>
 											<Image

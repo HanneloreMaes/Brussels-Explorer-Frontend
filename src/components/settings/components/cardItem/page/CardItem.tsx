@@ -3,11 +3,12 @@ import React, { FC, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Text, Image, TouchableOpacity } from 'react-native';
 
-import { CardTypes } from '../types/Carditem.types';
 import { CardStyles } from './CardItem.styles';
+import { CardTypes } from '../types/Carditem.types';
 import '@/utils/i18n/i18n';
+import { TextColor } from '@/style';
 
-export const CardItem: FC <CardTypes> = ({ nameComponent, navigation }) => {
+export const CardItem: FC <CardTypes> = ({ nameComponent, navigation, mode }) => {
 
 	const{ i18n } = useTranslation();
 	const [ navName, setNavName ] = useState<string>('');
@@ -31,8 +32,14 @@ export const CardItem: FC <CardTypes> = ({ nameComponent, navigation }) => {
 			style={CardStyles.touchableContainer}
 			onPress={pressSetting}
 		>
-			<Text style={CardStyles.textItem}>{nameComponent}</Text>
-			<Image source={require('../../../../../assets/icons/ic_expand_arrow.png')} style={CardStyles.imageExpandArrow} />
+			<Text style={[ CardStyles.textItem, { color: mode === 'light' ? TextColor.lightText : TextColor.darkText } ]}>{nameComponent}</Text>
+			<Image
+				source={mode === 'light' ?
+					require('../../../../../assets/icons/ic_expand_arrow_light.png')
+					: require('../../../../../assets/icons/ic_expand_arrow_dark.png')
+				}
+				style={CardStyles.imageExpandArrow}
+			/>
 		</TouchableOpacity>
 	);
 };
