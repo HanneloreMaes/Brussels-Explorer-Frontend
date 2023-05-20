@@ -21,7 +21,6 @@ export const SearchStyles = StyleSheet.create({
 		fontSize: 25,
 		marginLeft: 10,
 		fontWeight: '600',
-		color: TextColor.darkText,
 	},
 	infoContainer: {
 		flexDirection: 'row',

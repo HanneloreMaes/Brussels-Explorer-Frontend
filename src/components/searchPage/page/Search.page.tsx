@@ -11,7 +11,7 @@ import { NotFoundText } from '../components/notFound/notFound';
 import { LoadingSpinner } from '@/components/shared';
 import { SearchNavProps } from '@/lib/navigator/types';
 import '@/utils/i18n/i18n';
-import { Highlight } from '@/style';
+import { Highlight, TextColor } from '@/style';
 import { getRoutes } from '@/utils/redux/Actions';
 
 export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, route }) => {
@@ -22,7 +22,7 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, rout
 
 	const [ filteredData, setFilteredData ] = useState([]);
 
-	const { routes } = useSelector((state: any) => state.allReducer);
+	const { routes, nameMode } = useSelector((state: any) => state.allReducer);
 	const fetchPoints = () => {
 		dispatch(getRoutes());
 		setIsLoading(false);
@@ -53,6 +53,9 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, rout
 		navigation.setOptions({
 			headerTitle: route.params?.titleScreen,
 			headerSearchBarOptions: {
+				textColor: nameMode === 'light' ? Highlight.lightHighlight : Highlight.darkHighlight,
+				headerIconColor: nameMode === 'light' ? Highlight.lightHighlight : Highlight.darkHighlight,
+				hintTextColor: nameMode === 'light' ? Highlight.darkGrayHighlight : Highlight.darkHighlight,
 				placeholder: i18n.t('search_placeholder_searchBar') as string,
 				onChangeText: (event: any) => {
 					searchFilterFunction(event.nativeEvent.text);
@@ -90,19 +93,19 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, rout
 												style={SearchStyles.image}
 												resizeMode='cover' />
 											<View style={{ marginLeft: 10 }}>
-												<Text style={SearchStyles.textName}>{item.name}</Text>
+												<Text style={[ SearchStyles.textName, { color: nameMode === 'light' ? TextColor.lightText : TextColor.darkText } ]}>{item.name}</Text>
 												<View style={SearchStyles.infoContainer}>
 													<View style={SearchStyles.infoTextContainer}>
 														<Icon name='arrows-h' color={Highlight.tealHighlight} size={16} />
-														<Text style={SearchStyles.textInfo}>{item.distance}</Text>
+														<Text style={[ SearchStyles.textInfo, { color: nameMode === 'light' ? TextColor.lightText : TextColor.darkText } ]}>{item.distance}</Text>
 													</View>
 													<View style={SearchStyles.infoTextContainer}>
 														<Feather name='clock' color={Highlight.tealHighlight} size={16} />
-														<Text style={SearchStyles.textInfo}>{item.time}</Text>
+														<Text style={[ SearchStyles.textInfo, { color: nameMode === 'light' ? TextColor.lightText : TextColor.darkText } ]}>{item.time}</Text>
 													</View>
 													<View style={SearchStyles.infoTextContainer}>
 														<Icon name='tag' color={Highlight.tealHighlight} size={16} />
-														<Text style={SearchStyles.textInfo}>{item.theme}</Text>
+														<Text style={[ SearchStyles.textInfo, { color: nameMode === 'light' ? TextColor.lightText : TextColor.darkText } ]}>{item.theme}</Text>
 													</View>
 												</View>
 											</View>
