@@ -88,10 +88,9 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 	return (
 		<View style={DetailMapStyles.mapContainer}>
 			<MapboxGL.MapView style={{ flex: 1 }}>
-				<MapboxGL.Camera zoomLevel={12} centerCoordinate={centerCo} />
+				<MapboxGL.Camera zoomLevel={12} centerCoordinate={centerCo} animationMode='none' />
 				{
 					pointsForSpecRoute.map((point: any) => {
-						console.log('Test', point);
 						const coordinates = [ point.lng, point.lat ];
 						return <MapboxGL.PointAnnotation key={point._id} id="point" coordinate={coordinates} title={point.name} />;
 					})
