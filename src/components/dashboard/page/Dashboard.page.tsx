@@ -27,7 +27,7 @@ export const DashboardScreen: FC <DashboardNavProps<'DashboardScreen'>> = ({ nav
 	}, []);
 
 	return(
-		<ScrollView style={DashboardStyles.scrollContainer}>
+		<ScrollView>
 			<Header />
 			{
 				routes.length === 0 ? (
