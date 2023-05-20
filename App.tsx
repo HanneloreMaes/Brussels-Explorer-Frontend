@@ -35,7 +35,7 @@ const App = () => {
 		const startLightModus = '07:00:00';
 
 		if (timeUserString > startLightModus && timeUserString < startDarkModus) {
-			dispatch(setMode('light'));
+			return dispatch(setMode('light'));
 		}
 		dispatch(setMode('dark'));
 
