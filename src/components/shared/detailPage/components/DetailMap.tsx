@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DetailMapStyles } from './DetailMap.styles';
 import { DetailMapTypes } from './DetailMap.types';
 import { MapboxAccesToken } from '@/config';
+import { Highlight } from '@/style';
 import { getPointsFromSpecRoutes } from '@/utils/redux/Actions';
 
 MapboxGL.setWellKnownTileServer('Mapbox');
@@ -96,8 +97,8 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 						return <MapboxGL.PointAnnotation key={point._id} id="point" coordinate={coordinates} title={point.name} />;
 					})
 				}
-				<MapboxGL.ShapeSource id='line1' shape={routeGeo}>
-					<MapboxGL.LineLayer id='linelayer1' style={{ lineColor:'red' }} />
+				<MapboxGL.ShapeSource id='route' shape={routeGeo}>
+					<MapboxGL.LineLayer id='routeLine' style={{ lineColor: Highlight.tealHighlight }} />
 				</MapboxGL.ShapeSource>
 			</MapboxGL.MapView>
 		</View>
