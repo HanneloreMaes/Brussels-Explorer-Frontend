@@ -43,8 +43,7 @@ export const RecommendedRoutes: FC <RecommendedType> = ({ data, mode, translatio
 				<Text
 					style={[
 						ButtonStyles.buttonTextPrimary,
-						RecommendedStyles.buttonSeeMoreText,
-						{ color: mode === 'dark' ? TextColor.lightText : TextColor.darkText }
+						RecommendedStyles.buttonSeeMoreText
 					]}
 				>
 					{translation.t('dashboard_section_recommended_button_title')}
