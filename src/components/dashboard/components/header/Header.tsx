@@ -2,15 +2,18 @@ import React, { FC, useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { Image, Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import { HeaderStyles } from './Header.styles';
 import { TextStyles } from '@/style';
 import { auth } from '@/utils/Firebase.config';
+
 import '@/utils/i18n/i18n';
 
 export const Header: FC = () => {
 
 	const { i18n } = useTranslation();
+	const { nameMode } = useSelector((state: any) => state.allReducer);
 
 	const [ nameUser, setNameUser ] = useState<string>('');
 
@@ -58,7 +61,7 @@ export const Header: FC = () => {
 
 	return(
 		<View style={HeaderStyles.container}>
-			<Image source={require('@/assets/images/header_Img.jpg')} style={HeaderStyles.headerImage} />
+			<Image source={nameMode === 'light' ? require('@/assets/images/darkModus/header_Img.jpg') : require('@/assets/images/lightModus/header_Img.jpg')} style={HeaderStyles.headerImage} resizeMode='cover' />
 			<View style={HeaderStyles.headerContainer}>
 				<Text style={[ TextStyles.titleH2, { fontSize: 30 } ]}>{i18n.t(timeOfDay)} </Text>
 				<Text style={[ TextStyles.titleH2, { fontSize: 25 } ]}>{nameUser}</Text>
