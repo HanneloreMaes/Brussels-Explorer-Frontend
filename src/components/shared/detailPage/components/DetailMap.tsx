@@ -20,7 +20,6 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 	const routeId = dataRoute._id;
 	const dispatch = useDispatch();
 	const { pointsForSpecRoute } = useSelector((state: any) => state.allReducer);
-	console.log('POINT', pointsForSpecRoute);
 
 	const fetchPointsSpecRoute = () => {
 		dispatch(getPointsFromSpecRoutes(routeId));
