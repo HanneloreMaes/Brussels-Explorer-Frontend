@@ -79,7 +79,7 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, rout
 						filteredData.length !== 0 ? (
 							filteredData.map((item: any) => {
 								return (
-									<>
+									<View key={item._id}>
 										<TouchableOpacity
 											key={item._id}
 											style={SearchStyles.itemContainer}
@@ -112,7 +112,7 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, rout
 											</View>
 										</TouchableOpacity>
 										<View style={SearchStyles.underline} />
-									</>
+									</View>
 								);
 							})
 						) : (
