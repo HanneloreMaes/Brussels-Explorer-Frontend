@@ -8,7 +8,6 @@ export const RecentlyStyles = StyleSheet.create({
 	},
 	title: {
 		...TextStyles.titleH2,
-		color: TextColor.darkText,
 		marginBottom: DefaultMargins.bottomMargin,
 	},
 });

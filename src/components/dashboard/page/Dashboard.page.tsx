@@ -16,7 +16,7 @@ export const DashboardScreen: FC <DashboardNavProps<'DashboardScreen'>> = ({ nav
 
 	const { i18n } = useTranslation();
 	const dispatch = useDispatch();
-	const { routes } = useSelector( (state: any) => state.allReducer );
+	const { routes, nameMode } = useSelector( (state: any) => state.allReducer );
 
 	const fetchRoutes = () => {
 		dispatch(getRoutes());
@@ -36,8 +36,8 @@ export const DashboardScreen: FC <DashboardNavProps<'DashboardScreen'>> = ({ nav
 					</View>
 				) : (
 					<View style={DashboardStyles.marginContainer}>
-						<RecommendedRoutes data={routes} translation={i18n} navigation={navigation} />
-						<RecentlyViewedSection data={routes} translation={i18n}/>
+						<RecommendedRoutes data={routes} mode={nameMode} translation={i18n} navigation={navigation} />
+						<RecentlyViewedSection data={routes} mode={nameMode} translation={i18n}/>
 					</View>
 				)
 			}
