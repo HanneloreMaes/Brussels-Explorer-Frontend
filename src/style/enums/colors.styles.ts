@@ -1,5 +1,6 @@
 const Colors = {
-	darkBlack: 'rgb(0, 0, 0)',
+	darkBlack: 'rgb(18, 18, 18)',
+	headerBlack: 'rgb(31, 31, 31)',
 	black: 'rgb(37, 38, 39)',
 	white: 'rgb(255, 255, 255)',
 	smokeWhite: 'rgb(242, 242, 242)',
@@ -10,8 +11,8 @@ const Colors = {
 
 export const BackgroundColor = {
 	light: Colors.white,
-	darkBckgr: Colors.black,
-	smoke: Colors.smokeWhite,
+	dark: Colors.darkBlack,
+	headerBlack: Colors.headerBlack,
 	skipBtnWhite: 'rgba(242, 242, 242, 0.7)'
 };
 
@@ -25,5 +26,7 @@ export const TextColor = {
 export const Highlight = {
 	tealHighlight: Colors.teal,
 	darkHighlight: Colors.black,
+	lightHighlight: Colors.white,
+	darkGrayHighlight: Colors.darkGray,
 	grayHighlight: Colors.opacityGray,
 };
