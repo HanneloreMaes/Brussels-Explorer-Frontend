@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 import { SettingStackParamList } from '../../../types';
 import { SETTINGS_ROUTES } from '@/enums/routes';
@@ -13,16 +14,19 @@ const SettingStack = createNativeStackNavigator<SettingStackParamList>();
 export const SettingsStackScreen: FC = () => {
 
 	const { i18n } = useTranslation();
+	const { nameMode } = useSelector((state: any) => state.allReducer);
 
 	return (
 		<SettingStack.Navigator
 			initialRouteName='Settings'
 			screenOptions={{
-				headerTitleStyle: { color: TextColor.darkText },
+				headerTitleStyle: {
+					color: nameMode === 'light' ? TextColor.lightText : TextColor.darkText,
+				},
 				headerTintColor: Highlight.tealHighlight,
-				contentStyle: {
-					backgroundColor: BackgroundColor.light
-				}
+				headerStyle: {
+					backgroundColor: BackgroundColor.headerBlack,
+				},
 			}}
 		>
 			{SETTINGS_ROUTES.map((settingItem) => (
