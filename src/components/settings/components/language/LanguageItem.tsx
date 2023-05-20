@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { LanugageItemStyles } from './LanguageItem.styles';
 import { LanguageItemType } from './languageItem.types';
-import { UnderlineStyle } from '@/style';
+import { TextColor, UnderlineStyle } from '@/style';
 import { setLanguage } from '@/utils/redux/Actions';
 import { Languages } from '@/utils/redux/Actions.types';
 
@@ -14,7 +14,7 @@ export const LanguageItem: FC <LanguageItemType> = ({ languageName, keyLang }) =
 	const dispatch = useDispatch();
 	const [ checkMark, setCheckMark ] = useState<boolean>(false);
 
-	const { activeLanguage } = useSelector((state: any) => state.allReducer);
+	const { activeLanguage, nameMode } = useSelector((state: any) => state.allReducer);
 
 	const changeLang = (languageKey: Languages) => {
 		dispatch(setLanguage(languageKey));
@@ -35,7 +35,14 @@ export const LanguageItem: FC <LanguageItemType> = ({ languageName, keyLang }) =
 				{
 					checkMark ? <Image source={require('@/assets/icons/ic_check_mark.png')} style={LanugageItemStyles.checkImage} /> : null
 				}
-				<Text style={LanugageItemStyles.languageText}>{languageName}</Text>
+				<Text
+					style={[
+						LanugageItemStyles.languageText,
+						{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+					]}
+				>
+					{languageName}
+				</Text>
 			</TouchableOpacity>
 			<View style={UnderlineStyle.underline} />
 		</View>

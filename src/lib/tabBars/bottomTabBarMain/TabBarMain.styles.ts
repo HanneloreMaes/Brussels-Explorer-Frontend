@@ -5,7 +5,6 @@ import { BackgroundColor, DefaultShadow } from '@/style';
 export const TabBarStyles = StyleSheet.create({
 	safeContainer: {
 		paddingVertical: 5,
-		backgroundColor: BackgroundColor.light,
 
 		...DefaultShadow.shadowTabBar,
 	},

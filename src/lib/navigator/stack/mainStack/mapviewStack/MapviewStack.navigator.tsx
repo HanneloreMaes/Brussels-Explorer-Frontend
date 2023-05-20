@@ -2,10 +2,12 @@ import React, { FC } from 'react';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 import { MapviewStackParamList } from '../../../types';
 import { MAPVIEW_ROUTES } from '@/enums/routes';
 import { TextColor, Highlight, BackgroundColor } from '@/style';
+
 import '@/utils/i18n/i18n';
 
 const MapviewStack = createNativeStackNavigator<MapviewStackParamList>();
@@ -13,15 +15,18 @@ const MapviewStack = createNativeStackNavigator<MapviewStackParamList>();
 export const MapviewStackScreen: FC = () => {
 
 	const { i18n } = useTranslation();
+	const { nameMode } = useSelector((state: any) => state.allReducer);
 
 	return (
 		<MapviewStack.Navigator
 			screenOptions={{
-				headerTitleStyle: { color: TextColor.darkText },
-				headerTintColor: Highlight.tealHighlight,
-				contentStyle: {
-					backgroundColor: BackgroundColor.light
-				}
+				headerTitleStyle: {
+					color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText,
+				},
+				headerTintColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.tealHighlight,
+				headerStyle: {
+					backgroundColor: BackgroundColor.headerBlack,
+				},
 			}}
 		>
 			{MAPVIEW_ROUTES.map((mapviewItem: any) => (
@@ -36,6 +41,6 @@ export const MapviewStackScreen: FC = () => {
 				/>
 			))}
 		</MapviewStack.Navigator>
-	)
+	);
 
 };

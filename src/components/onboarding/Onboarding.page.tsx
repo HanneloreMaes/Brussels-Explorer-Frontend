@@ -19,6 +19,7 @@ import {
 } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, interpolate, withTiming, withDelay } from 'react-native-reanimated';
 import { Svg, Image, Ellipse, ClipPath } from 'react-native-svg';
+import { useSelector } from 'react-redux';
 
 import { OnboardingStyles } from './OnboardingScreen.styles';
 import { SkipButton } from '@/components/shared';
@@ -30,6 +31,7 @@ import '@/utils/i18n/i18n';
 export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ navigation }) => {
 
 	const { i18n } = useTranslation();
+	const { nameMode } = useSelector((state: any) => state.allReducer);
 	// ANIMATED VIEWS LOGIC START
 	// -----------------------------------------------------------------------------------------------------------
 	const { height, width } = Dimensions.get('window');
@@ -131,8 +133,8 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 						<Ellipse cx={width / 2} rx={height} ry={height + 100} />
 					</ClipPath>
 					<Image
-						href={require('@/assets/images/login_background.jpg')}
-						width={width + 100}
+						href={nameMode === 'dark' ? require('@/assets/images/darkModus/login_background.jpg') : require('@/assets/images/lightModus/login_background.jpg')}
+						width={nameMode === 'dark' ? width : width + 100}
 						height={height + 100}
 						preserveAspectRatio='xMidYMid slice'
 						clipPath='url(#clipPathId)' />

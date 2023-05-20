@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
 
-import { GET_POINTS, GET_ROUTES, GET_POINTS_SPEC_ROUTES, Languages, SET_LANGUAGE } from './Actions.types';
+import { GET_POINTS, GET_ROUTES, GET_POINTS_SPEC_ROUTES, SET_MODE_APP, Languages, SET_LANGUAGE, ModeOptions } from './Actions.types';
 import { baseUrl } from '@/config';
 
 /* eslint-disable no-unreachable */
@@ -63,5 +63,12 @@ export const setLanguage = (activeLanguage: Languages) => (dispatch: Dispatch) =
 	dispatch({
 		type: SET_LANGUAGE,
 		activeLanguage,
+	});
+};
+
+export const setMode = (nameMode: ModeOptions) => (dispatch: Dispatch) => {
+	dispatch({
+		type: SET_MODE_APP,
+		nameMode,
 	});
 };
