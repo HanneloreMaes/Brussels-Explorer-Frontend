@@ -1,7 +1,7 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, MutableRefObject, useEffect, useRef, useState } from 'react';
 
 import MapboxGL from '@rnmapbox/maps';
-import { View } from 'react-native';
+import { Image, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { DetailMapStyles } from './DetailMap.styles';
@@ -18,6 +18,8 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 	const [ centerCo, setCenterCo ] = useState();
 	const [ routeGeo, setRouteGeo ] = useState();
 	const routeId = dataRoute._id;
+
+	const markerRef = useRef<any>(null);
 	const dispatch = useDispatch();
 	const { pointsForSpecRoute } = useSelector((state: any) => state.allReducer);
 
@@ -88,11 +90,18 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 	return (
 		<View style={DetailMapStyles.mapContainer}>
 			<MapboxGL.MapView style={{ flex: 1 }}>
-				<MapboxGL.Camera zoomLevel={12} centerCoordinate={centerCo} animationMode='none' />
+				<MapboxGL.Camera zoomLevel={13} centerCoordinate={centerCo} animationMode='none' />
 				{
 					pointsForSpecRoute.map((point: any) => {
 						const coordinates = [ point.lng, point.lat ];
-						return <MapboxGL.PointAnnotation key={point._id} id="point" coordinate={coordinates} title={point.name} />;
+						return (
+							<MapboxGL.PointAnnotation
+								key={point._id}
+								id="point"
+								coordinate={coordinates}
+								title={point.name}
+							 />
+						);
 					})
 				}
 				<MapboxGL.ShapeSource id='route' shape={routeGeo}>

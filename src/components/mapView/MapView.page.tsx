@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 
 import MapboxGL from '@rnmapbox/maps';
+import { Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { MapboxAccesToken } from '@/config';
@@ -35,8 +36,11 @@ export const MapView: FC = () => {
 
 	return (
 		<MapboxGL.MapView style={{ flex: 1 }}>
-			<MapboxGL.Camera zoomLevel={12} centerCoordinate={coordinates} animationMode='none' />
+			<MapboxGL.Camera zoomLevel={13} centerCoordinate={coordinates} animationMode='none' />
 			<MapboxGL.PointAnnotation id="point" coordinate={[ firstCoordinateLng, firstCoordinateLat ]} />
+			{/* <MapboxGL.PointAnnotation id="point" coordinate={[ firstCoordinateLng, firstCoordinateLat ]}>
+				<Image source={require('@/assets/icons/map_marker/ic_custom_marker.png')} style={{ width: 25, height: 25 }} />
+			</MapboxGL.PointAnnotation> */}
 		</MapboxGL.MapView>
 	);
 };
