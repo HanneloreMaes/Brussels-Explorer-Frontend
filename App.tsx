@@ -60,9 +60,9 @@ const App = () => {
 		<View style={rootStyles.appContainer}>
 			{
 				IS_ANDROID ? (
-					<StatusBar translucent backgroundColor='transparent' barStyle={nameMode === 'light' ? 'light-content' : 'dark-content'} />
+					<StatusBar translucent backgroundColor='transparent' barStyle={nameMode === 'dark' ? 'light-content' : 'dark-content'} />
 				) : (
-					<StatusBar barStyle={nameMode === 'light' ? 'light-content' : 'dark-content'} />
+					<StatusBar barStyle={nameMode === 'dark' ? 'light-content' : 'dark-content'} />
 				)
 			}
 			<Navigator />

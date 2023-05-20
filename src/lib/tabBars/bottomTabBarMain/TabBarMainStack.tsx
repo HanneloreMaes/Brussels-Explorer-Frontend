@@ -18,25 +18,25 @@ export const MainStackTabBar: FC<BottomTabBarProps> = ({ state, descriptors, nav
 			if (activeState) {
 				return <Icon name='compass' size={30} color={Highlight.tealHighlight}/>;
 			}
-			return <Icon name='compass' size={30} color={nameMode === 'light' ? TextColor.lightText : TextColor.darkText} />;
+			return <Icon name='compass' size={30} color={nameMode === 'dark' ? TextColor.lightText : TextColor.darkText} />;
 		}
 		if (routeName === 'MapviewStack') {
 			if (activeState) {
 				return <Icon name="map" size={28} color={Highlight.tealHighlight} />;
 			}
-			return <Icon name="map" size={28} color={nameMode === 'light' ? TextColor.lightText : TextColor.darkText} />;
+			return <Icon name="map" size={28} color={nameMode === 'dark' ? TextColor.lightText : TextColor.darkText} />;
 		}
 		if (routeName === 'Search') {
 			if (activeState) {
 				return <Icon name="list" size={30} color={Highlight.tealHighlight} />;
 			}
-			return <Icon name="list" size={30} color={nameMode === 'light' ? TextColor.lightText : TextColor.darkText} />;
+			return <Icon name="list" size={30} color={nameMode === 'dark' ? TextColor.lightText : TextColor.darkText} />;
 		}
 		if (routeName === 'SettingStack') {
 			if (activeState) {
 				return <Icon name="settings" size={30} color={Highlight.tealHighlight} />;
 			}
-			return <Icon name="settings" size={30} color={nameMode === 'light' ? TextColor.lightText : TextColor.darkText} />;
+			return <Icon name="settings" size={30} color={nameMode === 'dark' ? TextColor.lightText : TextColor.darkText} />;
 		}
 	};
 
@@ -45,7 +45,7 @@ export const MainStackTabBar: FC<BottomTabBarProps> = ({ state, descriptors, nav
 			edges={[ 'bottom', 'left', 'right' ]}
 			style={[
 				TabBarStyles.safeContainer,
-				{ backgroundColor: nameMode === 'light' ? BackgroundColor.headerBlack : BackgroundColor.light }
+				{ backgroundColor: nameMode === 'dark' ? BackgroundColor.headerBlack : BackgroundColor.light }
 			]}
 		>
 			<View style={TabBarStyles.viewContainer}>

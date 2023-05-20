@@ -10,7 +10,7 @@ export const RecommendedRoutes: FC <RecommendedType> = ({ data, mode, translatio
 
 	return(
 		<View style={RecommendedStyles.container}>
-			<Text style={[ RecommendedStyles.title, { color: mode === 'light' ? TextColor.lightText : TextColor.darkText } ]}>{translation.t('dashboard_section_recommended_title')}</Text>
+			<Text style={[ RecommendedStyles.title, { color: mode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{translation.t('dashboard_section_recommended_title')}</Text>
 			<ScrollView horizontal style={RecommendedStyles.allDataContainer}>
 				{
 					data.map((recommendedRoute: any) => {
@@ -28,7 +28,7 @@ export const RecommendedRoutes: FC <RecommendedType> = ({ data, mode, translatio
 								<Text
 									style={[
 										RecommendedStyles.nameRoute,
-										{ color: mode === 'light' ? TextColor.lightText : TextColor.darkText }
+										{ color: mode === 'dark' ? TextColor.lightText : TextColor.darkText }
 									]}
 								>
 									{recommendedRoute.name}
@@ -40,7 +40,15 @@ export const RecommendedRoutes: FC <RecommendedType> = ({ data, mode, translatio
 				}
 			</ScrollView>
 			<Pressable style={[ ButtonStyles.buttonContainerPrimary, RecommendedStyles.buttonSeeMore ]} onPress={() => navigation.navigate('Search')}>
-				<Text style={[ ButtonStyles.buttonTextPrimary, RecommendedStyles.buttonSeeMoreText, { color: mode === 'light' ? TextColor.lightText : TextColor.darkText } ]}>{translation.t('dashboard_section_recommended_button_title')}</Text>
+				<Text
+					style={[
+						ButtonStyles.buttonTextPrimary,
+						RecommendedStyles.buttonSeeMoreText,
+						{ color: mode === 'dark' ? TextColor.lightText : TextColor.darkText }
+					]}
+				>
+					{translation.t('dashboard_section_recommended_button_title')}
+				</Text>
 			</Pressable>
 		</View>
 	);

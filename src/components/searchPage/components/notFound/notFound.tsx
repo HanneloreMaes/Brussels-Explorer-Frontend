@@ -14,7 +14,7 @@ export const NotFoundText: FC = () => {
 
 	return (
 		<View style={{ alignItems: 'center', marginTop: 30 }}>
-			<Text style={[ TextStyles.titleH3, { color: nameMode === 'light' ? TextColor.lightText : TextColor.darkText } ]}>{i18n.t('search_notFound')}</Text>
+			<Text style={[ TextStyles.titleH3, { color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{i18n.t('search_notFound')}</Text>
 		</View>
 	);
 };

@@ -32,9 +32,9 @@ export const CardItem: FC <CardTypes> = ({ nameComponent, navigation, mode }) =>
 			style={CardStyles.touchableContainer}
 			onPress={pressSetting}
 		>
-			<Text style={[ CardStyles.textItem, { color: mode === 'light' ? TextColor.lightText : TextColor.darkText } ]}>{nameComponent}</Text>
+			<Text style={[ CardStyles.textItem, { color: mode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{nameComponent}</Text>
 			<Image
-				source={mode === 'light' ?
+				source={mode === 'dark' ?
 					require('../../../../../assets/icons/ic_expand_arrow_light.png')
 					: require('../../../../../assets/icons/ic_expand_arrow_dark.png')
 				}

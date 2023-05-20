@@ -38,7 +38,7 @@ export const LanguageItem: FC <LanguageItemType> = ({ languageName, keyLang }) =
 				<Text
 					style={[
 						LanugageItemStyles.languageText,
-						{ color: nameMode === 'light' ? TextColor.lightText : TextColor.darkText }
+						{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 					]}
 				>
 					{languageName}

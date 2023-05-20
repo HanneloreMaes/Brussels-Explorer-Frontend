@@ -31,7 +31,7 @@ export const Navigator: FC = () => {
 		}
 	};
 	return (
-		<NavigationContainer ref={navigationRef} theme={nameMode === 'light' ? darkTheme : lightTheme}>
+		<NavigationContainer ref={navigationRef} theme={nameMode === 'dark' ? darkTheme : lightTheme}>
 			<RootStack.Navigator
 				screenOptions={{ headerShown: false }}
 			>

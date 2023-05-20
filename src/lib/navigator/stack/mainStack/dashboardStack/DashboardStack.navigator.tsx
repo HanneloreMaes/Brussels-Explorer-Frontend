@@ -17,9 +17,9 @@ export const DashboardStackScreen : FC = () => {
 		<DashboardStack.Navigator
 			screenOptions={{
 				headerTitleStyle: {
-					color: nameMode === 'light' ? TextColor.lightText : TextColor.darkText,
+					color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText,
 				},
-				headerTintColor: nameMode === 'light' ? Highlight.lightHighlight : Highlight.tealHighlight,
+				headerTintColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.tealHighlight,
 				headerStyle: {
 					backgroundColor: BackgroundColor.headerBlack,
 				},

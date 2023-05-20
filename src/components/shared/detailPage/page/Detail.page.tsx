@@ -21,13 +21,13 @@ export const DetailPage: FC <DetailTypes> = ({ route }) => {
 					<View
 						style={[
 							DetailStyles.borderTextContainer,
-							{ borderColor: nameMode === 'light' ? TextColor.grayText : TextColor.darkText }
+							{ borderColor: nameMode === 'dark' ? TextColor.grayText : TextColor.darkText }
 						]}
 					>
 						<Text
 							style={[
 								DetailStyles.borderText,
-								{ color: nameMode === 'light' ? TextColor.lightText : TextColor.darkText }
+								{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 							]}
 						>
 							{dataOfCard.distance}
@@ -36,13 +36,13 @@ export const DetailPage: FC <DetailTypes> = ({ route }) => {
 					<View
 						style={[
 							DetailStyles.borderTextContainer,
-							{ borderColor: nameMode === 'light' ? TextColor.grayText : TextColor.darkText }
+							{ borderColor: nameMode === 'dark' ? TextColor.grayText : TextColor.darkText }
 						]}
 					>
 						<Text
 							style={[
 								DetailStyles.borderText,
-								{ color: nameMode === 'light' ? TextColor.lightText : TextColor.darkText }
+								{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 							]}
 						>
 							{dataOfCard.time}
@@ -51,13 +51,13 @@ export const DetailPage: FC <DetailTypes> = ({ route }) => {
 					<View
 						style={[
 							DetailStyles.borderTextContainer,
-							{ borderColor: nameMode === 'light' ? TextColor.grayText : TextColor.darkText }
+							{ borderColor: nameMode === 'dark' ? TextColor.grayText : TextColor.darkText }
 						]}
 					>
 						<Text
 							style={[
 								DetailStyles.borderText,
-								{ color: nameMode === 'light' ? TextColor.lightText : TextColor.darkText }
+								{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 							]}
 						>
 							{i18n.t('dashboard_detail_page_address')}
@@ -68,7 +68,7 @@ export const DetailPage: FC <DetailTypes> = ({ route }) => {
 				<Text
 					style={[
 						DetailStyles.titleDetail,
-						{ color: nameMode === 'light' ? TextColor.lightText : TextColor.darkText }
+						{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 					]}
 				>
 					{dataOfCard.name}
@@ -76,7 +76,7 @@ export const DetailPage: FC <DetailTypes> = ({ route }) => {
 				<Text
 					style={[
 						DetailStyles.textDetail,
-						{ color: nameMode === 'light' ? TextColor.lightText : TextColor.darkText }
+						{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 					]}
 				>
 					{dataOfCard.description}

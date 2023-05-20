@@ -133,8 +133,8 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 						<Ellipse cx={width / 2} rx={height} ry={height + 100} />
 					</ClipPath>
 					<Image
-						href={nameMode === 'light' ? require('@/assets/images/darkModus/login_background.jpg') : require('@/assets/images/lightModus/login_background.jpg')}
-						width={nameMode === 'light' ? width : width + 100}
+						href={nameMode === 'dark' ? require('@/assets/images/darkModus/login_background.jpg') : require('@/assets/images/lightModus/login_background.jpg')}
+						width={nameMode === 'dark' ? width : width + 100}
 						height={height + 100}
 						preserveAspectRatio='xMidYMid slice'
 						clipPath='url(#clipPathId)' />
