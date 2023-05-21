@@ -3,9 +3,8 @@ import React, { FC, useEffect, useState } from 'react';
 import MapboxGL, { CircleLayerStyle, SymbolLayerStyle } from '@rnmapbox/maps';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { DetailMapStyles } from '../shared/detailPage/components/DetailMap.styles';
+import { DetailMapStyles } from '../shared';
 import { MapboxAccesToken } from '@/config';
-import { Highlight, MapPinColor } from '@/style';
 import { getPoints } from '@/utils/redux/Actions';
 
 MapboxGL.setWellKnownTileServer('Mapbox');
@@ -15,7 +14,6 @@ export const PointMapView: FC = () => {
 
 	const coordinates = [ 4.3570964, 50.845504 ];
 	const [ pointGeo, setPointGeo ] = useState();
-	const [ typePoint, setTypePoint ] = useState<string>('');
 
 	const dispatch = useDispatch();
 	const { points } = useSelector((state: any) => state.allReducer);
