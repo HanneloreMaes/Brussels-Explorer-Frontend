@@ -1,9 +1,10 @@
 import React, { FC, useEffect, useState } from 'react';
 
-import MapboxGL from '@rnmapbox/maps';
+import MapboxGL, { CircleLayerStyle, SymbolLayerStyle } from '@rnmapbox/maps';
 import { Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { DetailMapStyles } from '../shared/detailPage/components/DetailMap.styles';
 import { MapboxAccesToken } from '@/config';
 import { getPointsFromSpecRoutes } from '@/utils/redux/Actions';
 
@@ -13,8 +14,7 @@ MapboxGL.setAccessToken(MapboxAccesToken);
 export const MapView: FC = () => {
 
 	const coordinates = [ 4.3570964, 50.845504 ];
-	const [ firstCoordinateLng, setFirstCoordinateLng ] = useState<number>(0);
-	const [ firstCoordinateLat, setFirstCoordinateLat ] = useState<number>(0);
+	const [ firstPointRouteGeo, setFirstPointRouteGeo ] = useState();
 
 	const dispatch = useDispatch();
 	const { routes, pointsForSpecRoute } = useSelector((state: any) => state.allReducer);
@@ -23,8 +23,24 @@ export const MapView: FC = () => {
 		routes.map((routeDetail: any) => {
 			return fetchSpecRoute(routeDetail._id);
 		});
-		setFirstCoordinateLng(pointsForSpecRoute[ 0 ].lng);
-		setFirstCoordinateLat(pointsForSpecRoute[ 0 ].lat);
+		if (routes?.length > 0) {
+			setFirstPointRouteGeo({
+				type: 'FeatureCollection',
+				features: routes.map((route, index) => ({
+					type: 'Feature',
+					geometry: {
+						type: 'Point',
+						coordinates: [ route.startLng, route.startLat ],
+					},
+					properties: {
+						poiNumber: index + 1,
+						route,
+					},
+				})),
+			});
+		} else {
+			setFirstPointRouteGeo(null);
+		}
 	};
 	const fetchSpecRoute = (idRoute: string) => {
 		dispatch(getPointsFromSpecRoutes(idRoute));
@@ -37,10 +53,17 @@ export const MapView: FC = () => {
 	return (
 		<MapboxGL.MapView style={{ flex: 1 }}>
 			<MapboxGL.Camera zoomLevel={13} centerCoordinate={coordinates} animationMode='none' />
-			<MapboxGL.PointAnnotation id="point" coordinate={[ firstCoordinateLng, firstCoordinateLat ]} />
-			{/* <MapboxGL.PointAnnotation id="point" coordinate={[ firstCoordinateLng, firstCoordinateLat ]}>
-				<Image source={require('@/assets/icons/map_marker/ic_custom_marker.png')} style={{ width: 25, height: 25 }} />
-			</MapboxGL.PointAnnotation> */}
+			<MapboxGL.ShapeSource id="markers" shape={firstPointRouteGeo}>
+				<MapboxGL.CircleLayer
+					id="markerCircle"
+					belowLayerID="markerText"
+					style={DetailMapStyles.marker as CircleLayerStyle}
+				/>
+				<MapboxGL.SymbolLayer
+					id="markerText"
+					style={DetailMapStyles.markerText as SymbolLayerStyle}
+				/>
+			</MapboxGL.ShapeSource>
 		</MapboxGL.MapView>
 	);
 };
