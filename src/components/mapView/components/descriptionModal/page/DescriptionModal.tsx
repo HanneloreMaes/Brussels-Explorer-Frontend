@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 
 import { DescriptionStyles } from './DescriptionModal.styles';
 import { DescriptionTypes } from '../types/DescriptionModal.types';
-import * as RootNavigation from '@/lib/rootNavigator/RootNavigator';
 
 import '@/utils/i18n/i18n';
 
@@ -14,6 +13,7 @@ export const DescriptionModalMarker: FC <DescriptionTypes> = ({
 	titlePoint,
 	imagePoint,
 	prevPage,
+	navigation,
 	data
 }) => {
 
@@ -40,7 +40,7 @@ export const DescriptionModalMarker: FC <DescriptionTypes> = ({
 				<Text style={DescriptionStyles.addressText}>Brussels</Text>
 				<TouchableOpacity
 					style={DescriptionStyles.buttonMoreInfo}
-					onPress={() => RootNavigation.navigate(navigationName, {
+					onPress={() => navigation.navigate(navigationName, {
 						titleScreen: titlePoint,
 						dataOfCard: data,
 						nameMode,
