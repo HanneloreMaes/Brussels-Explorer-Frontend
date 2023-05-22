@@ -126,7 +126,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 		<KeyboardAvoidingView
 			style={[
 				OnboardingStyles.container,
-				{ backgroundColor: nameMode === 'light' ? BackgroundColor.dark : BackgroundColor.light }
+				{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
 			]}
 		>
 			<View style={OnboardingStyles.titleContainer}>
@@ -142,8 +142,8 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 						/>
 					</ClipPath>
 					<Image
-						href={nameMode === 'light' ? require('@/assets/images/darkModus/login_background.jpg') : require('@/assets/images/lightModus/login_background.jpg')}
-						width={nameMode === 'light' ? width : width + 100}
+						href={nameMode === 'dark' ? require('@/assets/images/darkModus/login_background.jpg') : require('@/assets/images/lightModus/login_background.jpg')}
+						width={nameMode === 'dark' ? width : width + 100}
 						height={ height + 100}
 						preserveAspectRatio='xMidYMid slice'
 						clipPath='url(#clipPathId)' />
@@ -153,15 +153,15 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 						OnboardingStyles.closeBtnContainer,
 						animatedCloseButtonStyle,
 						{
-							backgroundColor: nameMode === 'light' ? BackgroundColor.dark : BackgroundColor.light,
-							shadowColor: nameMode === 'light' ? Highlight.lightHighlight : Highlight.darkHighlight,
+							backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+							shadowColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.darkHighlight,
 						}
 					]}
 				>
 					<TouchableOpacity
 						onPress={() => { imagePosition.value = 1; } }
 						style={OnboardingStyles.touchableXContainer}>
-						<Text style= {{ color: nameMode === 'light' ? TextColor.lightText : TextColor.darkText }}>X</Text>
+						<Text style= {{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }}>X</Text>
 					</TouchableOpacity>
 				</Animated.View>
 			</Animated.View>
@@ -193,20 +193,20 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 							{isRegister && (
 								<TextInput
 									placeholder={i18n.t('onboarding_placeholder_name') as string | undefined}
-									placeholderTextColor={ nameMode === 'light' ? TextColor.lightText : TextColor.darkText }
+									placeholderTextColor={ nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 									autoCapitalize="none"
 									textContentType="name"
 									value={username}
 									onChangeText={(text) => setUsername(text)}
 									style={[
 										OnboardingStyles.textInput,
-										{ backgroundColor: nameMode === 'light' ? BackgroundColor.dark : BackgroundColor.light }
+										{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
 									]}
 								/>
 							)}
 							<TextInput
 								placeholder={i18n.t('onboarding_placeholder_email') as string | undefined}
-								placeholderTextColor={ nameMode === 'light' ? TextColor.lightText : TextColor.darkText }
+								placeholderTextColor={ nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 								autoCapitalize="none"
 								keyboardType="email-address"
 								textContentType="emailAddress"
@@ -214,13 +214,13 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 								onChangeText={(text) => setEmail(text)}
 								style={[
 									OnboardingStyles.textInput,
-									{ backgroundColor: nameMode === 'light' ? BackgroundColor.dark : BackgroundColor.light }
+									{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
 								]}
 							/>
 							<TextInput
 								placeholder={i18n.t('onboarding_placeholder_password') as string | undefined}
 								secureTextEntry
-								placeholderTextColor={ nameMode === 'light' ? TextColor.lightText : TextColor.darkText }
+								placeholderTextColor={ nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 								autoCapitalize="none"
 								autoCorrect={false}
 								textContentType="password"
@@ -228,14 +228,14 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 								onChangeText={(text) => setPassword(text)}
 								style={[
 									OnboardingStyles.textInput,
-									{ backgroundColor: nameMode === 'light' ? BackgroundColor.dark : BackgroundColor.light }
+									{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
 								]}
 							/>
 							{isRegister ? (
 								<TouchableOpacity
 									style={[
 										OnboardingStyles.formButton,
-										{ shadowColor: nameMode === 'light' ? Highlight.lightHighlight : Highlight.darkHighlight }
+										{ shadowColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.darkHighlight }
 									]}
 									onPress={signUp}
 								>
@@ -245,7 +245,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 								<TouchableOpacity
 									style={[
 										OnboardingStyles.formButton,
-										{ shadowColor: nameMode === 'light' ? Highlight.lightHighlight : Highlight.darkHighlight }
+										{ shadowColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.darkHighlight }
 									]}
 									onPress={loginUser}
 								>
