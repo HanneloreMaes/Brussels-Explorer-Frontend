@@ -8,7 +8,6 @@ export const OnboardingStyles = StyleSheet.create({
 	container: {
 		flex: 1,
 		justifyContent: 'flex-end',
-		backgroundColor: BackgroundColor.light
 	},
 	titleContainer: {
 		position: 'absolute',
@@ -37,7 +36,6 @@ export const OnboardingStyles = StyleSheet.create({
 		height: 50,
 		borderWidth: 1,
 		borderColor: Highlight.tealHighlight,
-		backgroundColor: BackgroundColor.light,
 		marginHorizontal: DefaultMargins.horizontalMargin,
 		marginVertical: DefaultMargins.verticalMargin,
 		borderRadius: 25,
