@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { BorderContainerStyle } from '@/style';
+
 export const TopBarStyles = StyleSheet.create({
 	barContainer: {
 		position: 'absolute',
@@ -12,13 +14,13 @@ export const TopBarStyles = StyleSheet.create({
 		zIndex: 500,
 		backgroundColor: 'white',
 		marginLeft: '20%',
-		borderRadius: 15,
+		borderRadius: BorderContainerStyle.borderRadius,
 	},
 	touchableContainer: {
 		height: 45,
-		width: 128,
+		width: '48%',
 		alignItems: 'center',
 		justifyContent: 'center',
-		borderRadius: 15,
+		borderRadius: 12,
 	},
 });
