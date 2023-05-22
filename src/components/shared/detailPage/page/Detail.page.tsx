@@ -11,14 +11,13 @@ import { TextColor } from '@/style';
 
 export const DetailPage: FC <DetailTypes> = ({ route }) => {
 
-	// const { dataOfCard, nameMode } = route.params;
+	const { dataOfCard, nameMode } = route.params;
 	const { i18n } = useTranslation();
 
 	return (
 		<ScrollView style={DetailStyles.detailContainer}>
 			<View style={DetailStyles.dataContainer}>
-				<Text>Hellow Route</Text>
-				{/* <View style={DetailStyles.headerContainer}>
+				<View style={DetailStyles.headerContainer}>
 					<View
 						style={[
 							DetailStyles.borderTextContainer,
@@ -81,7 +80,7 @@ export const DetailPage: FC <DetailTypes> = ({ route }) => {
 					]}
 				>
 					{dataOfCard.description}
-				</Text> */}
+				</Text>
 				{/* <DetailMap dataRoute={dataOfCard}/> */}
 			</View>
 		</ScrollView>
