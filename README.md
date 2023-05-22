@@ -77,12 +77,14 @@ A few of the things you can do with the frontend:
 ## Sources
 ### Documentations
 1. Documentation React Navigation - [Getting Started](https://reactnavigation.org/docs/getting-started)
-2. Installation React Native Reanimated - [Installation](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation)
-3. Documentation ActivityIndicator React Native - [ActivityIndicator](https://reactnative.dev/docs/activityindicator)
-4. ESLint Rules - [Rules Reference](https://eslint.org/docs/latest/rules/)
-5. Documentation SplashScreen - CrazyCodeBoy - [Github](https://github.com/crazycodeboy/react-native-splash-screen)
-6. Documentation React Native Icons - Oblador - [Github](https://github.com/oblador/react-native-vector-icons)
-7. Documentation rnmapbox/maps - - [Github](https://github.com/rnmapbox/maps)
+2. Documentation Material Top Tabs Navigator - [Material Top Tabs](https://reactnavigation.org/docs/material-top-tab-navigator/)
+3. Installation React Native Reanimated - [Installation](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation)
+4. Documentation ActivityIndicator React Native - [ActivityIndicator](https://reactnative.dev/docs/activityindicator)
+5. ESLint Rules - [Rules Reference](https://eslint.org/docs/latest/rules/)
+6. Documentation SplashScreen - CrazyCodeBoy - [Github](https://github.com/crazycodeboy/react-native-splash-screen)
+7. Documentation React Native Icons - Oblador - [Github](https://github.com/oblador/react-native-vector-icons)
+8. Documentation rnmapbox/maps - - [Github](https://github.com/rnmapbox/maps)
+   
 
 ### Video's
 1. Firebase Authentication Login and Sign Up - 26:33 until 1:18:31 - Sonny Sangha - [Youtube](https://www.youtube.com/watch?v=MJzmZ9qmdaE)

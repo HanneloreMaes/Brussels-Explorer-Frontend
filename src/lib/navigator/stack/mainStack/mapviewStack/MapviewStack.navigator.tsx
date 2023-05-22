@@ -1,46 +1,34 @@
 import React, { FC } from 'react';
 
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-import { MapviewStackParamList } from '../../../types';
+import { MapView } from '@/components';
 import { MAPVIEW_ROUTES } from '@/enums/routes';
-import { TextColor, Highlight, BackgroundColor } from '@/style';
+import { MapviewStackParamList } from '@/lib/navigator/types';
+import { MapTopBar } from '@/lib/tabBars/topTabBarMapView/TopBarMapView';
 
-import '@/utils/i18n/i18n';
-
-const MapviewStack = createNativeStackNavigator<MapviewStackParamList>();
+const MapOfTopBar = (props: any) => <MapTopBar {...props} />;
+const MapviewStack = createMaterialTopTabNavigator<MapviewStackParamList>();
 
 export const MapviewStackScreen: FC = () => {
 
-	const { i18n } = useTranslation();
-	const { nameMode } = useSelector((state: any) => state.allReducer);
-
-	return (
+	return(
 		<MapviewStack.Navigator
-			screenOptions={{
-				headerTitleStyle: {
-					color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText,
-				},
-				headerTintColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.tealHighlight,
-				headerStyle: {
-					backgroundColor: BackgroundColor.headerBlack,
-				},
-			}}
+			tabBar={MapOfTopBar}
 		>
-			{MAPVIEW_ROUTES.map((mapviewItem: any) => (
-				<MapviewStack.Screen
-					key={mapviewItem.name as keyof MapviewStackParamList}
-					name={mapviewItem.name as keyof MapviewStackParamList}
-					component={mapviewItem.component}
-					options={{
-						headerShown: mapviewItem.showHeader,
-						title: i18n.t(`${mapviewItem.label}`) as string || mapviewItem.label,
-					}}
-				/>
-			))}
+			{
+				MAPVIEW_ROUTES.map((mapItem) => (
+					<MapviewStack.Screen
+						key={mapItem.label}
+						name={mapItem.name as keyof MapviewStackParamList}
+						component={mapItem.component}
+						initialParams={{
+							showInHeader: mapItem.showHeader,
+							showInTopBar: mapItem.showTopTab,
+						}}
+					/>
+				))
+			}
 		</MapviewStack.Navigator>
 	);
-
 };

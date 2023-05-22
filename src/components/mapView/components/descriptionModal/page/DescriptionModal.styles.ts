@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { TextStyles } from '@/style';
+import { TextColor, TextStyles } from '@/style';
 
 export const DescriptionStyles = StyleSheet.create({
 	container: {
@@ -25,7 +25,8 @@ export const DescriptionStyles = StyleSheet.create({
 	},
 	textButton: {
 		padding: 5,
-		paddingLeft: 12
+		paddingLeft: 12,
+		color: TextColor.darkText,
 	},
 	titleText: {
 		...TextStyles.titleH3,

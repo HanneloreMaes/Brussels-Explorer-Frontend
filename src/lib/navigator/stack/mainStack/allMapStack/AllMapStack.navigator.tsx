@@ -1,23 +1,21 @@
 import React, { FC } from 'react';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import { SearchPageParamList } from '../../../types';
-import { SEARCH_ROUTES } from '@/enums/routes';
-import '@/utils/i18n/i18n';
+import { AllMapParamList } from '../../../types';
+import { ALL_MAP_ROUTES } from '@/enums/routes';
 import { TextColor, Highlight, BackgroundColor } from '@/style';
 
-const SearchStack = createNativeStackNavigator<SearchPageParamList>();
+const AllStack = createNativeStackNavigator<AllMapParamList>();
 
-export const SearchStackScreen: FC = () => {
+export const AllMapStackScreen: FC = () => {
 
-	const { i18n } = useTranslation();
 	const { nameMode } = useSelector((state: any) => state.allReducer);
 
 	return(
-		<SearchStack.Navigator
+		<AllStack.Navigator
+			initialRouteName='MapviewStack'
 			screenOptions={{
 				headerTitleStyle: {
 					color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText,
@@ -28,17 +26,18 @@ export const SearchStackScreen: FC = () => {
 				},
 			}}
 		>
-			{ SEARCH_ROUTES.map((searchItem) => (
-				<SearchStack.Screen
-					key={searchItem.label}
-					name={searchItem.name as keyof SearchPageParamList}
-					component={searchItem.component}
+			{ ALL_MAP_ROUTES.map((allMapItem) => (
+				<AllStack.Screen
+					key={allMapItem.label}
+					name={allMapItem.name as keyof AllMapParamList}
+					component={allMapItem.component}
 					options={({ route }) => ({
-						title: route.params?.titleScreen || i18n.t(`${searchItem.label}`) as string,
+						headerShown: allMapItem.showHeader,
+						title: route.params?.titleScreen,
 					})}
 				/>
 			))}
-		</SearchStack.Navigator>
+		</AllStack.Navigator>
 	);
 
 };

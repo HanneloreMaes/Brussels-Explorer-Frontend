@@ -1,10 +1,10 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { BackgroundColor, BorderContainerStyle } from '@/style';
 
-export const MapStyles = StyleSheet.create({
+export const PointMapStyles = StyleSheet.create({
 	container: {
-		flex: 1,
+		flex: 1
 	},
 	modalContainer: {
 		position: 'absolute',

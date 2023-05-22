@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-import { BorderContainerStyle, DefaultAppStyling, TextColor, TextStyles } from '@/style';
+import { BorderContainerStyle, DefaultAppStyling, Highlight, TextColor, TextStyles } from '@/style';
 
 const { width } = Dimensions.get('window');
 
@@ -38,5 +38,9 @@ export const DetailStyles = StyleSheet.create({
 	textDetail: {
 		...TextStyles.bodyText,
 		fontSize: 14,
+	},
+	typePoint: {
+		...TextStyles.titleH2,
+		color: Highlight.tealHighlight,
 	},
 });
