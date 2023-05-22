@@ -9,7 +9,7 @@ export const DetailMapStyles = StyleSheet.create({
 	},
 	marker: {
 		circleColor: Highlight.tealHighlight,
-		circleRadius: 12,
+		circleRadius: 20,
 		textPitchAlignment: 'map',
 	},
 	markerText: {

@@ -1,6 +1,6 @@
 import { IRouteTypes } from './routes.types';
 import { SHARED_ROUTES } from './sharedRoutes';
-import { DashboardScreen, MapView, OnboardingScreen, QuestionRegister, SearchPage, SettingsPage } from '@/components';
+import { DashboardScreen, MapView, PointMapView, QuestionRegister, SettingsPage } from '@/components';
 import { LanguageSettings } from '@/components/settings/components';
 import { MapviewStackScreen, SearchStackScreen, SettingsStackScreen } from '@/lib/navigator/stack';
 
@@ -47,9 +47,15 @@ export const DASHBOARD_ROUTES: IRouteTypes[] = [
 
 export const MAPVIEW_ROUTES: IRouteTypes[] = [
 	{
-		name: 'Map',
+		name: 'Routes',
 		component: MapView,
-		label: 'MapView',
+		label: 'Map',
+		showHeader: false,
+	},
+	{
+		name: 'Points',
+		component: PointMapView,
+		label: 'PointMap',
 		showHeader: false,
 	},
 ];
