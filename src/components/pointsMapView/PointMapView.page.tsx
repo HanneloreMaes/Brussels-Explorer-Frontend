@@ -18,7 +18,7 @@ export const PointMapView: FC = () => {
 	const coordinates = [ 4.3570964, 50.845504 ];
 	const [ pointGeo, setPointGeo ] = useState();
 	const [ showModal, setShowModal ] = useState<boolean>(false);
-	const [ detailPointRoute, setDetailPointRoute ] = useState<any>();
+	const [ detailPoint, setDetailPoint ] = useState<any>();
 
 	const dispatch = useDispatch();
 	const { points } = useSelector((state: any) => state.allReducer);
@@ -50,9 +50,9 @@ export const PointMapView: FC = () => {
 	};
 
 	const handleModalPress = (e: OnPressEvent) => {
-		const routeData = e?.features?.[ 0 ]?.properties?.route;
+		const pointData = e?.features?.[ 0 ]?.properties?.point;
 		setShowModal(true);
-		setDetailPointRoute(routeData);
+		setDetailPoint(pointData);
 	};
 
 	useEffect(() => {
@@ -63,7 +63,7 @@ export const PointMapView: FC = () => {
 		<>
 			<MapboxGL.MapView style={PointMapStyles.container}>
 				<MapboxGL.Camera zoomLevel={13} centerCoordinate={coordinates} animationMode='none' />
-				<MapboxGL.ShapeSource id="markers" shape={pointGeo}>
+				<MapboxGL.ShapeSource id="markers" shape={pointGeo} onPress={handleModalPress}>
 					<MapboxGL.CircleLayer
 						id="markerCircle"
 						belowLayerID="markerText"
@@ -79,10 +79,10 @@ export const PointMapView: FC = () => {
 				showModal ?
 					<View style={PointMapStyles.modalContainer}>
 						<DescriptionModalMarker
-							titlePoint={detailPointRoute.name}
-							imagePoint={detailPointRoute.imageUrl}
+							titlePoint={detailPoint.name}
+							imagePoint={detailPoint.imageUrl}
 							navigation={undefined}
-							data={detailPointRoute}
+							data={detailPoint}
 						/>
 					</View>
 					: null
