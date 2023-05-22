@@ -20,13 +20,14 @@ export const MapStyles = StyleSheet.create({
 		height: 150,
 	},
 	modalContainer: {
+		position: 'absolute',
 		backgroundColor: BackgroundColor.light,
 		height: 150,
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginHorizontal: 30,
-		top: Dimensions.get('window').height - 170,
 		borderRadius: BorderContainerStyle.borderRadius,
+		top: '75%',
 	},
 });

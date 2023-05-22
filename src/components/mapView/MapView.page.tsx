@@ -78,7 +78,7 @@ export const MapView: FC = () => {
 			</MapboxGL.MapView>
 			{
 				showModal ?
-					<View style={[ StyleSheet.absoluteFill, MapStyles.modalContainer ]}>
+					<View style={MapStyles.modalContainer}>
 						<DescriptionModalMarker
 							titlePoint={detailPointRoute.name}
 							imagePoint={detailPointRoute.imageUrl}
