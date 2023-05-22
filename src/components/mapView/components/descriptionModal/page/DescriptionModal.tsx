@@ -3,15 +3,14 @@ import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 
-import { DescriptionTypes } from '../types/DescriptionModal.types';
 import { DescriptionStyles } from './DescriptionModal.styles';
+import { DescriptionTypes } from '../types/DescriptionModal.types';
 
 import '@/utils/i18n/i18n';
 
 export const DescriptionModalMarker: FC <DescriptionTypes> = ({
 	titlePoint,
 	imagePoint,
-	addressPoint,
 	navigation,
 	data
 }) => {
@@ -26,7 +25,7 @@ export const DescriptionModalMarker: FC <DescriptionTypes> = ({
 			/>
 			<View style={DescriptionStyles.infoContainer}>
 				<Text style={DescriptionStyles.titleText}>{titlePoint}</Text>
-				<Text style={DescriptionStyles.addressText}>{addressPoint}</Text>
+				<Text style={DescriptionStyles.addressText}>Brussels</Text>
 				<TouchableOpacity
 					style={DescriptionStyles.buttonMoreInfo}
 					onPress={() => navigation.navigate('DetailPoint', { dataOfCard: data })}
