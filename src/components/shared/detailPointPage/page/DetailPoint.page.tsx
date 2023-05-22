@@ -1,24 +1,43 @@
 import React, { FC } from 'react';
 
-import { useTranslation } from 'react-i18next';
 import { Image, ScrollView, Text, View } from 'react-native';
 
-import { DetailPointStyles } from './Detailpoint.styles';
+import { DetailStyles } from '../..';
 import { DetailPointTypes } from '../types/DetailPoint.types';
-import '@/utils/i18n/i18n';
+import { TextColor } from '@/style';
 
 export const DetailPointPage: FC <DetailPointTypes> = ({ route }) => {
 
-	const { dataOfCard } = route.params;
-	const { i18n } = useTranslation();
+	const { dataOfCard, nameMode } = route.params;
 
 	return (
-		<ScrollView style={DetailPointStyles.detailContainer}>
-			<View style={DetailPointStyles.dataContainer}>
-				<Image source={{ uri: dataOfCard.imageUrl }} style={DetailPointStyles.imageDetail} resizeMode='cover' />
-				<Text style={DetailPointStyles.titleDetail}>{dataOfCard.name}</Text>
-				<Text style={DetailPointStyles.addressDetail}>{dataOfCard.address}</Text>
-				<Text style={DetailPointStyles.addressDetail}>{dataOfCard.type}</Text>
+		<ScrollView style={DetailStyles.detailContainer}>
+			<View style={DetailStyles.dataContainer}>
+				<Image source={{ uri: dataOfCard.imageUrl }} style={DetailStyles.imageDetail} resizeMode='cover' />
+				<Text
+					style={[
+						DetailStyles.titleDetail,
+						{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+					]}
+				>
+					{dataOfCard.name}
+				</Text>
+				<Text
+					style={[
+						DetailStyles.textDetail,
+						DetailStyles.typePoint,
+					]}
+				>
+					{dataOfCard.type}
+				</Text>
+				<Text
+					style={[
+						DetailStyles.textDetail,
+						{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+					]}
+				>
+					{dataOfCard.address}
+				</Text>
 			</View>
 		</ScrollView>
 	);
