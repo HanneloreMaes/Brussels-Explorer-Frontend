@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import { useSelector } from 'react-redux';
 
 import { TabBarStyles } from './TabBarMain.styles';
-import { BackgroundColor, Highlight, TextColor } from '@/style';
+import { BackgroundColor, DefaultShadow, Highlight, TextColor } from '@/style';
 
 export const MainStackTabBar: FC<BottomTabBarProps> = ({ state, descriptors, navigation }) => {
 
@@ -45,6 +45,7 @@ export const MainStackTabBar: FC<BottomTabBarProps> = ({ state, descriptors, nav
 			edges={[ 'bottom', 'left', 'right' ]}
 			style={[
 				TabBarStyles.safeContainer,
+				DefaultShadow.shadowTabBar,
 				{
 					backgroundColor: nameMode === 'dark' ? BackgroundColor.headerBlack : BackgroundColor.light,
 					shadowColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.darkHighlight,
