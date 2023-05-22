@@ -62,7 +62,7 @@ export const MapView: FC = () => {
 
 	return (
 		<>
-			<MapboxGL.MapView style={{ flex: 1 }}>
+			<MapboxGL.MapView style={MapStyles.container}>
 				<MapboxGL.Camera zoomLevel={13} centerCoordinate={coordinates} animationMode='none' />
 				<MapboxGL.ShapeSource id="markers" shape={firstPointRouteGeo} onPress={handleModalPress}>
 					<MapboxGL.CircleLayer

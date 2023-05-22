@@ -5,19 +5,6 @@ import { BackgroundColor, BorderContainerStyle } from '@/style';
 export const MapStyles = StyleSheet.create({
 	container: {
 		flex: 1,
-		justifyContent: 'flex-end',
-	},
-	mapContainer: {
-		width: Dimensions.get('screen').width,
-		height: Dimensions.get('screen').height,
-	},
-	imageDimensions: {
-		width: 30,
-		height: 30,
-	},
-	imageDimensionsActive: {
-		width: 150,
-		height: 150,
 	},
 	modalContainer: {
 		position: 'absolute',
