@@ -1,6 +1,6 @@
 import { OnboardingScreen, SearchPage } from '@/components';
-import { DetailPage } from '@/components/shared';
-import { DashboardStackScreen, MainStackScreen, OnboardingStackScreen } from '@/lib/navigator/stack';
+import { DetailPage, DetailPointPage } from '@/components/shared';
+import { DashboardStackScreen, AllMapStackScreen, MainStackScreen, OnboardingStackScreen } from '@/lib/navigator/stack';
 
 export const SHARED_ROUTES = {
 	OnboardingStack:{
@@ -28,10 +28,25 @@ export const SHARED_ROUTES = {
 		component: MainStackScreen,
 		label: 'MainStack'
 	},
+	AllMapStack: {
+		name: 'AllStack',
+		component: AllMapStackScreen,
+		label: 'AllStack',
+		showHeader: false,
+		showTopTab: false,
+	},
 	DetailPageScreen: {
 		name: 'DetailPage',
 		component: DetailPage,
 		label: 'Detail',
 		showHeader: true,
+		showTopTab: false,
+	},
+	DetailPointPageScreen: {
+		name: 'DetailPointPage',
+		component: DetailPointPage,
+		label: 'DetailPoint',
+		showHeader: true,
+		showTopTab: false,
 	},
 };

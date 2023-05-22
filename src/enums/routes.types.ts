@@ -3,4 +3,5 @@ export interface IRouteTypes {
 	component: any;
 	label?: string;
 	showHeader?: boolean;
+	showTopTab?: boolean;
 }

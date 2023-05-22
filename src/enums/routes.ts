@@ -16,11 +16,7 @@ export const ONBOARDING_ROUTES: IRouteTypes[] = [
 
 export const MAIN_ROUTES: IRouteTypes[] = [
 	SHARED_ROUTES.DashboardStackScreen,
-	{
-		name: 'MapviewStack',
-		component: MapviewStackScreen,
-		label: 'MapviewStack',
-	},
+	SHARED_ROUTES.AllMapStack,
 	{
 		name: 'Search',
 		component: SearchStackScreen,
@@ -43,6 +39,7 @@ export const DASHBOARD_ROUTES: IRouteTypes[] = [
 	},
 	SHARED_ROUTES.Search,
 	SHARED_ROUTES.DetailPageScreen,
+	SHARED_ROUTES.DetailPointPageScreen,
 ];
 
 export const MAPVIEW_ROUTES: IRouteTypes[] = [
@@ -51,11 +48,24 @@ export const MAPVIEW_ROUTES: IRouteTypes[] = [
 		component: MapView,
 		label: 'Map',
 		showHeader: false,
+		showTopTab: true,
 	},
 	{
 		name: 'Points',
 		component: PointMapView,
 		label: 'PointMap',
+		showHeader: false,
+		showTopTab: true,
+	},
+];
+
+export const ALL_MAP_ROUTES: IRouteTypes[] = [
+	SHARED_ROUTES.DetailPageScreen,
+	SHARED_ROUTES.DetailPointPageScreen,
+	{
+		name: 'MapviewStack',
+		component: MapviewStackScreen,
+		label: 'MapviewStack',
 		showHeader: false,
 	},
 ];

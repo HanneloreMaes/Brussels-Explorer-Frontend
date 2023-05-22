@@ -82,7 +82,7 @@ export const MapView: FC = () => {
 						<DescriptionModalMarker
 							titlePoint={detailPointRoute.name}
 							imagePoint={detailPointRoute.imageUrl}
-							navigation={undefined}
+							prevPage='RouteMapView'
 							data={detailPointRoute}
 						/>
 					</View>

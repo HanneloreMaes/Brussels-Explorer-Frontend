@@ -1,6 +1,6 @@
 export interface DescriptionTypes {
 	titlePoint: string;
 	imagePoint: string;
-	navigation: any;
+	prevPage: string;
 	data: any;
 };

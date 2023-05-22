@@ -22,6 +22,10 @@ export const MapviewStackScreen: FC = () => {
 						key={mapItem.label}
 						name={mapItem.name as keyof MapviewStackParamList}
 						component={mapItem.component}
+						initialParams={{
+							showInHeader: mapItem.showHeader,
+							showInTopBar: mapItem.showTopTab,
+						}}
 					/>
 				))
 			}
