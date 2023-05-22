@@ -8,12 +8,13 @@ import { DescriptionModalMarker } from './components';
 import { MapStyles } from './MapView.styles';
 import { DetailMapStyles } from '../shared/detailPage/components/DetailMap.styles';
 import { MapboxAccesToken } from '@/config';
+import { AllMapNavProps } from '@/lib/navigator/types';
 import { getPointsFromSpecRoutes } from '@/utils/redux/Actions';
 
 MapboxGL.setWellKnownTileServer('Mapbox');
 MapboxGL.setAccessToken(MapboxAccesToken);
 
-export const MapView: FC = () => {
+export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation }) => {
 
 	const coordinates = [ 4.3570964, 50.845504 ];
 	const [ firstPointRouteGeo, setFirstPointRouteGeo ] = useState();
@@ -83,6 +84,7 @@ export const MapView: FC = () => {
 							titlePoint={detailPointRoute.name}
 							imagePoint={detailPointRoute.imageUrl}
 							prevPage='RouteMapView'
+							navigation={navigation}
 							data={detailPointRoute}
 						/>
 					</View>
