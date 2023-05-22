@@ -42,8 +42,7 @@ export const DefaultShadow = StyleSheet.create({
 	},
 	shadowTabBar: {
 		shadowColor: Highlight.darkHighlight,
-		shadowOffset: { width: 0, height: 4 },
-		shadowOpacity: 0.18,
+		shadowOffset: { width: 0, height: 8 },
 		shadowRadius: 20,
 		elevation: 5,
 	},
