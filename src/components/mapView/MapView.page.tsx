@@ -51,9 +51,7 @@ export const MapView: FC = () => {
 	};
 
 	const handleModalPress = (e: OnPressEvent) => {
-		console.log('Pressed', e);
 		const routeData = e?.features?.[ 0 ]?.properties?.route;
-		console.log('poiNumber', routeData);
 		setShowModal(true);
 		setDetailPointRoute(routeData);
 	};
