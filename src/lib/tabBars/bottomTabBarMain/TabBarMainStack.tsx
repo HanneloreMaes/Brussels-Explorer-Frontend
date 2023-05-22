@@ -45,7 +45,10 @@ export const MainStackTabBar: FC<BottomTabBarProps> = ({ state, descriptors, nav
 			edges={[ 'bottom', 'left', 'right' ]}
 			style={[
 				TabBarStyles.safeContainer,
-				{ backgroundColor: nameMode === 'dark' ? BackgroundColor.headerBlack : BackgroundColor.light }
+				{
+					backgroundColor: nameMode === 'dark' ? BackgroundColor.headerBlack : BackgroundColor.light,
+					shadowColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.darkHighlight,
+				}
 			]}
 		>
 			<View style={TabBarStyles.viewContainer}>

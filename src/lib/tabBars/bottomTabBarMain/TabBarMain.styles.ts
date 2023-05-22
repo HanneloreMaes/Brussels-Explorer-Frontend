@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { BackgroundColor, DefaultShadow } from '@/style';
+import { DefaultShadow } from '@/style';
 
 export const TabBarStyles = StyleSheet.create({
 	safeContainer: {
