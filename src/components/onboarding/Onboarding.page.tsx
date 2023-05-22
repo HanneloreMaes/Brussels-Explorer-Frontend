@@ -34,7 +34,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 	const { nameMode } = useSelector((state: any) => state.allReducer);
 	// ANIMATED VIEWS LOGIC START
 	// -----------------------------------------------------------------------------------------------------------
-	const { height, width } = Dimensions.get('window');
+	const { height, width } = Dimensions.get('screen');
 	const imagePosition = useSharedValue(1);
 	const [ isRegister, setIsRegister ] = useState(false);
 
@@ -133,14 +133,18 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 				<Text style={OnboardingStyles.titleOnboarding}>Brussels Explorer</Text>
 			</View>
 			<Animated.View style={[ StyleSheet.absoluteFill, animatedImageStyle, { zIndex: -2 } ]}>
-				<Svg height={height + 100} width={width}>
+				<Svg height={height + 50} width={width}>
 					<ClipPath id='clipPathId'>
-						<Ellipse cx={width / 2} rx={height} ry={height + 100} />
+						<Ellipse
+							cx={width / 2}
+							rx={height}
+							ry={height + 50}
+						/>
 					</ClipPath>
 					<Image
 						href={nameMode === 'light' ? require('@/assets/images/darkModus/login_background.jpg') : require('@/assets/images/lightModus/login_background.jpg')}
 						width={nameMode === 'light' ? width : width + 100}
-						height={height + 100}
+						height={ height + 100}
 						preserveAspectRatio='xMidYMid slice'
 						clipPath='url(#clipPathId)' />
 				</Svg>
