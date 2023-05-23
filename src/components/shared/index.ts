@@ -4,3 +4,4 @@ export * from './detailPointPage/page/DetailPoint.page';
 export * from './detailPage/page/Detail.page';
 export * from './detailPage/page/Detail.styles';
 export * from './detailPage/components/DetailMap.styles';
+export * from './modalErrors/ModalError.page';
