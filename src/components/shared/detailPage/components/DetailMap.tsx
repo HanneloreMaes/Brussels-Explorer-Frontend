@@ -108,7 +108,10 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 	},[ dataRoute ]);
 
 	return (
-		<View style={DetailMapStyles.mapContainer}>
+		<View
+			style={DetailMapStyles.mapContainer}
+			styleURL='mapbox://styles/mapbox/streets-v12'
+		>
 			<MapboxGL.MapView style={{ flex: 1 }}>
 				<MapboxGL.Camera zoomLevel={13} centerCoordinate={centerCo} animationMode='none' />
 				{/* {
