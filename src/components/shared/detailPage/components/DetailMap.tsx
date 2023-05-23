@@ -109,31 +109,11 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 
 	return (
 		<View style={DetailMapStyles.mapContainer}>
-			<MapboxGL.MapView style={{ flex: 1 }}>
+			<MapboxGL.MapView
+				style={{ flex: 1 }}
+				styleURL='mapbox://styles/mapbox/streets-v12'
+			>
 				<MapboxGL.Camera zoomLevel={13} centerCoordinate={centerCo} animationMode='none' />
-				{/* {
-					pointsForSpecRoute.map((point: any) => {
-						const coordinates = [ point.lng, point.lat ];
-						return (
-							// <MapboxGL.PointAnnotation
-							// 	key={point._id}
-							// 	id="point"
-							// 	coordinate={coordinates}
-							// 	title={point.name}
-							//  />
-							<MapboxGL.ShapeSource id="markers" shape={featureCollection}>
-								<MapboxGL.CircleLayer
-									id="markerCircle"
-									belowLayerID="markerText"
-								/>
-
-								<MapboxGL.SymbolLayer
-									id="markerText"
-								/>
-							</MapboxGL.ShapeSource>
-						);
-					})
-				} */}
 				<MapboxGL.ShapeSource id="markers" shape={pointsGeo}>
 					<MapboxGL.CircleLayer
 						id="markerCircle"

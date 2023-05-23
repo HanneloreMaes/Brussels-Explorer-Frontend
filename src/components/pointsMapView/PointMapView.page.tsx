@@ -62,7 +62,10 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 
 	return (
 		<>
-			<MapboxGL.MapView style={PointMapStyles.container}>
+			<MapboxGL.MapView
+				style={PointMapStyles.container}
+				styleURL='mapbox://styles/mapbox/streets-v12'
+			>
 				<MapboxGL.Camera zoomLevel={13} centerCoordinate={coordinates} animationMode='none' />
 				<MapboxGL.ShapeSource id="markers" shape={pointGeo} onPress={handleModalPress}>
 					<MapboxGL.CircleLayer

@@ -63,7 +63,10 @@ export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation }) => {
 
 	return (
 		<>
-			<MapboxGL.MapView style={MapStyles.container}>
+			<MapboxGL.MapView
+				style={MapStyles.container}
+				styleURL='mapbox://styles/mapbox/streets-v12'
+			>
 				<MapboxGL.Camera zoomLevel={13} centerCoordinate={coordinates} animationMode='none' />
 				<MapboxGL.ShapeSource id="markers" shape={firstPointRouteGeo} onPress={handleModalPress}>
 					<MapboxGL.CircleLayer
