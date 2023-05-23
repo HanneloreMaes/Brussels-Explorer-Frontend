@@ -11,9 +11,6 @@ import { MapboxAccesToken } from '@/config';
 import { AllMapNavProps } from '@/lib/navigator/types';
 import { getPoints } from '@/utils/redux/Actions';
 
-MapboxGL.setWellKnownTileServer('Mapbox');
-MapboxGL.setAccessToken(MapboxAccesToken);
-
 export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 
 	const coordinates = [ 4.3570964, 50.845504 ];
@@ -58,7 +55,7 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 
 	useEffect(() => {
 		fetchPoints();
-	}, []);
+	}, [ navigation ]);
 
 	return (
 		<>
@@ -67,17 +64,22 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 				styleURL='mapbox://styles/mapbox/streets-v12'
 			>
 				<MapboxGL.Camera zoomLevel={13} centerCoordinate={coordinates} animationMode='none' />
-				<MapboxGL.ShapeSource id="markers" shape={pointGeo} onPress={handleModalPress}>
-					<MapboxGL.CircleLayer
-						id="markerCircle"
-						belowLayerID="markerText"
-						style={DetailMapStyles.marker as CircleLayerStyle}
-					/>
-					<MapboxGL.SymbolLayer
-						id="markerText"
-						style={DetailMapStyles.markerText as SymbolLayerStyle}
-					/>
-				</MapboxGL.ShapeSource>
+				{
+					pointGeo !== null ? (
+						<MapboxGL.ShapeSource id="markers" shape={pointGeo} onPress={handleModalPress}>
+							<MapboxGL.CircleLayer
+								id="markerCircle"
+								belowLayerID="markerText"
+								style={DetailMapStyles.marker as CircleLayerStyle}
+							/>
+							<MapboxGL.SymbolLayer
+								id="markerText"
+								style={DetailMapStyles.markerText as SymbolLayerStyle}
+							/>
+						</MapboxGL.ShapeSource>
+					) : null
+				}
+
 			</MapboxGL.MapView>
 			{
 				showModal ?
