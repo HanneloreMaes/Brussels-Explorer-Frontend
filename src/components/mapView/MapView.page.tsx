@@ -70,17 +70,21 @@ export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation }) => {
 				onPress={() => setShowModal(false)}
 			>
 				<MapboxGL.Camera zoomLevel={13} centerCoordinate={coordinates} animationMode='none' />
-				<MapboxGL.ShapeSource id="markers" shape={firstPointRouteGeo} onPress={handleModalPress}>
-					<MapboxGL.CircleLayer
-						id="markerCircle"
-						belowLayerID="markerText"
-						style={DetailMapStyles.marker as CircleLayerStyle}
-					/>
-					<MapboxGL.SymbolLayer
-						id="markerText"
-						style={DetailMapStyles.markerText as SymbolLayerStyle}
-					/>
-				</MapboxGL.ShapeSource>
+				{
+					firstPointRouteGeo !== null ? (
+						<MapboxGL.ShapeSource id="markers" shape={firstPointRouteGeo} onPress={handleModalPress}>
+							<MapboxGL.CircleLayer
+								id="markerCircle"
+								belowLayerID="markerText"
+								style={DetailMapStyles.marker as CircleLayerStyle}
+							/>
+							<MapboxGL.SymbolLayer
+								id="markerText"
+								style={DetailMapStyles.markerText as SymbolLayerStyle}
+							/>
+						</MapboxGL.ShapeSource>
+					) : null
+				}
 			</MapboxGL.MapView>
 			{
 				showModal ?
