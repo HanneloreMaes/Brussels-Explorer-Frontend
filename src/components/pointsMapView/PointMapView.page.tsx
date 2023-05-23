@@ -6,19 +6,17 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { PointMapStyles } from './PointMapView.styles';
 import { DescriptionModalMarker } from '../mapView/components';
-import { DetailMapStyles } from '../shared';
+import { DetailMapStyles, ModalError } from '../shared';
 import { MapboxAccesToken } from '@/config';
 import { AllMapNavProps } from '@/lib/navigator/types';
 import { getPoints } from '@/utils/redux/Actions';
-
-MapboxGL.setWellKnownTileServer('Mapbox');
-MapboxGL.setAccessToken(MapboxAccesToken);
 
 export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 
 	const coordinates = [ 4.3570964, 50.845504 ];
 	const [ pointGeo, setPointGeo ] = useState();
 	const [ showModal, setShowModal ] = useState<boolean>(false);
+	const [ showModalError, setShowModalError ] = useState<boolean>(false);
 	const [ detailPoint, setDetailPoint ] = useState<any>();
 
 	const dispatch = useDispatch();
@@ -26,6 +24,8 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 
 	const mapPoints = () => {
 		if (points?.length > 0) {
+			console.log(points);
+			setShowModalError(false);
 			setPointGeo({
 				type: 'FeatureCollection',
 				features: points.map((point, index) => ({
@@ -42,6 +42,7 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 			});
 		} else {
 			setPointGeo(null);
+			setShowModalError(true);
 		}
 	};
 
@@ -58,26 +59,32 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 
 	useEffect(() => {
 		fetchPoints();
-	}, []);
+	}, [ navigation ]);
 
 	return (
 		<>
 			<MapboxGL.MapView
 				style={PointMapStyles.container}
 				styleURL='mapbox://styles/mapbox/streets-v12'
+				onPress={() => setShowModal(false)}
 			>
 				<MapboxGL.Camera zoomLevel={13} centerCoordinate={coordinates} animationMode='none' />
-				<MapboxGL.ShapeSource id="markers" shape={pointGeo} onPress={handleModalPress}>
-					<MapboxGL.CircleLayer
-						id="markerCircle"
-						belowLayerID="markerText"
-						style={DetailMapStyles.marker as CircleLayerStyle}
-					/>
-					<MapboxGL.SymbolLayer
-						id="markerText"
-						style={DetailMapStyles.markerText as SymbolLayerStyle}
-					/>
-				</MapboxGL.ShapeSource>
+				{
+					pointGeo !== null ? (
+						<MapboxGL.ShapeSource id="markers" shape={pointGeo} onPress={handleModalPress}>
+							<MapboxGL.CircleLayer
+								id="markerCircle"
+								belowLayerID="markerText"
+								style={DetailMapStyles.marker as CircleLayerStyle}
+							/>
+							<MapboxGL.SymbolLayer
+								id="markerText"
+								style={DetailMapStyles.markerText as SymbolLayerStyle}
+							/>
+						</MapboxGL.ShapeSource>
+					) : null
+				}
+
 			</MapboxGL.MapView>
 			{
 				showModal ?
@@ -91,6 +98,9 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 						/>
 					</View>
 					: null
+			}
+			{
+				showModalError ? <ModalError labelName="mapbox_error_no_points" labelTryAgainText='mapbox_error_try_again' /> : null
 			}
 		</>
 	);

@@ -46,14 +46,14 @@ export const MAPVIEW_ROUTES: IRouteTypes[] = [
 	{
 		name: 'Routes',
 		component: MapView,
-		label: 'Map',
+		label: 'routes_label_mapbox_routes',
 		showHeader: false,
 		showTopTab: true,
 	},
 	{
 		name: 'Points',
 		component: PointMapView,
-		label: 'PointMap',
+		label: 'routes_label_mapbox_points',
 		showHeader: false,
 		showTopTab: true,
 	},

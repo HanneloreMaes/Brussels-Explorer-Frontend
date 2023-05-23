@@ -16,7 +16,7 @@
     "@react-navigation/material-top-tabs": "6.6.2",
     "@react-navigation/native": "6.1.6",
     "@react-navigation/native-stack": "6.9.12",
-    "@rnmapbox/maps": "10.0.2",
+    "@rnmapbox/maps": "10.0.6",
     "axios": "0.21.0",
     "firebase": "9.19.1",
     "i18next": "22.4.15",

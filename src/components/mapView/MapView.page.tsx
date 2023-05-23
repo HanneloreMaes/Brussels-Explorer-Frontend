@@ -6,10 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { DescriptionModalMarker } from './components';
 import { MapStyles } from './MapView.styles';
+import { ModalError } from '../shared';
 import { DetailMapStyles } from '../shared/detailPage/components/DetailMap.styles';
 import { MapboxAccesToken } from '@/config';
 import { AllMapNavProps } from '@/lib/navigator/types';
-import { getPointsFromSpecRoutes } from '@/utils/redux/Actions';
+import { getPoints, getPointsFromSpecRoutes } from '@/utils/redux/Actions';
 
 MapboxGL.setWellKnownTileServer('Mapbox');
 MapboxGL.setAccessToken(MapboxAccesToken);
@@ -19,16 +20,18 @@ export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation }) => {
 	const coordinates = [ 4.3570964, 50.845504 ];
 	const [ firstPointRouteGeo, setFirstPointRouteGeo ] = useState();
 	const [ showModal, setShowModal ] = useState<boolean>(false);
+	const [ showModalError, setShowModalError ] = useState<boolean>(false);
 	const [ detailPointRoute, setDetailPointRoute ] = useState<any>();
 
 	const dispatch = useDispatch();
-	const { routes } = useSelector((state: any) => state.allReducer);
+	const { routes, points } = useSelector((state: any) => state.allReducer);
 
 	const mapRoutes = () => {
 		routes.map((routeDetail: any) => {
 			return fetchSpecRoute(routeDetail._id);
 		});
 		if (routes?.length > 0) {
+			setShowModalError(false);
 			setFirstPointRouteGeo({
 				type: 'FeatureCollection',
 				features: routes.map((route, index) => ({
@@ -45,10 +48,12 @@ export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation }) => {
 			});
 		} else {
 			setFirstPointRouteGeo(null);
+			setShowModalError(true);
 		}
 	};
 	const fetchSpecRoute = (idRoute: string) => {
 		dispatch(getPointsFromSpecRoutes(idRoute));
+		dispatch(getPoints());
 	};
 
 	const handleModalPress = (e: OnPressEvent) => {
@@ -66,19 +71,24 @@ export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation }) => {
 			<MapboxGL.MapView
 				style={MapStyles.container}
 				styleURL='mapbox://styles/mapbox/streets-v12'
+				onPress={() => setShowModal(false)}
 			>
 				<MapboxGL.Camera zoomLevel={13} centerCoordinate={coordinates} animationMode='none' />
-				<MapboxGL.ShapeSource id="markers" shape={firstPointRouteGeo} onPress={handleModalPress}>
-					<MapboxGL.CircleLayer
-						id="markerCircle"
-						belowLayerID="markerText"
-						style={DetailMapStyles.marker as CircleLayerStyle}
-					/>
-					<MapboxGL.SymbolLayer
-						id="markerText"
-						style={DetailMapStyles.markerText as SymbolLayerStyle}
-					/>
-				</MapboxGL.ShapeSource>
+				{
+					firstPointRouteGeo !== null ? (
+						<MapboxGL.ShapeSource id="markers" shape={firstPointRouteGeo} onPress={handleModalPress}>
+							<MapboxGL.CircleLayer
+								id="markerCircle"
+								belowLayerID="markerText"
+								style={DetailMapStyles.marker as CircleLayerStyle}
+							/>
+							<MapboxGL.SymbolLayer
+								id="markerText"
+								style={DetailMapStyles.markerText as SymbolLayerStyle}
+							/>
+						</MapboxGL.ShapeSource>
+					) : null
+				}
 			</MapboxGL.MapView>
 			{
 				showModal ?
@@ -92,6 +102,9 @@ export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation }) => {
 						/>
 					</View>
 					: null
+			}
+			{
+				showModalError ? <ModalError labelName="mapbox_error_no_routes" labelTryAgainText='mapbox_error_try_again' /> : null
 			}
 		</>
 	);
