@@ -1,43 +1,58 @@
 import React, { FC, useEffect, useState } from 'react';
 
-import { useTranslation } from 'react-i18next';
-import { Text, ScrollView, View, Image, SafeAreaView, TouchableOpacity } from 'react-native';
-import Feather from 'react-native-vector-icons/Feather';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import CheckBox from '@react-native-community/checkbox';
+import { Text, ScrollView, View, SafeAreaView, TouchableOpacity, StyleSheet, Button } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SearchStyles } from './Search.styles';
-import { NotFoundText } from '../components/notFound/notFound';
+import { ItemOverview, NotFoundText } from '../components';
 import { LoadingSpinner } from '@/components/shared';
 import { SearchNavProps } from '@/lib/navigator/types';
-import '@/utils/i18n/i18n';
-import { Highlight, TextColor } from '@/style';
+import { Highlight } from '@/style';
 import { getRoutes } from '@/utils/redux/Actions';
+
+const initialState = {
+	Art: false,
+	Food: false,
+	Kunst: false,
+	Musea: false,
+};
 
 export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, route }) => {
 
 	const dispatch = useDispatch();
-	const { i18n } = useTranslation();
 	const [ isLoading, setIsLoading ] = useState<boolean>(true);
 
-	const [ filteredData, setFilteredData ] = useState([]);
+	const [ isOpen, setIsOpen ] = useState<boolean>(false);
+	const [ state, setState ] = useState(initialState);
 
+	const [ filteredData, setFilteredData ] = useState<any>([]);
 	const { routes, nameMode } = useSelector((state: any) => state.allReducer);
-	const fetchPoints = () => {
+	const fetchData = () => {
 		dispatch(getRoutes());
 		setIsLoading(false);
 	};
 
-	const searchFilterFunction = (text: string) => {
+	const searchFilterFunction = (text: any) => {
 		if(text){
-			const newData = routes.filter(( item : any) => {
-				const itemData = item.name ? item.name.toUpperCase() : ''.toUpperCase();
-				const textData = text.toUpperCase();
 
-				return itemData.indexOf(textData) > -1;
+			const keyValue = Object.entries(text).map(([ key, value ]) => {
+				return value && key;
 			});
+			const keyFilter = keyValue.filter(Boolean);
+			const newData = keyFilter.map((valueOfKey: any) => {
+				const newData = routes.filter((item: any) => {
+					const itemData = item.theme ? item.theme.toUpperCase() : ''.toUpperCase();
+					const stateData = valueOfKey.toUpperCase();
+
+					return itemData.indexOf(stateData) > -1;
+				});
+				return newData;
+			});
+
 			setFilteredData(newData);
 			setIsLoading(false);
+
 		} else {
 			setFilteredData(routes);
 			setIsLoading(false);
@@ -45,23 +60,13 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, rout
 	};
 
 	useEffect(() => {
-		fetchPoints();
+		fetchData();
 		setFilteredData(routes);
 	}, []);
 
 	useEffect(() => {
 		navigation.setOptions({
 			headerTitle: route.params?.titleScreen,
-			headerSearchBarOptions: {
-				textColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.darkHighlight,
-				headerIconColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.darkHighlight,
-				hintTextColor: nameMode === 'dark' ? Highlight.darkGrayHighlight : Highlight.darkHighlight,
-				placeholder: i18n.t('search_placeholder_searchBar') as string,
-				onChangeText: (event: any) => {
-					searchFilterFunction(event.nativeEvent.text);
-				},
-				hideWhenScrolling: false,
-			}
 		});
 	}, [ navigation ]);
 
@@ -70,6 +75,80 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, rout
 			<ScrollView
 				contentInsetAdjustmentBehavior='automatic'
 			>
+				<View>
+					<TouchableOpacity onPress={() => setIsOpen(true)}>
+						<Text>Filter Menu</Text>
+					</TouchableOpacity>
+					{
+						isOpen ? (
+							<View>
+								<View style={styles.container}>
+									<View style={styles.checkboxWrapper}>
+										<CheckBox
+											value={state.Art}
+											onValueChange={value =>
+												setState({
+													...state,
+													Art: value,
+												})
+											}
+										/>
+										<Text>Art</Text>
+									</View>
+									<View style={styles.checkboxWrapper}>
+										<CheckBox
+											value={state.Food}
+											onValueChange={value =>
+												setState({
+													...state,
+													Food: value,
+												})
+											}
+										/>
+										<Text>Food</Text>
+									</View>
+									<View style={styles.checkboxWrapper}>
+										<CheckBox
+											value={state.Kunst}
+											onValueChange={value =>
+												setState({
+													...state,
+													Kunst: value,
+												})
+											}
+										/>
+										<Text>Kunst</Text>
+									</View>
+									<View style={styles.checkboxWrapper}>
+										<CheckBox
+											value={state.Musea}
+											onValueChange={value =>
+												setState({
+													...state,
+													Musea: value,
+												})
+											}
+										/>
+										<Text>Musea</Text>
+									</View>
+								</View>
+								<Button
+									onPress={() => searchFilterFunction(state)}
+									title="Submit"
+								/>
+								<Button
+									onPress={() => {
+										setState({
+											...initialState
+										});
+										setFilteredData(routes);
+									}}
+									title="Clear"
+								/>
+							</View>
+						) : null
+					}
+				</View>
 				{
 					isLoading ? (
 						<View style={SearchStyles.loadingContainer}>
@@ -79,40 +158,25 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, rout
 						filteredData.length !== 0 ? (
 							filteredData.map((item: any) => {
 								return (
-									<View key={item._id}>
-										<TouchableOpacity
+									item.length > 0 ? (
+										item.map((itemArray: any) => {
+											return (
+												<ItemOverview
+													key={itemArray._id}
+													item={itemArray}
+													nameMode={nameMode}
+													navigation={navigation}
+												/>
+											);
+										})
+									) : (
+										<ItemOverview
 											key={item._id}
-											style={SearchStyles.itemContainer}
-											onPress={() => navigation.navigate('DetailPage', {
-												titleScreen: item.name,
-												dataOfCard: item,
-												nameMode
-											})}
-										>
-											<Image
-												source={{ uri: item.imageUrl }}
-												style={SearchStyles.image}
-												resizeMode='cover' />
-											<View style={{ marginLeft: 10 }}>
-												<Text style={[ SearchStyles.textName, { color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{item.name}</Text>
-												<View style={SearchStyles.infoContainer}>
-													<View style={SearchStyles.infoTextContainer}>
-														<Icon name='arrows-h' color={Highlight.tealHighlight} size={16} />
-														<Text style={[ SearchStyles.textInfo, { color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{item.distance}</Text>
-													</View>
-													<View style={SearchStyles.infoTextContainer}>
-														<Feather name='clock' color={Highlight.tealHighlight} size={16} />
-														<Text style={[ SearchStyles.textInfo, { color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{item.time}</Text>
-													</View>
-													<View style={SearchStyles.infoTextContainer}>
-														<Icon name='tag' color={Highlight.tealHighlight} size={16} />
-														<Text style={[ SearchStyles.textInfo, { color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{item.theme}</Text>
-													</View>
-												</View>
-											</View>
-										</TouchableOpacity>
-										<View style={SearchStyles.underline} />
-									</View>
+											item={item}
+											nameMode={nameMode}
+											navigation={navigation}
+										/>
+									)
 								);
 							})
 						) : (
@@ -124,3 +188,25 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, rout
 		</SafeAreaView>
 	);
 };
+
+const styles = StyleSheet.create({
+	textInput: {
+	  borderColor: 'gray',
+	  borderWidth: 1,
+	},
+	resultContainer: {
+	  flexDirection: 'row',
+	  padding: 10,
+	},
+	container: {
+	  flex: 1,
+	  justifyContent: 'center',
+	  alignItems: 'center',
+	  backgroundColor: '#F5FCFF',
+	},
+	checkboxWrapper: {
+	  flexDirection: 'row',
+	  alignItems: 'center',
+	  paddingVertical: 5,
+	},
+});
