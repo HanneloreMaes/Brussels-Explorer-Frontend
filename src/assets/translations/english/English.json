@@ -40,7 +40,7 @@
 	"mapbox_error_no_points": "Points cannot currently be loaded.",
 	"mapbox_error_try_again": "Try again later!",
 	"search_placeholder_searchBar": "Search",
-	"search_notFound": "The search term was not found",
+	"search_notFound": "was not found",
 	"settings_language_label_nl": "Dutch",
 	"settings_language_label_en": "English",
 	"settings_language_label_fr": "French",
