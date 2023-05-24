@@ -196,7 +196,10 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, rout
 							<View style={SearchStyles.buttonContainer}>
 								<TouchableOpacity
 									style={SearchStyles.touchableBtnContainer}
-									onPress={() => searchFilterFunction(state)}
+									onPress={() => {
+										searchFilterFunction(state);
+										setIsOpen(false);
+									}}
 								>
 									<Text style={SearchStyles.touchableBtnText}>Save</Text>
 								</TouchableOpacity>
@@ -207,6 +210,7 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, rout
 											...initialState
 										});
 										setFilteredData(routes);
+										setIsOpen(false);
 									}}
 								>
 									<Text style={SearchStyles.touchableBtnText}>Clear</Text>
