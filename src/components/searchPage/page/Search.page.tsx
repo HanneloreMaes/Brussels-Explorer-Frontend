@@ -9,7 +9,7 @@ import { SearchStyles } from './Search.styles';
 import { ItemOverview, NotFoundText } from '../components';
 import { LoadingSpinner } from '@/components/shared';
 import { SearchNavProps } from '@/lib/navigator/types';
-import { BackgroundColor, DefaultShadow, Highlight, TextColor, TextStyles } from '@/style';
+import { BackgroundColor, ButtonStyles, DefaultShadow, Highlight, TextColor, TextStyles, UnderlineStyle } from '@/style';
 import { getRoutes } from '@/utils/redux/Actions';
 import '@/utils/i18n/i18n';
 
@@ -81,60 +81,113 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 				</TouchableOpacity>
 				{
 					isOpen ? (
-						<View>
-							<SelectDropdown
-								data={themesNames}
-								ref={themeDropDownRef}
-								onSelect={(selectedItem, index) => {
-									setTheme(selectedItem);
-								}}
-								buttonTextAfterSelection={(selectedItem) => {
-									return selectedItem;
-								}}
-								rowTextForSelection={(item) => {
-									return item;
-								}}
-								defaultButtonText={i18n.t('search_default_theme') as string}
-							/>
-							<SelectDropdown
-								data={distanceNames}
-								ref={distanceDropDownRef}
-								onSelect={(selectedItem, index) => {
-									setDistance(selectedItem);
-								}}
-								buttonTextAfterSelection={(selectedItem) => {
-									return selectedItem;
-								}}
-								rowTextForSelection={(item) => {
-									return item;
-								}}
-								defaultButtonText={i18n.t('search_default_distance') as string}
-							/>
-							<SelectDropdown
-								data={timeNames}
-								ref={timeDropDownRef}
-								onSelect={(selectedItem, index) => {
-									setTime(selectedItem);
-								}}
-								buttonTextAfterSelection={(selectedItem) => {
-									return selectedItem;
-								}}
-								rowTextForSelection={(item) => {
-									return item;
-								}}
-								defaultButtonText={i18n.t('search_default_time') as string}
-							/>
-							<TouchableOpacity
-								onPress={() => {
-									setDistance(0);
-									setTheme(0);
-									themeDropDownRef.current?.reset();
-									distanceDropDownRef.current?.reset();
-								}}
+						<>
+							<View
+								style={[
+									SearchStyles.dropdownDataContainer,
+									{
+										backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light
+									}
+								]}
 							>
-								<Text>Clear all Filters</Text>
-							</TouchableOpacity>
-						</View>
+								<View style={SearchStyles.dropdownContainer}>
+									<Text
+										style={[
+											TextStyles.titleH3,
+											SearchStyles.titleCategories,
+											{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+										]}
+									>{i18n.t('search_default_title_theme')}:</Text>
+									<SelectDropdown
+										data={themesNames}
+										ref={themeDropDownRef}
+										onSelect={(selectedItem, index) => {
+											setTheme(selectedItem);
+										}}
+										buttonTextAfterSelection={(selectedItem) => {
+											return selectedItem;
+										}}
+										rowTextForSelection={(item) => {
+											return item;
+										}}
+										defaultButtonText={i18n.t('search_default_theme') as string}
+									/>
+								</View>
+								<View style={SearchStyles.dropdownContainer}>
+									<Text
+										style={[
+											TextStyles.titleH3,
+											SearchStyles.titleCategories,
+											{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+										]}
+									>{i18n.t('search_default_title_distance')}:</Text>
+									<SelectDropdown
+										data={distanceNames}
+										ref={distanceDropDownRef}
+										onSelect={(selectedItem, index) => {
+											setDistance(selectedItem);
+										}}
+										buttonTextAfterSelection={(selectedItem) => {
+											return selectedItem;
+										}}
+										rowTextForSelection={(item) => {
+											return item;
+										}}
+										defaultButtonText={i18n.t('search_default_distance') as string}
+									/>
+								</View>
+								<View style={SearchStyles.dropdownContainer}>
+									<Text
+										style={[
+											TextStyles.titleH3,
+											SearchStyles.titleCategories,
+											{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+										]}
+									>{i18n.t('search_default_title_time')}:</Text>
+									<SelectDropdown
+										data={timeNames}
+										ref={timeDropDownRef}
+										onSelect={(selectedItem, index) => {
+											setTime(selectedItem);
+										}}
+										buttonTextAfterSelection={(selectedItem) => {
+											return selectedItem;
+										}}
+										rowTextForSelection={(item) => {
+											return item;
+										}}
+										defaultButtonText={i18n.t('search_default_time') as string}
+									/>
+								</View>
+							</View>
+
+							<View style={SearchStyles.buttonsContainer}>
+								<TouchableOpacity
+									style={[
+										ButtonStyles.buttonContainerPrimary,
+										{ width: '35%' }
+									]}
+									onPress={() => {
+										setDistance(0);
+										setTheme(0);
+										themeDropDownRef.current?.reset();
+										distanceDropDownRef.current?.reset();
+									}}
+								>
+									<Text style={ButtonStyles.buttonTextPrimary}>Clear filters</Text>
+								</TouchableOpacity>
+								<TouchableOpacity
+									style={[
+										ButtonStyles.buttonContainerPrimary,
+										{ width: '30%' }
+									]}
+									onPress={() => setIsOpen(false)}
+								>
+									<Text style={ButtonStyles.buttonTextPrimary}>Close</Text>
+								</TouchableOpacity>
+							</View>
+							<View style={UnderlineStyle.underline} />
+						</>
 					) : null
 				}
 				{

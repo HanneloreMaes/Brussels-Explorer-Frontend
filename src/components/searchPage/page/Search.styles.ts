@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-import { ButtonStyles, DefaultMargins, Highlight, TextColor, TextStyles } from '@/style';
+import { ButtonStyles, DefaultMargins, TextStyles } from '@/style';
 
 const { width, height } = Dimensions.get('window');
 
@@ -9,7 +9,7 @@ export const SearchStyles = StyleSheet.create({
 		height: Dimensions.get('window').height / 2,
 	},
 	filterBtnContainer: {
-		zIndex: 600,
+		zIndex: 5,
 		position: 'absolute',
 		top: 10,
 		right: 0,
@@ -23,13 +23,21 @@ export const SearchStyles = StyleSheet.create({
 	},
 	filterContainer: {
 		position: 'absolute',
-		zIndex: 500,
+		zIndex: 4,
 		width,
 		height,
 	},
 	titleCategories: {
-		marginHorizontal: DefaultMargins.horizontalMargin,
 		marginTop: DefaultMargins.topMargin,
+	},
+	dropdownDataContainer: {
+		width,
+		marginHorizontal: DefaultMargins.horizontalMargin,
+		zIndex: 6,
+	},
+	dropdownContainer: {
+		flexDirection: 'row',
+		marginBottom: DefaultMargins.bottomMargin,
 	},
 	filterCheckboxContainer: {
 		flexDirection: 'row',
@@ -55,5 +63,11 @@ export const SearchStyles = StyleSheet.create({
 	},
 	touchableBtnText: {
 		...ButtonStyles.buttonTextPrimary,
+	},
+	buttonsContainer: {
+		flexDirection: 'row',
+		justifyContent: 'space-around',
+		marginTop: 10,
+		height: '10%'
 	},
 });
