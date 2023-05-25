@@ -9,15 +9,16 @@ export const SearchStyles = StyleSheet.create({
 		height: Dimensions.get('window').height / 2,
 	},
 	filterBtnContainer: {
+		zIndex: 600,
 		position: 'absolute',
-		bottom: 0,
+		top: 10,
 		right: 0,
 		width: '28%',
-		height: '7%',
+		height: 40,
 		alignItems: 'center',
 		justifyContent: 'center',
 		borderRadius: 15,
-		marginRight: 15,
+		marginRight: 10,
 		marginBottom: 15,
 	},
 	filterContainer: {
@@ -46,8 +47,6 @@ export const SearchStyles = StyleSheet.create({
 	},
 	buttonContainer: {
 		flexDirection: 'row',
-		position: 'absolute',
-		bottom: 175,
 	},
 	touchableBtnContainer: {
 		...ButtonStyles.buttonContainerPrimary,

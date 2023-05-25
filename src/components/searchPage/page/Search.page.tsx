@@ -1,7 +1,8 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 
-import CheckBox from '@react-native-community/checkbox';
-import { Text, ScrollView, View, TouchableOpacity, Dimensions } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { Text, ScrollView, View, TouchableOpacity } from 'react-native';
+import SelectDropdown from 'react-native-select-dropdown';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SearchStyles } from './Search.styles';
@@ -10,87 +11,57 @@ import { LoadingSpinner } from '@/components/shared';
 import { SearchNavProps } from '@/lib/navigator/types';
 import { BackgroundColor, DefaultShadow, Highlight, TextColor, TextStyles } from '@/style';
 import { getRoutes } from '@/utils/redux/Actions';
+import '@/utils/i18n/i18n';
 
-const initialState = {
-	Art: false,
-	Food: false,
-	Kunst: false,
-	Musea: false,
-};
-
-export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, route }) => {
+export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) => {
 
 	const dispatch = useDispatch();
-	const [ isLoading, setIsLoading ] = useState<boolean>(true);
+	const { i18n } = useTranslation();
 
+	const [ isLoading, setIsLoading ] = useState<boolean>(true);
 	const [ isOpen, setIsOpen ] = useState<boolean>(false);
-	const [ state, setState ] = useState(initialState);
-	const [ nameOfEmptyArray, setNameOfEmptyArray ] = useState<any>([]);
+
+	const themeDropDownRef = useRef<SelectDropdown>(null);
+	const distanceDropDownRef = useRef<SelectDropdown>(null);
+	const timeDropDownRef = useRef<SelectDropdown>(null);
 
 	const [ filteredData, setFilteredData ] = useState<any>([]);
+	const [ theme, setTheme ] = useState<any>();
+	const [ distance, setDistance ] = useState<any>();
+	const [ time, setTime ] = useState<any>();
+
+	const themesNames = [ 'Art', 'Food', 'Musea' ];
+	const distanceNames = [ '5km', '10km', '14km', '15km' ];
+	const timeNames = [ '30min', '50min', '1h', '2h' ];
+
 	const { routes, nameMode } = useSelector((state: any) => state.allReducer);
+
 	const fetchData = () => {
 		dispatch(getRoutes());
 		setIsLoading(false);
 	};
 
-	const searchFilterFunction = (text: any) => {
-		if(text){
-			const keyValue = Object.entries(text).map(([ key, value ]) => {
-				return value && key;
-			});
-			const keyFilter = keyValue.filter(Boolean);
-			const newData = keyFilter.map((valueOfKey: any) => {
-				const newData = routes.filter((item: any) => {
-					const itemData = item.theme ? item.theme.toUpperCase() : ''.toUpperCase();
-					const stateData = valueOfKey.toUpperCase();
-
-					return itemData.indexOf(stateData) > -1;
-				});
-				return newData;
-			});
-
-			const namesOfEmpty: any = [];
-			newData.map((data: any, index: number) => {
-				const keyIndex = keyFilter[ index ];
-				const indexOfDataArray = data[ index ];
-
-				if (indexOfDataArray === undefined) {
-					namesOfEmpty.push(keyIndex);
-					return namesOfEmpty;
-				}
-
-			});
-			setNameOfEmptyArray(namesOfEmpty);
-			setFilteredData(newData);
-			setIsLoading(false);
-
-		} else {
-			setFilteredData(routes);
-			setIsLoading(false);
-		}
-	};
-
 	useEffect(() => {
 		fetchData();
-		setFilteredData(routes);
 	}, []);
 
 	useEffect(() => {
-		navigation.setOptions({
-			headerTitle: route.params?.titleScreen,
-		});
-	}, [ navigation ]);
+		setFilteredData(
+			routes.filter((route:any) => {
+				return (
+					(!theme || theme === route.theme) &&
+					(!distance || distance === route.distance) &&
+					(!time || time === route.time)
+				);
+			})
+		);
+	}, [ distance, theme, time ]);
 
 	return (
 		<ScrollView
 			contentInsetAdjustmentBehavior='automatic'
 		>
-			<View
-				style={{
-					height: Dimensions.get('screen').height - 130,
-				}}
-			>
+			<View>
 				<TouchableOpacity
 					style={[
 						SearchStyles.filterBtnContainer,
@@ -110,112 +81,59 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, rout
 				</TouchableOpacity>
 				{
 					isOpen ? (
-						<View
-							style={[
-								SearchStyles.filterContainer,
-								{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
-							]}
-						>
-							<Text
-								style={[
-									TextStyles.titleH2,
-									SearchStyles.titleCategories,
-									{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
-								]}
-							>Theme</Text>
-							<View style={SearchStyles.filterCheckboxContainer}>
-								<View style={SearchStyles.checkboxContainer}>
-									<CheckBox
-										value={state.Art}
-										onValueChange={value =>
-											setState({
-												...state,
-												Art: value,
-											})
-										}
-									/>
-									<Text
-										style={[
-											SearchStyles.checkbxoText,
-											{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
-										]}
-									>Art</Text>
-								</View>
-								<View style={SearchStyles.checkboxContainer}>
-									<CheckBox
-										value={state.Food}
-										onValueChange={value =>
-											setState({
-												...state,
-												Food: value,
-											})
-										}
-									/>
-									<Text
-										style={[
-											SearchStyles.checkbxoText,
-											{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
-										]}
-									>Food</Text>
-								</View>
-								<View style={SearchStyles.checkboxContainer}>
-									<CheckBox
-										value={state.Kunst}
-										onValueChange={value =>
-											setState({
-												...state,
-												Kunst: value,
-											})
-										}
-									/>
-									<Text
-										style={[
-											SearchStyles.checkbxoText,
-											{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
-										]}
-									>Kunst</Text>
-								</View>
-								<View style={SearchStyles.checkboxContainer}>
-									<CheckBox
-										value={state.Musea}
-										onValueChange={value =>
-											setState({
-												...state,
-												Musea: value,
-											})
-										}
-									/>
-									<Text
-										style={[
-											SearchStyles.checkbxoText,
-											{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
-										]}
-									>Musea</Text>
-								</View>
-							</View>
-							<View style={SearchStyles.buttonContainer}>
-								<TouchableOpacity
-									style={SearchStyles.touchableBtnContainer}
-									onPress={() => {
-										searchFilterFunction(state);
-										setIsOpen(false);
-									}}
-								>
-									<Text style={SearchStyles.touchableBtnText}>Save</Text>
-								</TouchableOpacity>
-								<TouchableOpacity
-									style={SearchStyles.touchableBtnContainer}
-									onPress={() => {
-										setState({
-											...initialState
-										});
-										setFilteredData(routes);
-										setIsOpen(false);
-									}}
-								>
-									<Text style={SearchStyles.touchableBtnText}>Clear</Text>
-								</TouchableOpacity>
-							</View>
+						<View>
+							<SelectDropdown
+								data={themesNames}
+								ref={themeDropDownRef}
+								onSelect={(selectedItem, index) => {
+									setTheme(selectedItem);
+								}}
+								buttonTextAfterSelection={(selectedItem) => {
+									return selectedItem;
+								}}
+								rowTextForSelection={(item) => {
+									return item;
+								}}
+								defaultButtonText={i18n.t('search_default_theme') as string}
+							/>
+							<SelectDropdown
+								data={distanceNames}
+								ref={distanceDropDownRef}
+								onSelect={(selectedItem, index) => {
+									setDistance(selectedItem);
+								}}
+								buttonTextAfterSelection={(selectedItem) => {
+									return selectedItem;
+								}}
+								rowTextForSelection={(item) => {
+									return item;
+								}}
+								defaultButtonText={i18n.t('search_default_distance') as string}
+							/>
+							<SelectDropdown
+								data={timeNames}
+								ref={timeDropDownRef}
+								onSelect={(selectedItem, index) => {
+									setTime(selectedItem);
+								}}
+								buttonTextAfterSelection={(selectedItem) => {
+									return selectedItem;
+								}}
+								rowTextForSelection={(item) => {
+									return item;
+								}}
+								defaultButtonText={i18n.t('search_default_time') as string}
+							/>
+							<TouchableOpacity
+								onPress={() => {
+									setDistance(0);
+									setTheme(0);
+									themeDropDownRef.current?.reset();
+									distanceDropDownRef.current?.reset();
+								}}
+							>
+								<Text>Clear all Filters</Text>
+							</TouchableOpacity>
 						</View>
 					) : null
 				}
@@ -228,37 +146,15 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation, rout
 						filteredData.length !== 0 ? (
 							filteredData.map((item: any) => {
 								return (
-									item.length === 0 ? (
-										nameOfEmptyArray.map((nameOfItem: string) => {
-											return <NotFoundText key={nameOfItem} nameComponent={nameOfItem} />;
-										})
-									) : (
-										item.length > 0 ? (
-											item.map((itemArray: any) => {
-												return (
-													<ItemOverview
-														key={itemArray._id}
-														item={itemArray}
-														nameMode={nameMode}
-														navigation={navigation}
-													/>
-												);
-											})
-										) :
-											<ItemOverview
-												key={item._id}
-												item={item}
-												nameMode={nameMode}
-												navigation={navigation}
-											/>
-									)
+									<ItemOverview
+										key={item._id}
+										item={item}
+										nameMode={nameMode}
+										navigation={navigation}
+									/>
 								);
 							})
-						) : (
-							nameOfEmptyArray.map((nameOfItem: string) => {
-								return <NotFoundText key={nameOfItem} nameComponent={nameOfItem} />;
-							})
-						)
+						) : <NotFoundText nameComponent={theme} distance={distance} time={time} />
 					)
 				}
 
