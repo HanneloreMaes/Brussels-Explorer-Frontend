@@ -3,6 +3,7 @@ import React, { FC, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Text, ScrollView, View, TouchableOpacity } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SearchStyles } from './Search.styles';
@@ -111,6 +112,11 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 											return item;
 										}}
 										defaultButtonText={i18n.t('search_default_theme') as string}
+										buttonStyle={SearchStyles.dropdown1BtnStyle}
+										buttonTextStyle={SearchStyles.dropdown1BtnTxtStyle}
+										renderDropdownIcon={isOpened => {
+											return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color="#444" size={18} />;
+										}}
 									/>
 								</View>
 								<View style={SearchStyles.dropdownContainer}>
@@ -134,6 +140,11 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 											return item;
 										}}
 										defaultButtonText={i18n.t('search_default_distance') as string}
+										buttonStyle={SearchStyles.dropdown1BtnStyle}
+										buttonTextStyle={SearchStyles.dropdown1BtnTxtStyle}
+										renderDropdownIcon={isOpened => {
+											return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color="#444" size={18} />;
+										}}
 									/>
 								</View>
 								<View style={SearchStyles.dropdownContainer}>
@@ -157,6 +168,11 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 											return item;
 										}}
 										defaultButtonText={i18n.t('search_default_time') as string}
+										buttonStyle={SearchStyles.dropdown1BtnStyle}
+										buttonTextStyle={SearchStyles.dropdown1BtnTxtStyle}
+										renderDropdownIcon={isOpened => {
+											return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color="#444" size={18} />;
+										}}
 									/>
 								</View>
 							</View>
@@ -172,6 +188,7 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 										setTheme(0);
 										themeDropDownRef.current?.reset();
 										distanceDropDownRef.current?.reset();
+										timeDropDownRef.current?.reset();
 									}}
 								>
 									<Text style={ButtonStyles.buttonTextPrimary}>Clear filters</Text>

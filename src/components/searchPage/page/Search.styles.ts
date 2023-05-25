@@ -38,6 +38,7 @@ export const SearchStyles = StyleSheet.create({
 	dropdownContainer: {
 		flexDirection: 'row',
 		marginBottom: DefaultMargins.bottomMargin,
+		width: '70%'
 	},
 	filterCheckboxContainer: {
 		flexDirection: 'row',
@@ -70,4 +71,15 @@ export const SearchStyles = StyleSheet.create({
 		marginTop: 10,
 		height: '10%'
 	},
+	dropdown1BtnStyle: {
+		flex: 1,
+		height: 40,
+		backgroundColor: '#FFF',
+		borderRadius: 8,
+		borderWidth: 1,
+		borderColor: '#444',
+	},
+	dropdown1BtnTxtStyle: { color: '#444', textAlign: 'left' },
+	dropdown1DropdownStyle: { backgroundColor: '#EFEFEF' },
+	dropdown1RowTxtStyle: { color: '#444', textAlign: 'left' },
 });
