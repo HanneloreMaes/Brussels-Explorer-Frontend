@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-import { BorderContainerStyle, DefaultAppStyling, DefaultMargins, Highlight, TextColor, TextStyles } from '@/style';
+import { BorderContainerStyle, DefaultAppStyling, Highlight, TextColor, TextStyles } from '@/style';
 
 const { width } = Dimensions.get('window');
 
