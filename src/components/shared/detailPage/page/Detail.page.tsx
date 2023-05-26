@@ -7,7 +7,7 @@ import { DetailStyles } from './Detail.styles';
 import { DetailMap } from '../components/DetailMap';
 import { DetailTypes } from '../types/Detail.types';
 import '@/utils/i18n/i18n';
-import { TextColor } from '@/style';
+import { TextColor, TextStyles } from '@/style';
 
 export const DetailPage: FC <DetailTypes> = ({ route }) => {
 
@@ -60,7 +60,7 @@ export const DetailPage: FC <DetailTypes> = ({ route }) => {
 								{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 							]}
 						>
-							{i18n.t('dashboard_detail_page_address')}
+							{dataOfCard.area}
 						</Text>
 					</View>
 				</View>
@@ -73,9 +73,10 @@ export const DetailPage: FC <DetailTypes> = ({ route }) => {
 				>
 					{dataOfCard.name}
 				</Text>
+				<Text style={[ DetailStyles.themeTitle, { color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{dataOfCard.theme}</Text>
 				<Text
 					style={[
-						DetailStyles.textDetail,
+						TextStyles.bodyText,
 						{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 					]}
 				>
