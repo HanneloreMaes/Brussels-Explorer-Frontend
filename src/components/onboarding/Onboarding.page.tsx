@@ -201,7 +201,10 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 									onChangeText={(text) => setUsername(text)}
 									style={[
 										OnboardingStyles.textInput,
-										{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
+										{
+											backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+											color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText,
+										}
 									]}
 								/>
 							)}
@@ -215,7 +218,10 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 								onChangeText={(text) => setEmail(text)}
 								style={[
 									OnboardingStyles.textInput,
-									{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
+									{
+										backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+										color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText
+									}
 								]}
 							/>
 							<TextInput
@@ -229,7 +235,10 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 								onChangeText={(text) => setPassword(text)}
 								style={[
 									OnboardingStyles.textInput,
-									{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
+									{
+										backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+										color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText,
+									}
 								]}
 							/>
 							{isRegister ? (
