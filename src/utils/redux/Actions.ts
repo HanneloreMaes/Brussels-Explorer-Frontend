@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import axios from 'axios';
 import { Dispatch } from 'redux';
 
@@ -8,7 +9,6 @@ import {
 	GET_POINTS_SPEC_ROUTES,
 	SET_MODE_APP,
 	SET_LANGUAGE,
-	SET_LAST_SEEN,
 	Languages,
 	ModeOptions,
 } from './Actions.types';
@@ -98,12 +98,5 @@ export const setMode = (nameMode: ModeOptions) => (dispatch: Dispatch) => {
 	dispatch({
 		type: SET_MODE_APP,
 		nameMode,
-	});
-};
-
-export const setRecentlyViewed = (idOfRoute: string) => (dispatch: Dispatch) => {
-	dispatch({
-		type: SET_LAST_SEEN,
-		idOfRoute,
 	});
 };
