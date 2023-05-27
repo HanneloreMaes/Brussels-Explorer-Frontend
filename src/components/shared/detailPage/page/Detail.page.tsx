@@ -1,18 +1,25 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
-import { useTranslation } from 'react-i18next';
 import { Image, ScrollView, Text, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { DetailStyles } from './Detail.styles';
 import { DetailMap } from '../components/DetailMap';
 import { DetailTypes } from '../types/Detail.types';
-import '@/utils/i18n/i18n';
 import { TextColor, TextStyles } from '@/style';
+import { setRecentlyViewed } from '@/utils/redux/Actions';
 
 export const DetailPage: FC <DetailTypes> = ({ route }) => {
 
 	const { dataOfCard, nameMode } = route.params;
-	const { i18n } = useTranslation();
+	const dispatch = useDispatch();
+	const { lastSeen } = useSelector((state: any) => state.allReducer);
+
+	useEffect(() => {
+		if (route.length !== null) {
+			dispatch(setRecentlyViewed(dataOfCard._id));
+		}
+	}, [ dataOfCard ]);
 
 	return (
 		<ScrollView style={DetailStyles.detailContainer}>
