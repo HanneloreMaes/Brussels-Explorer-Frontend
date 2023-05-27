@@ -14,15 +14,10 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-BrusselsExplorer-BrusselsExplorerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-BrusselsExplorer-BrusselsExplorerTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		CC704BB3A07E40B1BE1DAED6 /* ExpletusSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B89E17458A74529BB763BD6 /* ExpletusSans-Bold.ttf */; };
-		60057A0A099B45D2B2C89C65 /* ExpletusSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0E16D4B4A344130A6AB553C /* ExpletusSans-BoldItalic.ttf */; };
-		5D0EE36AA894495A800BA71F /* ExpletusSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C6A542F686F4E2D8FE36911 /* ExpletusSans-Italic.ttf */; };
 		730CE6787FFB447AB50D5C17 /* ExpletusSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE61466D3D4F497E982BD986 /* ExpletusSans-Medium.ttf */; };
-		775140CBBD83429CB2F98546 /* ExpletusSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B9D311E202A4431AF8BAABC /* ExpletusSans-MediumItalic.ttf */; };
 		0AF24C6F81D64FE98BB0BFE3 /* ExpletusSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A70C1D1B7BE415E98468638 /* ExpletusSans-Regular.ttf */; };
 		F113179220D34AE095609E51 /* ExpletusSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9B8D0B320B54D3CB5D27CBD /* ExpletusSans-SemiBold.ttf */; };
-		03BAE68908F44EC48F0B0692 /* ExpletusSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EFD525B6EB9435F96C99E57 /* ExpletusSans-SemiBoldItalic.ttf */; };
-		B5664DE1868740478B19DB7A /* Explora-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD47472226214C3785A1FDC4 /* Explora-Regular.ttf */; };
+		E30E281FB01F43F7A3A951D1 /* Franklin-Book-Regular.TTF in Resources */ = {isa = PBXBuildFile; fileRef = CF73CD4BC7C8418CACBCB0EE /* Franklin-Book-Regular.TTF */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,15 +48,10 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = BrusselsExplorer/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-BrusselsExplorer-BrusselsExplorerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrusselsExplorer-BrusselsExplorerTests.release.xcconfig"; path = "Target Support Files/Pods-BrusselsExplorer-BrusselsExplorerTests/Pods-BrusselsExplorer-BrusselsExplorerTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		3B89E17458A74529BB763BD6 /* ExpletusSans-Bold.ttf */ = {isa = PBXFileReference; name = "ExpletusSans-Bold.ttf"; path = "../src/assets/fonts/ExpletusSans/ExpletusSans-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		F0E16D4B4A344130A6AB553C /* ExpletusSans-BoldItalic.ttf */ = {isa = PBXFileReference; name = "ExpletusSans-BoldItalic.ttf"; path = "../src/assets/fonts/ExpletusSans/ExpletusSans-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0C6A542F686F4E2D8FE36911 /* ExpletusSans-Italic.ttf */ = {isa = PBXFileReference; name = "ExpletusSans-Italic.ttf"; path = "../src/assets/fonts/ExpletusSans/ExpletusSans-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		FE61466D3D4F497E982BD986 /* ExpletusSans-Medium.ttf */ = {isa = PBXFileReference; name = "ExpletusSans-Medium.ttf"; path = "../src/assets/fonts/ExpletusSans/ExpletusSans-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0B9D311E202A4431AF8BAABC /* ExpletusSans-MediumItalic.ttf */ = {isa = PBXFileReference; name = "ExpletusSans-MediumItalic.ttf"; path = "../src/assets/fonts/ExpletusSans/ExpletusSans-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		8A70C1D1B7BE415E98468638 /* ExpletusSans-Regular.ttf */ = {isa = PBXFileReference; name = "ExpletusSans-Regular.ttf"; path = "../src/assets/fonts/ExpletusSans/ExpletusSans-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		B9B8D0B320B54D3CB5D27CBD /* ExpletusSans-SemiBold.ttf */ = {isa = PBXFileReference; name = "ExpletusSans-SemiBold.ttf"; path = "../src/assets/fonts/ExpletusSans/ExpletusSans-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		3EFD525B6EB9435F96C99E57 /* ExpletusSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "ExpletusSans-SemiBoldItalic.ttf"; path = "../src/assets/fonts/ExpletusSans/ExpletusSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		BD47472226214C3785A1FDC4 /* Explora-Regular.ttf */ = {isa = PBXFileReference; name = "Explora-Regular.ttf"; path = "../src/assets/fonts/Explora/Explora-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CF73CD4BC7C8418CACBCB0EE /* Franklin-Book-Regular.TTF */ = {isa = PBXFileReference; name = "Franklin-Book-Regular.TTF"; path = "../src/assets/fonts/Franklin Gothic/Franklin-Book-Regular.TTF"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,15 +160,10 @@
 		A93268F67FCA452E8B9F3745 /* Resources */ = {
 			isa = "PBXGroup";
 			children = (
-				3B89E17458A74529BB763BD6 /* ExpletusSans-Bold.ttf */,
-				F0E16D4B4A344130A6AB553C /* ExpletusSans-BoldItalic.ttf */,
-				0C6A542F686F4E2D8FE36911 /* ExpletusSans-Italic.ttf */,
 				FE61466D3D4F497E982BD986 /* ExpletusSans-Medium.ttf */,
-				0B9D311E202A4431AF8BAABC /* ExpletusSans-MediumItalic.ttf */,
 				8A70C1D1B7BE415E98468638 /* ExpletusSans-Regular.ttf */,
 				B9B8D0B320B54D3CB5D27CBD /* ExpletusSans-SemiBold.ttf */,
-				3EFD525B6EB9435F96C99E57 /* ExpletusSans-SemiBoldItalic.ttf */,
-				BD47472226214C3785A1FDC4 /* Explora-Regular.ttf */,
+				CF73CD4BC7C8418CACBCB0EE /* Franklin-Book-Regular.TTF */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -280,15 +265,10 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				CC704BB3A07E40B1BE1DAED6 /* ExpletusSans-Bold.ttf in Resources */,
-				60057A0A099B45D2B2C89C65 /* ExpletusSans-BoldItalic.ttf in Resources */,
-				5D0EE36AA894495A800BA71F /* ExpletusSans-Italic.ttf in Resources */,
 				730CE6787FFB447AB50D5C17 /* ExpletusSans-Medium.ttf in Resources */,
-				775140CBBD83429CB2F98546 /* ExpletusSans-MediumItalic.ttf in Resources */,
 				0AF24C6F81D64FE98BB0BFE3 /* ExpletusSans-Regular.ttf in Resources */,
 				F113179220D34AE095609E51 /* ExpletusSans-SemiBold.ttf in Resources */,
-				03BAE68908F44EC48F0B0692 /* ExpletusSans-SemiBoldItalic.ttf in Resources */,
-				B5664DE1868740478B19DB7A /* Explora-Regular.ttf in Resources */,
+				E30E281FB01F43F7A3A951D1 /* Franklin-Book-Regular.TTF in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
