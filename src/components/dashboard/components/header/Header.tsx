@@ -61,10 +61,34 @@ export const Header: FC = () => {
 
 	return(
 		<View style={HeaderStyles.container}>
-			<Image source={nameMode === 'dark' ? require('@/assets/images/darkModus/header_Img.jpg') : require('@/assets/images/lightModus/header_Img.jpg')} style={HeaderStyles.headerImage} resizeMode='cover' />
+			<Image
+				source={
+					nameMode === 'dark'
+						? require('@/assets/images/darkModus/header_Img.jpg')
+						: require('@/assets/images/lightModus/header_Img.jpg')
+				}
+				style={HeaderStyles.headerImage}
+				resizeMode='cover'
+			/>
 			<View style={HeaderStyles.headerContainer}>
-				<Text style={[ TextStyles.titleH2, { fontSize: 30, color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{i18n.t(timeOfDay)} </Text>
-				<Text style={[ TextStyles.titleH2, { fontSize: 25, color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{nameUser}</Text>
+				<Text
+					style={[
+						TextStyles.titleH2,
+						{
+							fontSize: 30,
+							color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText
+						}
+					]}
+				>{i18n.t(timeOfDay)} </Text>
+				<Text
+					style={[
+						TextStyles.titleH2,
+						{
+							fontSize: 25,
+							color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText
+						}
+					]}
+				>{nameUser}</Text>
 			</View>
 		</View>
 	);
