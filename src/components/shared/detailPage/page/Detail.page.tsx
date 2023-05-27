@@ -1,15 +1,27 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import { Image, ScrollView, Text, View } from 'react-native';
+import { useDispatch } from 'react-redux';
 
 import { DetailStyles } from './Detail.styles';
 import { DetailMap } from '../components/DetailMap';
 import { DetailTypes } from '../types/Detail.types';
 import { TextColor, TextStyles } from '@/style';
+import { getSpecRoute } from '@/utils/redux/Actions';
 
 export const DetailPage: FC <DetailTypes> = ({ route }) => {
 
 	const { dataOfCard, nameMode } = route.params;
+
+	const dispatch = useDispatch();
+
+	const fetchSpecRoute = () => {
+		dispatch(getSpecRoute(dataOfCard._id));
+	};
+
+	useEffect(() => {
+		fetchSpecRoute();
+	}, [ dataOfCard ]);
 
 	return (
 		<ScrollView style={DetailStyles.detailContainer}>
@@ -79,7 +91,7 @@ export const DetailPage: FC <DetailTypes> = ({ route }) => {
 				>
 					{dataOfCard.description}
 				</Text>
-				{/* <DetailMap dataRoute={dataOfCard}/> */}
+				<DetailMap dataRoute={dataOfCard}/>
 			</View>
 		</ScrollView>
 	);
