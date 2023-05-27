@@ -5,7 +5,7 @@ import { ScrollView, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { DashboardStyles } from './Dashboard.styles';
-import { Header, RecommendedRoutes, RecentlyViewedSection } from '../components';
+import { Header, RecommendedRoutes, LastSeenSection } from '../components';
 import { LoadingSpinner } from '@/components/shared';
 import { DashboardNavProps } from '@/lib/navigator/types';
 import { Highlight } from '@/style';
@@ -16,7 +16,7 @@ export const DashboardScreen: FC <DashboardNavProps<'DashboardScreen'>> = ({ nav
 
 	const { i18n } = useTranslation();
 	const dispatch = useDispatch();
-	const { routes, nameMode } = useSelector( (state: any) => state.allReducer );
+	const { routes, nameMode, lastSeen } = useSelector((state: any) => state.allReducer );
 
 	const fetchRoutes = () => {
 		dispatch(getRoutes());
@@ -24,7 +24,7 @@ export const DashboardScreen: FC <DashboardNavProps<'DashboardScreen'>> = ({ nav
 
 	useEffect(() => {
 		fetchRoutes();
-	}, []);
+	}, [ lastSeen ]);
 
 	return(
 		<ScrollView>
@@ -37,7 +37,7 @@ export const DashboardScreen: FC <DashboardNavProps<'DashboardScreen'>> = ({ nav
 				) : (
 					<View style={DashboardStyles.marginContainer}>
 						<RecommendedRoutes data={routes} mode={nameMode} translation={i18n} navigation={navigation} />
-						<RecentlyViewedSection data={routes} mode={nameMode} translation={i18n}/>
+						<LastSeenSection mode={nameMode} translation={i18n}/>
 					</View>
 				)
 			}

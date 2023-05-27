@@ -1,8 +1,8 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-import { DefaultMargins, TextColor, TextStyles } from '@/style';
+import { DefaultMargins, TextStyles } from '@/style';
 
-export const RecentlyStyles = StyleSheet.create({
+export const LastStyles = StyleSheet.create({
 	container: {
 		height: Dimensions.get('window').height/4 + 20,
 	},
