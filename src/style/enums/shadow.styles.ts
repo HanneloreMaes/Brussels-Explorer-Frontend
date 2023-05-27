@@ -1,29 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { TextColor , Highlight } from './colors.styles';
-
-export const BorderContainerStyle = {
-	borderRadius: 15,
-	imageBorderRadius: 10,
-	borderWidth: 1,
-	borderColor: TextColor.darkText
-};
-
-export const DefaultAppStyling = {
-	globalMargin: 30,
-};
-
-export const DefaultPadding = {
-	globalPadding: 10,
-};
-
-export const UnderlineStyle = StyleSheet.create({
-	underline: {
-		borderBottomWidth: 0.6,
-		borderColor: Highlight.grayHighlight,
-		marginVertical: 10,
-	},
-});
+import { Highlight } from './colors.styles';
 
 export const DefaultShadow = StyleSheet.create({
 	shadowPrimary : {
