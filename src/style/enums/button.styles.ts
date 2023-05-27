@@ -25,10 +25,15 @@ export const ButtonStyles = StyleSheet.create({
 		marginVertical: 10,
 	},
 	buttonTextPrimary: {
-		...TextStyles.footerText,
+		fontFamily: 'Franklin-Book-Regular',
+		fontSize: 20,
+		letterSpacing: 0.5,
+		color: TextColor.lightText,
 	},
 	skipButtonText: {
-		...TextStyles.footerText,
+		fontFamily: 'Franklin-Book-Regular',
+		fontSize: 20,
+		letterSpacing: 0.5,
 		color: TextColor.darkText,
 	},
 });

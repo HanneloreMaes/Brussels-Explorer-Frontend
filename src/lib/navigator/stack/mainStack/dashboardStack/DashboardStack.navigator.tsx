@@ -18,6 +18,7 @@ export const DashboardStackScreen : FC = () => {
 			screenOptions={{
 				headerTitleStyle: {
 					color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText,
+					fontFamily: 'ExpletusSans-Regular',
 				},
 				headerTintColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.tealHighlight,
 				headerStyle: {

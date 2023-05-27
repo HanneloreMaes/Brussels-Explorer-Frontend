@@ -19,12 +19,6 @@ export const TextStyles = StyleSheet.create({
 		fontSize: 18,
 		color: TextColor.darkText,
 	},
-	footerText: {
-		fontSize: 20,
-		fontWeight: '600',
-		letterSpacing: 0.5,
-		color: TextColor.lightText,
-	},
 	bodyText: {
 		fontFamily: 'Franklin-Book-Regular',
 		fontSize: 16,

@@ -13,7 +13,8 @@ export const CardStyles = StyleSheet.create({
 		marginHorizontal: DefaultAppStyling.globalMargin,
 	},
 	textItem: {
-		...TextStyles.titleH3,
+		...TextStyles.bodyText,
+		fontSize: 20,
 	},
 	imageExpandArrow: {
 		width: 20,
