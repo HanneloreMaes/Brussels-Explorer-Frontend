@@ -1,0 +1,41 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/ExpletusSans/ExpletusSans-Bold.ttf",
+      "sha1": "f1bc9c1b20258c5c0cfb0dd314516aa1ef954ad7"
+    },
+    {
+      "path": "src/assets/fonts/ExpletusSans/ExpletusSans-BoldItalic.ttf",
+      "sha1": "e590bd34c4927b561e9fe3b3b216ed84e242ab17"
+    },
+    {
+      "path": "src/assets/fonts/ExpletusSans/ExpletusSans-Italic.ttf",
+      "sha1": "e11c40fb5b9fde554a675f5ccd67713a5af50505"
+    },
+    {
+      "path": "src/assets/fonts/ExpletusSans/ExpletusSans-Medium.ttf",
+      "sha1": "6dbd9c662f8ce63df1df915b9562838dd7dd0d6e"
+    },
+    {
+      "path": "src/assets/fonts/ExpletusSans/ExpletusSans-MediumItalic.ttf",
+      "sha1": "0a0093bdc2eb65a0062cfeff10205f8f3aaeab8b"
+    },
+    {
+      "path": "src/assets/fonts/ExpletusSans/ExpletusSans-Regular.ttf",
+      "sha1": "fe5a32096923be284ab5df5c36ee0ad1081ceaa3"
+    },
+    {
+      "path": "src/assets/fonts/ExpletusSans/ExpletusSans-SemiBold.ttf",
+      "sha1": "d4b54fb89d9dab2a367e60cafb4f19c433042917"
+    },
+    {
+      "path": "src/assets/fonts/ExpletusSans/ExpletusSans-SemiBoldItalic.ttf",
+      "sha1": "680beb9dbda128e489ecddd24b69359b2449e7f7"
+    },
+    {
+      "path": "src/assets/fonts/Explora/Explora-Regular.ttf",
+      "sha1": "4b92c5e1d653f8a1f2e8f52557643ac47ea62ee8"
+    }
+  ]
+}
