@@ -10,7 +10,7 @@ export const RecommendedStyles = StyleSheet.create({
 	title: {
 		...TextStyles.titleH2,
 		color: TextColor.darkText,
-		marginBottom: DefaultMargins.bottomMargin,
+		marginBottom: 5,
 	},
 	allDataContainer: {
 		flexDirection: 'row',
