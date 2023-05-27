@@ -83,7 +83,8 @@ A few of the things you can do with the frontend:
 5. ESLint Rules - [Rules Reference](https://eslint.org/docs/latest/rules/)
 6. Documentation SplashScreen - CrazyCodeBoy - [Github](https://github.com/crazycodeboy/react-native-splash-screen)
 7. Documentation React Native Icons - Oblador - [Github](https://github.com/oblador/react-native-vector-icons)
-8. Documentation rnmapbox/maps - - [Github](https://github.com/rnmapbox/maps)
+8. Documentation rnmapbox/maps - rnMapbox - [Github](https://github.com/rnmapbox/maps)
+9. React Native Select Dropdown - AdelRedaa97 - [NPM](https://www.npmjs.com/package/react-native-select-dropdown)
    
 
 ### Video's
