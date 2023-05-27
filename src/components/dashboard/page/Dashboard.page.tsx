@@ -16,7 +16,7 @@ export const DashboardScreen: FC <DashboardNavProps<'DashboardScreen'>> = ({ nav
 
 	const { i18n } = useTranslation();
 	const dispatch = useDispatch();
-	const { routes, nameMode, lastSeen } = useSelector((state: any) => state.allReducer );
+	const { routes, nameMode } = useSelector((state: any) => state.allReducer );
 
 	const fetchRoutes = () => {
 		dispatch(getRoutes());
@@ -24,7 +24,7 @@ export const DashboardScreen: FC <DashboardNavProps<'DashboardScreen'>> = ({ nav
 
 	useEffect(() => {
 		fetchRoutes();
-	}, [ lastSeen ]);
+	}, []);
 
 	return(
 		<ScrollView>
