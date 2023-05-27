@@ -4,24 +4,20 @@ import { Highlight, TextColor } from './colors.styles';
 
 export const TextStyles = StyleSheet.create({
 	titleH1: {
-		fontWeight: 'bold',
+		fontFamily: 'ExpletusSans-Medium',
 		fontSize: 40,
 		marginBottom: 10,
 		color: Highlight.tealHighlight,
 	},
 	titleH2: {
-		fontWeight: 'bold',
+		fontFamily: 'ExpletusSans-Regular',
 		fontSize: 25,
 		color: TextColor.lightText,
 	},
 	titleH3: {
-		fontWeight: '500',
+		fontFamily: 'ExpletusSans-Regular',
 		fontSize: 18,
 		color: TextColor.darkText,
-	},
-	headingText: {
-		fontSize: 18,
-		color: TextColor.lightText,
 	},
 	footerText: {
 		fontSize: 20,
@@ -30,6 +26,7 @@ export const TextStyles = StyleSheet.create({
 		color: TextColor.lightText,
 	},
 	bodyText: {
+		fontFamily: 'Franklin-Book-Regular',
 		fontSize: 16,
 		color: TextColor.darkText,
 	},

@@ -91,7 +91,7 @@ export const DetailPage: FC <DetailTypes> = ({ route }) => {
 				>
 					{dataOfCard.description}
 				</Text>
-				<DetailMap dataRoute={dataOfCard}/>
+				{/* <DetailMap dataRoute={dataOfCard}/> */}
 			</View>
 		</ScrollView>
 	);
