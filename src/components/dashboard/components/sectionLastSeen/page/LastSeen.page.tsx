@@ -18,7 +18,6 @@ export const LastSeenSection: FC <LastSeenType> = ({ translation, mode }) => {
 	const { lastSeen, nameMode, specRoute } = useSelector((state: any) => state.allReducer);
 
 	const getSpecRouteFromId = () => {
-		console.log('lastSeen', lastSeen);
 		dispatch(getSpecRoute(lastSeen));
 	};
 
