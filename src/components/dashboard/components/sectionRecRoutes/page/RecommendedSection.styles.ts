@@ -4,7 +4,7 @@ import { BorderContainerStyle, DefaultMargins, TextColor, TextStyles } from '@/s
 
 export const RecommendedStyles = StyleSheet.create({
 	container: {
-		height: Dimensions.get('window').height/3,
+		height: Dimensions.get('window').height/3 + 50,
 		marginBottom: 30,
 	},
 	title: {
@@ -19,21 +19,27 @@ export const RecommendedStyles = StyleSheet.create({
 		width: 150,
 		flexDirection: 'column',
 		alignItems: 'center',
-		marginRight: DefaultMargins.topMargin
+		marginRight: DefaultMargins.topMargin,
 	},
 	imageRoute: {
 		height: 100,
 		width: 150,
-		borderRadius: BorderContainerStyle.imageBorderRadius
+		borderRadius: BorderContainerStyle.imageBorderRadius,
+		marginBottom: 5,
 	},
 	nameRoute: {
 		...TextStyles.bodyText,
+		width: '90%',
 		fontSize: 20,
 	},
+	bottomThemeContainer: {
+		flex: 1,
+		justifyContent: 'flex-end',
+	},
 	infoRoute: {
-		fontSize: 14,
+		...TextStyles.bodyText,
 		marginBottom: 20,
-		color: TextColor.grayText
+		color: TextColor.grayText,
 	},
 	buttonSeeMore: {
 		height: 35,

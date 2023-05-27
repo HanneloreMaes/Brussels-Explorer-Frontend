@@ -1,18 +1,27 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
-import { useTranslation } from 'react-i18next';
 import { Image, ScrollView, Text, View } from 'react-native';
+import { useDispatch } from 'react-redux';
 
 import { DetailStyles } from './Detail.styles';
 import { DetailMap } from '../components/DetailMap';
 import { DetailTypes } from '../types/Detail.types';
-import '@/utils/i18n/i18n';
-import { TextColor } from '@/style';
+import { TextColor, TextStyles } from '@/style';
+import { getSpecRoute } from '@/utils/redux/Actions';
 
 export const DetailPage: FC <DetailTypes> = ({ route }) => {
 
 	const { dataOfCard, nameMode } = route.params;
-	const { i18n } = useTranslation();
+
+	const dispatch = useDispatch();
+
+	const fetchSpecRoute = () => {
+		dispatch(getSpecRoute(dataOfCard._id));
+	};
+
+	useEffect(() => {
+		fetchSpecRoute();
+	}, [ dataOfCard ]);
 
 	return (
 		<ScrollView style={DetailStyles.detailContainer}>
@@ -60,7 +69,7 @@ export const DetailPage: FC <DetailTypes> = ({ route }) => {
 								{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 							]}
 						>
-							{i18n.t('dashboard_detail_page_address')}
+							{dataOfCard.area}
 						</Text>
 					</View>
 				</View>
@@ -73,15 +82,16 @@ export const DetailPage: FC <DetailTypes> = ({ route }) => {
 				>
 					{dataOfCard.name}
 				</Text>
+				<Text style={[ DetailStyles.themeTitle, { color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{dataOfCard.theme}</Text>
 				<Text
 					style={[
-						DetailStyles.textDetail,
+						TextStyles.bodyText,
 						{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 					]}
 				>
 					{dataOfCard.description}
 				</Text>
-				{/* <DetailMap dataRoute={dataOfCard}/> */}
+				<DetailMap dataRoute={dataOfCard}/>
 			</View>
 		</ScrollView>
 	);

@@ -32,6 +32,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 
 	const { i18n } = useTranslation();
 	const { nameMode } = useSelector((state: any) => state.allReducer);
+
 	// ANIMATED VIEWS LOGIC START
 	// -----------------------------------------------------------------------------------------------------------
 	const { height, width } = Dimensions.get('screen');
@@ -130,7 +131,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 			]}
 		>
 			<View style={OnboardingStyles.titleContainer}>
-				<Text style={OnboardingStyles.titleOnboarding}>Brussels Explorer</Text>
+				<Text style={[ OnboardingStyles.titleOnboarding, { color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>Brussels Explorer</Text>
 			</View>
 			<Animated.View style={[ StyleSheet.absoluteFill, animatedImageStyle, { zIndex: -2 } ]}>
 				<Svg height={height + 50} width={width}>
@@ -144,7 +145,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 					<Image
 						href={nameMode === 'dark' ? require('@/assets/images/darkModus/login_background.jpg') : require('@/assets/images/lightModus/login_background.jpg')}
 						width={nameMode === 'dark' ? width : width + 100}
-						height={ height + 100}
+						height={height + 100}
 						preserveAspectRatio='xMidYMid slice'
 						clipPath='url(#clipPathId)' />
 				</Svg>
@@ -200,7 +201,10 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 									onChangeText={(text) => setUsername(text)}
 									style={[
 										OnboardingStyles.textInput,
-										{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
+										{
+											backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+											color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText,
+										}
 									]}
 								/>
 							)}
@@ -214,7 +218,10 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 								onChangeText={(text) => setEmail(text)}
 								style={[
 									OnboardingStyles.textInput,
-									{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
+									{
+										backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+										color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText
+									}
 								]}
 							/>
 							<TextInput
@@ -228,7 +235,10 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 								onChangeText={(text) => setPassword(text)}
 								style={[
 									OnboardingStyles.textInput,
-									{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
+									{
+										backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+										color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText,
+									}
 								]}
 							/>
 							{isRegister ? (

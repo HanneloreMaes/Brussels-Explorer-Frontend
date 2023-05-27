@@ -35,9 +35,10 @@ export const DetailStyles = StyleSheet.create({
 		color: TextColor.darkText,
 		marginVertical: DefaultAppStyling.globalMargin,
 	},
-	textDetail: {
+	themeTitle: {
 		...TextStyles.bodyText,
-		fontSize: 14,
+		fontSize: 20,
+		marginBottom: 10,
 	},
 	typePoint: {
 		...TextStyles.titleH2,

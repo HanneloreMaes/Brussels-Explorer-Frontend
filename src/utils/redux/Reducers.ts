@@ -1,8 +1,16 @@
-import { GET_POINTS, GET_ROUTES, GET_POINTS_SPEC_ROUTES, SET_LANGUAGE, SET_MODE_APP } from './Actions.types';
+import {
+	GET_POINTS,
+	GET_ROUTES,
+	GET_POINTS_SPEC_ROUTES,
+	SET_LANGUAGE,
+	SET_MODE_APP,
+	GET_SPEC_ROUTES,
+} from './Actions.types';
 
 const initialState = {
 	points: [],
 	routes: [],
+	specRoute: [],
 	pointsForSpecRoute: [],
 	nameMode: null,
 	activeLanguage: null,
@@ -14,6 +22,8 @@ function allReducer(state = initialState, action: any) {
 		return { ...state, points: action.payload };
 	case GET_ROUTES:
 		return { ...state, routes: action.payload };
+	case GET_SPEC_ROUTES:
+		return { ...state, specRoute: action.payload };
 	case GET_POINTS_SPEC_ROUTES:
 		return { ...state, pointsForSpecRoute: action.payload };
 	case SET_LANGUAGE:

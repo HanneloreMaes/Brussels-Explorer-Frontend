@@ -24,7 +24,6 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 
 	const mapPoints = () => {
 		if (points?.length > 0) {
-			console.log(points);
 			setShowModalError(false);
 			setPointGeo({
 				type: 'FeatureCollection',

@@ -32,8 +32,10 @@ export const RecommendedRoutes: FC <RecommendedType> = ({ data, mode, translatio
 									]}
 								>
 									{recommendedRoute.name}
-									<Text style={RecommendedStyles.infoRoute}> - {recommendedRoute.theme}</Text>
 								</Text>
+								<View style={RecommendedStyles.bottomThemeContainer}>
+									<Text style={RecommendedStyles.infoRoute}>{recommendedRoute.theme}</Text>
+								</View>
 							</TouchableOpacity>
 						);
 					})
