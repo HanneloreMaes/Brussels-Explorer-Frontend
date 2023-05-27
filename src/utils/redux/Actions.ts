@@ -1,7 +1,17 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
 
-import { GET_POINTS, GET_ROUTES, GET_POINTS_SPEC_ROUTES, SET_MODE_APP, Languages, SET_LANGUAGE, ModeOptions } from './Actions.types';
+import {
+	GET_POINTS,
+	GET_ROUTES,
+	GET_SPEC_ROUTES,
+	GET_POINTS_SPEC_ROUTES,
+	SET_MODE_APP,
+	SET_LANGUAGE,
+	SET_LAST_SEEN,
+	Languages,
+	ModeOptions,
+} from './Actions.types';
 import { baseUrl } from '@/config';
 
 /* eslint-disable no-unreachable */
@@ -41,10 +51,28 @@ export const getRoutes = () => {
 	}
 };
 
-export const getPointsFromSpecRoutes = (routeId: string) => {
+export const getSpecRoute = (routeId: string) => {
 	try {
 		return async (dispatch: any) => {
 			const response = await axios.get(`${baseUrl}/route/${routeId}`);
+			if (response.data) {
+				dispatch({
+					type: GET_SPEC_ROUTES,
+					payload: response.data
+				});
+			} else {
+				console.warn('Unable to fetch specific route!');
+			}
+		};
+	} catch (error: any) {
+		console.warn('ERROR getSpecRoute', error.message);
+	}
+};
+
+export const getPointsFromSpecRoutes = (routeId: string) => {
+	try {
+		return async (dispatch: any) => {
+			const response = await axios.get(`${baseUrl}/route/point/${routeId}`);
 			if (response.data) {
 				dispatch({
 					type: GET_POINTS_SPEC_ROUTES,
@@ -70,5 +98,12 @@ export const setMode = (nameMode: ModeOptions) => (dispatch: Dispatch) => {
 	dispatch({
 		type: SET_MODE_APP,
 		nameMode,
+	});
+};
+
+export const setRecentlyViewed = (idOfRoute: string) => (dispatch: Dispatch) => {
+	dispatch({
+		type: SET_LAST_SEEN,
+		idOfRoute,
 	});
 };
