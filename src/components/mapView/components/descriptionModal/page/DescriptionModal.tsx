@@ -12,6 +12,7 @@ import '@/utils/i18n/i18n';
 export const DescriptionModalMarker: FC <DescriptionTypes> = ({
 	titlePoint,
 	imagePoint,
+	area,
 	prevPage,
 	navigation,
 	data
@@ -37,7 +38,7 @@ export const DescriptionModalMarker: FC <DescriptionTypes> = ({
 			/>
 			<View style={DescriptionStyles.infoContainer}>
 				<Text style={DescriptionStyles.titleText}>{titlePoint}</Text>
-				<Text style={DescriptionStyles.addressText}>Brussels</Text>
+				<Text style={DescriptionStyles.addressText}>{area}</Text>
 				<TouchableOpacity
 					style={DescriptionStyles.buttonMoreInfo}
 					onPress={() => navigation.navigate(navigationName, {

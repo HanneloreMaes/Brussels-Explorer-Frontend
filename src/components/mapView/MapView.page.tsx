@@ -96,6 +96,7 @@ export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation }) => {
 						<DescriptionModalMarker
 							titlePoint={detailPointRoute.name}
 							imagePoint={detailPointRoute.imageUrl}
+							area={detailPointRoute.area}
 							prevPage='RouteMapView'
 							navigation={navigation}
 							data={detailPointRoute}
