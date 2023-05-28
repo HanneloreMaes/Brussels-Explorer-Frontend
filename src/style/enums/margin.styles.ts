@@ -4,3 +4,11 @@ export const DefaultMargins = {
 	horizontalMargin: 20,
 	verticalMargin: 10,
 };
+
+export const DefaultPadding = {
+	globalPadding: 10,
+};
+
+export const DefaultAppStyling = {
+	globalMargin: 30,
+};

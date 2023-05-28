@@ -8,7 +8,6 @@ export const PointMapStyles = StyleSheet.create({
 	},
 	modalContainer: {
 		position: 'absolute',
-		backgroundColor: BackgroundColor.light,
 		height: 150,
 		flex: 1,
 		justifyContent: 'center',

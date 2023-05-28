@@ -31,7 +31,6 @@ export const DetailStyles = StyleSheet.create({
 	},
 	titleDetail: {
 		...TextStyles.titleH1,
-		fontWeight: '500',
 		color: TextColor.darkText,
 		marginVertical: DefaultAppStyling.globalMargin,
 	},

@@ -37,7 +37,7 @@ export const DashboardScreen: FC <DashboardNavProps<'DashboardScreen'>> = ({ nav
 				) : (
 					<View style={DashboardStyles.marginContainer}>
 						<RecommendedRoutes data={routes} mode={nameMode} translation={i18n} navigation={navigation} />
-						<LastSeenSection mode={nameMode} translation={i18n}/>
+						<LastSeenSection mode={nameMode} />
 					</View>
 				)
 			}

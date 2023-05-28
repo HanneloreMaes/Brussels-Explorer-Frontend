@@ -4,13 +4,14 @@ import { View, Image, Text, ScrollView, TouchableOpacity, Pressable } from 'reac
 
 import { RecommendedStyles } from './RecommendedSection.styles';
 import { RecommendedType } from '../types/Recommended.types';
+import { TitleH2 } from '@/components/shared';
 import { ButtonStyles, TextColor } from '@/style';
 
 export const RecommendedRoutes: FC <RecommendedType> = ({ data, mode, translation, navigation }) => {
 
 	return(
 		<View style={RecommendedStyles.container}>
-			<Text style={[ RecommendedStyles.title, { color: mode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{translation.t('dashboard_section_recommended_title')}</Text>
+			<TitleH2 labelTitle='dashboard_section_recommended_title' prevComponent='Recommended' />
 			<ScrollView horizontal style={RecommendedStyles.allDataContainer}>
 				{
 					data.map((recommendedRoute: any) => {

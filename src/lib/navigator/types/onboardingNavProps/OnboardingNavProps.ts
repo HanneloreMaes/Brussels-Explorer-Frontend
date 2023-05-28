@@ -3,7 +3,6 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type OnboardingStackParamList = {
 	OnboardingScreen: {titleScreen: string} | undefined;
-	QuestionRegister: {titleScreen: string} | undefined;
 	MainStack: undefined;
 };
 

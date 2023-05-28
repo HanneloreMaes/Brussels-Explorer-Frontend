@@ -10,6 +10,7 @@ import { ModalError } from '../shared';
 import { DetailMapStyles } from '../shared/detailPage/components/DetailMap.styles';
 import { MapboxAccesToken } from '@/config';
 import { AllMapNavProps } from '@/lib/navigator/types';
+import { BackgroundColor } from '@/style';
 import { getPoints, getPointsFromSpecRoutes } from '@/utils/redux/Actions';
 
 MapboxGL.setWellKnownTileServer('Mapbox');
@@ -24,7 +25,7 @@ export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation }) => {
 	const [ detailPointRoute, setDetailPointRoute ] = useState<any>();
 
 	const dispatch = useDispatch();
-	const { routes, points } = useSelector((state: any) => state.allReducer);
+	const { routes, nameMode } = useSelector((state: any) => state.allReducer);
 
 	const mapRoutes = () => {
 		routes.map((routeDetail: any) => {
@@ -92,10 +93,16 @@ export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation }) => {
 			</MapboxGL.MapView>
 			{
 				showModal ?
-					<View style={MapStyles.modalContainer}>
+					<View
+						style={[
+							MapStyles.modalContainer,
+							{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
+						]}
+					>
 						<DescriptionModalMarker
 							titlePoint={detailPointRoute.name}
 							imagePoint={detailPointRoute.imageUrl}
+							area={detailPointRoute.area}
 							prevPage='RouteMapView'
 							navigation={navigation}
 							data={detailPointRoute}

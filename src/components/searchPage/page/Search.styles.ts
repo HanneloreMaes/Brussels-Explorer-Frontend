@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-import { ButtonStyles, DefaultMargins, TextStyles } from '@/style';
+import { BorderContainerStyle, ButtonStyles, DefaultMargins, TextStyles } from '@/style';
 
 const { width, height } = Dimensions.get('window');
 
@@ -28,17 +28,21 @@ export const SearchStyles = StyleSheet.create({
 		height,
 	},
 	titleCategories: {
+		flex: 1,
 		marginTop: DefaultMargins.topMargin,
+		marginRight: '-30%',
 	},
 	dropdownDataContainer: {
 		width,
-		marginHorizontal: DefaultMargins.horizontalMargin,
+		height: height / 5,
 		zIndex: 6,
+		marginHorizontal: DefaultMargins.horizontalMargin,
+		marginTop: DefaultMargins.topMargin,
 	},
 	dropdownContainer: {
 		flexDirection: 'row',
 		marginBottom: DefaultMargins.bottomMargin,
-		width: '70%'
+		width: '90%',
 	},
 	filterCheckboxContainer: {
 		flexDirection: 'row',
@@ -69,17 +73,21 @@ export const SearchStyles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		marginTop: 10,
-		height: '10%'
 	},
-	dropdown1BtnStyle: {
+	dropBtnStyle: {
 		flex: 1,
 		height: 40,
-		backgroundColor: '#FFF',
-		borderRadius: 8,
-		borderWidth: 1,
-		borderColor: '#444',
+		borderRadius: BorderContainerStyle.borderRadius,
+		borderWidth: BorderContainerStyle.borderWidth,
+		borderColor: BorderContainerStyle.borderColor,
 	},
-	dropdown1BtnTxtStyle: { color: '#444', textAlign: 'left' },
-	dropdown1DropdownStyle: { backgroundColor: '#EFEFEF' },
-	dropdown1RowTxtStyle: { color: '#444', textAlign: 'left' },
+	dropBtnTxtStyle: {
+		textAlign: 'left'
+	},
+	dropStyle: {
+		marginTop: '-5%'
+	},
+	dropRowTxtStyle: {
+		textAlign: 'left'
+	},
 });

@@ -105,3 +105,4 @@ A few of the things you can do with the frontend:
 9. Disable Hardware Back Button - Jickson - [StackOverflow](https://stackoverflow.com/a/40146089)
 10. Error Mapbox: loading style failed - [Mapbox](https://docs.mapbox.com/help/glossary/style-url/)
 11. Checkbox filter - Mukesh Mandiwal - [Logrocket](https://blog.logrocket.com/adding-checkboxes-tables-react-native-app/)
+12. Custom fonts - Noble Okafor - [Make Use Of](https://www.makeuseof.com/react-native-custom-fonts-usage-guide/)

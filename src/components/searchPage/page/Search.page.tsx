@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { Text, ScrollView, View, TouchableOpacity } from 'react-native';
+import { Text, ScrollView, View, TouchableOpacity, StyleSheet } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useDispatch, useSelector } from 'react-redux';
@@ -31,9 +31,9 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 	const [ distance, setDistance ] = useState<any>();
 	const [ time, setTime ] = useState<any>();
 
-	const themesNames = [ 'Art', 'Food', 'Musea' ];
-	const distanceNames = [ '5km', '10km', '14km', '15km' ];
-	const timeNames = [ '30min', '50min', '1h', '2h' ];
+	const themesNames = [ 'StreetArt', 'Monument', 'Shops', 'Other', 'Musea' ];
+	const distanceNames = [ '2km', '4km', '11km', '15km' ];
+	const timeNames = [ '20min', '43min', '47min', '135min' ];
 
 	const { routes, nameMode } = useSelector((state: any) => state.allReducer);
 
@@ -68,6 +68,7 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 						SearchStyles.filterBtnContainer,
 						DefaultShadow.shadowPrimary,
 						{
+							shadowColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.darkHighlight,
 							backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light
 						}
 					]}
@@ -78,17 +79,14 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 							TextStyles.bodyText,
 							{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 						]}
-					>Filter Menu</Text>
+					>{i18n.t('search_filter_menu_title')}</Text>
 				</TouchableOpacity>
 				{
 					isOpen ? (
-						<>
+						<View style={{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light, zIndex: 6 }}>
 							<View
 								style={[
-									SearchStyles.dropdownDataContainer,
-									{
-										backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light
-									}
+									SearchStyles.dropdownDataContainer
 								]}
 							>
 								<View style={SearchStyles.dropdownContainer}>
@@ -112,10 +110,25 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 											return item;
 										}}
 										defaultButtonText={i18n.t('search_default_theme') as string}
-										buttonStyle={SearchStyles.dropdown1BtnStyle}
-										buttonTextStyle={SearchStyles.dropdown1BtnTxtStyle}
+										buttonStyle={[
+											SearchStyles.dropBtnStyle,
+											{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
+										]}
+										buttonTextStyle={[
+											SearchStyles.dropBtnTxtStyle,
+											{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+										]}
+										dropdownStyle={SearchStyles.dropStyle}
+										rowStyle={{
+											backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+											borderBottomColor: nameMode === 'dark' ? BackgroundColor.light : BackgroundColor.dark
+										}}
+										rowTextStyle={[
+											SearchStyles.dropRowTxtStyle,
+											{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+										]}
 										renderDropdownIcon={isOpened => {
-											return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color="#444" size={18} />;
+											return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={ nameMode === 'dark' ? TextColor.smokeText : TextColor.grayText } size={18} />;
 										}}
 									/>
 								</View>
@@ -140,10 +153,25 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 											return item;
 										}}
 										defaultButtonText={i18n.t('search_default_distance') as string}
-										buttonStyle={SearchStyles.dropdown1BtnStyle}
-										buttonTextStyle={SearchStyles.dropdown1BtnTxtStyle}
+										buttonStyle={[
+											SearchStyles.dropBtnStyle,
+											{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
+										]}
+										buttonTextStyle={[
+											SearchStyles.dropBtnTxtStyle,
+											{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+										]}
+										dropdownStyle={SearchStyles.dropStyle}
+										rowStyle={{
+											backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+											borderBottomColor: nameMode === 'dark' ? BackgroundColor.light : BackgroundColor.dark
+										}}
+										rowTextStyle={[
+											SearchStyles.dropRowTxtStyle,
+											{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+										]}
 										renderDropdownIcon={isOpened => {
-											return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color="#444" size={18} />;
+											return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={ nameMode === 'dark' ? TextColor.smokeText : TextColor.grayText } size={18} />;
 										}}
 									/>
 								</View>
@@ -168,16 +196,36 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 											return item;
 										}}
 										defaultButtonText={i18n.t('search_default_time') as string}
-										buttonStyle={SearchStyles.dropdown1BtnStyle}
-										buttonTextStyle={SearchStyles.dropdown1BtnTxtStyle}
+										buttonStyle={[
+											SearchStyles.dropBtnStyle,
+											{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
+										]}
+										buttonTextStyle={[
+											SearchStyles.dropBtnTxtStyle,
+											{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+										]}
+										dropdownStyle={SearchStyles.dropStyle}
+										rowStyle={{
+											backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+											borderBottomColor: nameMode === 'dark' ? BackgroundColor.light : BackgroundColor.dark
+										}}
+										rowTextStyle={[
+											SearchStyles.dropRowTxtStyle,
+											{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+										]}
 										renderDropdownIcon={isOpened => {
-											return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color="#444" size={18} />;
+											return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={ nameMode === 'dark' ? TextColor.smokeText : TextColor.grayText } size={18} />;
 										}}
 									/>
 								</View>
 							</View>
 
-							<View style={SearchStyles.buttonsContainer}>
+							<View
+								style={[
+									SearchStyles.buttonsContainer,
+									{ height: '10%' }
+								]}
+							>
 								<TouchableOpacity
 									style={[
 										ButtonStyles.buttonContainerPrimary,
@@ -203,8 +251,7 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 									<Text style={ButtonStyles.buttonTextPrimary}>Close</Text>
 								</TouchableOpacity>
 							</View>
-							<View style={UnderlineStyle.underline} />
-						</>
+						</View>
 					) : null
 				}
 				{
@@ -232,3 +279,9 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 		</ScrollView>
 	);
 };
+
+const styles = StyleSheet.create({
+	dropdown1DropdownStyle: { backgroundColor: 'green', marginTop: '-5%' },
+	dropdown1RowStyle: { backgroundColor: 'red', borderBottomColor: 'yellow' },
+	dropdown1RowTxtStyle: { color: 'blue', textAlign: 'left' },
+});

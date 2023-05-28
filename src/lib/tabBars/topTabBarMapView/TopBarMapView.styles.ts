@@ -12,7 +12,6 @@ export const TopBarStyles = StyleSheet.create({
 		height: 50,
 		marginTop: 50,
 		zIndex: 500,
-		backgroundColor: 'white',
 		marginLeft: '20%',
 		borderRadius: BorderContainerStyle.borderRadius,
 	},

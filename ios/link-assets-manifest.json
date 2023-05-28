@@ -1,0 +1,21 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/ExpletusSans/ExpletusSans-Medium.ttf",
+      "sha1": "6dbd9c662f8ce63df1df915b9562838dd7dd0d6e"
+    },
+    {
+      "path": "src/assets/fonts/ExpletusSans/ExpletusSans-Regular.ttf",
+      "sha1": "fe5a32096923be284ab5df5c36ee0ad1081ceaa3"
+    },
+    {
+      "path": "src/assets/fonts/ExpletusSans/ExpletusSans-SemiBold.ttf",
+      "sha1": "d4b54fb89d9dab2a367e60cafb4f19c433042917"
+    },
+    {
+      "path": "src/assets/fonts/Franklin Gothic/Franklin-Book-Regular.TTF",
+      "sha1": "49878ee127985b2d0c1ea618405a218b1a999a6a"
+    }
+  ]
+}

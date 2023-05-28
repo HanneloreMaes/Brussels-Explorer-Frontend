@@ -103,7 +103,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 				updateProfile(auth?.currentUser, {
 					displayName: username,
 				});
-				navigation.navigate('QuestionRegister');
+				navigation.navigate('MainStack');
 			}).catch( error => Alert.alert(error.message));
 	};
 

@@ -6,10 +6,11 @@ import { useSelector } from 'react-redux';
 import { LastStyles } from './LastSeen.styles';
 import { RecommendedStyles } from '../../sectionRecRoutes/page/RecommendedSection.styles';
 import { LastSeenType } from '../types/LastSeen.types';
+import { TitleH2 } from '@/components/shared';
 import * as RootNavigation from '@/lib/rootNavigator/RootNavigator';
 import { TextColor } from '@/style';
 
-export const LastSeenSection: FC <LastSeenType> = ({ translation, mode }) => {
+export const LastSeenSection: FC <LastSeenType> = ({ mode }) => {
 
 	const { specRoute, nameMode } = useSelector((state: any) => state.allReducer);
 
@@ -29,12 +30,7 @@ export const LastSeenSection: FC <LastSeenType> = ({ translation, mode }) => {
 
 	return(
 		<View style={LastStyles.container}>
-			<Text
-				style={[
-					LastStyles.title,
-					{ color: mode === 'dark' ? TextColor.lightText : TextColor.darkText }
-				]}
-			>{translation.t('dashboard_section_last_seen_title')}</Text>
+			<TitleH2 labelTitle='dashboard_section_last_seen_title' prevComponent='Last' />
 			{
 				noRecent ? <Text style={{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }}>No recent were found</Text> :
 					<ScrollView horizontal style={RecommendedStyles.allDataContainer}>
