@@ -40,6 +40,7 @@
 	"mapbox_error_no_points": "Punten kunnen momenteel niet ingeladen worden.",
 	"mapbox_error_try_again": "Probeer het later opnieuw!",
 	"search_placeholder_searchBar": "Zoeken",
+	"search_filter_menu_title": "Filtermenu",
 	"search_default_title_theme": "Thema",
 	"search_default_title_distance": "Afstand",
 	"search_default_title_time": "Tijd",
