@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { DetailMapStyles } from './DetailMap.styles';
 import { DetailMapTypes } from './DetailMap.types';
+import { ModalError } from '../..';
 import { MapboxAccesToken } from '@/config';
 import { Highlight } from '@/style';
 import { getPointsFromSpecRoutes } from '@/utils/redux/Actions';
@@ -18,6 +19,7 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 	const [ centerCo, setCenterCo ] = useState();
 	const [ routeGeo, setRouteGeo ] = useState();
 	const [ pointsGeo, setPointsGeo ] = useState();
+	const [ showModalError, setShowModalError ] = useState<boolean>(false);
 	const routeId = dataRoute._id;
 
 	const markerRef = useRef<any>(null);
@@ -33,6 +35,7 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 		const coordinatesPointsArray: any[] = [];
 
 		if (pointsForSpecRoute?.length > 0) {
+			setShowModalError(false);
 			setPointsGeo({
 				type: 'FeatureCollection',
 				features: pointsForSpecRoute.map((point, index) => ({
@@ -49,6 +52,7 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 			});
 		} else {
 			setPointsGeo(null);
+			setShowModalError(true);
 		}
 
 		pointsForSpecRoute.map((coordinatePoints: any) => {
@@ -114,20 +118,31 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 				styleURL='mapbox://styles/mapbox/streets-v12'
 			>
 				<MapboxGL.Camera zoomLevel={13} centerCoordinate={centerCo} animationMode='none' />
-				<MapboxGL.ShapeSource id="markers" shape={pointsGeo}>
-					<MapboxGL.CircleLayer
-						id="markerCircle"
-						belowLayerID="markerText"
-						style={DetailMapStyles.marker as CircleLayerStyle}
-					/>
-					<MapboxGL.SymbolLayer
-						id="markerText"
-						style={DetailMapStyles.markerText as SymbolLayerStyle}
-					/>
-				</MapboxGL.ShapeSource>
-				<MapboxGL.ShapeSource id='route' shape={routeGeo}>
-					<MapboxGL.LineLayer id='routeLine' style={{ lineColor: Highlight.tealHighlight }} />
-				</MapboxGL.ShapeSource>
+				{
+					pointsGeo !== null ? (
+						<MapboxGL.ShapeSource id="markers" shape={pointsGeo}>
+							<MapboxGL.CircleLayer
+								id="markerCircle"
+								belowLayerID="markerText"
+								style={DetailMapStyles.marker as CircleLayerStyle}
+							/>
+							<MapboxGL.SymbolLayer
+								id="markerText"
+								style={DetailMapStyles.markerText as SymbolLayerStyle}
+							/>
+						</MapboxGL.ShapeSource>
+					) : null
+				}
+				{
+					routeGeo !== null ? (
+						<MapboxGL.ShapeSource id='route' shape={routeGeo}>
+							<MapboxGL.LineLayer id='routeLine' style={{ lineColor: Highlight.tealHighlight }} />
+						</MapboxGL.ShapeSource>
+					) : null
+				}
+				{
+					showModalError ? <ModalError labelName="mapbox_error_no_routes" labelTryAgainText='mapbox_error_try_again' /> : null
+				}
 			</MapboxGL.MapView>
 		</View>
 	);
