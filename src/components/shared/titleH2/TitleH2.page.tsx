@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { View, Text } from 'react-native';
@@ -14,8 +14,36 @@ export const TitleH2: FC<TitleType> = ({ labelTitle, prevComponent }) => {
 	const { i18n } = useTranslation();
 	const { nameMode } = useSelector((state: any) => state.allReducer);
 
+	const [ widthContainerRec, setWidthContainerRec ] = useState<string>('70%');
+	const [ widthContainerLast, setWidthContainerLast ] = useState<string>('29%');
+
+	const checkLanguageWidth = () => {
+		const lang = i18n.language;
+
+		if (lang === 'en') {
+			setWidthContainerRec('70%');
+			setWidthContainerLast('29%');
+		}
+		if (lang === 'fr') {
+			setWidthContainerRec('75%');
+			setWidthContainerLast('65.5%');
+		}
+		if (lang === 'nl') {
+			setWidthContainerRec('59%');
+			setWidthContainerLast('47%');
+		}
+		if (lang === 'de') {
+			setWidthContainerRec('60.5%');
+			setWidthContainerLast('48.5%');
+		}
+	};
+
+	useEffect(() => {
+		checkLanguageWidth();
+	},[ i18n.language ]);
+
 	return (
-		<View style={{ width: prevComponent === 'Last' ? '29%' : '70%' }}>
+		<View style={{ width: prevComponent === 'Last' ? widthContainerLast : widthContainerRec }}>
 			<View
 				style={[
 					UnderlineStyle.titleUnderline,
