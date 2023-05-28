@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PointMapStyles } from './PointMapView.styles';
 import { DescriptionModalMarker } from '../mapView/components';
 import { DetailMapStyles, ModalError } from '../shared';
-import { MapboxAccesToken } from '@/config';
 import { AllMapNavProps } from '@/lib/navigator/types';
+import { BackgroundColor } from '@/style';
 import { getPoints } from '@/utils/redux/Actions';
 
 export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
@@ -20,7 +20,7 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 	const [ detailPoint, setDetailPoint ] = useState<any>();
 
 	const dispatch = useDispatch();
-	const { points } = useSelector((state: any) => state.allReducer);
+	const { points, nameMode } = useSelector((state: any) => state.allReducer);
 
 	const mapPoints = () => {
 		if (points?.length > 0) {
@@ -87,7 +87,12 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 			</MapboxGL.MapView>
 			{
 				showModal ?
-					<View style={PointMapStyles.modalContainer}>
+					<View
+						style={[
+							PointMapStyles.modalContainer,
+							{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
+						]}
+					>
 						<DescriptionModalMarker
 							titlePoint={detailPoint.name}
 							imagePoint={detailPoint.imageUrl}
