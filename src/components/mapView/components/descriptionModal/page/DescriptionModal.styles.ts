@@ -21,7 +21,7 @@ export const DescriptionStyles = StyleSheet.create({
 	buttonMoreInfo: {
 		borderWidth: 1,
 		borderRadius: 10,
-		width: '50%',
+		width: '55%',
 	},
 	textButton: {
 		padding: 5,

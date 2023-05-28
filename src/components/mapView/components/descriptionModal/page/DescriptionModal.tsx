@@ -8,6 +8,7 @@ import { DescriptionStyles } from './DescriptionModal.styles';
 import { DescriptionTypes } from '../types/DescriptionModal.types';
 
 import '@/utils/i18n/i18n';
+import { BackgroundColor, TextColor } from '@/style';
 
 export const DescriptionModalMarker: FC <DescriptionTypes> = ({
 	titlePoint,
@@ -31,23 +32,45 @@ export const DescriptionModalMarker: FC <DescriptionTypes> = ({
 	}, []);
 
 	return (
-		<View style={DescriptionStyles.container}>
+		<View
+			style={[
+				DescriptionStyles.container,
+				{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
+			]}>
 			<Image
 				source={{ uri: imagePoint }}
 				style={DescriptionStyles.imageContainer}
 			/>
 			<View style={DescriptionStyles.infoContainer}>
-				<Text style={DescriptionStyles.titleText}>{titlePoint}</Text>
-				<Text style={DescriptionStyles.addressText}>{area}</Text>
+				<Text
+					style={[
+						DescriptionStyles.titleText,
+						{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+					]}
+				>{titlePoint}</Text>
+				<Text
+					style={[
+						DescriptionStyles.addressText,
+						{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+					]}
+				>{area}</Text>
 				<TouchableOpacity
-					style={DescriptionStyles.buttonMoreInfo}
+					style={[
+						DescriptionStyles.buttonMoreInfo,
+						{ borderColor: nameMode === 'dark' ? TextColor.grayText : TextColor.darkText }
+					]}
 					onPress={() => navigation.navigate(navigationName, {
 						titleScreen: titlePoint,
 						dataOfCard: data,
 						nameMode,
 					})}
 				>
-					<Text style={DescriptionStyles.textButton}>{i18n.t('mapbox_button_more_info')}</Text>
+					<Text
+						style={[
+							DescriptionStyles.textButton,
+							{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+						]}
+					>{i18n.t('mapbox_button_more_info')}</Text>
 				</TouchableOpacity>
 			</View>
 		</View>
