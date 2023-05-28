@@ -4,7 +4,7 @@ import { Image, ScrollView, Text, View } from 'react-native';
 
 import { DetailStyles } from '../..';
 import { DetailPointTypes } from '../types/DetailPoint.types';
-import { TextColor } from '@/style';
+import { TextColor, TextStyles } from '@/style';
 
 export const DetailPointPage: FC <DetailPointTypes> = ({ route }) => {
 
@@ -24,15 +24,13 @@ export const DetailPointPage: FC <DetailPointTypes> = ({ route }) => {
 				</Text>
 				<Text
 					style={[
-						DetailStyles.textDetail,
-						DetailStyles.typePoint,
+						DetailStyles.themeTitle,
+						{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 					]}
-				>
-					{dataOfCard.type}
-				</Text>
+				>{dataOfCard.type}</Text>
 				<Text
 					style={[
-						DetailStyles.textDetail,
+						TextStyles.bodyText,
 						{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 					]}
 				>
