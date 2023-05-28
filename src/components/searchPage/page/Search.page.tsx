@@ -79,7 +79,7 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 							TextStyles.bodyText,
 							{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 						]}
-					>Filter Menu</Text>
+					>{i18n.t('search_filter_menu_title')}</Text>
 				</TouchableOpacity>
 				{
 					isOpen ? (
