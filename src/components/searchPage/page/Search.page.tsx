@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { SearchStyles } from './Search.styles';
 import { ItemOverview, NotFoundText } from '../components';
-import { LoadingSpinner } from '@/components/shared';
+import { LoadingSpinner, RegisterModal } from '@/components/shared';
 import { SearchNavProps } from '@/lib/navigator/types';
 import { BackgroundColor, ButtonStyles, DefaultShadow, Highlight, TextColor, TextStyles } from '@/style';
 import { getRoutes } from '@/utils/redux/Actions';
@@ -73,7 +73,7 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 		<ScrollView
 			contentInsetAdjustmentBehavior='automatic'
 		>
-			<View>
+			<View style={{ height: Dimensions.get('window').height }}>
 				<TouchableOpacity
 					style={[
 						SearchStyles.filterBtnContainer,
@@ -94,19 +94,24 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 				</TouchableOpacity>
 				{
 					isOpen ? (
-						<View style={{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light, zIndex: 6 }}>
+						<View
+							style={{
+								backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+								zIndex: 6,
+								height: '25%'
+							}}
+						>
 							<View
 								style={[
 									SearchStyles.dropdownDataContainer,
 									{
-
-										height: unAuth === true ? '35%' : Dimensions.get('window').height / 5,
+										height: unAuth === true ? '30%' : Dimensions.get('window').height / 5,
 									}
 								]}
 							>
 								{
 									unAuth === true ? (
-										<View style={SearchStyles.dropdownContainer}>
+										<View style={SearchStyles.dropdownContainer} >
 											<Text
 												style={[
 													TextStyles.titleH3,
@@ -289,11 +294,7 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 							</View>
 
 							<View
-								style={[
-									SearchStyles.buttonsContainer,
-									{ height: '10%' }
-								]}
-							>
+								style={SearchStyles.buttonsContainer} >
 								<TouchableOpacity
 									style={[
 										ButtonStyles.buttonContainerPrimary,
@@ -342,7 +343,9 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 						) : <NotFoundText nameComponent={theme} distance={distance} time={time} />
 					)
 				}
-
+				{
+					unAuth === true ? <RegisterModal /> : null
+				}
 			</View>
 		</ScrollView>
 	);
