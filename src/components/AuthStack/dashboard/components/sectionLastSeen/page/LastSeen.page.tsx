@@ -10,7 +10,7 @@ import { TitleH2 } from '@/components/shared';
 import * as RootNavigation from '@/lib/rootNavigator/RootNavigator';
 import { TextColor } from '@/style';
 
-export const LastSeenSection: FC <LastSeenType> = ({ mode }) => {
+export const LastSeenSection: FC <LastSeenType> = ({ mode, dataUnAuth }) => {
 
 	const { specRoute, nameMode } = useSelector((state: any) => state.allReducer);
 
@@ -33,26 +33,51 @@ export const LastSeenSection: FC <LastSeenType> = ({ mode }) => {
 			<TitleH2 labelTitle='dashboard_section_last_seen_title' prevComponent='Last' />
 			{
 				noRecent ? <Text style={{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }}>No recent were found</Text> :
-					<ScrollView horizontal style={RecommendedStyles.allDataContainer}>
-						<TouchableOpacity
-							key={specRoute._id}
-							style={RecommendedStyles.dataContainer}
-							onPress={() => RootNavigation.navigate('DetailPage', { dataOfCard: specRoute })}
-						>
-							<Image source={{ uri: specRoute.imageUrl }} style={RecommendedStyles.imageRoute} resizeMode='cover' />
-							<Text
-								style={[
-									RecommendedStyles.nameRoute,
-									{ color: mode === 'dark' ? TextColor.lightText : TextColor.darkText }
-								]}
-							>
-								{specRoute.name}
-							</Text>
-							<View style={RecommendedStyles.bottomThemeContainer}>
-								<Text style={RecommendedStyles.infoRoute}>{specRoute.theme}</Text>
-							</View>
-						</TouchableOpacity>
-					</ScrollView>
+					(
+						dataUnAuth === undefined ? (
+							<ScrollView horizontal style={RecommendedStyles.allDataContainer}>
+								<TouchableOpacity
+									key={specRoute._id}
+									style={RecommendedStyles.dataContainer}
+									onPress={() => RootNavigation.navigate('DetailPage', { dataOfCard: specRoute })}
+								>
+									<Image source={{ uri: specRoute.imageUrl }} style={RecommendedStyles.imageRoute} resizeMode='cover' />
+									<Text
+										style={[
+											RecommendedStyles.nameRoute,
+											{ color: mode === 'dark' ? TextColor.lightText : TextColor.darkText }
+										]}
+									>
+										{specRoute.name}
+									</Text>
+									<View style={RecommendedStyles.bottomThemeContainer}>
+										<Text style={RecommendedStyles.infoRoute}>{specRoute.theme}</Text>
+									</View>
+								</TouchableOpacity>
+							</ScrollView>
+						) : (
+							<ScrollView horizontal style={RecommendedStyles.allDataContainer}>
+								<TouchableOpacity
+									key={specRoute._id}
+									style={RecommendedStyles.dataContainer}
+									onPress={() => RootNavigation.navigate('DetailPage', { dataOfCard: dataUnAuth })}
+								>
+									<Image source={{ uri: specRoute.imageUrl }} style={RecommendedStyles.imageRoute} resizeMode='cover' />
+									<Text
+										style={[
+											RecommendedStyles.nameRoute,
+											{ color: mode === 'dark' ? TextColor.lightText : TextColor.darkText }
+										]}
+									>
+										{dataUnAuth.name}
+									</Text>
+									<View style={RecommendedStyles.bottomThemeContainer}>
+										<Text style={RecommendedStyles.infoRoute}>{dataUnAuth.theme}</Text>
+									</View>
+								</TouchableOpacity>
+							</ScrollView>
+						)
+					)
 			}
 		</View>
 	);
