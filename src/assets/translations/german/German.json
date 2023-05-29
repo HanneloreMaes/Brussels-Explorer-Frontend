@@ -55,5 +55,8 @@
 	"settings_language_label_nl": "Niederländisch",
 	"settings_language_label_en": "Englisch",
 	"settings_language_label_fr": "Französisch",
-	"settings_language_label_de": "Deutsch"
+	"settings_language_label_de": "Deutsch",
+	"modal_un_auth_preview_text": "Sie können nicht genug von der Vorschau bekommen?",
+	"modal_un_auth_more_features_text": "Entdecken Sie noch mehr Funktionen, indem Sie sich registrieren oder anmelden.",
+	"modal_un_auth_button_login_register_text": "Anmelden - Registrieren"
 }
