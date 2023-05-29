@@ -5,6 +5,7 @@ import { FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import { CardItem, LogoutButton } from '../components';
+import { RegisterModal } from '@/components/shared';
 import { SettingsNavProps } from '@/lib/navigator/types';
 import '@/utils/i18n/i18n';
 
@@ -34,7 +35,9 @@ export const SettingsPage: FC <SettingsNavProps<'Settings'>> = ({ navigation }) 
 				}
 				keyExtractor={item => item.name}
 			/>
-			<LogoutButton navigation={navigation} />
+			{
+				unAuth === true ? <RegisterModal /> : <LogoutButton navigation={navigation} />
+			}
 		</>
 	);
 };
