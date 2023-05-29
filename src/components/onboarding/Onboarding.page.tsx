@@ -19,7 +19,7 @@ import {
 } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, interpolate, withTiming, withDelay } from 'react-native-reanimated';
 import { Svg, Image, Ellipse, ClipPath } from 'react-native-svg';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { OnboardingStyles } from './OnboardingScreen.styles';
 import { SkipButton } from '@/components/shared';
@@ -27,9 +27,11 @@ import { OnboardingNavProps } from '@/lib/navigator/types';
 import { BackgroundColor, ButtonStyles, Highlight, TextColor } from '@/style';
 import { auth } from '@/utils/Firebase.config';
 import '@/utils/i18n/i18n';
+import { setUnAuth } from '@/utils/redux/Actions';
 
 export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ navigation }) => {
 
+	const dispatch = useDispatch();
 	const { i18n } = useTranslation();
 	const { nameMode } = useSelector((state: any) => state.allReducer);
 
@@ -77,6 +79,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 
 	const loginHandler = () =>{
 		imagePosition.value = 0;
+		dispatch(setUnAuth(false));
 		if (isRegister) {
 			setIsRegister(false);
 		}
@@ -84,6 +87,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 
 	const registerHandler = () =>{
 		imagePosition.value = 0;
+		dispatch(setUnAuth(false));
 		if (!isRegister) {
 			setIsRegister(true);
 		}
@@ -103,18 +107,21 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 				updateProfile(auth?.currentUser, {
 					displayName: username,
 				});
+				dispatch(setUnAuth(false));
 				navigation.navigate('MainStack');
 			}).catch( error => Alert.alert(error.message));
 	};
 
 	const loginUser = () => {
 		signInWithEmailAndPassword(auth, email, password)
+			.then(() => dispatch(setUnAuth(false)))
 			.catch((error) => Alert.alert(error.message));
 	};
 
 	useEffect(() => {
 		const unSubscribe = auth.onAuthStateChanged((authUser) => {
 			if (authUser) {
+				dispatch(setUnAuth(false));
 				navigation.navigate('MainStack');
 			}
 		});
@@ -178,7 +185,11 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 					</Pressable>
 				</Animated.View>
 				<Animated.View style={animatedButtonStyle}>
-					<SkipButton navigation={navigation} routeName='MainStack' nameButton={i18n.t('onboarding_skip_button')} />
+					<SkipButton
+						navigation={navigation}
+						routeName='MainStack'
+						nameButton={i18n.t('onboarding_skip_button')}
+					/>
 				</Animated.View>
 				<Animated.View style={[
 					OnboardingStyles.formInputContainer,
