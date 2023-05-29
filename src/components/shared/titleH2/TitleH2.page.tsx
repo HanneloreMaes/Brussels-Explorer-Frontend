@@ -5,7 +5,7 @@ import { View, Text } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import { TitleType } from './TitleH2.types';
-import { RecommendedStyles } from '@/components/dashboard/components/sectionRecRoutes/page/RecommendedSection.styles';
+import { RecommendedStyles } from '@/components/AuthStack/dashboard/components/sectionRecRoutes/page/RecommendedSection.styles';
 import { UnderlineStyle, TextColor } from '@/style';
 import '@/utils/i18n/i18n';
 

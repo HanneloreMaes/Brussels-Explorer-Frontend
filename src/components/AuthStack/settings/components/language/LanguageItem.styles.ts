@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { DefaultMargins, Highlight, TextColor } from '@/style';
+import { DefaultMargins, TextColor } from '@/style';
 
 export const LanugageItemStyles = StyleSheet.create({
 	container: {

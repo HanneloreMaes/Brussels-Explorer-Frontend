@@ -1,76 +1,82 @@
 import React, { FC, useEffect, useState } from 'react';
 
 import MapboxGL, { CircleLayerStyle, SymbolLayerStyle, OnPressEvent } from '@rnmapbox/maps';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { PointMapStyles } from './PointMapView.styles';
-import { DescriptionModalMarker } from '../mapView/components';
-import { DetailMapStyles, ModalError } from '../shared';
+import { DescriptionModalMarker } from './components';
+import { MapStyles } from './MapView.styles';
+import { DetailMapStyles, ModalError } from '@/components/shared';
+import { MapboxAccesToken } from '@/config';
 import { AllMapNavProps } from '@/lib/navigator/types';
 import { BackgroundColor } from '@/style';
-import { getPoints } from '@/utils/redux/Actions';
+import { getPoints, getPointsFromSpecRoutes } from '@/utils/redux/Actions';
 
-export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
+MapboxGL.setWellKnownTileServer('Mapbox');
+MapboxGL.setAccessToken(MapboxAccesToken);
+
+export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation }) => {
 
 	const coordinates = [ 4.3570964, 50.845504 ];
-	const [ pointGeo, setPointGeo ] = useState();
+	const [ firstPointRouteGeo, setFirstPointRouteGeo ] = useState();
 	const [ showModal, setShowModal ] = useState<boolean>(false);
 	const [ showModalError, setShowModalError ] = useState<boolean>(false);
-	const [ detailPoint, setDetailPoint ] = useState<any>();
+	const [ detailPointRoute, setDetailPointRoute ] = useState<any>();
 
 	const dispatch = useDispatch();
-	const { points, nameMode } = useSelector((state: any) => state.allReducer);
+	const { routes, nameMode } = useSelector((state: any) => state.allReducer);
 
-	const mapPoints = () => {
-		if (points?.length > 0) {
+	const mapRoutes = () => {
+		routes.map((routeDetail: any) => {
+			return fetchSpecRoute(routeDetail._id);
+		});
+		if (routes?.length > 0) {
 			setShowModalError(false);
-			setPointGeo({
+			setFirstPointRouteGeo({
 				type: 'FeatureCollection',
-				features: points.map((point, index) => ({
+				features: routes.map((route, index) => ({
 					type: 'Feature',
 					geometry: {
 						type: 'Point',
-						coordinates: [ point.lng, point.lat ],
+						coordinates: [ route.startLng, route.startLat ],
 					},
 					properties: {
 						poiNumber: index + 1,
-						point,
+						route,
 					},
 				})),
 			});
 		} else {
-			setPointGeo(null);
+			setFirstPointRouteGeo(null);
 			setShowModalError(true);
 		}
 	};
-
-	const fetchPoints = () => {
+	const fetchSpecRoute = (idRoute: string) => {
+		dispatch(getPointsFromSpecRoutes(idRoute));
 		dispatch(getPoints());
-		mapPoints();
 	};
 
 	const handleModalPress = (e: OnPressEvent) => {
-		const pointData = e?.features?.[ 0 ]?.properties?.point;
+		const routeData = e?.features?.[ 0 ]?.properties?.route;
 		setShowModal(true);
-		setDetailPoint(pointData);
+		setDetailPointRoute(routeData);
 	};
 
 	useEffect(() => {
-		fetchPoints();
-	}, [ navigation ]);
+		mapRoutes();
+	}, []);
 
 	return (
 		<>
 			<MapboxGL.MapView
-				style={PointMapStyles.container}
+				style={MapStyles.container}
 				styleURL='mapbox://styles/mapbox/streets-v12'
 				onPress={() => setShowModal(false)}
 			>
 				<MapboxGL.Camera zoomLevel={13} centerCoordinate={coordinates} animationMode='none' />
 				{
-					pointGeo !== null ? (
-						<MapboxGL.ShapeSource id="markers" shape={pointGeo} onPress={handleModalPress}>
+					firstPointRouteGeo !== null ? (
+						<MapboxGL.ShapeSource id="markers" shape={firstPointRouteGeo} onPress={handleModalPress}>
 							<MapboxGL.CircleLayer
 								id="markerCircle"
 								belowLayerID="markerText"
@@ -83,29 +89,28 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 						</MapboxGL.ShapeSource>
 					) : null
 				}
-
 			</MapboxGL.MapView>
 			{
 				showModal ?
 					<View
 						style={[
-							PointMapStyles.modalContainer,
+							MapStyles.modalContainer,
 							{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
 						]}
 					>
 						<DescriptionModalMarker
-							titlePoint={detailPoint.name}
-							imagePoint={detailPoint.imageUrl}
-							area={detailPoint.area}
-							prevPage='PointMapView'
+							titlePoint={detailPointRoute.name}
+							imagePoint={detailPointRoute.imageUrl}
+							area={detailPointRoute.area}
+							prevPage='RouteMapView'
 							navigation={navigation}
-							data={detailPoint}
+							data={detailPointRoute}
 						/>
 					</View>
 					: null
 			}
 			{
-				showModalError ? <ModalError labelName="mapbox_error_no_points" labelTryAgainText='mapbox_error_try_again' /> : null
+				showModalError ? <ModalError labelName="mapbox_error_no_routes" labelTryAgainText='mapbox_error_try_again' /> : null
 			}
 		</>
 	);
