@@ -5,6 +5,7 @@ import { View, Text, Pressable } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import { ModalErrorStyles } from '../modalErrors/ModalError.styles';
+import * as RootNavigation from '@/lib/rootNavigator/RootNavigator';
 import { BackgroundColor, ButtonStyles, DefaultAppStyling, TextColor } from '@/style';
 import '@/utils/i18n/i18n';
 
@@ -40,7 +41,10 @@ export const RegisterModal: FC = () => {
 					}
 				]}
 			>{i18n.t('modal_un_auth_more_features_text')}</Text>
-			<Pressable style={ButtonStyles.buttonContainerPrimary}>
+			<Pressable
+				style={ButtonStyles.buttonContainerPrimary}
+				onPress={() => RootNavigation.navigate('OnboardingScreen')}
+			>
 				<Text style={ButtonStyles.buttonTextPrimary}>{i18n.t('modal_un_auth_button_login_register_text')}</Text>
 			</Pressable>
 		</View>
