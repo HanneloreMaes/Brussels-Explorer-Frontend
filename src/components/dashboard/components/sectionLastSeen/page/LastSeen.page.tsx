@@ -56,26 +56,28 @@ export const LastSeenSection: FC <LastSeenType> = ({ mode, dataUnAuth }) => {
 								</TouchableOpacity>
 							</ScrollView>
 						) : (
-							<ScrollView horizontal style={RecommendedStyles.allDataContainer}>
-								<TouchableOpacity
-									key={specRoute._id}
-									style={RecommendedStyles.dataContainer}
-									onPress={() => RootNavigation.navigate('DetailPage', { dataOfCard: dataUnAuth })}
-								>
-									<Image source={{ uri: specRoute.imageUrl }} style={RecommendedStyles.imageRoute} resizeMode='cover' />
-									<Text
-										style={[
-											RecommendedStyles.nameRoute,
-											{ color: mode === 'dark' ? TextColor.lightText : TextColor.darkText }
-										]}
+							dataUnAuth.map((unAuth: any) => {
+								return (
+									<TouchableOpacity
+										key={specRoute._id}
+										style={RecommendedStyles.dataContainer}
+										onPress={() => RootNavigation.navigate('DetailPage', { dataOfCard: unAuth })}
 									>
-										{dataUnAuth.name}
-									</Text>
-									<View style={RecommendedStyles.bottomThemeContainer}>
-										<Text style={RecommendedStyles.infoRoute}>{dataUnAuth.theme}</Text>
-									</View>
-								</TouchableOpacity>
-							</ScrollView>
+										<Image source={{ uri: specRoute.imageUrl }} style={RecommendedStyles.imageRoute} resizeMode='cover' />
+										<Text
+											style={[
+												RecommendedStyles.nameRoute,
+												{ color: mode === 'dark' ? TextColor.lightText : TextColor.darkText }
+											]}
+										>
+											{unAuth.name}
+										</Text>
+										<View style={RecommendedStyles.bottomThemeContainer}>
+											<Text style={RecommendedStyles.infoRoute}>{unAuth.theme}</Text>
+										</View>
+									</TouchableOpacity>
+								);
+							})
 						)
 					)
 			}
