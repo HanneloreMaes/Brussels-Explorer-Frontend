@@ -3,4 +3,5 @@ export interface RecommendedType {
 	mode: string,
 	navigation: any;
 	translation: any;
+	unAuth: boolean;
 };

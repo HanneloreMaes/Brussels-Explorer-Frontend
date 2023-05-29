@@ -18,25 +18,18 @@ export const DashboardScreen: FC <DashboardNavProps<'DashboardScreen'>> = ({ nav
 	const dispatch = useDispatch();
 	const { routes, nameMode, unAuth } = useSelector((state: any) => state.allReducer );
 
-	const [ data, setData ] = useState<any>();
 	const [ unAuthData, setUnAuthData ] = useState<any>();
-
-	const fetchRoutes = () => {
-		dispatch(getRoutes());
-		getRightData();
-	};
 
 	const getRightData = () => {
 		if (unAuth === true) {
-			const slicedData = routes.slice(0, 2);
 			const slicedDataLast = routes.slice(0, 1);
-			setData(slicedData);
 			setUnAuthData(slicedDataLast);
 		}
 	};
 
 	useEffect(() => {
-		fetchRoutes();
+		dispatch(getRoutes());
+		getRightData();
 	}, []);
 
 	return(
@@ -50,7 +43,8 @@ export const DashboardScreen: FC <DashboardNavProps<'DashboardScreen'>> = ({ nav
 				) : (
 					<View style={DashboardStyles.marginContainer}>
 						<RecommendedRoutes
-							data={unAuth === true ? data : routes}
+							unAuth={unAuth}
+							data={routes}
 							mode={nameMode}
 							translation={i18n}
 							navigation={navigation}
