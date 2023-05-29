@@ -14,7 +14,12 @@ export const RegisterModal: FC = () => {
 	const { nameMode } = useSelector((state: any) => state.allReducer);
 
 	return (
-		<View style={[ ModalErrorStyles.container, { backgroundColor: nameMode === ' dark' ? BackgroundColor.dark : BackgroundColor.light } ]}>
+		<View
+			style={{
+				backgroundColor: nameMode === ' dark' ? BackgroundColor.dark : BackgroundColor.light,
+				marginTop: DefaultAppStyling.globalMargin
+			}}
+		>
 			<Text
 				style={[
 					ModalErrorStyles.textError,
