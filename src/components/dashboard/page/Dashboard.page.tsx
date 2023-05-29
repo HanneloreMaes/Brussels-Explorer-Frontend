@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { ScrollView, View } from 'react-native';
@@ -16,10 +16,23 @@ export const DashboardScreen: FC <DashboardNavProps<'DashboardScreen'>> = ({ nav
 
 	const { i18n } = useTranslation();
 	const dispatch = useDispatch();
-	const { routes, nameMode } = useSelector((state: any) => state.allReducer );
+	const { routes, nameMode, unAuth } = useSelector((state: any) => state.allReducer );
+
+	const [ data, setData ] = useState<any>();
+	const [ unAuthData, setUnAuthData ] = useState<any>();
 
 	const fetchRoutes = () => {
 		dispatch(getRoutes());
+		getRightData();
+	};
+
+	const getRightData = () => {
+		if (unAuth === true) {
+			const slicedData = routes.slice(0, 2);
+			const slicedDataLast = routes.slice(0, 1);
+			setData(slicedData);
+			setUnAuthData(slicedDataLast);
+		}
 	};
 
 	useEffect(() => {
@@ -36,8 +49,13 @@ export const DashboardScreen: FC <DashboardNavProps<'DashboardScreen'>> = ({ nav
 					</View>
 				) : (
 					<View style={DashboardStyles.marginContainer}>
-						<RecommendedRoutes data={routes} mode={nameMode} translation={i18n} navigation={navigation} />
-						<LastSeenSection mode={nameMode} />
+						<RecommendedRoutes
+							data={unAuth === true ? data : routes}
+							mode={nameMode}
+							translation={i18n}
+							navigation={navigation}
+						/>
+						<LastSeenSection dataUnAuth={unAuthData} mode={nameMode} />
 					</View>
 				)
 			}

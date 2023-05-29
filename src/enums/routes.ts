@@ -1,7 +1,6 @@
 import { IRouteTypes } from './routes.types';
 import { SHARED_ROUTES } from './sharedRoutes';
-import { DashboardScreen, MapView, PointMapView, SettingsPage } from '@/components';
-import { LanguageSettings } from '@/components/settings/components';
+import { DashboardScreen, MapView, PointMapView, SettingsPage, LanguageSettings } from '@/components';
 import { MapviewStackScreen, SearchStackScreen, SettingsStackScreen } from '@/lib/navigator/stack';
 
 export const ONBOARDING_ROUTES: IRouteTypes[] = [

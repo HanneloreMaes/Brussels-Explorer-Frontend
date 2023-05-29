@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-import { BackgroundColor, DefaultAppStyling } from '@/style';
+import { DefaultAppStyling } from '@/style';
 
 export const DashboardStyles = StyleSheet.create({
 	marginContainer: {

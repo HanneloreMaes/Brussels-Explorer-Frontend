@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { PointMapStyles } from './PointMapView.styles';
 import { DescriptionModalMarker } from '../mapView/components';
-import { DetailMapStyles, ModalError } from '../shared';
+import { DetailMapStyles, ModalError } from '@/components/shared';
 import { AllMapNavProps } from '@/lib/navigator/types';
 import { BackgroundColor } from '@/style';
 import { getPoints } from '@/utils/redux/Actions';

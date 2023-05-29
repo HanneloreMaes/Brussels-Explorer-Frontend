@@ -6,8 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { DescriptionModalMarker } from './components';
 import { MapStyles } from './MapView.styles';
-import { ModalError } from '../shared';
-import { DetailMapStyles } from '../shared/detailPage/components/DetailMap.styles';
+import { DetailMapStyles, ModalError } from '@/components/shared';
 import { MapboxAccesToken } from '@/config';
 import { AllMapNavProps } from '@/lib/navigator/types';
 import { BackgroundColor } from '@/style';

@@ -11,6 +11,7 @@ import {
 	SET_LANGUAGE,
 	Languages,
 	ModeOptions,
+	SET_UN_AUTH_STACK,
 } from './Actions.types';
 import { baseUrl } from '@/config';
 
@@ -98,5 +99,12 @@ export const setMode = (nameMode: ModeOptions) => (dispatch: Dispatch) => {
 	dispatch({
 		type: SET_MODE_APP,
 		nameMode,
+	});
+};
+
+export const setUnAuth = (unAuth: boolean) => (dispatch: Dispatch) => {
+	dispatch({
+		type: SET_UN_AUTH_STACK,
+		unAuth,
 	});
 };
