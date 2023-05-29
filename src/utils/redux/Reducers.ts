@@ -5,6 +5,7 @@ import {
 	SET_LANGUAGE,
 	SET_MODE_APP,
 	GET_SPEC_ROUTES,
+	SET_UN_AUTH_STACK,
 } from './Actions.types';
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
 	specRoute: [],
 	pointsForSpecRoute: [],
 	nameMode: null,
+	unAuth: false,
 	activeLanguage: null,
 };
 
@@ -30,6 +32,8 @@ function allReducer(state = initialState, action: any) {
 		return { ...state, activeLanguage: action.activeLanguage };
 	case SET_MODE_APP:
 		return { ...state, nameMode: action.nameMode };
+	case SET_UN_AUTH_STACK:
+		return { ...state, unAuth: action.unAuth };
 	default:
 		return state;
 	}
