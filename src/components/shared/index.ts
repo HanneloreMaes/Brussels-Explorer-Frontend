@@ -6,3 +6,4 @@ export * from './detailPage/page/Detail.styles';
 export * from './detailPage/components/DetailMap.styles';
 export * from './modalErrors/ModalError.page';
 export * from './titleH2/TitleH2.page';
+export * from './registerModal/RegisterModal.page';
