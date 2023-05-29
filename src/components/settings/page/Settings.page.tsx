@@ -10,10 +10,17 @@ import '@/utils/i18n/i18n';
 
 export const SettingsPage: FC <SettingsNavProps<'Settings'>> = ({ navigation }) => {
 	const { i18n } = useTranslation();
-	const { nameMode } = useSelector( (state: any) => state.allReducer );
+	const { nameMode, unAuth } = useSelector( (state: any) => state.allReducer );
 
 	const nameComponents = [
 		{
+			key: 1,
+			name: i18n.t('routes_label_language')
+		},
+	];
+	const unAuthNameComponents = [
+		{
+			key: 1,
 			name: i18n.t('routes_label_language')
 		},
 	];
@@ -21,9 +28,9 @@ export const SettingsPage: FC <SettingsNavProps<'Settings'>> = ({ navigation }) 
 	return(
 		<>
 			<FlatList
-				data={nameComponents}
+				data={unAuth === true ? unAuthNameComponents : nameComponents}
 				renderItem={({ item }) =>
-					<CardItem nameComponent={item.name} navigation={navigation} mode={nameMode} />
+					<CardItem key={item.key} nameComponent={item.name} navigation={navigation} mode={nameMode} />
 				}
 				keyExtractor={item => item.name}
 			/>
