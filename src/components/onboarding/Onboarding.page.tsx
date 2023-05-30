@@ -274,7 +274,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 										onPress={forgotPassword}
 										style={OnboardingStyles.forgotBtn}
 									>
-										<Text style={OnboardingStyles.forgotText}>Forgot Password?</Text>
+										<Text style={OnboardingStyles.forgotText}>{i18n.t('onboarding_forgot_password')}</Text>
 									</TouchableOpacity>
 								) : null
 							}
