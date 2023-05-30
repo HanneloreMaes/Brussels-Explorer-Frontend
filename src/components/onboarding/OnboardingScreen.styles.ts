@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-import { BackgroundColor, DefaultMargins, DefaultShadow, Highlight, TextColor, TextStyles } from '@/style';
+import { BackgroundColor, DefaultAppStyling, DefaultMargins, DefaultShadow, Highlight, TextColor, TextStyles } from '@/style';
 
 const { height } = Dimensions.get('window');
 
@@ -68,5 +68,16 @@ export const OnboardingStyles = StyleSheet.create({
 		borderRadius: 20,
 		top: -20,
 		...DefaultShadow.shadowSecundary,
+	},
+	forgotBtn: {
+		alignItems: 'flex-end',
+		marginHorizontal: DefaultAppStyling.globalMargin
+	},
+	forgotText: {
+		marginBottom: DefaultMargins.bottomMargin,
+		marginTop: -5,
+		borderBottomWidth: 0.5,
+		borderColor: TextColor.lightGrayText,
+		color: TextColor.lightGrayText
 	},
 });
