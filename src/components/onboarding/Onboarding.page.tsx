@@ -108,7 +108,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 					displayName: username,
 				});
 				dispatch(setUnAuth(false));
-				navigation.navigate('MainStack');
+				navigation.navigate('QuestionRegister');
 			}).catch( error => Alert.alert(error.message));
 	};
 
