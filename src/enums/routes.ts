@@ -82,7 +82,7 @@ export const ALL_MAP_ROUTES: IRouteTypes[] = [
 export const SEARCH_ROUTES: IRouteTypes[] = [
 	SHARED_ROUTES.Search,
 	SHARED_ROUTES.DetailPageScreen,
-	SHARED_ROUTES.OnboardingPage,
+	SHARED_ROUTES.OnboardingStack,
 ];
 
 export const SETTINGS_ROUTES: IRouteTypes[] = [
@@ -96,7 +96,7 @@ export const SETTINGS_ROUTES: IRouteTypes[] = [
 		component: LanguageSettings,
 		label: 'routes_label_language',
 	},
-	SHARED_ROUTES.OnboardingPage,
+	SHARED_ROUTES.OnboardingStack,
 ];
 
 export const APP_ROUTES: IRouteTypes[] = [
