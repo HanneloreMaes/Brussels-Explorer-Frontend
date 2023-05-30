@@ -1,16 +1,70 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 
 import { View, Image, Text, ScrollView, TouchableOpacity, Pressable } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { RecommendedStyles } from './RecommendedSection.styles';
 import { RecommendedType } from '../types/Recommended.types';
 import { TitleH2 } from '@/components/shared';
 import { ButtonStyles, TextColor } from '@/style';
+import { getRoutes } from '@/utils/redux/Actions';
 
-export const RecommendedRoutes: FC <RecommendedType> = ({ unAuth, data, mode, translation, navigation }) => {
+export const RecommendedRoutes: FC <RecommendedType> = ({
+	unAuth,
+	data,
+	mode,
+	translation,
+	navigation
+}) => {
 
 	const slicedData = data.slice(0, 2);
+
+	const dispatch = useDispatch();
+
+	const [ theme, setTheme ] = useState<string>('');
+	const [ distance, setDistance ] = useState<string>('');
+
+	const [ filteredData, setFilteredData ] = useState<any>([]);
+	const [ checkData, setCheckData ] = useState<any>([]);
+
+	const { preferences, routes } = useSelector((state: any) => state.allReducer);
+
+	const getValuesFromPreferences = () => {
+		setTheme(preferences[ 0 ]);
+		setDistance(preferences[ 1 ]);
+	};
+
+	const filterData = () => {
+		if (preferences.length !== 0) {
+			setFilteredData(
+				routes.filter((route:any) => {
+					return (
+						(!theme || theme === route.theme) &&
+						(!distance || distance === route.distance)
+					);
+				})
+			);
+		}
+	};
+
+	const checkValidateData = () => {
+		if (filteredData.length === 0 ) {
+			setCheckData(routes);
+		} else (
+			setCheckData(filteredData)
+		);
+	};
+
+	useEffect(() => {
+		dispatch(getRoutes());
+		getValuesFromPreferences();
+	}, []);
+
+	useEffect(() => {
+		getValuesFromPreferences();
+		filterData();
+		checkValidateData();
+	}, [ theme, distance ]);
 
 	return(
 		<View style={RecommendedStyles.container}>
@@ -46,7 +100,7 @@ export const RecommendedRoutes: FC <RecommendedType> = ({ unAuth, data, mode, tr
 							);
 						})
 					) : (
-						data.map((recommendedRoute: any) => {
+						checkData.map((recommendedRoute: any) => {
 							return(
 								<TouchableOpacity
 									key={recommendedRoute._id}
