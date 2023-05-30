@@ -1,6 +1,7 @@
 {
 	"routes_label_searchPage": "Overzicht",
 	"routes_label_language": "Taal",
+	"routes_label_change_password": "Wijzig wachtwoord",
 	"routes_label_settings": "Instellingen",
 	"routes_label_detailPoint": "Detail van punt",
 	"routes_label_mapbox_routes": "Routen",
@@ -12,6 +13,7 @@
 	"onboarding_placeholder_name": "Gebruikersnaam",
 	"onboarding_placeholder_email": "Email",
 	"onboarding_placeholder_password": "Wachtwoord",
+	"onboarding_forgot_password": "Wachtwoord vergeten?",
 	"onboarding_question_title": "Tijd voor een paar vragen!",
 	"onboarding_question_subTitle_themes": "Welke thema's wekken je interesse?",
 	"onboarding_question_themes_art": "Kunst",

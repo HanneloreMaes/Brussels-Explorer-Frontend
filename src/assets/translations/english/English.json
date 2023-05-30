@@ -1,6 +1,7 @@
 {
 	"routes_label_searchPage": "Overview",
 	"routes_label_language": "Language",
+	"routes_label_change_password": "Change password",
 	"routes_label_settings": "Settings",
 	"routes_label_detailPoint": "Detail of point",
 	"routes_label_mapbox_routes": "Routes",
@@ -12,6 +13,7 @@
 	"onboarding_placeholder_name": "Username",
 	"onboarding_placeholder_email": "Email",
 	"onboarding_placeholder_password": "Password",
+	"onboarding_forgot_password": "Forgot password?",
 	"onboarding_question_title": "Question Time!",
 	"onboarding_question_subTitle_themes": "Which themes gets your interest?",
 	"onboarding_question_themes_art": "Art",
