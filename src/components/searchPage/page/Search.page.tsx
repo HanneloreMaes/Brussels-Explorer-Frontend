@@ -344,7 +344,9 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 					)
 				}
 				{
-					unAuth === true ? <RegisterModal /> : null
+					unAuth === true ?
+						<RegisterModal navigation={navigation} mode={nameMode} />
+						: null
 				}
 			</View>
 		</ScrollView>

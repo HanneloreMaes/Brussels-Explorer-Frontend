@@ -36,7 +36,9 @@ export const SettingsPage: FC <SettingsNavProps<'Settings'>> = ({ navigation }) 
 				keyExtractor={item => item.name}
 			/>
 			{
-				unAuth === true ? <RegisterModal /> : <LogoutButton navigation={navigation} />
+				unAuth === true ?
+					<RegisterModal navigation={navigation} mode={nameMode} />
+					: <LogoutButton navigation={navigation} />
 			}
 		</>
 	);
