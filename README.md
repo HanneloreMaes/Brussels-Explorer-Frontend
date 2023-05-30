@@ -92,6 +92,7 @@ A few of the things you can do with the frontend:
 2. Animated Login Form in React Native #1 - notJust.dev - [Youtube](https://www.youtube.com/watch?v=dj0zN72phDo)
 3. Animated Login Form in React Native #2 - notJust.dev - [Youtube](https://www.youtube.com/watch?v=onGpjt4mQdE)
 4. Search Bar in React Tutorial - Cool Search Filter Tutorial - PedroTech - [Youtube](https://www.youtube.com/watch?v=x7niho285qs)
+5. Forgot Password & Reset Password - Bug Ninza - [Youtube](https://www.youtube.com/watch?v=onW84a_p4VA)
 
 ### Websites
 1. Expo Typescript ESLint & Prettier Setup- Dima Portenko - [Dev.to](https://dev.to/dimaportenko/expo-typescript-eslint-prettier-initial-setup-54d3)

@@ -1,6 +1,7 @@
 {
 	"routes_label_searchPage": "Aperçu",
 	"routes_label_language": "Langue",
+	"routes_label_change_password": "Modifier le mot de pass",
 	"routes_label_settings": "Paramètres de l'application",
 	"routes_label_detailPoint": "Détail du point",
 	"routes_label_mapbox_routes": "Itinéraires",
@@ -12,6 +13,7 @@
 	"onboarding_placeholder_name": "Nom d'utilisateur",
 	"onboarding_placeholder_email": "E-mail",
 	"onboarding_placeholder_password": "Mot de passe",
+	"onboarding_forgot_password": "Oubli le mot de passe?",
 	"onboarding_question_title": "C'est le moment pour quelques questions!",
 	"onboarding_question_subTitle_themes": "Quels thèmes vous intéressent?",
 	"onboarding_question_themes_art": "Art",

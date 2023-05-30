@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import React, { FC, useEffect, useState } from 'react';
 
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
 import {
 	View,
@@ -24,7 +24,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { OnboardingStyles } from './OnboardingScreen.styles';
 import { SkipButton } from '@/components/shared';
 import { OnboardingNavProps } from '@/lib/navigator/types';
-import { BackgroundColor, ButtonStyles, Highlight, TextColor } from '@/style';
+import { BackgroundColor, ButtonStyles, DefaultAppStyling, Highlight, TextColor } from '@/style';
 import { auth } from '@/utils/Firebase.config';
 import '@/utils/i18n/i18n';
 import { setUnAuth } from '@/utils/redux/Actions';
@@ -116,6 +116,12 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 		signInWithEmailAndPassword(auth, email, password)
 			.then(() => dispatch(setUnAuth(false)))
 			.catch((error) => Alert.alert(error.message));
+	};
+
+	const forgotPassword = () => {
+		sendPasswordResetEmail(auth, email)
+			.then(() => Alert.alert('Email to reset password is send.'))
+			.catch((error: any) => Alert.alert(error.message));
 	};
 
 	useEffect(() => {
@@ -262,6 +268,16 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 									}
 								]}
 							/>
+							{
+								!isRegister ? (
+									<TouchableOpacity
+										onPress={forgotPassword}
+										style={OnboardingStyles.forgotBtn}
+									>
+										<Text style={OnboardingStyles.forgotText}>{i18n.t('onboarding_forgot_password')}</Text>
+									</TouchableOpacity>
+								) : null
+							}
 							{isRegister ? (
 								<TouchableOpacity
 									style={[

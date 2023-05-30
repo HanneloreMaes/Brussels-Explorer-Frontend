@@ -22,6 +22,7 @@ export const TextColor = {
 	lightText: Colors.white,
 	smokeText: Colors.smokeWhite,
 	grayText: Colors.darkGray,
+	lightGrayText: 'rgb(173, 173, 173)',
 };
 
 export const Highlight = {

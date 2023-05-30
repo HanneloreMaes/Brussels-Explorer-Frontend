@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import { SettingStackParamList } from '../../../types';
-import { SETTINGS_ROUTES } from '@/enums/routes';
+import { SETTINGS_ROUTES, UN_AUTH_SETTINGS_ROUTES } from '@/enums/routes';
 import { BackgroundColor, Highlight, TextColor } from '@/style';
 import '@/utils/i18n/i18n';
 
@@ -14,7 +14,7 @@ const SettingStack = createNativeStackNavigator<SettingStackParamList>();
 export const SettingsStackScreen: FC = () => {
 
 	const { i18n } = useTranslation();
-	const { nameMode } = useSelector((state: any) => state.allReducer);
+	const { nameMode, unAuth } = useSelector((state: any) => state.allReducer);
 
 	return (
 		<SettingStack.Navigator
@@ -30,16 +30,31 @@ export const SettingsStackScreen: FC = () => {
 				},
 			}}
 		>
-			{SETTINGS_ROUTES.map((settingItem) => (
-				<SettingStack.Screen
-					key={settingItem.name as keyof SettingStackParamList}
-					name={settingItem.name as keyof SettingStackParamList}
-					component={settingItem.component}
-					options={{
-						title: i18n.t(`${settingItem.label}`) as string,
-					}}
-				/>
-			))}
+			{
+				unAuth === true ? (
+					UN_AUTH_SETTINGS_ROUTES.map((settingItem) => (
+						<SettingStack.Screen
+							key={settingItem.name as keyof SettingStackParamList}
+							name={settingItem.name as keyof SettingStackParamList}
+							component={settingItem.component}
+							options={{
+								title: i18n.t(`${settingItem.label}`) as string,
+							}}
+						/>
+					))
+				) : (
+					SETTINGS_ROUTES.map((settingItem) => (
+						<SettingStack.Screen
+							key={settingItem.name as keyof SettingStackParamList}
+							name={settingItem.name as keyof SettingStackParamList}
+							component={settingItem.component}
+							options={{
+								title: i18n.t(`${settingItem.label}`) as string,
+							}}
+						/>
+					))
+				)
+			}
 		</SettingStack.Navigator>
 	);
 };
