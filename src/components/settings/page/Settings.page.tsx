@@ -18,6 +18,10 @@ export const SettingsPage: FC <SettingsNavProps<'Settings'>> = ({ navigation }) 
 			key: 1,
 			name: i18n.t('routes_label_language')
 		},
+		{
+			key: 2,
+			name: i18n.t('routes_label_change_password')
+		},
 	];
 	const unAuthNameComponents = [
 		{
