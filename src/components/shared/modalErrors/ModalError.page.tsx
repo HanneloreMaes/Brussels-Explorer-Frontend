@@ -33,7 +33,6 @@ export const ModalError: FC<ModalTypes> = ({ labelName, labelTryAgainText }) => 
 					) : null
 				}
 			</View>
-			{/* <Text>{labelName}</Text> */}
 		</View>
 	);
 };

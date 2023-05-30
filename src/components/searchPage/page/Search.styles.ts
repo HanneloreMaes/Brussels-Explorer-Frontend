@@ -34,7 +34,6 @@ export const SearchStyles = StyleSheet.create({
 	},
 	dropdownDataContainer: {
 		width,
-		height: height / 5,
 		zIndex: 6,
 		marginHorizontal: DefaultMargins.horizontalMargin,
 		marginTop: DefaultMargins.topMargin,

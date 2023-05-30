@@ -8,6 +8,21 @@ export const ONBOARDING_ROUTES: IRouteTypes[] = [
 	SHARED_ROUTES.Main,
 ];
 
+export const UN_AUTH_MAIN_ROUTES: IRouteTypes[] = [
+	SHARED_ROUTES.DashboardStackScreen,
+	{
+		name: 'Search',
+		component: SearchStackScreen,
+		label: 'OverviewStack',
+		showHeader: false,
+	},
+	{
+		name: 'SettingStack',
+		component: SettingsStackScreen,
+		label: 'SettingStack',
+	},
+];
+
 export const MAIN_ROUTES: IRouteTypes[] = [
 	SHARED_ROUTES.DashboardStackScreen,
 	SHARED_ROUTES.AllMapStack,
@@ -67,6 +82,7 @@ export const ALL_MAP_ROUTES: IRouteTypes[] = [
 export const SEARCH_ROUTES: IRouteTypes[] = [
 	SHARED_ROUTES.Search,
 	SHARED_ROUTES.DetailPageScreen,
+	SHARED_ROUTES.OnboardingStack,
 ];
 
 export const SETTINGS_ROUTES: IRouteTypes[] = [
@@ -80,7 +96,7 @@ export const SETTINGS_ROUTES: IRouteTypes[] = [
 		component: LanguageSettings,
 		label: 'routes_label_language',
 	},
-	SHARED_ROUTES.OnboardingPage,
+	SHARED_ROUTES.OnboardingStack,
 ];
 
 export const APP_ROUTES: IRouteTypes[] = [
