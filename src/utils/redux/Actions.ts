@@ -12,6 +12,7 @@ import {
 	Languages,
 	ModeOptions,
 	SET_UN_AUTH_STACK,
+	SET_PREFERENCES,
 } from './Actions.types';
 import { baseUrl } from '@/config';
 
@@ -106,5 +107,12 @@ export const setUnAuth = (unAuth: boolean) => (dispatch: Dispatch) => {
 	dispatch({
 		type: SET_UN_AUTH_STACK,
 		unAuth,
+	});
+};
+
+export const setPreferences = (preferences: Array<string>) => (dispatch: Dispatch) => {
+	dispatch({
+		type: SET_PREFERENCES,
+		preferences,
 	});
 };

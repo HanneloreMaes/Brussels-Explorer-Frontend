@@ -98,7 +98,8 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 							style={{
 								backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
 								zIndex: 6,
-								height: '25%'
+								height: '25%',
+								marginBottom: 75,
 							}}
 						>
 							<View

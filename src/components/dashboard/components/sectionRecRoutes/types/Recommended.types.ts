@@ -1,6 +1,6 @@
 export interface RecommendedType {
 	data: any;
-	mode: string,
+	mode: string;
 	navigation: any;
 	translation: any;
 	unAuth: boolean;
