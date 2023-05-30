@@ -85,7 +85,7 @@ export const SEARCH_ROUTES: IRouteTypes[] = [
 	SHARED_ROUTES.OnboardingStack,
 ];
 
-export const SETTINGS_ROUTES: IRouteTypes[] = [
+export const UN_AUTH_SETTINGS_ROUTES: IRouteTypes[] = [
 	{
 		name: 'Settings',
 		component: SettingsPage,
@@ -97,6 +97,20 @@ export const SETTINGS_ROUTES: IRouteTypes[] = [
 		label: 'routes_label_language',
 	},
 	SHARED_ROUTES.OnboardingStack,
+];
+
+export const SETTINGS_ROUTES: IRouteTypes[] = [
+	{
+		name: 'Settings',
+		component: SettingsPage,
+		label: 'routes_label_settings',
+	},
+	{
+		name: 'Language',
+		component: LanguageSettings,
+		label: 'routes_label_language',
+	},
+	SHARED_ROUTES.OnboardingPage,
 ];
 
 export const APP_ROUTES: IRouteTypes[] = [
