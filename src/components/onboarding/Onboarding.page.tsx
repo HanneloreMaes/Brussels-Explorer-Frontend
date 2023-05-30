@@ -134,11 +134,21 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 		<KeyboardAvoidingView
 			style={[
 				OnboardingStyles.container,
-				{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
+				{ backgroundColor: nameMode === 'dark' ? '' : BackgroundColor.light }
 			]}
 		>
-			<View style={OnboardingStyles.titleContainer}>
-				<Text style={[ OnboardingStyles.titleOnboarding, { color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>Brussels Explorer</Text>
+			<View
+				style={OnboardingStyles.titleContainer}
+			>
+				<Text
+					style={[
+						OnboardingStyles.titleOnboarding,
+						{
+							color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText,
+							backgroundColor: nameMode === 'dark' ? null : BackgroundColor.onboardingLight
+						}
+					]}
+				>Brussels Explorer</Text>
 			</View>
 			<Animated.View style={[ StyleSheet.absoluteFill, animatedImageStyle, { zIndex: -2 } ]}>
 				<Svg height={height + 50} width={width}>

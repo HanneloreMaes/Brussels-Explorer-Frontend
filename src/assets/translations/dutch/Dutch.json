@@ -55,5 +55,8 @@
 	"settings_language_label_nl": "Nederlands",
 	"settings_language_label_en": "Engels",
 	"settings_language_label_fr": "Frans",
-	"settings_language_label_de": "Duits"
+	"settings_language_label_de": "Duits",
+	"modal_un_auth_preview_text": "Krijg je niet genoeg van de preview?",
+	"modal_un_auth_more_features_text": "Ontdek nog meer features door te registreren of in te loggen",
+	"modal_un_auth_button_login_register_text": "Log in - Registreer"
 }

@@ -13,7 +13,8 @@ export const BackgroundColor = {
 	light: Colors.white,
 	dark: Colors.darkBlack,
 	headerBlack: Colors.headerBlack,
-	skipBtnWhite: 'rgba(242, 242, 242, 0.7)'
+	skipBtnWhite: 'rgba(242, 242, 242, 0.7)',
+	onboardingLight: 'rgba(255, 255, 255, 0.75)'
 };
 
 export const TextColor = {
