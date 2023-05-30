@@ -59,7 +59,7 @@ export const LastSeenSection: FC <LastSeenType> = ({ mode, dataUnAuth }) => {
 							dataUnAuth.map((unAuth: any) => {
 								return (
 									<TouchableOpacity
-										key={specRoute._id}
+										key={unAuth._id}
 										style={RecommendedStyles.dataContainer}
 										onPress={() => RootNavigation.navigate('DetailPage', { dataOfCard: unAuth })}
 									>
