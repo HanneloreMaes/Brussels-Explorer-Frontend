@@ -82,6 +82,7 @@ export const ALL_MAP_ROUTES: IRouteTypes[] = [
 export const SEARCH_ROUTES: IRouteTypes[] = [
 	SHARED_ROUTES.Search,
 	SHARED_ROUTES.DetailPageScreen,
+	SHARED_ROUTES.OnboardingPage,
 ];
 
 export const SETTINGS_ROUTES: IRouteTypes[] = [
