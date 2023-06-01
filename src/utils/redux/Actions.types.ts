@@ -12,3 +12,4 @@ export const SET_LANGUAGE = 'SET_LANGUAGE';
 export const SET_MODE_APP = 'SET_MODE_APP';
 export const SET_UN_AUTH_STACK = 'SET_UN_AUTH_STACK';
 export const SET_PREFERENCES = 'SET_PREFERENCES';
+export const SET_FIRST_RUN = 'SET_FIRST_RUN';

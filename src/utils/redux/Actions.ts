@@ -13,6 +13,7 @@ import {
 	ModeOptions,
 	SET_UN_AUTH_STACK,
 	SET_PREFERENCES,
+	SET_FIRST_RUN,
 } from './Actions.types';
 import { baseUrl } from '@/config';
 
@@ -100,6 +101,13 @@ export const setMode = (nameMode: ModeOptions) => (dispatch: Dispatch) => {
 	dispatch({
 		type: SET_MODE_APP,
 		nameMode,
+	});
+};
+
+export const setFirstRun = (firstRun: boolean) => (dispatch: Dispatch) => {
+	dispatch({
+		type: SET_FIRST_RUN,
+		firstRun,
 	});
 };
 
