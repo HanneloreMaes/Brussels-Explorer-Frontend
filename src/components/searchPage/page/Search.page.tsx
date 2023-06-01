@@ -304,6 +304,7 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 									onPress={() => {
 										setDistance(0);
 										setTheme(0);
+										setTime(0);
 										themeDropDownRef.current?.reset();
 										distanceDropDownRef.current?.reset();
 										timeDropDownRef.current?.reset();
