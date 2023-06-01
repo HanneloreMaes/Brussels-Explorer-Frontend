@@ -82,7 +82,7 @@ export const IntroOnboaridng: FC = () => {
 							/>
 						</ClipPath>
 						<Image
-							href={require('@/assets/images/swiper/museum_leger.jpg')}
+							href={require('@/assets/images/swiper/park_happark.jpg')}
 							width={width}
 							height={height / 1.5}
 							preserveAspectRatio='xMidYMid slice'
@@ -101,7 +101,7 @@ export const IntroOnboaridng: FC = () => {
 							/>
 						</ClipPath>
 						<Image
-							href={require('@/assets/images/swiper/museum_leger.jpg')}
+							href={require('@/assets/images/swiper/museum_experience.jpg')}
 							width={width}
 							height={height / 1.5}
 							preserveAspectRatio='xMidYMid slice'
@@ -120,9 +120,9 @@ export const IntroOnboaridng: FC = () => {
 							/>
 						</ClipPath>
 						<Image
-							href={require('@/assets/images/swiper/museum_leger.jpg')}
+							href={require('@/assets/images/swiper/vaartkapoen.jpg')}
 							width={width}
-							height={height / 1.8}
+							height={height / 1.5}
 							preserveAspectRatio='xMidYMid slice'
 							clipPath='url(#clipPathId)' />
 					</Svg>
