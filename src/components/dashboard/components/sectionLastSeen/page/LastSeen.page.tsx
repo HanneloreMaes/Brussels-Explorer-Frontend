@@ -72,7 +72,7 @@ export const LastSeenSection: FC <LastSeenType> = ({ mode, dataUnAuth }) => {
 										>
 											{unAuth.name}
 										</Text>
-										<View style={RecommendedStyles.bottomThemeContainer}>
+										<View style={LastStyles.bottomContainer}>
 											<Text style={RecommendedStyles.infoRoute}>{unAuth.theme}</Text>
 										</View>
 									</TouchableOpacity>

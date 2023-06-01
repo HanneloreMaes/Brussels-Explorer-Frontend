@@ -10,4 +10,8 @@ export const LastStyles = StyleSheet.create({
 		...TextStyles.titleH2,
 		marginBottom: DefaultMargins.bottomMargin,
 	},
+	bottomContainer: {
+		justifyContent: 'flex-end',
+		height: '35%'
+	}
 });
