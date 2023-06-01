@@ -24,7 +24,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { OnboardingStyles } from './OnboardingScreen.styles';
 import { SkipButton } from '@/components/shared';
 import { OnboardingNavProps } from '@/lib/navigator/types';
-import { BackgroundColor, ButtonStyles, DefaultAppStyling, Highlight, TextColor } from '@/style';
+import { BackgroundColor, ButtonStyles, Highlight, TextColor } from '@/style';
 import { auth } from '@/utils/Firebase.config';
 import '@/utils/i18n/i18n';
 import { setUnAuth } from '@/utils/redux/Actions';
