@@ -6,8 +6,9 @@ import { useSelector } from 'react-redux';
 
 import { OnboardingStackScreen } from '../OnboardingStack.navigator';
 import { IntroOnboaridng } from '@/components';
+import { AllOnboardingStackParamList } from '@/lib/navigator/types';
 
-const AllOnboardingStack = createNativeStackNavigator();
+const AllOnboardingStack = createNativeStackNavigator<AllOnboardingStackParamList>();
 
 export const AllOnboardingStackScreen: FC = () => {
 
@@ -19,7 +20,7 @@ export const AllOnboardingStackScreen: FC = () => {
 		>
 			{
 				firstRun === false ? (
-					<AllOnboardingStack.Screen name='infoOnboarding' component={IntroOnboaridng} />
+					<AllOnboardingStack.Screen name='IntroOnboarding' component={IntroOnboaridng} />
 				) : (
 					<AllOnboardingStack.Screen name='Onboarding' component={OnboardingStackScreen} />
 				)

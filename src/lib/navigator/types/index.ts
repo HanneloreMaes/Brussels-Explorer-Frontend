@@ -1,5 +1,6 @@
 // ONBOARDING
 export * from './onboardingNavProps/OnboardingNavProps';
+export * from './onboardingNavProps/AllOnboardingNavProps';
 
 // MAIN
 export * from './mainNavProps/MainNavProp';
