@@ -191,13 +191,13 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 			</Animated.View>
 			<View style={OnboardingStyles.buttonContainer}>
 				<Animated.View style={animatedButtonStyle}>
-					<Pressable style={ButtonStyles.buttonContainerPrimary} onPress={loginHandler}>
-						<Text style={ButtonStyles.buttonTextPrimary}>{i18n.t('onboarding_login_button')}</Text>
+					<Pressable style={ButtonStyles.buttonContainerPrimary} onPress={registerHandler}>
+						<Text style={ButtonStyles.buttonTextPrimary}>{i18n.t('onboarding_register_button')}</Text>
 					</Pressable>
 				</Animated.View>
 				<Animated.View style={animatedButtonStyle}>
-					<Pressable style={ButtonStyles.buttonContainerPrimary} onPress={registerHandler}>
-						<Text style={ButtonStyles.buttonTextPrimary}>{i18n.t('onboarding_register_button')}</Text>
+					<Pressable style={ButtonStyles.buttonContainerPrimary} onPress={loginHandler}>
+						<Text style={ButtonStyles.buttonTextPrimary}>{i18n.t('onboarding_login_button')}</Text>
 					</Pressable>
 				</Animated.View>
 				<Animated.View style={animatedButtonStyle}>
@@ -212,12 +212,12 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 					animatedFormStyle,
 					StyleSheet.absoluteFill,
 					{
-						height: isRegister ? 300 : 250,
-						marginTop: isRegister ? -62 : -15
+						height: isRegister ? '120%' : '115%',
+						marginTop: isRegister ? '-13%' : '-10%'
 					}
 				]}>
 					<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-						<View style={{ paddingTop: isRegister ? 15 : 50, marginBottom: isRegister ? 20 : 30 }}>
+						<View style={{ paddingTop: 5 }}>
 							{isRegister && (
 								<TextInput
 									placeholder={i18n.t('onboarding_placeholder_name') as string | undefined}

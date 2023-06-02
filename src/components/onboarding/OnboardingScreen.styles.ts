@@ -40,6 +40,7 @@ export const OnboardingStyles = StyleSheet.create({
 		marginVertical: DefaultMargins.verticalMargin,
 		borderRadius: 25,
 		paddingLeft: 10,
+		fontSize: 16,
 	},
 	formButton: {
 		backgroundColor: Highlight.tealHighlight,
@@ -71,13 +72,15 @@ export const OnboardingStyles = StyleSheet.create({
 	},
 	forgotBtn: {
 		alignItems: 'flex-end',
-		marginHorizontal: DefaultAppStyling.globalMargin
+		marginHorizontal: DefaultAppStyling.globalMargin,
+		marginBottom: DefaultMargins.topMargin,
 	},
 	forgotText: {
 		marginBottom: DefaultMargins.bottomMargin,
-		marginTop: -5,
+		marginTop: 2,
 		borderBottomWidth: 0.5,
 		borderColor: TextColor.lightGrayText,
-		color: TextColor.lightGrayText
+		color: TextColor.lightGrayText,
+		fontSize: 16,
 	},
 });
