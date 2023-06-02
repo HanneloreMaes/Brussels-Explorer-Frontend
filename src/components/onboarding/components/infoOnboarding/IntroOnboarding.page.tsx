@@ -59,7 +59,7 @@ export const IntroOnboaridng: FC = () => {
 						/>
 					</Svg>
 					<View style={{ marginHorizontal: DefaultAppStyling.globalMargin }}>
-						<Text style={IntroStyles.titleSlide1}>Welcome to Brussels Epxlorer!</Text>
+						<Text style={IntroStyles.titleSlide1}>Welcome to Brussels Explorer!</Text>
 						<Text
 							style={[
 								TextStyles.bodyText,
@@ -88,7 +88,19 @@ export const IntroOnboaridng: FC = () => {
 							preserveAspectRatio='xMidYMid slice'
 							clipPath='url(#clipPathId)' />
 					</Svg>
-					<Text>Hellow</Text>
+					<View style={{ marginHorizontal: DefaultAppStyling.globalMargin }}>
+						<Text style={IntroStyles.titleSlide1}>Feature: Map with routes</Text>
+						<Text
+							style={[
+								TextStyles.bodyText,
+								{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+							]}
+						>
+							In the app, there is a map provided where the different routes are shown.
+							With the possibility to navigate to the details of the route.
+							Viewing all points is also possible here.
+						</Text>
+					</View>
 				</View>
 				<View style={IntroStyles.slideWrapper}>
 					<Svg height={height / 1.55} width={width}>
@@ -107,7 +119,19 @@ export const IntroOnboaridng: FC = () => {
 							preserveAspectRatio='xMidYMid slice'
 							clipPath='url(#clipPathId)' />
 					</Svg>
-					<Text>Hellow</Text>
+					<View style={{ marginHorizontal: DefaultAppStyling.globalMargin }}>
+						<Text style={IntroStyles.titleSlide1}>Feature: Filter routes</Text>
+						<Text
+							style={[
+								TextStyles.bodyText,
+								{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+							]}
+						>
+							Filtering all routes can be done according to 3 values: theme, distance and time.
+							It may happen that there is no route that meets the requirements and
+							removing the filters is easy.
+						</Text>
+					</View>
 				</View>
 				<View style={IntroStyles.slideWrapper}>
 					<Svg height={height / 1.55} width={width}>
@@ -126,7 +150,19 @@ export const IntroOnboaridng: FC = () => {
 							preserveAspectRatio='xMidYMid slice'
 							clipPath='url(#clipPathId)' />
 					</Svg>
-					<Text>Hellow</Text>
+					<View style={{ marginHorizontal: DefaultAppStyling.globalMargin }}>
+						<Text style={IntroStyles.titleSlide1}>Feature: Change language</Text>
+						<Text
+							style={[
+								TextStyles.bodyText,
+								{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+							]}
+						>
+							To make the app accessible to many, there is the ability to customize your language.
+							The languages English, Dutch, French and German are supported.
+							It can be found at settings and then language
+						</Text>
+					</View>
 				</View>
 			</Swiper>
 		</View>
