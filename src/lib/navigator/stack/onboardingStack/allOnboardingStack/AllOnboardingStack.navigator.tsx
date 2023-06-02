@@ -4,8 +4,7 @@ import React, { FC } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useSelector } from 'react-redux';
 
-import { OnboardingStackScreen } from '../OnboardingStack.navigator';
-import { IntroOnboaridng } from '@/components';
+import { ALL_ONBOARDING_ROUTES } from '@/enums/routes';
 import { AllOnboardingStackParamList } from '@/lib/navigator/types';
 
 const AllOnboardingStack = createNativeStackNavigator<AllOnboardingStackParamList>();
@@ -16,14 +15,20 @@ export const AllOnboardingStackScreen: FC = () => {
 
 	return(
 		<AllOnboardingStack.Navigator
+			initialRouteName={ firstRun === true ? 'IntroOnboarding' : 'Onboarding' }
 			screenOptions={{ headerShown: false }}
 		>
 			{
-				firstRun === false ? (
-					<AllOnboardingStack.Screen name='IntroOnboarding' component={IntroOnboaridng} />
-				) : (
-					<AllOnboardingStack.Screen name='Onboarding' component={OnboardingStackScreen} />
-				)
+				ALL_ONBOARDING_ROUTES.map((allOnboarding) => (
+					<AllOnboardingStack.Screen
+						key={allOnboarding.name}
+						name={allOnboarding.name as keyof AllOnboardingStackParamList}
+						component={allOnboarding.component}
+						options={{
+							title: allOnboarding.label
+						}}
+					/>
+				))
 			}
 		</AllOnboardingStack.Navigator>
 	);
