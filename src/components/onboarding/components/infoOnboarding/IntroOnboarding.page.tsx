@@ -1,24 +1,38 @@
 import React, { FC } from 'react';
 
-import { View, Text, Dimensions } from 'react-native';
+import { View, Text, Dimensions, TouchableOpacity } from 'react-native';
 import { Svg, Image, Ellipse, ClipPath } from 'react-native-svg';
 import Swiper from 'react-native-swiper';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { IntroStyles } from './IntroOnboarding.styles';
+import { AllOnboardingNavProps } from '@/lib/navigator/types';
 import {
 	BackgroundColor,
+	ButtonStyles,
 	DefaultAppStyling,
 	SwiperColor,
 	TextColor,
-	TextStyles
+	TextStyles,
+	cxEllipse,
+	cyEllipse,
+	imageHeight,
+	imageWidth,
+	rxEllipse,
+	ryEllipse,
+	svgHeight
 } from '@/style';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
-export const IntroOnboaridng: FC = () => {
+export const IntroOnboaridng: FC <AllOnboardingNavProps<'IntroOnboarding'>> = ({ navigation }) => {
 
-	const { nameMode } = useSelector((state: any) => state.allReducer);
+	const dispatch = useDispatch();
+	const { nameMode, firstRun } = useSelector((state: any) => state.allReducer);
+
+	const nextHandler = () => {
+		navigation.navigate('Onboarding');
+	};
 
 	return (
 		<View style={IntroStyles.container}>
@@ -41,19 +55,19 @@ export const IntroOnboaridng: FC = () => {
 				loop={false}
 			>
 				<View style={IntroStyles.slideWrapper}>
-					<Svg height={height / 1.55} width={width}>
+					<Svg height={svgHeight} width={width}>
 						<ClipPath id='clipPathId'>
 							<Ellipse
-								cx={width / 2}
-								cy="70"
-								rx={height / 1.8}
-								ry={height / 2}
+								cx={cxEllipse}
+								cy={cyEllipse}
+								rx={rxEllipse}
+								ry={ryEllipse}
 							/>
 						</ClipPath>
 						<Image
 							href={require('@/assets/images/swiper/museum_leger.jpg')}
-							width={width}
-							height={height / 1.5}
+							width={imageWidth}
+							height={imageHeight}
 							preserveAspectRatio='xMidYMid slice'
 							clipPath='url(#clipPathId)'
 						/>
@@ -72,19 +86,19 @@ export const IntroOnboaridng: FC = () => {
 					</View>
 				</View>
 				<View style={IntroStyles.slideWrapper}>
-					<Svg height={height / 1.55} width={width}>
+					<Svg height={svgHeight} width={width}>
 						<ClipPath id='clipPathId'>
 							<Ellipse
-								cx={width / 2}
-								cy="70"
-								rx={height / 1.8}
-								ry={height / 2}
+								cx={cxEllipse}
+								cy={cyEllipse}
+								rx={rxEllipse}
+								ry={ryEllipse}
 							/>
 						</ClipPath>
 						<Image
 							href={require('@/assets/images/swiper/park_happark.jpg')}
-							width={width}
-							height={height / 1.5}
+							width={imageWidth}
+							height={imageHeight}
 							preserveAspectRatio='xMidYMid slice'
 							clipPath='url(#clipPathId)' />
 					</Svg>
@@ -103,19 +117,19 @@ export const IntroOnboaridng: FC = () => {
 					</View>
 				</View>
 				<View style={IntroStyles.slideWrapper}>
-					<Svg height={height / 1.55} width={width}>
+					<Svg height={svgHeight} width={width}>
 						<ClipPath id='clipPathId'>
 							<Ellipse
-								cx={width / 2}
-								cy="70"
-								rx={height / 1.8}
-								ry={height / 2}
+								cx={cxEllipse}
+								cy={cyEllipse}
+								rx={rxEllipse}
+								ry={ryEllipse}
 							/>
 						</ClipPath>
 						<Image
 							href={require('@/assets/images/swiper/museum_experience.jpg')}
-							width={width}
-							height={height / 1.5}
+							width={imageWidth}
+							height={imageHeight}
 							preserveAspectRatio='xMidYMid slice'
 							clipPath='url(#clipPathId)' />
 					</Svg>
@@ -134,23 +148,23 @@ export const IntroOnboaridng: FC = () => {
 					</View>
 				</View>
 				<View style={IntroStyles.slideWrapper}>
-					<Svg height={height / 1.55} width={width}>
+					<Svg height={svgHeight} width={width}>
 						<ClipPath id='clipPathId'>
 							<Ellipse
-								cx={width / 2}
-								cy="70"
-								rx={height / 1.8}
-								ry={height / 2}
+								cx={cxEllipse}
+								cy={cyEllipse}
+								rx={rxEllipse}
+								ry={ryEllipse}
 							/>
 						</ClipPath>
 						<Image
 							href={require('@/assets/images/swiper/vaartkapoen.jpg')}
-							width={width}
-							height={height / 1.5}
+							width={imageWidth}
+							height={imageHeight}
 							preserveAspectRatio='xMidYMid slice'
 							clipPath='url(#clipPathId)' />
 					</Svg>
-					<View style={{ marginHorizontal: DefaultAppStyling.globalMargin }}>
+					<View style={{ marginHorizontal: DefaultAppStyling.globalMargin, marginBottom: 25 }}>
 						<Text style={IntroStyles.titleSlide1}>Feature: Change language</Text>
 						<Text
 							style={[
@@ -159,10 +173,13 @@ export const IntroOnboaridng: FC = () => {
 							]}
 						>
 							To make the app accessible to many, there is the ability to customize your language.
-							The languages English, Dutch, French and German are supported.
-							It can be found at settings and then language
+							English, Dutch, French and German are supported.
+							It can be changed in settings and than language
 						</Text>
 					</View>
+					<TouchableOpacity style={ButtonStyles.buttonContainerPrimary} onPress={nextHandler}>
+						<Text style={ButtonStyles.buttonTextPrimary}>Next</Text>
+					</TouchableOpacity>
 				</View>
 			</Swiper>
 		</View>
