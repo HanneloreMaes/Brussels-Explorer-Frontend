@@ -6,7 +6,8 @@ import {
 	PointMapView,
 	SettingsPage,
 	LanguageSettings,
-	QuestionRegister
+	QuestionRegister,
+	IntroOnboaridng
 } from '@/components';
 import {
 	MapviewStackScreen,
@@ -130,8 +131,16 @@ export const SETTINGS_ROUTES: IRouteTypes[] = [
 	SHARED_ROUTES.OnboardingPage,
 ];
 
+export const ALL_ONBOARDING_ROUTES: IRouteTypes[] = [
+	{
+		name: 'IntroOnboarding',
+		component: IntroOnboaridng,
+		label: 'intro'
+	},
+	SHARED_ROUTES.OnboardingStack,
+];
+
 export const APP_ROUTES: IRouteTypes[] = [
-	// SHARED_ROUTES.OnboardingStack,
 	{
 		name: 'AllOnboarding',
 		component: AllOnboardingStackScreen,
