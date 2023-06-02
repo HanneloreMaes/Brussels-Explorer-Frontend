@@ -191,13 +191,13 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 			</Animated.View>
 			<View style={OnboardingStyles.buttonContainer}>
 				<Animated.View style={animatedButtonStyle}>
-					<Pressable style={ButtonStyles.buttonContainerPrimary} onPress={registerHandler}>
-						<Text style={ButtonStyles.buttonTextPrimary}>{i18n.t('onboarding_register_button')}</Text>
+					<Pressable style={ButtonStyles.buttonContainerPrimary} onPress={loginHandler}>
+						<Text style={ButtonStyles.buttonTextPrimary}>{i18n.t('onboarding_login_button')}</Text>
 					</Pressable>
 				</Animated.View>
 				<Animated.View style={animatedButtonStyle}>
-					<Pressable style={ButtonStyles.buttonContainerPrimary} onPress={loginHandler}>
-						<Text style={ButtonStyles.buttonTextPrimary}>{i18n.t('onboarding_login_button')}</Text>
+					<Pressable style={ButtonStyles.buttonContainerPrimary} onPress={registerHandler}>
+						<Text style={ButtonStyles.buttonTextPrimary}>{i18n.t('onboarding_register_button')}</Text>
 					</Pressable>
 				</Animated.View>
 				<Animated.View style={animatedButtonStyle}>
