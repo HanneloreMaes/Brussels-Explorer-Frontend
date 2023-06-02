@@ -13,14 +13,14 @@ export const IntroStyles = StyleSheet.create({
 		backgroundColor: 'transparent',
 	},
 	dot: {
-		width: 12,
-		height: 12,
+		width: 10,
+		height: 10,
 		borderRadius: 7,
 		marginLeft: 7,
 		marginRight: 7
 	},
 	bottomPagina: {
-		bottom: 70,
+		bottom: 20,
 	},
 	image: {
 		width,
