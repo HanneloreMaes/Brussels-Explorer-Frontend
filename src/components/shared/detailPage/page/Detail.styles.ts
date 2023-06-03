@@ -20,9 +20,9 @@ export const DetailStyles = StyleSheet.create({
 		borderRadius: 10,
 	},
 	borderText: {
+		...TextStyles.bodyText,
 		paddingVertical: 5,
-		paddingHorizontal: 20,
-		color: TextColor.darkText,
+		paddingHorizontal: 5,
 	},
 	imageDetail: {
 		width: width - DefaultAppStyling.globalMargin - 30,
@@ -38,6 +38,7 @@ export const DetailStyles = StyleSheet.create({
 		...TextStyles.bodyText,
 		fontSize: 20,
 		marginBottom: 10,
+		paddingHorizontal: 10,
 	},
 	typePoint: {
 		...TextStyles.titleH2,
