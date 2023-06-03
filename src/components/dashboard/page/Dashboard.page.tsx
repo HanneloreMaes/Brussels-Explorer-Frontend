@@ -49,7 +49,10 @@ export const DashboardScreen: FC <DashboardNavProps<'DashboardScreen'>> = ({ nav
 							translation={i18n}
 							navigation={navigation}
 						/>
-						<LastSeenSection dataUnAuth={unAuthData} mode={nameMode} />
+						<LastSeenSection
+							dataUnAuth={unAuthData}
+							navigation={navigation}
+						/>
 					</View>
 				)
 			}
