@@ -75,7 +75,6 @@ export const DetailPage: FC <DetailTypes> = ({ route }) => {
 							{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 						]}>{dataOfCard.theme}</Text>
 				</View>
-				{/* <Text style={[ DetailStyles.themeTitle, { color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{dataOfCard.theme}</Text> */}
 				<Text
 					style={[
 						TextStyles.bodyText,
