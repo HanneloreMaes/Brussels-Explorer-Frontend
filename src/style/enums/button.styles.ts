@@ -26,13 +26,13 @@ export const ButtonStyles = StyleSheet.create({
 	},
 	buttonTextPrimary: {
 		fontFamily: 'Franklin-Book-Regular',
-		fontSize: 20,
+		fontSize: 22,
 		letterSpacing: 0.5,
 		color: TextColor.lightText,
 	},
 	skipButtonText: {
 		fontFamily: 'Franklin-Book-Regular',
-		fontSize: 20,
+		fontSize: 22,
 		letterSpacing: 0.5,
 		color: TextColor.darkText,
 	},

@@ -1,7 +1,20 @@
 import { IRouteTypes } from './routes.types';
 import { SHARED_ROUTES } from './sharedRoutes';
-import { DashboardScreen, MapView, PointMapView, SettingsPage, LanguageSettings, QuestionRegister } from '@/components';
-import { MapviewStackScreen, SearchStackScreen, SettingsStackScreen } from '@/lib/navigator/stack';
+import {
+	DashboardScreen,
+	MapView,
+	PointMapView,
+	SettingsPage,
+	LanguageSettings,
+	QuestionRegister,
+	IntroOnboaridng
+} from '@/components';
+import {
+	MapviewStackScreen,
+	SearchStackScreen,
+	SettingsStackScreen,
+	AllOnboardingStackScreen
+} from '@/lib/navigator/stack';
 
 export const ONBOARDING_ROUTES: IRouteTypes[] = [
 	SHARED_ROUTES.OnboardingPage,
@@ -118,7 +131,20 @@ export const SETTINGS_ROUTES: IRouteTypes[] = [
 	SHARED_ROUTES.OnboardingPage,
 ];
 
-export const APP_ROUTES: IRouteTypes[] = [
+export const ALL_ONBOARDING_ROUTES: IRouteTypes[] = [
+	{
+		name: 'IntroOnboarding',
+		component: IntroOnboaridng,
+		label: 'intro'
+	},
 	SHARED_ROUTES.OnboardingStack,
+];
+
+export const APP_ROUTES: IRouteTypes[] = [
+	{
+		name: 'AllOnboarding',
+		component: AllOnboardingStackScreen,
+		label: 'AllOnboarding',
+	},
 	SHARED_ROUTES.Main,
 ];

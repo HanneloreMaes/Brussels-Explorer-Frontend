@@ -32,3 +32,9 @@ export const Highlight = {
 	darkGrayHighlight: Colors.darkGray,
 	grayHighlight: Colors.opacityGray,
 };
+
+export const SwiperColor = {
+	darkSwipe: 'rgba(18, 18, 18, 0.3)',
+	lightSwipe: 'rgba(255, 255, 255, 0.3)',
+	activeSwipe: Colors.teal,
+};

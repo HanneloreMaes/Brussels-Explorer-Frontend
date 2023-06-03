@@ -85,6 +85,7 @@ A few of the things you can do with the frontend:
 7. Documentation React Native Icons - Oblador - [Github](https://github.com/oblador/react-native-vector-icons)
 8. Documentation rnmapbox/maps - rnMapbox - [Github](https://github.com/rnmapbox/maps)
 9. React Native Select Dropdown - AdelRedaa97 - [NPM](https://www.npmjs.com/package/react-native-select-dropdown)
+10. React Native Swiper - Leecade - [Github](https://github.com/leecade/react-native-swiper)
    
 
 ### Video's

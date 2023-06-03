@@ -7,6 +7,7 @@ import {
 	GET_SPEC_ROUTES,
 	SET_UN_AUTH_STACK,
 	SET_PREFERENCES,
+	SET_FIRST_RUN,
 } from './Actions.types';
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
 	nameMode: null,
 	unAuth: false,
 	activeLanguage: null,
+	firstRun: false,
 };
 
 function allReducer(state = initialState, action: any) {
@@ -38,6 +40,8 @@ function allReducer(state = initialState, action: any) {
 		return { ...state, unAuth: action.unAuth };
 	case SET_PREFERENCES:
 		return { ...state, preferences: action.preferences };
+	case SET_FIRST_RUN:
+		return { ...state, firstRun: action.firstRun };
 	default:
 		return state;
 	}

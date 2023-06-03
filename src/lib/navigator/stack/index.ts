@@ -1,5 +1,6 @@
 // ONBOARDING
 export * from './onboardingStack/OnboardingStack.navigator';
+export * from './onboardingStack/allOnboardingStack/AllOnboardingStack.navigator';
 
 // MAIN
 export * from './mainStack/MainStack.navigator';
