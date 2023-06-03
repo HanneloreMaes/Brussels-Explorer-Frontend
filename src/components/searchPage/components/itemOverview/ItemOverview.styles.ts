@@ -6,7 +6,6 @@ export const ItemOverviewStyles = StyleSheet.create({
 	itemContainer: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		marginHorizontal: DefaultAppStyling.globalMargin,
 		marginVertical: 15,
 	},
 	image: {

@@ -339,6 +339,7 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 										item={item}
 										nameMode={nameMode}
 										navigation={navigation}
+										prevPage='Search'
 									/>
 								);
 							})

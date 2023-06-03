@@ -1,4 +1,4 @@
 export interface LastSeenType {
-	mode: string;
+	navigation: any;
 	dataUnAuth?: any;
 };
