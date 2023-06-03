@@ -60,7 +60,6 @@ export const RecommendedStyles = StyleSheet.create({
 	infoRoute: {
 		...TextStyles.bodyText,
 		marginBottom: 20,
-		color: TextColor.grayText,
 	},
 	buttonSeeMore: {
 		height: '100%',
