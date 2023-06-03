@@ -1,12 +1,13 @@
 import React, { FC, useState, useEffect } from 'react';
 
-import { View, Image, Text, ScrollView, TouchableOpacity, Pressable } from 'react-native';
+import { View, Image, Text, ScrollView, TouchableOpacity } from 'react-native';
+import Feather from 'react-native-vector-icons/Feather';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RecommendedStyles } from './RecommendedSection.styles';
 import { RecommendedType } from '../types/Recommended.types';
 import { TitleH2 } from '@/components/shared';
-import { ButtonStyles, TextColor } from '@/style';
+import { BackgroundColor, ButtonStyles, Highlight, TextColor } from '@/style';
 import { getRoutes } from '@/utils/redux/Actions';
 
 export const RecommendedRoutes: FC <RecommendedType> = ({
@@ -69,76 +70,136 @@ export const RecommendedRoutes: FC <RecommendedType> = ({
 	return(
 		<View style={RecommendedStyles.container}>
 			<TitleH2 labelTitle='dashboard_section_recommended_title' prevComponent='Recommended' />
-			<ScrollView horizontal style={RecommendedStyles.allDataContainer}>
+			<ScrollView horizontal style={RecommendedStyles.scrollView}>
 				{
 					unAuth === true ? (
 
 						slicedData.map((recommendedRoute: any) => {
 							return(
-								<TouchableOpacity
-									key={recommendedRoute._id}
-									style={RecommendedStyles.dataContainer}
-									onPress={() => navigation.navigate('DetailPage', {
-										titleScreen: recommendedRoute.name,
-										dataOfCard: recommendedRoute,
-										nameMode: mode
-									})}
+								<View
+									style={RecommendedStyles.allDataParentContainer}
 								>
-									<Image source={{ uri: recommendedRoute.imageUrl }} style={RecommendedStyles.imageRoute} resizeMode='cover' />
-									<Text
+									<View
 										style={[
-											RecommendedStyles.nameRoute,
-											{ color: mode === 'dark' ? TextColor.lightText : TextColor.darkText }
+											RecommendedStyles.allDataChildContainer,
+											{
+												backgroundColor: mode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+												shadowColor: mode === 'dark' ? Highlight.lightHighlight : Highlight.darkHighlight,
+											}
 										]}
 									>
-										{recommendedRoute.name}
-									</Text>
-									<View style={RecommendedStyles.bottomThemeContainer}>
-										<Text style={RecommendedStyles.infoRoute}>{recommendedRoute.theme}</Text>
+										<TouchableOpacity
+											key={recommendedRoute._id}
+											style={RecommendedStyles.dataContainer}
+											onPress={() => navigation.navigate('DetailPage', {
+												titleScreen: recommendedRoute.name,
+												dataOfCard: recommendedRoute,
+												nameMode: mode
+											})}
+										>
+											<Image source={{ uri: recommendedRoute.imageUrl }} style={RecommendedStyles.imageRoute} resizeMode='cover' />
+											<Text
+												style={[
+													RecommendedStyles.nameRoute,
+													{ color: mode === 'dark' ? TextColor.lightText : TextColor.darkText }
+												]}
+											>
+												{recommendedRoute.name}
+											</Text>
+											<View style={RecommendedStyles.bottomThemeContainer}>
+												<Text
+													style={[
+														RecommendedStyles.infoRoute,
+														{
+															color: mode === 'dark' ? TextColor.lightGrayText : TextColor.grayText,
+														}
+													]}
+												>{recommendedRoute.theme}</Text>
+											</View>
+										</TouchableOpacity>
 									</View>
-								</TouchableOpacity>
+								</View>
 							);
 						})
 					) : (
 						checkData.map((recommendedRoute: any) => {
 							return(
-								<TouchableOpacity
-									key={recommendedRoute._id}
-									style={RecommendedStyles.dataContainer}
-									onPress={() => navigation.navigate('DetailPage', {
-										titleScreen: recommendedRoute.name,
-										dataOfCard: recommendedRoute,
-										nameMode: mode
-									})}
+								<View
+									style={RecommendedStyles.allDataParentContainer}
 								>
-									<Image source={{ uri: recommendedRoute.imageUrl }} style={RecommendedStyles.imageRoute} resizeMode='cover' />
-									<Text
+									<View
 										style={[
-											RecommendedStyles.nameRoute,
-											{ color: mode === 'dark' ? TextColor.lightText : TextColor.darkText }
+											RecommendedStyles.allDataChildContainer,
+											{
+												backgroundColor: mode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+												shadowColor: mode === 'dark' ? Highlight.lightHighlight : Highlight.darkHighlight,
+											}
 										]}
 									>
-										{recommendedRoute.name}
-									</Text>
-									<View style={RecommendedStyles.bottomThemeContainer}>
-										<Text style={RecommendedStyles.infoRoute}>{recommendedRoute.theme}</Text>
+										<TouchableOpacity
+											key={recommendedRoute._id}
+											style={RecommendedStyles.dataContainer}
+											onPress={() => navigation.navigate('DetailPage', {
+												titleScreen: recommendedRoute.name,
+												dataOfCard: recommendedRoute,
+												nameMode: mode
+											})}
+										>
+											<Image source={{ uri: recommendedRoute.imageUrl }} style={RecommendedStyles.imageRoute} resizeMode='cover' />
+											<Text
+												style={[
+													RecommendedStyles.nameRoute,
+													{ color: mode === 'dark' ? TextColor.lightText : TextColor.darkText }
+												]}
+											>
+												{recommendedRoute.name}
+											</Text>
+											<View style={RecommendedStyles.bottomThemeContainer}>
+												<Text
+													style={[
+														RecommendedStyles.infoRoute,
+														{
+															color: mode === 'dark' ? TextColor.lightGrayText : TextColor.grayText,
+														}
+													]}
+												>{recommendedRoute.theme}</Text>
+											</View>
+										</TouchableOpacity>
 									</View>
-								</TouchableOpacity>
+								</View>
 							);
 						})
 					)
 				}
-			</ScrollView>
-			<Pressable style={[ ButtonStyles.buttonContainerPrimary, RecommendedStyles.buttonSeeMore ]} onPress={() => navigation.navigate('Search')}>
-				<Text
-					style={[
-						ButtonStyles.buttonTextPrimary,
-						RecommendedStyles.buttonSeeMoreText
-					]}
+				<View
+					style={RecommendedStyles.allDataParentContainer}
 				>
-					{translation.t('dashboard_section_recommended_button_title')}
-				</Text>
-			</Pressable>
+					<View
+						style={[
+							RecommendedStyles.allDataChildContainer,
+							{
+								backgroundColor: mode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+								shadowColor: mode === 'dark' ? Highlight.lightHighlight : Highlight.darkHighlight,
+							}
+						]}
+					>
+						<TouchableOpacity
+							style={RecommendedStyles.buttonSeeMore}
+							onPress={() => navigation.navigate('Search')}
+						>
+							<Text
+								style={[
+									ButtonStyles.buttonTextPrimary,
+									RecommendedStyles.buttonSeeMoreText
+								]}
+							>
+								{translation.t('dashboard_section_recommended_button_title')}
+							</Text>
+							<Feather name='plus-circle' color={TextColor.lightText} size={30} />
+						</TouchableOpacity>
+					</View>
+				</View>
+			</ScrollView>
 		</View>
 	);
 };

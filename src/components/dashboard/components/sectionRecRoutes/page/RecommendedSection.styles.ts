@@ -1,10 +1,10 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-import { BorderContainerStyle, DefaultMargins, TextColor, TextStyles } from '@/style';
+import { BorderContainerStyle, DefaultMargins, Highlight, TextColor, TextStyles } from '@/style';
 
 export const RecommendedStyles = StyleSheet.create({
 	container: {
-		height: Dimensions.get('window').height/3 + 80,
+		height: Dimensions.get('window').height/3 + 70,
 		marginBottom: 30,
 	},
 	title: {
@@ -12,20 +12,41 @@ export const RecommendedStyles = StyleSheet.create({
 		color: TextColor.darkText,
 		marginBottom: 5,
 	},
-	allDataContainer: {
+	scrollView: {
 		flexDirection: 'row',
+	},
+	allDataParentContainer: {
+		width: 150,
+		marginRight: 10,
+		overflow: 'hidden',
+		paddingBottom: 15,
+	},
+	allDataChildContainer: {
+		width: '100%',
+		height: '100%',
+		shadowColor: '#000',
+		shadowOffset: { width: 1, height: 5 },
+		shadowOpacity:  0.4,
+		shadowRadius: 3,
+		elevation: 5,
+		borderRadius: BorderContainerStyle.borderRadius,
 	},
 	dataContainer: {
 		width: 150,
+		height: '100%',
 		flexDirection: 'column',
 		alignItems: 'center',
 		marginRight: DefaultMargins.topMargin,
+		borderWidth: BorderContainerStyle.borderWidth,
+		borderRadius: BorderContainerStyle.borderRadius,
+		borderColor: BorderContainerStyle.borderColor,
 	},
 	imageRoute: {
-		height: 100,
-		width: 150,
-		borderRadius: BorderContainerStyle.imageBorderRadius,
-		marginBottom: 5,
+		height: 120,
+		width: 148,
+		marginBottom: DefaultMargins.bottomMargin,
+		borderTopLeftRadius: BorderContainerStyle.borderRadius,
+		borderTopRightRadius: BorderContainerStyle.borderRadius
 	},
 	nameRoute: {
 		...TextStyles.bodyText,
@@ -39,12 +60,17 @@ export const RecommendedStyles = StyleSheet.create({
 	infoRoute: {
 		...TextStyles.bodyText,
 		marginBottom: 20,
-		color: TextColor.grayText,
 	},
 	buttonSeeMore: {
-		height: 35,
+		height: '100%',
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: Highlight.tealHighlight,
+		borderRadius: BorderContainerStyle.borderRadius,
 	},
 	buttonSeeMoreText: {
-		fontSize: 16,
+		...TextStyles.titleH2,
+		marginBottom: DefaultMargins.horizontalMargin,
+		textAlign: 'center',
 	},
 });
