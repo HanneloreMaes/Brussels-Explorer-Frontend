@@ -26,7 +26,8 @@ export const ItemOverview: FC <ItemTypes> = ({
 				onPress={() => navigation.navigate('DetailPage', {
 					titleScreen: item.name,
 					dataOfCard: item,
-					nameMode
+					nameMode,
+					navigation
 				})}
 			>
 				<Image

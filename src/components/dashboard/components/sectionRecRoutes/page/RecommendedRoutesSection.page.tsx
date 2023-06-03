@@ -95,7 +95,8 @@ export const RecommendedRoutes: FC <RecommendedType> = ({
 											onPress={() => navigation.navigate('DetailPage', {
 												titleScreen: recommendedRoute.name,
 												dataOfCard: recommendedRoute,
-												nameMode: mode
+												nameMode: mode,
+												navigation
 											})}
 										>
 											<Image source={{ uri: recommendedRoute.imageUrl }} style={RecommendedStyles.imageRoute} resizeMode='cover' />
@@ -143,7 +144,8 @@ export const RecommendedRoutes: FC <RecommendedType> = ({
 											onPress={() => navigation.navigate('DetailPage', {
 												titleScreen: recommendedRoute.name,
 												dataOfCard: recommendedRoute,
-												nameMode: mode
+												nameMode: mode,
+												navigation
 											})}
 										>
 											<Image source={{ uri: recommendedRoute.imageUrl }} style={RecommendedStyles.imageRoute} resizeMode='cover' />
