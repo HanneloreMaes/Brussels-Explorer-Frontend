@@ -1,14 +1,23 @@
 import React, { FC, useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { Image, Text, View } from 'react-native';
+import { Dimensions, Text, View } from 'react-native';
+import { Svg, Image, Ellipse, ClipPath } from 'react-native-svg';
 import { useSelector } from 'react-redux';
 
 import { HeaderStyles } from './Header.styles';
-import { TextColor, TextStyles } from '@/style';
+import {
+	TextColor,
+	TextStyles,
+	cxEllipse,
+	imageWidth,
+	ryEllipse
+} from '@/style';
 import { auth } from '@/utils/Firebase.config';
 
 import '@/utils/i18n/i18n';
+
+const { width, height } = Dimensions.get('window');
 
 export const Header: FC = () => {
 
@@ -61,15 +70,27 @@ export const Header: FC = () => {
 
 	return(
 		<View style={HeaderStyles.container}>
-			<Image
-				source={
-					nameMode === 'dark'
-						? require('@/assets/images/darkModus/header_Img.jpg')
-						: require('@/assets/images/lightModus/header_Img.jpg')
-				}
-				style={HeaderStyles.headerImage}
-				resizeMode='cover'
-			/>
+			<Svg height={height / 2.5} width={width}>
+				<ClipPath id='clipPathId'>
+					<Ellipse
+						cx={cxEllipse}
+						rx={ryEllipse}
+						ry={height / 2.5}
+					/>
+				</ClipPath>
+				<Image
+					href={
+						nameMode === 'dark'
+							? require('@/assets/images/darkModus/header_Img.jpg')
+							: require('@/assets/images/lightModus/header_Img.jpg')
+					}
+					width={imageWidth}
+					height={height / 2}
+					preserveAspectRatio='xMidYMid slice'
+					clipPath='url(#clipPathId)'
+					opacity='0.5'
+				/>
+			</Svg>
 			<View style={HeaderStyles.headerContainer}>
 				<Text
 					style={[
