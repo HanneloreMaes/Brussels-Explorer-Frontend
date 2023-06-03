@@ -108,7 +108,12 @@ export const RecommendedRoutes: FC <RecommendedType> = ({
 											</Text>
 											<View style={RecommendedStyles.bottomThemeContainer}>
 												<Text
-													style={RecommendedStyles.infoRoute}
+													style={[
+														RecommendedStyles.infoRoute,
+														{
+															color: mode === 'dark' ? TextColor.lightGrayText : TextColor.grayText,
+														}
+													]}
 												>{recommendedRoute.theme}</Text>
 											</View>
 										</TouchableOpacity>
@@ -151,7 +156,12 @@ export const RecommendedRoutes: FC <RecommendedType> = ({
 											</Text>
 											<View style={RecommendedStyles.bottomThemeContainer}>
 												<Text
-													style={RecommendedStyles.infoRoute}
+													style={[
+														RecommendedStyles.infoRoute,
+														{
+															color: mode === 'dark' ? TextColor.lightGrayText : TextColor.grayText,
+														}
+													]}
 												>{recommendedRoute.theme}</Text>
 											</View>
 										</TouchableOpacity>
