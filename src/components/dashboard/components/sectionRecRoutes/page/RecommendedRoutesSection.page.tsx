@@ -51,9 +51,10 @@ export const RecommendedRoutes: FC <RecommendedType> = ({
 	const checkValidateData = () => {
 		if (filteredData.length === 0 ) {
 			setCheckData(routes);
-		} else (
-			setCheckData(filteredData)
-		);
+		} else {
+			const slicedFilteredData = filteredData.slice(0, 3);
+			setCheckData(slicedFilteredData);
+		};
 	};
 
 	useEffect(() => {
