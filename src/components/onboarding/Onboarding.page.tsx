@@ -28,6 +28,7 @@ import { BackgroundColor, ButtonStyles, Highlight, TextColor } from '@/style';
 import { auth } from '@/utils/Firebase.config';
 import '@/utils/i18n/i18n';
 import { setUnAuth } from '@/utils/redux/Actions';
+import { TitleOnboarding } from './components/title/TitleOnboarding.page';
 
 export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ navigation }) => {
 
@@ -146,15 +147,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 			<View
 				style={OnboardingStyles.titleContainer}
 			>
-				<Text
-					style={[
-						OnboardingStyles.titleOnboarding,
-						{
-							color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText,
-							backgroundColor: nameMode === 'dark' ? null : BackgroundColor.onboardingLight
-						}
-					]}
-				>Brussels Explorer</Text>
+				<TitleOnboarding nameMode={nameMode} />
 			</View>
 			<Animated.View style={[ StyleSheet.absoluteFill, animatedImageStyle, { zIndex: -2 } ]}>
 				<Svg height={height + 50} width={width}>

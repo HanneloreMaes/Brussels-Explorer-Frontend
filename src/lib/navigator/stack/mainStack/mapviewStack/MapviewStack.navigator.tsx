@@ -3,10 +3,9 @@ import React, { FC } from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useTranslation } from 'react-i18next';
 
-import { MapView } from '@/components';
 import { MAPVIEW_ROUTES } from '@/enums/routes';
 import { MapviewStackParamList } from '@/lib/navigator/types';
-import { MapTopBar } from '@/lib/tabBars/topTabBarMapView/TopBarMapView';
+import { MapTopBar } from '@/lib/tabBars';
 import '@/utils/i18n/i18n';
 
 const MapOfTopBar = (props: any) => <MapTopBar {...props} />;

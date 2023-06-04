@@ -11,7 +11,7 @@ export const OnboardingStyles = StyleSheet.create({
 	},
 	titleContainer: {
 		position: 'absolute',
-		top: '8%',
+		top: '5%',
 		left: 0,
 		right: 0,
 		bottom: 0,
@@ -52,7 +52,7 @@ export const OnboardingStyles = StyleSheet.create({
 		marginVertical: DefaultMargins.verticalMargin,
 		borderWidth: 1,
 		borderColor: 'white',
-		...DefaultShadow.shadowPrimary,
+		...DefaultShadow.onboardingShadowPrimary,
 	},
 	formInputContainer: {
 		marginBottom: 70,
@@ -68,7 +68,7 @@ export const OnboardingStyles = StyleSheet.create({
 		alignItems: 'center',
 		borderRadius: 20,
 		top: -20,
-		...DefaultShadow.shadowSecundary,
+		...DefaultShadow.onboardingShadowSecundary,
 	},
 	forgotBtn: {
 		alignItems: 'flex-end',

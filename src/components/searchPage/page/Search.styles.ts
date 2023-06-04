@@ -1,10 +1,27 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-import { BorderContainerStyle, ButtonStyles, DefaultMargins, TextStyles } from '@/style';
+import { BorderContainerStyle, ButtonStyles, DefaultMargins, DefaultShadow, TextStyles } from '@/style';
 
 const { width, height } = Dimensions.get('window');
 
 export const SearchStyles = StyleSheet.create({
+	isOpenParentContainer: {
+		marginRight: 10,
+		overflow: 'hidden',
+		paddingBottom: 15,
+		height: '40%',
+		width: '100%'
+	},
+	isOpenChildContainer: {
+		width: '100%',
+		height: '100%',
+		...DefaultShadow.bottomShadow
+	},
+	closeButtonIcon: {
+		position: 'absolute',
+		top: 5,
+		right: 15
+	},
 	loadingContainer: {
 		height: Dimensions.get('window').height / 2,
 	},
@@ -33,15 +50,16 @@ export const SearchStyles = StyleSheet.create({
 		marginRight: '-30%',
 	},
 	dropdownDataContainer: {
-		width,
+		width: '70%',
 		zIndex: 6,
 		marginHorizontal: DefaultMargins.horizontalMargin,
-		marginTop: DefaultMargins.topMargin,
+		marginTop: 30,
 	},
 	dropdownContainer: {
 		flexDirection: 'row',
 		marginBottom: DefaultMargins.bottomMargin,
-		width: '90%',
+		// width,
+		// width: '90%',
 	},
 	filterCheckboxContainer: {
 		flexDirection: 'row',
@@ -69,8 +87,7 @@ export const SearchStyles = StyleSheet.create({
 		...ButtonStyles.buttonTextPrimary,
 	},
 	buttonsContainer: {
-		flexDirection: 'row',
-		justifyContent: 'space-around',
+		alignItems: 'center',
 		marginTop: 10,
 	},
 	dropBtnStyle: {

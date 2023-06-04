@@ -14,7 +14,7 @@ import { getPoints } from '@/utils/redux/Actions';
 export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 
 	const coordinates = [ 4.3570964, 50.845504 ];
-	const [ pointGeo, setPointGeo ] = useState();
+	const [ pointGeo, setPointGeo ] = useState<any>();
 	const [ showModal, setShowModal ] = useState<boolean>(false);
 	const [ showModalError, setShowModalError ] = useState<boolean>(false);
 	const [ detailPoint, setDetailPoint ] = useState<any>();
