@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-import { BorderContainerStyle, DefaultMargins, Highlight, TextColor, TextStyles } from '@/style';
+import { BorderContainerStyle, DefaultMargins, DefaultShadow, Highlight, TextColor, TextStyles } from '@/style';
 
 export const RecommendedStyles = StyleSheet.create({
 	container: {
@@ -22,13 +22,9 @@ export const RecommendedStyles = StyleSheet.create({
 		paddingBottom: 15,
 	},
 	allDataChildContainer: {
+		...DefaultShadow.bottomShadow,
 		width: '100%',
 		height: '100%',
-		shadowColor: '#000',
-		shadowOffset: { width: 1, height: 5 },
-		shadowOpacity:  0.4,
-		shadowRadius: 3,
-		elevation: 5,
 		borderRadius: BorderContainerStyle.borderRadius,
 	},
 	dataContainer: {
