@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import { useSelector } from 'react-redux';
 
 import { TabBarStyles } from './TabBarMain.styles';
-import { BackgroundColor, DefaultShadow, Highlight, TextColor } from '@/style';
+import { BackgroundColor, DefaultShadow, Highlight, TabBarColor, TextColor } from '@/style';
 
 export const MainStackTabBar: FC<BottomTabBarProps> = ({ state, descriptors, navigation }) => {
 
@@ -16,25 +16,25 @@ export const MainStackTabBar: FC<BottomTabBarProps> = ({ state, descriptors, nav
 	const getRightIcon = (routeName: string, activeState: boolean) => {
 		if (routeName === 'DashboardStack') {
 			if (activeState) {
-				return <Icon name='compass' size={30} color={Highlight.tealHighlight}/>;
+				return <Icon name='compass' size={30} color={nameMode === 'dark' ? TabBarColor.teal : Highlight.tealHighlight} />;
 			}
 			return <Icon name='compass' size={30} color={nameMode === 'dark' ? TextColor.lightText : TextColor.darkText} />;
 		}
 		if (routeName === 'AllStack') {
 			if (activeState) {
-				return <Icon name="map" size={28} color={Highlight.tealHighlight} />;
+				return <Icon name="map" size={28} color={nameMode === 'dark' ? TabBarColor.teal : Highlight.tealHighlight} />;
 			}
 			return <Icon name="map" size={28} color={nameMode === 'dark' ? TextColor.lightText : TextColor.darkText} />;
 		}
 		if (routeName === 'Search') {
 			if (activeState) {
-				return <Icon name="list" size={30} color={Highlight.tealHighlight} />;
+				return <Icon name="list" size={30} color={nameMode === 'dark' ? TabBarColor.teal : Highlight.tealHighlight} />;
 			}
 			return <Icon name="list" size={30} color={nameMode === 'dark' ? TextColor.lightText : TextColor.darkText} />;
 		}
 		if (routeName === 'SettingStack') {
 			if (activeState) {
-				return <Icon name="settings" size={30} color={Highlight.tealHighlight} />;
+				return <Icon name="settings" size={30} color={nameMode === 'dark' ? TabBarColor.teal : Highlight.tealHighlight} />;
 			}
 			return <Icon name="settings" size={30} color={nameMode === 'dark' ? TextColor.lightText : TextColor.darkText} />;
 		}
@@ -47,7 +47,7 @@ export const MainStackTabBar: FC<BottomTabBarProps> = ({ state, descriptors, nav
 				TabBarStyles.safeContainer,
 				DefaultShadow.shadowTabBar,
 				{
-					backgroundColor: nameMode === 'dark' ? BackgroundColor.headerBlack : BackgroundColor.light,
+					backgroundColor: nameMode === 'dark' ? TabBarColor.darkModus : BackgroundColor.light,
 					shadowColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.darkHighlight,
 				}
 			]}

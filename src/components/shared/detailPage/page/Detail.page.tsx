@@ -12,14 +12,13 @@ import { DescriptionDetail } from '../components/descriptionDetail/DescriptionDe
 import { PointsDetail } from '../components/pointsDetail/PointsDetail.page';
 import { DetailTypes } from '../types/Detail.types';
 import { ItemOverviewStyles } from '@/components/searchPage/components/itemOverview/ItemOverview.styles';
-import { DetailSubStackParamList } from '@/lib/navigator/types';
-import { BackgroundColor, DefaultMargins, Highlight, TextColor } from '@/style';
+import { BackgroundColor, DefaultMargins, Highlight, TabBarColor, TextColor } from '@/style';
 import { getSpecRoute } from '@/utils/redux/Actions';
 import '@/utils/i18n/i18n';
 
 const { height } = Dimensions.get('window');
 
-const DetailSubStack = createMaterialTopTabNavigator<DetailSubStackParamList>();
+const DetailSubStack = createMaterialTopTabNavigator();
 
 export const DetailPage: FC <DetailTypes> = ({ route, navigation }) => {
 
@@ -89,10 +88,10 @@ export const DetailPage: FC <DetailTypes> = ({ route, navigation }) => {
 					<DetailSubStack.Navigator
 						screenOptions={{
 							tabBarIndicatorStyle: {
-								backgroundColor: Highlight.tealHighlight,
+								backgroundColor: nameMode === 'dark' ? TabBarColor.teal : Highlight.tealHighlight,
 								height: 3
 							},
-							tabBarActiveTintColor: Highlight.tealHighlight,
+							tabBarActiveTintColor: nameMode === 'dark' ? TabBarColor.teal : Highlight.tealHighlight,
 							tabBarInactiveTintColor: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText,
 							tabBarStyle: {
 								backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,

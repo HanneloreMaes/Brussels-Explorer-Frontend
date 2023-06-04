@@ -38,3 +38,8 @@ export const SwiperColor = {
 	lightSwipe: 'rgba(255, 255, 255, 0.3)',
 	activeSwipe: Colors.teal,
 };
+
+export const TabBarColor = {
+	darkModus: Colors.headerBlack,
+	teal: 'rgb(44, 181, 167)',
+};
