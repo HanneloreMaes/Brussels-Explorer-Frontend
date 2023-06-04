@@ -26,7 +26,8 @@ export const ItemOverview: FC <ItemTypes> = ({
 				onPress={() => navigation.navigate('DetailPage', {
 					titleScreen: item.name,
 					dataOfCard: item,
-					nameMode
+					nameMode,
+					navigation
 				})}
 			>
 				<Image
@@ -45,9 +46,13 @@ export const ItemOverview: FC <ItemTypes> = ({
 							<Text style={[ ItemOverviewStyles.textInfo, { color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{item.time}</Text>
 						</View>
 						<View style={ItemOverviewStyles.infoTextContainer}>
-							<Icon name='tag' color={Highlight.tealHighlight} size={16} />
-							<Text style={[ ItemOverviewStyles.textInfo, { color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{item.theme}</Text>
+							<Feather name='map-pin' color={Highlight.tealHighlight} size={16} />
+							<Text style={[ ItemOverviewStyles.textInfo, { color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{item.area}</Text>
 						</View>
+					</View>
+					<View style={ItemOverviewStyles.infoTextContainer}>
+						<Icon name='tag' color={Highlight.tealHighlight} size={16} />
+						<Text style={[ ItemOverviewStyles.textInfo, { color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{item.theme}</Text>
 					</View>
 				</View>
 			</TouchableOpacity>

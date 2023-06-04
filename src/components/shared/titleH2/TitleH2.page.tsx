@@ -33,8 +33,8 @@ export const TitleH2: FC<TitleType> = ({ labelTitle, prevComponent }) => {
 			setWidthContainerLast('50%');
 		}
 		if (lang === 'de') {
-			setWidthContainerRec('60.5%');
-			setWidthContainerLast('48.5%');
+			setWidthContainerRec('65%');
+			setWidthContainerLast('53%');
 		}
 	};
 

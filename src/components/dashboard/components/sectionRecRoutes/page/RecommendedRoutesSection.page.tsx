@@ -95,7 +95,8 @@ export const RecommendedRoutes: FC <RecommendedType> = ({
 											onPress={() => navigation.navigate('DetailPage', {
 												titleScreen: recommendedRoute.name,
 												dataOfCard: recommendedRoute,
-												nameMode: mode
+												nameMode: mode,
+												navigation
 											})}
 										>
 											<Image source={{ uri: recommendedRoute.imageUrl }} style={RecommendedStyles.imageRoute} resizeMode='cover' />
@@ -126,6 +127,7 @@ export const RecommendedRoutes: FC <RecommendedType> = ({
 						checkData.map((recommendedRoute: any) => {
 							return(
 								<View
+									key={recommendedRoute._id}
 									style={RecommendedStyles.allDataParentContainer}
 								>
 									<View
@@ -138,12 +140,12 @@ export const RecommendedRoutes: FC <RecommendedType> = ({
 										]}
 									>
 										<TouchableOpacity
-											key={recommendedRoute._id}
 											style={RecommendedStyles.dataContainer}
 											onPress={() => navigation.navigate('DetailPage', {
 												titleScreen: recommendedRoute.name,
 												dataOfCard: recommendedRoute,
-												nameMode: mode
+												nameMode: mode,
+												navigation
 											})}
 										>
 											<Image source={{ uri: recommendedRoute.imageUrl }} style={RecommendedStyles.imageRoute} resizeMode='cover' />

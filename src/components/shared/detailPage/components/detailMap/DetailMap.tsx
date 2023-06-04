@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { DetailMapStyles } from './DetailMap.styles';
 import { DetailMapTypes } from './DetailMap.types';
-import { ModalError } from '../..';
+import { ModalError } from '../../..';
 import { MapboxAccesToken } from '@/config';
 import { Highlight } from '@/style';
 import { getPointsFromSpecRoutes } from '@/utils/redux/Actions';

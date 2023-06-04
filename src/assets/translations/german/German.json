@@ -1,5 +1,5 @@
 {
-	"routes_label_searchPage": "Übersicht",
+	"routes_label_searchPage": "Alle Routen",
 	"routes_label_language": "Sprache",
 	"routes_label_change_password": "Passwort ändern",
 	"routes_label_settings": "Einstellungen",
@@ -31,7 +31,8 @@
 	"dashboard_section_recommended_title": "Empfohlene Routen",
 	"dashboard_section_recommended_button_title": "Alle Routes anzeigen",
 	"dashboard_section_last_seen_title": "Zuletzt gesehen",
-	"dashboard_detail_page_address": "Brüssel",
+	"detail_page_title_description": "Beschreibung",
+	"detail_page_title_point": "Punkte auf der Route",
 	"mapbox_button_more_info": "Mehr Info",
 	"mapbox_error_no_routes": "Routen können derzeit nicht geladen werden.",
 	"mapbox_error_no_points": "Punkte können derzeit nicht geladen werden.",

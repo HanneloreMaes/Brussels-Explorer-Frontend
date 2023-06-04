@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { Text, ScrollView, View, TouchableOpacity, Dimensions } from 'react-native';
+import { Text, ScrollView, View, TouchableOpacity, Dimensions, Button } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,7 +10,7 @@ import { SearchStyles } from './Search.styles';
 import { ItemOverview, NotFoundText } from '../components';
 import { LoadingSpinner, RegisterModal } from '@/components/shared';
 import { SearchNavProps } from '@/lib/navigator/types';
-import { BackgroundColor, ButtonStyles, DefaultShadow, Highlight, TextColor, TextStyles } from '@/style';
+import { BackgroundColor, ButtonStyles, Highlight, TextColor, TextStyles } from '@/style';
 import { getRoutes } from '@/utils/redux/Actions';
 import '@/utils/i18n/i18n';
 
@@ -43,8 +43,21 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 		setIsLoading(false);
 	};
 
+	const renderFilterButton = () => {
+		return(
+			<Button
+				title={i18n.t('search_filter_menu_title')}
+				color={Highlight.tealHighlight}
+				onPress = {() => setIsOpen(true)}
+			/>
+		);
+	};
+
 	useEffect(() => {
 		fetchData();
+		navigation.setOptions({
+			headerRight: () => renderFilterButton(),
+		});
 	}, []);
 
 	useEffect(() => {
@@ -74,91 +87,36 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 			contentInsetAdjustmentBehavior='automatic'
 		>
 			<View style={{ height: Dimensions.get('window').height }}>
-				<TouchableOpacity
-					style={[
-						SearchStyles.filterBtnContainer,
-						DefaultShadow.shadowPrimary,
-						{
-							shadowColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.darkHighlight,
-							backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light
-						}
-					]}
-					onPress={() => setIsOpen(!isOpen)}
-				>
-					<Text
-						style={[
-							TextStyles.bodyText,
-							{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
-						]}
-					>{i18n.t('search_filter_menu_title')}</Text>
-				</TouchableOpacity>
 				{
 					isOpen ? (
-						<View
-							style={{
-								backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
-								zIndex: 6,
-								height: '25%',
-								marginBottom: 75,
-							}}
-						>
+						<View style={SearchStyles.isOpenParentContainer}>
 							<View
 								style={[
-									SearchStyles.dropdownDataContainer,
+									SearchStyles.isOpenChildContainer,
 									{
-										height: unAuth === true ? '30%' : Dimensions.get('window').height / 5,
+										backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+										shadowColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.darkHighlight,
 									}
 								]}
 							>
-								{
-									unAuth === true ? (
-										<View style={SearchStyles.dropdownContainer} >
-											<Text
-												style={[
-													TextStyles.titleH3,
-													SearchStyles.titleCategories,
-													{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
-												]}
-											>{i18n.t('search_default_title_theme')}:</Text>
-											<SelectDropdown
-												data={themesNames}
-												ref={themeDropDownRef}
-												onSelect={(selectedItem, index) => {
-													setTheme(selectedItem);
-												}}
-												buttonTextAfterSelection={(selectedItem) => {
-													return selectedItem;
-												}}
-												rowTextForSelection={(item) => {
-													return item;
-												}}
-												defaultButtonText={i18n.t('search_default_theme') as string}
-												buttonStyle={[
-													SearchStyles.dropBtnStyle,
-													{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
-												]}
-												buttonTextStyle={[
-													SearchStyles.dropBtnTxtStyle,
-													{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
-												]}
-												dropdownStyle={SearchStyles.dropStyle}
-												rowStyle={{
-													backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
-													borderBottomColor: nameMode === 'dark' ? BackgroundColor.light : BackgroundColor.dark
-												}}
-												rowTextStyle={[
-													SearchStyles.dropRowTxtStyle,
-													{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
-												]}
-												renderDropdownIcon={isOpened => {
-													return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={ nameMode === 'dark' ? TextColor.smokeText : TextColor.grayText } size={18} />;
-												}}
-											/>
-										</View>
-
-									) : (
-										<>
-											<View style={SearchStyles.dropdownContainer}>
+								<FontAwesome
+									name='close'
+									color={ nameMode === 'dark' ? TextColor.lightGrayText : TextColor.grayText }
+									size={30}
+									onPress={() => setIsOpen(false)}
+									style={SearchStyles.closeButtonIcon}
+								/>
+								<View
+									style={[
+										SearchStyles.dropdownDataContainer,
+										{
+											height: unAuth === true ? '30%' : Dimensions.get('window').height / 5,
+										}
+									]}
+								>
+									{
+										unAuth === true ? (
+											<View style={SearchStyles.dropdownContainer} >
 												<Text
 													style={[
 														TextStyles.titleH3,
@@ -201,126 +159,163 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 													}}
 												/>
 											</View>
-											<View style={SearchStyles.dropdownContainer}>
-												<Text
-													style={[
-														TextStyles.titleH3,
-														SearchStyles.titleCategories,
-														{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
-													]}
-												>{i18n.t('search_default_title_distance')}:</Text>
-												<SelectDropdown
-													data={distanceNames}
-													ref={distanceDropDownRef}
-													onSelect={(selectedItem, index) => {
-														setDistance(selectedItem);
-													}}
-													buttonTextAfterSelection={(selectedItem) => {
-														return selectedItem;
-													}}
-													rowTextForSelection={(item) => {
-														return item;
-													}}
-													defaultButtonText={i18n.t('search_default_distance') as string}
-													buttonStyle={[
-														SearchStyles.dropBtnStyle,
-														{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
-													]}
-													buttonTextStyle={[
-														SearchStyles.dropBtnTxtStyle,
-														{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
-													]}
-													dropdownStyle={SearchStyles.dropStyle}
-													rowStyle={{
-														backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
-														borderBottomColor: nameMode === 'dark' ? BackgroundColor.light : BackgroundColor.dark
-													}}
-													rowTextStyle={[
-														SearchStyles.dropRowTxtStyle,
-														{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
-													]}
-													renderDropdownIcon={isOpened => {
-														return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={ nameMode === 'dark' ? TextColor.smokeText : TextColor.grayText } size={18} />;
-													}}
-												/>
-											</View>
-											<View style={SearchStyles.dropdownContainer}>
-												<Text
-													style={[
-														TextStyles.titleH3,
-														SearchStyles.titleCategories,
-														{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
-													]}
-												>{i18n.t('search_default_title_time')}:</Text>
-												<SelectDropdown
-													data={timeNames}
-													ref={timeDropDownRef}
-													onSelect={(selectedItem, index) => {
-														setTime(selectedItem);
-													}}
-													buttonTextAfterSelection={(selectedItem) => {
-														return selectedItem;
-													}}
-													rowTextForSelection={(item) => {
-														return item;
-													}}
-													defaultButtonText={i18n.t('search_default_time') as string}
-													buttonStyle={[
-														SearchStyles.dropBtnStyle,
-														{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
-													]}
-													buttonTextStyle={[
-														SearchStyles.dropBtnTxtStyle,
-														{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
-													]}
-													dropdownStyle={SearchStyles.dropStyle}
-													rowStyle={{
-														backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
-														borderBottomColor: nameMode === 'dark' ? BackgroundColor.light : BackgroundColor.dark
-													}}
-													rowTextStyle={[
-														SearchStyles.dropRowTxtStyle,
-														{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
-													]}
-													renderDropdownIcon={isOpened => {
-														return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={ nameMode === 'dark' ? TextColor.smokeText : TextColor.grayText } size={18} />;
-													}}
-												/>
-											</View>
-										</>
 
-									)
-								}
+										) : (
+											<>
+												<View style={SearchStyles.dropdownContainer}>
+													<Text
+														style={[
+															TextStyles.titleH3,
+															SearchStyles.titleCategories,
+															{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+														]}
+													>{i18n.t('search_default_title_theme')}:</Text>
+													<SelectDropdown
+														data={themesNames}
+														ref={themeDropDownRef}
+														onSelect={(selectedItem, index) => {
+															setTheme(selectedItem);
+														}}
+														buttonTextAfterSelection={(selectedItem) => {
+															return selectedItem;
+														}}
+														rowTextForSelection={(item) => {
+															return item;
+														}}
+														defaultButtonText={i18n.t('search_default_theme') as string}
+														buttonStyle={[
+															SearchStyles.dropBtnStyle,
+															{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
+														]}
+														buttonTextStyle={[
+															SearchStyles.dropBtnTxtStyle,
+															{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+														]}
+														dropdownStyle={SearchStyles.dropStyle}
+														rowStyle={{
+															backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+															borderBottomColor: nameMode === 'dark' ? BackgroundColor.light : BackgroundColor.dark
+														}}
+														rowTextStyle={[
+															SearchStyles.dropRowTxtStyle,
+															{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+														]}
+														renderDropdownIcon={isOpened => {
+															return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={ nameMode === 'dark' ? TextColor.smokeText : TextColor.grayText } size={18} />;
+														}}
+													/>
+												</View>
+												<View style={SearchStyles.dropdownContainer}>
+													<Text
+														style={[
+															TextStyles.titleH3,
+															SearchStyles.titleCategories,
+															{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+														]}
+													>{i18n.t('search_default_title_distance')}:</Text>
+													<SelectDropdown
+														data={distanceNames}
+														ref={distanceDropDownRef}
+														onSelect={(selectedItem, index) => {
+															setDistance(selectedItem);
+														}}
+														buttonTextAfterSelection={(selectedItem) => {
+															return selectedItem;
+														}}
+														rowTextForSelection={(item) => {
+															return item;
+														}}
+														defaultButtonText={i18n.t('search_default_distance') as string}
+														buttonStyle={[
+															SearchStyles.dropBtnStyle,
+															{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
+														]}
+														buttonTextStyle={[
+															SearchStyles.dropBtnTxtStyle,
+															{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+														]}
+														dropdownStyle={SearchStyles.dropStyle}
+														rowStyle={{
+															backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+															borderBottomColor: nameMode === 'dark' ? BackgroundColor.light : BackgroundColor.dark
+														}}
+														rowTextStyle={[
+															SearchStyles.dropRowTxtStyle,
+															{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+														]}
+														renderDropdownIcon={isOpened => {
+															return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={ nameMode === 'dark' ? TextColor.smokeText : TextColor.grayText } size={18} />;
+														}}
+													/>
+												</View>
+												<View style={SearchStyles.dropdownContainer}>
+													<Text
+														style={[
+															TextStyles.titleH3,
+															SearchStyles.titleCategories,
+															{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+														]}
+													>{i18n.t('search_default_title_time')}:</Text>
+													<SelectDropdown
+														data={timeNames}
+														ref={timeDropDownRef}
+														onSelect={(selectedItem, index) => {
+															setTime(selectedItem);
+														}}
+														buttonTextAfterSelection={(selectedItem) => {
+															return selectedItem;
+														}}
+														rowTextForSelection={(item) => {
+															return item;
+														}}
+														defaultButtonText={i18n.t('search_default_time') as string}
+														buttonStyle={[
+															SearchStyles.dropBtnStyle,
+															{ backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light }
+														]}
+														buttonTextStyle={[
+															SearchStyles.dropBtnTxtStyle,
+															{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+														]}
+														dropdownStyle={SearchStyles.dropStyle}
+														rowStyle={{
+															backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+															borderBottomColor: nameMode === 'dark' ? BackgroundColor.light : BackgroundColor.dark
+														}}
+														rowTextStyle={[
+															SearchStyles.dropRowTxtStyle,
+															{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+														]}
+														renderDropdownIcon={isOpened => {
+															return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={ nameMode === 'dark' ? TextColor.smokeText : TextColor.grayText } size={18} />;
+														}}
+													/>
+												</View>
+											</>
+										)
+									}
 
-							</View>
+								</View>
 
-							<View
-								style={SearchStyles.buttonsContainer} >
-								<TouchableOpacity
-									style={[
-										ButtonStyles.buttonContainerPrimary,
-										{ width: '35%' }
-									]}
-									onPress={() => {
-										setDistance(0);
-										setTheme(0);
-										setTime(0);
-										themeDropDownRef.current?.reset();
-										distanceDropDownRef.current?.reset();
-										timeDropDownRef.current?.reset();
-									}}
-								>
-									<Text style={ButtonStyles.buttonTextPrimary}>Clear filters</Text>
-								</TouchableOpacity>
-								<TouchableOpacity
-									style={[
-										ButtonStyles.buttonContainerPrimary,
-										{ width: '30%' }
-									]}
-									onPress={() => setIsOpen(false)}
-								>
-									<Text style={ButtonStyles.buttonTextPrimary}>Close</Text>
-								</TouchableOpacity>
+								<View
+									style={SearchStyles.buttonsContainer} >
+									<TouchableOpacity
+										style={[
+											ButtonStyles.buttonContainerPrimary,
+											{ width: '35%' }
+										]}
+										onPress={() => {
+											setDistance(0);
+											setTheme(0);
+											setTime(0);
+											themeDropDownRef.current?.reset();
+											distanceDropDownRef.current?.reset();
+											timeDropDownRef.current?.reset();
+										}}
+									>
+										<Text style={ButtonStyles.buttonTextPrimary}>Clear filters</Text>
+									</TouchableOpacity>
+								</View>
 							</View>
 						</View>
 					) : null

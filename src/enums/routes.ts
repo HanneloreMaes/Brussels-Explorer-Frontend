@@ -16,6 +16,15 @@ import {
 	AllOnboardingStackScreen
 } from '@/lib/navigator/stack';
 
+export const ALL_ONBOARDING_ROUTES: IRouteTypes[] = [
+	{
+		name: 'IntroOnboarding',
+		component: IntroOnboaridng,
+		label: 'intro'
+	},
+	SHARED_ROUTES.OnboardingStack,
+];
+
 export const ONBOARDING_ROUTES: IRouteTypes[] = [
 	SHARED_ROUTES.OnboardingPage,
 	{
@@ -129,15 +138,6 @@ export const SETTINGS_ROUTES: IRouteTypes[] = [
 		label: 'routes_label_language',
 	},
 	SHARED_ROUTES.OnboardingPage,
-];
-
-export const ALL_ONBOARDING_ROUTES: IRouteTypes[] = [
-	{
-		name: 'IntroOnboarding',
-		component: IntroOnboaridng,
-		label: 'intro'
-	},
-	SHARED_ROUTES.OnboardingStack,
 ];
 
 export const APP_ROUTES: IRouteTypes[] = [
