@@ -22,15 +22,17 @@ import {
 	ryEllipse,
 	svgHeight
 } from '@/style';
+import { setFirstRun } from '@/utils/redux/Actions';
 
 const { width } = Dimensions.get('window');
 
 export const IntroOnboaridng: FC <AllOnboardingNavProps<'IntroOnboarding'>> = ({ navigation }) => {
 
 	const dispatch = useDispatch();
-	const { nameMode, firstRun } = useSelector((state: any) => state.allReducer);
+	const { nameMode } = useSelector((state: any) => state.allReducer);
 
 	const nextHandler = () => {
+		dispatch(setFirstRun(true));
 		navigation.navigate('Onboarding');
 	};
 
