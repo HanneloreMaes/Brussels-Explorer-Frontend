@@ -11,7 +11,7 @@ export const OnboardingStyles = StyleSheet.create({
 	},
 	titleContainer: {
 		position: 'absolute',
-		top: '8%',
+		top: '5%',
 		left: 0,
 		right: 0,
 		bottom: 0,
