@@ -15,7 +15,7 @@ export const AllOnboardingStackScreen: FC = () => {
 
 	return(
 		<AllOnboardingStack.Navigator
-			initialRouteName={ firstRun === true ? 'IntroOnboarding' : 'Onboarding' }
+			initialRouteName={ firstRun === false ? 'IntroOnboarding' : 'Onboarding' }
 			screenOptions={{ headerShown: false }}
 		>
 			{
