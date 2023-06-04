@@ -18,7 +18,7 @@ MapboxGL.setAccessToken(MapboxAccesToken);
 export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation }) => {
 
 	const coordinates = [ 4.3570964, 50.845504 ];
-	const [ firstPointRouteGeo, setFirstPointRouteGeo ] = useState();
+	const [ firstPointRouteGeo, setFirstPointRouteGeo ] = useState<any>();
 	const [ showModal, setShowModal ] = useState<boolean>(false);
 	const [ showModalError, setShowModalError ] = useState<boolean>(false);
 	const [ detailPointRoute, setDetailPointRoute ] = useState<any>();
