@@ -127,6 +127,7 @@ export const RecommendedRoutes: FC <RecommendedType> = ({
 						checkData.map((recommendedRoute: any) => {
 							return(
 								<View
+									key={recommendedRoute._id}
 									style={RecommendedStyles.allDataParentContainer}
 								>
 									<View
@@ -139,7 +140,6 @@ export const RecommendedRoutes: FC <RecommendedType> = ({
 										]}
 									>
 										<TouchableOpacity
-											key={recommendedRoute._id}
 											style={RecommendedStyles.dataContainer}
 											onPress={() => navigation.navigate('DetailPage', {
 												titleScreen: recommendedRoute.name,
