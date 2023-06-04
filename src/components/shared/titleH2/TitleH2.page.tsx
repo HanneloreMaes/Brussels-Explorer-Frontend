@@ -21,8 +21,8 @@ export const TitleH2: FC<TitleType> = ({ labelTitle, prevComponent }) => {
 		const lang = i18n.language;
 
 		if (lang === 'en') {
-			setWidthContainerRec('70%');
-			setWidthContainerLast('29%');
+			setWidthContainerRec('74.5%');
+			setWidthContainerLast('32%');
 		}
 		if (lang === 'fr') {
 			setWidthContainerRec('75%');
