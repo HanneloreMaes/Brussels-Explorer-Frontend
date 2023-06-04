@@ -1,19 +1,29 @@
 import React, { FC, useEffect } from 'react';
 
-import { Image, ScrollView, Text, View } from 'react-native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { useTranslation } from 'react-i18next';
+import { Image, ScrollView, Text, View, Dimensions } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useDispatch } from 'react-redux';
 
 import { DetailStyles } from './Detail.styles';
-import { DetailMap } from '../components/DetailMap';
+import { DescriptionDetail } from '../components/descriptionDetail/DescriptionDetail.page';
+import { PointsDetail } from '../components/pointsDetail/PointsDetail.page';
 import { DetailTypes } from '../types/Detail.types';
 import { ItemOverviewStyles } from '@/components/searchPage/components/itemOverview/ItemOverview.styles';
-import { Highlight, TextColor, TextStyles } from '@/style';
+import { DetailSubStackParamList } from '@/lib/navigator/types';
+import { BackgroundColor, DefaultMargins, Highlight, TextColor } from '@/style';
 import { getSpecRoute } from '@/utils/redux/Actions';
+import '@/utils/i18n/i18n';
 
-export const DetailPage: FC <DetailTypes> = ({ route }) => {
+const { height } = Dimensions.get('window');
 
+const DetailSubStack = createMaterialTopTabNavigator<DetailSubStackParamList>();
+
+export const DetailPage: FC <DetailTypes> = ({ route, navigation }) => {
+
+	const { i18n } = useTranslation();
 	const { dataOfCard, nameMode } = route.params;
 
 	const dispatch = useDispatch();
@@ -67,7 +77,7 @@ export const DetailPage: FC <DetailTypes> = ({ route }) => {
 				>
 					{dataOfCard.name}
 				</Text>
-				<View style={ItemOverviewStyles.infoTextContainer}>
+				<View style={DetailStyles.infoTextContainer}>
 					<Icon name='tag' color={Highlight.tealHighlight} size={20} />
 					<Text
 						style={[
@@ -75,15 +85,36 @@ export const DetailPage: FC <DetailTypes> = ({ route }) => {
 							{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 						]}>{dataOfCard.theme}</Text>
 				</View>
-				<Text
-					style={[
-						TextStyles.bodyText,
-						{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
-					]}
-				>
-					{dataOfCard.description}
-				</Text>
-				<DetailMap dataRoute={dataOfCard}/>
+				<View style={{ height: height - 125, flex: 1 }}>
+					<DetailSubStack.Navigator
+						screenOptions={{
+							tabBarIndicatorStyle: {
+								backgroundColor: Highlight.tealHighlight,
+								height: 3
+							},
+							tabBarActiveTintColor: Highlight.tealHighlight,
+							tabBarInactiveTintColor: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText,
+							tabBarStyle: {
+								backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+								marginBottom: DefaultMargins.topMargin,
+							},
+							tabBarLabelStyle: { fontSize: 16 },
+						}}
+					>
+						<DetailSubStack.Screen
+							name="DescriptionDetail"
+							options={{ tabBarLabel: i18n.t('detail_page_title_description') as string }}
+						>
+							{() => <DescriptionDetail props={dataOfCard} />}
+						</DetailSubStack.Screen>
+						<DetailSubStack.Screen
+							name="PointsDetail"
+							options={{ tabBarLabel: i18n.t('detail_page_title_point') as string }}
+						>
+							{() => <PointsDetail props={dataOfCard} navigation={navigation} />}
+						</DetailSubStack.Screen>
+					</DetailSubStack.Navigator>
+				</View>
 			</View>
 		</ScrollView>
 	);

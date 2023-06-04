@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-import { BorderContainerStyle, DefaultAppStyling, Highlight, TextColor, TextStyles } from '@/style';
+import { BorderContainerStyle, DefaultAppStyling, DefaultMargins, Highlight, TextColor, TextStyles } from '@/style';
 
 const { width } = Dimensions.get('window');
 
@@ -14,6 +14,11 @@ export const DetailStyles = StyleSheet.create({
 	headerContainer: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
+	},
+	infoTextContainer: {
+		flexDirection: 'row',
+		alignItems:'center',
+		marginBottom: DefaultAppStyling.globalMargin,
 	},
 	borderTextContainer: {
 		...BorderContainerStyle,
