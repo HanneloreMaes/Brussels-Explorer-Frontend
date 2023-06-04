@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import { DescriptionTypes } from './DescriptionDetail.types';
