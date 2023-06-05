@@ -176,7 +176,7 @@ export const IntroOnboaridng: FC <AllOnboardingNavProps<'IntroOnboarding'>> = ({
 						>
 							To make the app accessible to many, there is the ability to customize your language.
 							English, Dutch, French and German are supported.
-							It can be changed in settings and than language
+							It can be changed in settings and than language.
 						</Text>
 					</View>
 					<TouchableOpacity style={ButtonStyles.buttonContainerPrimary} onPress={nextHandler}>
