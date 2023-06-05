@@ -31,6 +31,7 @@
 	"dashboard_section_recommended_title": "Empfohlene Routen",
 	"dashboard_section_recommended_button_title": "Alle Routes anzeigen",
 	"dashboard_section_last_seen_title": "Zuletzt gesehen",
+	"dashboard_section_last_seen_not_found": "Es wurde keine aktuelle Route gefunden.",
 	"detail_page_title_description": "Beschreibung",
 	"detail_page_title_point": "Punkte auf der Route",
 	"mapbox_button_more_info": "Mehr Info",

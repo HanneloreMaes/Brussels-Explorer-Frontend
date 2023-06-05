@@ -31,6 +31,7 @@
 	"dashboard_section_recommended_title": "Itinéraires recommandés",
 	"dashboard_section_recommended_button_title": "Voir tous d'itinéraires",
 	"dashboard_section_last_seen_title": "Dernière consultation",
+	"dashboard_section_last_seen_not_found": "Aucun itinéraire récent n'a été trouvé.",
 	"detail_page_title_description": "Description",
 	"detail_page_title_point": "Points sur l'itinéraire",
 	"mapbox_button_more_info": "Plus d'infos",
