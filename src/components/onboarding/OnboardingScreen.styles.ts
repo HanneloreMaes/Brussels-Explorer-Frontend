@@ -24,7 +24,8 @@ export const OnboardingStyles = StyleSheet.create({
 	},
 	buttonContainer: {
 		justifyContent: 'center',
-		height: height / 3
+		height: height / 3,
+		zIndex: 5
 	},
 	touchableXContainer: {
 		width: 35,
@@ -79,8 +80,8 @@ export const OnboardingStyles = StyleSheet.create({
 		marginBottom: DefaultMargins.bottomMargin,
 		marginTop: 2,
 		borderBottomWidth: 0.5,
-		borderColor: TextColor.lightGrayText,
-		color: TextColor.lightGrayText,
+		borderColor: TextColor.grayText,
+		color: TextColor.grayText,
 		fontSize: 16,
 	},
 });
