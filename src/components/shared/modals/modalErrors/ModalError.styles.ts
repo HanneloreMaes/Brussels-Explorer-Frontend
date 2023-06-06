@@ -12,7 +12,7 @@ export const ModalErrorStyles = StyleSheet.create({
 		right: DefaultAppStyling.globalMargin,
 		height: height / 5,
 		justifyContent: 'center',
-		borderRadius: BorderContainerStyle.borderRadius
+		borderRadius: BorderContainerStyle.borderRadius,
 	},
 	imgExlametion: {
 		width: 35,

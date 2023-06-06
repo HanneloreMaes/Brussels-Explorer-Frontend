@@ -7,7 +7,8 @@ import {
 	SettingsPage,
 	LanguageSettings,
 	QuestionRegister,
-	IntroOnboaridng
+	IntroOnboaridng,
+	UsernameSetting,
 } from '@/components';
 import {
 	MapviewStackScreen,
@@ -137,6 +138,11 @@ export const SETTINGS_ROUTES: IRouteTypes[] = [
 		name: 'Language',
 		component: LanguageSettings,
 		label: 'routes_label_language',
+	},
+	{
+		name: 'UsernameSetting',
+		component: UsernameSetting,
+		label: 'routes_label_change_username',
 	},
 	SHARED_ROUTES.OnboardingPage,
 ];
