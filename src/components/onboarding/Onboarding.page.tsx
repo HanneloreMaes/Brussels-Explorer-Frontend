@@ -10,7 +10,6 @@ import {
 	StyleSheet,
 	TextInput,
 	Pressable,
-	Alert,
 	TouchableOpacity,
 	Platform,
 	Keyboard,
@@ -21,14 +20,14 @@ import Animated, { useSharedValue, useAnimatedStyle, interpolate, withTiming, wi
 import { Svg, Image, Ellipse, ClipPath } from 'react-native-svg';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { TitleOnboarding } from './components/title/TitleOnboarding.page';
 import { OnboardingStyles } from './OnboardingScreen.styles';
-import { SkipButton } from '@/components/shared';
+import { FirebaseModal, SkipButton } from '@/components/shared';
 import { OnboardingNavProps } from '@/lib/navigator/types';
 import { BackgroundColor, ButtonStyles, Highlight, TextColor } from '@/style';
 import { auth } from '@/utils/Firebase.config';
 import '@/utils/i18n/i18n';
 import { setUnAuth } from '@/utils/redux/Actions';
-import { TitleOnboarding } from './components/title/TitleOnboarding.page';
 
 export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ navigation }) => {
 
@@ -96,6 +95,17 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 	// ANIMATED VIEWS LOGIC END
 	// -----------------------------------------------------------------------------------------------------------
 
+	// ERROR MODAL LOGIC END
+	// -----------------------------------------------------------------------------------------------------------
+	const [ showModal, setShowModal ] = useState<boolean>(false);
+	const [ stringModal, setStringModal ] = useState<string>('');
+
+	const handleCloseModal = (value: boolean) => {
+		setShowModal(value);
+	};
+	// ERROR MODAL LOGIC END
+	// -----------------------------------------------------------------------------------------------------------
+
 	// FIREBASE LOGIC START
 	// -----------------------------------------------------------------------------------------------------------
 	const [ email, setEmail ] = useState('');
@@ -110,19 +120,44 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 				});
 				dispatch(setUnAuth(false));
 				navigation.navigate('QuestionRegister');
-			}).catch( error => Alert.alert(error.message));
+			}).catch( (error) => {
+				if (error.code === 'auth/invalid-email') {
+					setStringModal('onboarding_firebase_error_email_failed');
+				}
+				if (error.code === 'auth/missing-password') {
+					setStringModal('onboarding_firebase_error_password_failed');
+				}
+				if (error.code === 'auth/email-already-in-use') {
+					setStringModal('onboarding_firebase_error_register_email_in_use');
+				}
+				setShowModal(true);
+			});
 	};
 
 	const loginUser = () => {
 		signInWithEmailAndPassword(auth, email, password)
 			.then(() => dispatch(setUnAuth(false)))
-			.catch((error) => Alert.alert(error.message));
+			.catch((error) => {
+				if (error.code === 'auth/invalid-email') {
+					setStringModal('onboarding_firebase_error_email_failed');
+				}
+				if (error.code === 'auth/missing-password') {
+					setStringModal('onboarding_firebase_error_password_failed');
+				}
+				setShowModal(true);
+			});
 	};
 
 	const forgotPassword = () => {
 		sendPasswordResetEmail(auth, email)
-			.then(() => Alert.alert('Email to reset password is send.'))
-			.catch((error: any) => Alert.alert(error.message));
+			.then(() => {
+				setStringModal('onboarding_firebase_forgot_password_succes');
+				setShowModal(true);
+			})
+			.catch(() => {
+				setStringModal('firebase_error');
+				setShowModal(true);
+			});
 	};
 
 	useEffect(() => {
@@ -144,6 +179,15 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 				{ backgroundColor: nameMode === 'dark' ? '' : BackgroundColor.light }
 			]}
 		>
+			{
+				showModal === true ? (
+					<FirebaseModal
+						labelName={stringModal as string}
+						handleCloseModal={handleCloseModal}
+						nameMode={nameMode}
+					/>
+				) : null
+			}
 			<View
 				style={OnboardingStyles.titleContainer}
 			>
