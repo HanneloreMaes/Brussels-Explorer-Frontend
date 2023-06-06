@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 
 import { updateProfile } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
-import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import { OnboardingStyles } from '@/components/onboarding/OnboardingScreen.styles';
@@ -34,19 +34,24 @@ export const UsernameSetting: FC = () => {
 	};
 
 	const saveUsername = (newUsernameOfUser: string | null | undefined) => {
-		if (newUsernameOfUser !== oldUsername) {
+		if (newUsernameOfUser !== oldUsername && newUsernameOfUser !== '') {
 			updateProfile(auth.currentUser, { displayName: newUsernameOfUser })
 				.then(() => {
-					Alert.alert(`${i18n.t('settings_alert_change_name_succes')} ${newUsernameOfUser}!`);
 					setShowModal(true);
 					setStringModal('settings_alert_change_name_succes');
 					RootNavigation.navigate('DashboardStack');
 				})
-				.catch((error: any) => Alert.alert(error.message));
+				.catch(() => {
+					setStringModal('firebase_error');
+					setShowModal(true);
+				});
+		} else if (newUsernameOfUser === '') {
+			setShowModal(true);
+			setStringModal('settings_alert_change_name_empty');
 		} else {
 			setShowModal(true);
 			setStringModal('settings_alert_change_name_failed');
-		};
+		}
 	};
 
 	const handleCloseModal = (value: boolean) => {
@@ -58,13 +63,14 @@ export const UsernameSetting: FC = () => {
 	}, []);
 
 	return (
-		<View>
+		<View style={{ height: '100%' }}>
 			{
 				showModal === true ? (
 					<FirebaseModal
 						labelName={stringModal as string}
 						handleCloseModal={handleCloseModal}
 						nameMode={nameMode}
+						newUsernameOfUser={newUsername}
 					/>
 				) : null
 			}
