@@ -4,6 +4,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 export type SettingStackParamList = {
 	Settings: {titleScreen: string} | undefined;
 	Language: {titleScreen: string} | undefined;
+	UsernameSetting: {titleScreen: string} | undefined;
 	Onboarding: undefined;
 };
 
