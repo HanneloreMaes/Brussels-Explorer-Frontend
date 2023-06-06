@@ -34,7 +34,7 @@ export const ItemOverview: FC <ItemTypes> = ({
 					source={{ uri: item.imageUrl }}
 					style={ItemOverviewStyles.image}
 					resizeMode='cover' />
-				<View style={{ marginLeft: 10 }}>
+				<View style={ItemOverviewStyles.allInfoContainer}>
 					<Text style={[ ItemOverviewStyles.textName, { color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{item.name}</Text>
 					<View style={ItemOverviewStyles.infoContainer}>
 						<View style={ItemOverviewStyles.infoTextContainer}>
@@ -50,9 +50,11 @@ export const ItemOverview: FC <ItemTypes> = ({
 							<Text style={[ ItemOverviewStyles.textInfo, { color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{item.area}</Text>
 						</View>
 					</View>
-					<View style={ItemOverviewStyles.infoTextContainer}>
-						<Icon name='tag' color={Highlight.tealHighlight} size={16} />
-						<Text style={[ ItemOverviewStyles.textInfo, { color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{item.theme}</Text>
+					<View style={ItemOverviewStyles.infoContainer}>
+						<View style={ItemOverviewStyles.infoTextContainer}>
+							<Icon name='tag' color={Highlight.tealHighlight} size={16} />
+							<Text style={[ ItemOverviewStyles.textInfo, { color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText } ]}>{item.theme}</Text>
+						</View>
 					</View>
 				</View>
 			</TouchableOpacity>

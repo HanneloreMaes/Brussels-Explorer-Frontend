@@ -18,11 +18,15 @@ export const ItemOverviewStyles = StyleSheet.create({
 		marginLeft: 10,
 		fontWeight: '600',
 	},
+	allInfoContainer: {
+		marginLeft: 10,
+		marginRight: 30,
+	},
 	infoContainer: {
 		flexDirection: 'row',
-		width: '75%',
+		width: '83%',
 		justifyContent: 'space-between',
-		marginLeft: 10
+		marginLeft: 10,
 	},
 	infoTextContainer: {
 		flexDirection: 'row',
