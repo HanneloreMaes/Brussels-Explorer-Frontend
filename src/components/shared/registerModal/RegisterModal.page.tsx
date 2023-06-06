@@ -5,7 +5,7 @@ import { View, Text, Pressable, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import { RegisterModalTypes } from './RegisterModal.types';
-import { ModalErrorStyles } from '../modalErrors/ModalError.styles';
+import { ModalErrorStyles } from '../modals/modalErrors/ModalError.styles';
 import { BackgroundColor, ButtonStyles, DefaultAppStyling, TextColor } from '@/style';
 import '@/utils/i18n/i18n';
 
