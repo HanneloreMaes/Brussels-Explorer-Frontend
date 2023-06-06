@@ -118,12 +118,12 @@ export const ItemPointOverview: FC <ItemPointTypes> = ({
 					ItemPointOverviewStyles.itemContainer,
 					{ marginHorizontal: 0 }
 				]}
-				// onPress={() => navigation.navigate('DetailPage', {
-				// 	titleScreen: item.name,
-				// 	dataOfCard: item,
-				// 	nameMode,
-				// 	navigation
-				// })}
+				onPress={() => navigation.navigate('DetailPointPage', {
+					titleScreen: item.name,
+					dataOfCard: item,
+					nameMode,
+					navigation
+				})}
 			>
 				<Image
 					source={{ uri: item.imageUrl }}
