@@ -4,6 +4,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 export type SearchPageParamList = {
 	SearchPage: {titleScreen: string} | undefined;
 	DetailPage: {titleScreen: string; dataOfCard: any; nameMode: string} | undefined;
+	DetailPointPage: {titleScreen: string; dataOfCard: any; nameMode: string} | undefined;
 	Onboarding: { showInHeader: boolean } | undefined;
 };
 
