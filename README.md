@@ -78,14 +78,16 @@ A few of the things you can do with the frontend:
 ### Documentations
 1. Documentation React Navigation - [Getting Started](https://reactnavigation.org/docs/getting-started)
 2. Documentation Material Top Tabs Navigator - [Material Top Tabs](https://reactnavigation.org/docs/material-top-tab-navigator/)
-3. Installation React Native Reanimated - [Installation](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation)
-4. Documentation ActivityIndicator React Native - [ActivityIndicator](https://reactnative.dev/docs/activityindicator)
-5. ESLint Rules - [Rules Reference](https://eslint.org/docs/latest/rules/)
-6. Documentation SplashScreen - CrazyCodeBoy - [Github](https://github.com/crazycodeboy/react-native-splash-screen)
-7. Documentation React Native Icons - Oblador - [Github](https://github.com/oblador/react-native-vector-icons)
-8. Documentation rnmapbox/maps - rnMapbox - [Github](https://github.com/rnmapbox/maps)
-9. React Native Select Dropdown - AdelRedaa97 - [NPM](https://www.npmjs.com/package/react-native-select-dropdown)
-10. React Native Swiper - Leecade - [Github](https://github.com/leecade/react-native-swiper)
+3. Documentation React Native Firebase - Invertase - [Getting Started](https://rnfirebase.io/)
+4. Installation React Native Reanimated - [Installation](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation)
+5. Documentation ActivityIndicator React Native - [ActivityIndicator](https://reactnative.dev/docs/activityindicator)
+6. ESLint Rules - [Rules Reference](https://eslint.org/docs/latest/rules/)
+7. Documentation SplashScreen - CrazyCodeBoy - [Github](https://github.com/crazycodeboy/react-native-splash-screen)
+8. Documentation React Native Icons - Oblador - [Github](https://github.com/oblador/react-native-vector-icons)
+9. Documentation rnmapbox/maps - rnMapbox - [Github](https://github.com/rnmapbox/maps)
+10. React Native Select Dropdown - AdelRedaa97 - [NPM](https://www.npmjs.com/package/react-native-select-dropdown)
+11. React Native Swiper - Leecade - [Github](https://github.com/leecade/react-native-swiper)
+12. React Native Firebase Error - Invertase - [NativeFirebaseError](https://rnfirebase.io/reference/app/nativefirebaseerror)
    
 
 ### Video's
