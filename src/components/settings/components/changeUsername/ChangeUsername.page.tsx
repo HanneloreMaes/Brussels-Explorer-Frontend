@@ -34,12 +34,12 @@ export const UsernameSetting: FC = () => {
 		if (newUsernameOfUser !== oldUsername) {
 			updateProfile(auth.currentUser, { displayName: newUsernameOfUser })
 				.then(() => {
-					Alert.alert(`Username is changed to ${newUsernameOfUser}`);
+					Alert.alert(`${i18n.t('settings_alert_change_name_succes')} ${newUsernameOfUser}!`);
 					RootNavigation.navigate('DashboardStack');
 				})
 				.catch((error: any) => Alert.alert(error.message));
 		} else (
-			Alert.alert('Username is the same as old username!')
+			Alert.alert(i18n.t('settings_alert_change_name_failed'))
 		);
 	};
 
