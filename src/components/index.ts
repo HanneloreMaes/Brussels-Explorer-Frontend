@@ -10,3 +10,4 @@ export * from './pointsMapView/PointMapView.page';
 export * from './searchPage/page/Search.page';
 export * from './settings/page/Settings.page';
 export * from './settings/components/language/LanguageSettings.page';
+export * from './settings/components/changeUsername/ChangeUsername.page';
