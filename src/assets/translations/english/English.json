@@ -56,6 +56,11 @@
 	"settings_language_label_en": "English",
 	"settings_language_label_fr": "French",
 	"settings_language_label_de": "German",
+	"settings_title_old_name": "Enter old username",
+	"settings_title_name": "Enter new username",
+	"settings_placeholder_old_name": "Old username",
+	"settings_placeholder_name": "New username",
+	"settings_button_change_name": "Save name",
 	"modal_un_auth_preview_text": "Can't get enough of the preview?",
 	"modal_un_auth_more_features_text": "Discover even more features by registering or logging in.",
 	"modal_un_auth_button_login_register_text": "Log in - Register"

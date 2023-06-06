@@ -56,6 +56,11 @@
 	"settings_language_label_en": "Engels",
 	"settings_language_label_fr": "Frans",
 	"settings_language_label_de": "Duits",
+	"settings_title_old_name": "Voer oude gebruikersnaam in",
+	"settings_title_name": "Voer je nieuwe gebruikersnaam in",
+	"settings_placeholder_old_name": "Oude gebruikersnaam",
+	"settings_placeholder_name": "Nieuwe gebruikersnaam",
+	"settings_button_change_name": "Sla naam op",
 	"modal_un_auth_preview_text": "Krijg je niet genoeg van de preview?",
 	"modal_un_auth_more_features_text": "Ontdek nog meer features door te registreren of in te loggen",
 	"modal_un_auth_button_login_register_text": "Log in - Registreer"
