@@ -61,7 +61,7 @@
 	"settings_placeholder_old_name": "Oude gebruikersnaam",
 	"settings_placeholder_name": "Nieuwe gebruikersnaam",
 	"settings_alert_change_name_succes": "Gebruikersnaam is veranderd naar",
-	"settings_alert_change_name_failed": "De nieuwe gebruikersnaam is dezelfde als de oude!",
+	"settings_alert_change_name_failed": "De nieuwe gebruikersnaam is dezelfde als de oude! Gelieve een andere gebruikersnaam in te geven.",
 	"settings_button_change_name": "Sla naam op",
 	"modal_un_auth_preview_text": "Krijg je niet genoeg van de preview?",
 	"modal_un_auth_more_features_text": "Ontdek nog meer features door te registreren of in te loggen",
