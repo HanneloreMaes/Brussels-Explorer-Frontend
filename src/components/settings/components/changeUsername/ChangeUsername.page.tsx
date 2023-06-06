@@ -6,6 +6,7 @@ import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import { OnboardingStyles } from '@/components/onboarding/OnboardingScreen.styles';
+import { FirebaseModal } from '@/components/shared';
 import * as RootNavigation from '@/lib/rootNavigator/RootNavigator';
 import { BackgroundColor, ButtonStyles, DefaultAppStyling, DefaultMargins, TextColor, TextStyles } from '@/style';
 import '@/utils/i18n/i18n';
@@ -17,6 +18,8 @@ export const UsernameSetting: FC = () => {
 	const [ newUsername, setNewUsername ] = useState<string>('');
 	const [ oldUsername, setOldUsername ] = useState<string | null | undefined>('');
 	const [ authUsername, setAuthUsername ] = useState<string | null | undefined>('');
+	const [ showModal, setShowModal ] = useState<boolean>(false);
+	const [ stringModal, setStringModal ] = useState<string>('');
 
 	const { nameMode } = useSelector( (state: any) => state.allReducer );
 
@@ -35,12 +38,19 @@ export const UsernameSetting: FC = () => {
 			updateProfile(auth.currentUser, { displayName: newUsernameOfUser })
 				.then(() => {
 					Alert.alert(`${i18n.t('settings_alert_change_name_succes')} ${newUsernameOfUser}!`);
+					setShowModal(true);
+					setStringModal('settings_alert_change_name_succes');
 					RootNavigation.navigate('DashboardStack');
 				})
 				.catch((error: any) => Alert.alert(error.message));
-		} else (
-			Alert.alert(i18n.t('settings_alert_change_name_failed'))
-		);
+		} else {
+			setShowModal(true);
+			setStringModal('settings_alert_change_name_failed');
+		};
+	};
+
+	const handleCloseModal = (value: boolean) => {
+		setShowModal(value);
 	};
 
 	useEffect(() => {
@@ -49,6 +59,15 @@ export const UsernameSetting: FC = () => {
 
 	return (
 		<View>
+			{
+				showModal === true ? (
+					<FirebaseModal
+						labelName={stringModal as string}
+						handleCloseModal={handleCloseModal}
+						nameMode={nameMode}
+					/>
+				) : null
+			}
 			<View style={{ marginTop: DefaultMargins.topMargin, marginBottom: DefaultMargins.bottomMargin }}>
 				<Text style={[
 					TextStyles.bodyText,
