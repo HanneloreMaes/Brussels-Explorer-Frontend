@@ -31,6 +31,7 @@
 	"dashboard_section_recommended_title": "Aanbevolen Routes",
 	"dashboard_section_recommended_button_title": "Bekijk alle routes",
 	"dashboard_section_last_seen_title": "Laatst bekeken",
+	"dashboard_section_last_seen_not_found": "Er werd geen recente route gevonden.",
 	"detail_page_title_description": "Beschrijving",
 	"detail_page_title_point": "Punten op route",
 	"mapbox_button_more_info": "Meer info",

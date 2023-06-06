@@ -104,7 +104,7 @@ export const DetailPage: FC <DetailTypes> = ({ route, navigation }) => {
 							name="DescriptionDetail"
 							options={{ tabBarLabel: i18n.t('detail_page_title_description') as string }}
 						>
-							{() => <DescriptionDetail props={dataOfCard} />}
+							{() => <DescriptionDetail props={dataOfCard} translations={i18n} />}
 						</DetailSubStack.Screen>
 						<DetailSubStack.Screen
 							name="PointsDetail"

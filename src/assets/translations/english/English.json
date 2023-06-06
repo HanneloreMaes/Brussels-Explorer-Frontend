@@ -31,6 +31,7 @@
 	"dashboard_section_recommended_title": "Recommended Routes",
 	"dashboard_section_recommended_button_title": "See all routes",
 	"dashboard_section_last_seen_title": "Last Seen",
+	"dashboard_section_last_seen_not_found": "No recent route was found.",
 	"detail_page_title_description": "Description",
 	"detail_page_title_point": "Points of route",
 	"mapbox_button_more_info": "More info",
