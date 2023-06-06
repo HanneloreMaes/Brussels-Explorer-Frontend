@@ -22,6 +22,9 @@ export const CardItem: FC <CardTypes> = ({ nameComponent, navigation, mode }) =>
 		if (nameComponent === i18n.t('routes_label_change_password')) {
 			return setNavName('Change Password');
 		}
+		if (nameComponent === i18n.t('routes_label_change_username')) {
+			return setNavName('UsernameSetting');
+		}
 	};
 
 	const pressSetting = () => {
