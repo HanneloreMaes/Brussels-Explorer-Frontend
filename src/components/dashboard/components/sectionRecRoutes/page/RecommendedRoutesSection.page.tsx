@@ -50,7 +50,8 @@ export const RecommendedRoutes: FC <RecommendedType> = ({
 
 	const checkValidateData = () => {
 		if (filteredData.length === 0 ) {
-			setCheckData(routes);
+			const slicedFilteredData = routes.slice(0, 3);
+			setCheckData(slicedFilteredData);
 		} else {
 			const slicedFilteredData = filteredData.slice(0, 3);
 			setCheckData(slicedFilteredData);

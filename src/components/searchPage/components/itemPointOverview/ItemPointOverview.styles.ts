@@ -2,7 +2,7 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 import { DefaultAppStyling, TextStyles, UnderlineStyle } from '@/style';
 
-export const ItemOverviewStyles = StyleSheet.create({
+export const ItemPointOverviewStyles = StyleSheet.create({
 	itemContainer: {
 		flexDirection: 'row',
 		alignItems: 'center',
@@ -27,6 +27,7 @@ export const ItemOverviewStyles = StyleSheet.create({
 		width: '83%',
 		justifyContent: 'space-between',
 		marginLeft: 10,
+		marginBottom: 8,
 	},
 	infoTextContainer: {
 		flexDirection: 'row',
@@ -35,7 +36,7 @@ export const ItemOverviewStyles = StyleSheet.create({
 	textInfo: {
 		...TextStyles.bodyText,
 		fontSize: 14,
-		marginLeft: 5,
+		marginLeft: 10,
 	},
 	underline: {
 		...UnderlineStyle.underline,
