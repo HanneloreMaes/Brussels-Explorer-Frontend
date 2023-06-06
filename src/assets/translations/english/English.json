@@ -61,6 +61,8 @@
 	"settings_placeholder_old_name": "Old username",
 	"settings_placeholder_name": "New username",
 	"settings_button_change_name": "Save name",
+	"settings_alert_change_name_succes": "Username is changed to",
+	"settings_alert_change_name_failed": "New username is the same as old one!",
 	"modal_un_auth_preview_text": "Can't get enough of the preview?",
 	"modal_un_auth_more_features_text": "Discover even more features by registering or logging in.",
 	"modal_un_auth_button_login_register_text": "Log in - Register"

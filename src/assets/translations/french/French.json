@@ -60,6 +60,8 @@
 	"settings_title_name": "Saisir le nouveau nom d'utilisateur",
 	"settings_placeholder_old_name": "Ancien nom d'utilisateur",
 	"settings_placeholder_name": "Nouveau nom d'utilisateur",
+	"settings_alert_change_name_succes": "Nom d'utilisateur changé en",
+	"settings_alert_change_name_failed": "Le nouveau nom d'utilisateur est le même que l'ancien!",
 	"settings_button_change_name": "Enregistrer le nom",
 	"modal_un_auth_preview_text": "Vous ne vous lassez pas de l'aperçu?",
 	"modal_un_auth_more_features_text": "Découvrez encore plus de fonctionnalités en vous inscrivant ou en vous connectant.",
