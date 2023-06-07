@@ -84,7 +84,7 @@ export const DetailPage: FC <DetailTypes> = ({ route, navigation }) => {
 							{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 						]}>{dataOfCard.theme}</Text>
 				</View>
-				<View style={{ height: height - 125, flex: 1 }}>
+				<View style={{ height: height - 125, flex: 1, marginBottom: 10 }}>
 					<DetailSubStack.Navigator
 						screenOptions={{
 							tabBarIndicatorStyle: {
