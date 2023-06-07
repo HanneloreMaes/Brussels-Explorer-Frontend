@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
 
-import { DefaultAppStyling, Highlight, TextColor } from '@/style';
+import { BorderContainerStyle, DefaultAppStyling, Highlight, TextColor, TextStyles } from '@/style';
 
 export const DetailMapStyles = StyleSheet.create({
 	mapContainer: {
 		marginVertical: DefaultAppStyling.globalMargin,
-		height: 300,
+		height: 280,
 	},
 	marker: {
 		circleColor: Highlight.tealHighlight,
@@ -19,4 +19,18 @@ export const DetailMapStyles = StyleSheet.create({
 		textPitchAlignment: 'map',
 		textIgnorePlacement: true,
 	},
+	nameModalContainer: {
+		position: 'absolute',
+		bottom: 10,
+		right: 5,
+		left: 5,
+		height: 75,
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginHorizontal: 30,
+		borderRadius: BorderContainerStyle.borderRadius,
+	},
+	nameModalText: {
+		...TextStyles.bodyText,
+	}
 });

@@ -47,7 +47,7 @@ export const MainStackTabBar: FC<BottomTabBarProps> = ({ state, descriptors, nav
 				TabBarStyles.safeContainer,
 				DefaultShadow.shadowTabBar,
 				{
-					backgroundColor: nameMode === 'dark' ? TabBarColor.darkModus : BackgroundColor.light,
+					backgroundColor: nameMode === 'dark' ? TabBarColor.darkModus : TabBarColor.lightModus,
 					shadowColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.darkHighlight,
 				}
 			]}
