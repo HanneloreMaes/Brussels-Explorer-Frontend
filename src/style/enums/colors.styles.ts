@@ -10,7 +10,8 @@ const Colors = {
 };
 
 export const BackgroundColor = {
-	light: Colors.white,
+	light: Colors.smokeWhite,
+	// light: Colors.white,
 	dark: Colors.darkBlack,
 	headerBlack: Colors.headerBlack,
 	skipBtnWhite: 'rgba(242, 242, 242, 0.7)',
@@ -40,6 +41,7 @@ export const SwiperColor = {
 };
 
 export const TabBarColor = {
+	lightModus: Colors.white,
 	darkModus: Colors.headerBlack,
 	teal: 'rgb(44, 181, 167)',
 };
