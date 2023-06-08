@@ -92,7 +92,10 @@ export const RecommendedRoutes: FC <RecommendedType> = ({
 										]}
 									>
 										<TouchableOpacity
-											style={RecommendedStyles.dataContainer}
+											style={[
+												RecommendedStyles.dataContainer,
+												{ borderColor: mode === 'dark' ? Highlight.lightHighlight : Highlight.darkGrayHighlight }
+											]}
 											onPress={() => navigation.navigate('DetailPage', {
 												titleScreen: recommendedRoute.name,
 												dataOfCard: recommendedRoute,
@@ -141,7 +144,10 @@ export const RecommendedRoutes: FC <RecommendedType> = ({
 										]}
 									>
 										<TouchableOpacity
-											style={RecommendedStyles.dataContainer}
+											style={[
+												RecommendedStyles.dataContainer,
+												{ borderColor: mode === 'dark' ? Highlight.lightHighlight : Highlight.darkGrayHighlight }
+											]}
 											onPress={() => navigation.navigate('DetailPage', {
 												titleScreen: recommendedRoute.name,
 												dataOfCard: recommendedRoute,
