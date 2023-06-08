@@ -20,7 +20,7 @@ export const IntroStyles = StyleSheet.create({
 		marginRight: 7
 	},
 	bottomPagina: {
-		bottom: 20,
+		bottom: 15,
 	},
 	image: {
 		width,
