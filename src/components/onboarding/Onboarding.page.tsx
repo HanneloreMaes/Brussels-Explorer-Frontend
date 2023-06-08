@@ -130,6 +130,9 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 				if (error.code === 'auth/email-already-in-use') {
 					setStringModal('onboarding_firebase_error_register_email_in_use');
 				}
+				if (error.code === 'auth/weak-password') {
+					setStringModal('onboarding_firebase_error_password_weak');
+				}
 				setShowModal(true);
 			});
 	};
@@ -141,8 +144,14 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 				if (error.code === 'auth/invalid-email') {
 					setStringModal('onboarding_firebase_error_email_failed');
 				}
+				if (error.code === 'auth/user-disabled') {
+					setStringModal('onboarding_firebase_error_user_disabled');
+				}
 				if (error.code === 'auth/missing-password') {
 					setStringModal('onboarding_firebase_error_password_failed');
+				}
+				if (error.code === 'auth/user-not-found') {
+					setStringModal('onboarding_firebase_error_user_not_found');
 				}
 				setShowModal(true);
 			});
