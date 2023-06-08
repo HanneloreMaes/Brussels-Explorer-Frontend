@@ -27,6 +27,7 @@ export const PointsDetail: FC <PointsTypes> = ({ props, navigation }) => {
 					pointsForSpecRoute.map((pointOfRoute: any) => {
 						return(
 							<ItemPointOverview
+								key={pointOfRoute._id}
 								nameMode={nameMode}
 								item={pointOfRoute}
 								navigation={navigation}
