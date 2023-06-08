@@ -20,8 +20,8 @@ const { height } = Dimensions.get('window');
 export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 
 	const [ centerCo, setCenterCo ] = useState();
-	const [ routeGeo, setRouteGeo ] = useState();
-	const [ pointsGeo, setPointsGeo ] = useState();
+	const [ routeGeo, setRouteGeo ] = useState<any>();
+	const [ pointsGeo, setPointsGeo ] = useState<any>();
 	const [ showModalError, setShowModalError ] = useState<boolean>(false);
 
 	const [ showName, setShowName ] = useState<boolean>(false);
@@ -82,7 +82,7 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 				index - (arrayCoordinates.length - 1)
 				: index + 1;
 
-			await fetch(`https://api.mapbox.com/matching/v5/mapbox/walking/${arrayCoordinates[ index ]}%3B${arrayCoordinates[ rightIndex ]}?geometries=geojson&language=en&overview=simplified&steps=true&access_token=${MapboxAccesToken}`)
+			await fetch(`https://api.mapbox.com/matching/v5/mapbox/cycling/${arrayCoordinates[ index ]}%3B${arrayCoordinates[ rightIndex ]}?geometries=geojson&language=en&overview=simplified&steps=true&access_token=${MapboxAccesToken}`)
 				.then(resp => resp.json())
 				.then((data) => {
 					const arrayMatchings = data.matchings[ 0 ];
