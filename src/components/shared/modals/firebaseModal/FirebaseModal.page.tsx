@@ -14,7 +14,7 @@ export const FirebaseModal: FC = (props: any) => (
 			style={[
 				FirebaseStyles.opacityBackground,
 				{
-					backgroundColor: props.nameMode === 'dark' ? Highlight.grayHighlight : BackgroundColor.skipBtnWhite
+					backgroundColor: props.nameMode === 'dark' ? Highlight.grayHighlight : BackgroundColor.opacityGray
 				}
 			]}
 			onPress={() => props.handleCloseModal(false)}
