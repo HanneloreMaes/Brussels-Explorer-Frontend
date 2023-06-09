@@ -47,19 +47,18 @@ export const SearchStyles = StyleSheet.create({
 	titleCategories: {
 		flex: 1,
 		marginTop: DefaultMargins.topMargin,
-		marginRight: '-30%',
+		marginRight: '-25%',
 	},
 	dropdownDataContainer: {
-		width: '70%',
+		width: '75%',
 		zIndex: 6,
 		marginHorizontal: DefaultMargins.horizontalMargin,
 		marginTop: 30,
 	},
 	dropdownContainer: {
 		flexDirection: 'row',
+		alignItems: 'center',
 		marginBottom: DefaultMargins.bottomMargin,
-		// width,
-		// width: '90%',
 	},
 	filterCheckboxContainer: {
 		flexDirection: 'row',
