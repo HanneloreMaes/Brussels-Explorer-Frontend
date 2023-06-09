@@ -25,58 +25,30 @@ export const TitleH2: FC<TitleType> = ({ labelTitle, prevComponent }) => {
 			setWidthContainerRec(screenWidth * 0.27);
 			setWidthContainerLast(screenWidth * 0.12);
 		} else if (lang === 'en' && screenWidth < BARRIER_SCREEN) {
-			setWidthContainerRec(screenWidth * 0.64);
-			setWidthContainerLast(screenWidth * 0.27);
+			setWidthContainerRec(screenWidth * 0.37);
+			setWidthContainerLast(screenWidth * 0.17);
 		}
 		if (lang === 'nl' && screenWidth > BARRIER_SCREEN) {
 			setWidthContainerRec(screenWidth * 0.23);
 			setWidthContainerLast(screenWidth * 0.185);
 		} else if (lang === 'nl' && screenWidth < BARRIER_SCREEN) {
-			setWidthContainerRec(screenWidth * 0.55);
-			setWidthContainerLast(screenWidth * 0.45);
+			setWidthContainerRec(screenWidth * 0.31);
+			setWidthContainerLast(screenWidth * 0.25);
 		}
 		if (lang === 'fr' && screenWidth > BARRIER_SCREEN) {
 			setWidthContainerRec(screenWidth * 0.3);
 			setWidthContainerLast(screenWidth * 0.26);
 		} else if (lang === 'fr' && screenWidth < BARRIER_SCREEN) {
-			setWidthContainerRec(screenWidth * 0.7);
-			setWidthContainerLast(screenWidth * 0.6);
+			setWidthContainerRec(screenWidth * 0.4);
+			setWidthContainerLast(screenWidth * 0.35);
 		}
 		if (lang === 'de' && screenWidth > BARRIER_SCREEN) {
 			setWidthContainerRec(screenWidth * 0.24);
 			setWidthContainerLast(screenWidth * 0.19);
 		} else if (lang === 'de' && screenWidth < BARRIER_SCREEN) {
-			setWidthContainerRec(screenWidth * 0.57);
-			setWidthContainerLast(screenWidth * 0.45);
+			setWidthContainerRec(screenWidth * 0.33);
+			setWidthContainerLast(screenWidth * 0.26);
 		}
-		// if (lang === 'en' && screenWidth > BARRIER_SCREEN) {
-		// 	setWidthContainerRec(width * 0.73);
-		// 	setWidthContainerLast(width * 0.32);
-		// } else if (lang === 'en' && screenWidth < BARRIER_SCREEN) {
-		// 	setWidthContainerRec(width * 0.64);
-		// 	setWidthContainerLast(width * 0.27);
-		// }
-		// if (lang === 'nl' && screenWidth > BARRIER_SCREEN) {
-		// 	setWidthContainerRec(width * 0.63);
-		// 	setWidthContainerLast(width * 0.5);
-		// } else if (lang === 'nl' && screenWidth < BARRIER_SCREEN) {
-		// 	setWidthContainerRec(width * 0.55);
-		// 	setWidthContainerLast(width * 0.45);
-		// }
-		// if (lang === 'fr' && screenWidth > BARRIER_SCREEN) {
-		// 	setWidthContainerRec(width * 0.8);
-		// 	setWidthContainerLast(width * 0.7);
-		// } else if (lang === 'fr' && screenWidth < BARRIER_SCREEN) {
-		// 	setWidthContainerRec(width * 0.7);
-		// 	setWidthContainerLast(width * 0.6);
-		// }
-		// if (lang === 'de' && screenWidth > BARRIER_SCREEN) {
-		// 	setWidthContainerRec(width * 0.65);
-		// 	setWidthContainerLast(width * 0.53);
-		// } else if (lang === 'de' && screenWidth < BARRIER_SCREEN) {
-		// 	setWidthContainerRec(width * 0.57);
-		// 	setWidthContainerLast(width * 0.45);
-		// }
 	};
 
 	useEffect(() => {
