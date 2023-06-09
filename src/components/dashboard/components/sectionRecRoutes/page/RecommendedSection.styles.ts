@@ -1,11 +1,12 @@
 import { StyleSheet } from 'react-native';
 
-import { screenHeight, screenWidth } from '@/config';
+import { BARRIER_SCREEN, screenHeight, screenWidth } from '@/config';
 import { BorderContainerStyle, DefaultMargins, DefaultShadow, Highlight, TextColor, TextStyles } from '@/style';
 
 export const RecommendedStyles = StyleSheet.create({
 	container: {
-		height: screenHeight * 0.18,
+		height: screenWidth > BARRIER_SCREEN ?
+			screenHeight * 0.18 : screenHeight * 0.29,
 		marginBottom: 30,
 	},
 	title: {
@@ -17,7 +18,8 @@ export const RecommendedStyles = StyleSheet.create({
 		flexDirection: 'row',
 	},
 	allDataParentContainer: {
-		width: screenWidth * 0.15,
+		width: screenWidth > BARRIER_SCREEN ?
+			screenWidth * 0.15 : screenWidth * 0.2,
 		marginRight: 15,
 		overflow: 'hidden',
 		paddingBottom: 15,
@@ -29,7 +31,8 @@ export const RecommendedStyles = StyleSheet.create({
 		borderRadius: BorderContainerStyle.borderRadius,
 	},
 	dataContainer: {
-		width: screenWidth * 0.15,
+		width: screenWidth > BARRIER_SCREEN ?
+			screenWidth * 0.15 : screenWidth * 0.2,
 		height: '100%',
 		flexDirection: 'column',
 		alignItems: 'center',
@@ -38,8 +41,10 @@ export const RecommendedStyles = StyleSheet.create({
 		borderRadius: BorderContainerStyle.borderRadius,
 	},
 	imageRoute: {
-		height: screenHeight * 0.06,
-		width: screenWidth * 0.15 - 3,
+		height: screenWidth > BARRIER_SCREEN ?
+			screenHeight * 0.06 : screenHeight * 0.11,
+		width: screenWidth > BARRIER_SCREEN ?
+			screenWidth * 0.15 - 3 : screenWidth * 0.2 - 3,
 		marginBottom: DefaultMargins.bottomMargin,
 		borderTopLeftRadius: 13,
 		borderTopRightRadius: 13
