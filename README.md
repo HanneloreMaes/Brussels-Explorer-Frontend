@@ -2,7 +2,8 @@
 ![NPM Version](https://img.shields.io/badge/NPM%20Version-9.6.0-blue)
 ![React Native](https://img.shields.io/badge/React%20Native-0.70.6-blue)
 ![Typescript](https://img.shields.io/badge/Typescript-4.8.3-blue) 
-<br /> This repo contains the frontend of The Lost City
+<br /> This repo contains the frontend of Brussels Explorer.
+<br /> Is only available for Android devices.
 
 ## Table of Contents
 
@@ -42,30 +43,33 @@ A few of the things you can do with the frontend:
 2. Open project in an editor-program<br /><br />
 
 3. Open integrated terminal<br /><br />
+
+4. Navigate to the root of the folder <br /><br />
    
-4. Enter following command to get all the packages <br />
+5. Enter following command to get all the packages <br />
       ```sh
       yarn
       ```
-     
-5. To open the app on an emulator or device. You need to install Expo-Go<br /><br />
-6. After installing the app, enter in your terminal
+
+6. Opening app on an emulator or physical device <br />
+   1. If you use a real Android device, connect it to the pc.
+   2. If you use a emulator, run it on the machine.<br /><br />
+   
+7. To install the app on device/emulator, enter in your terminal <br />
+   1. To start metro
+	  ```sh
+      yarn run start
+      ```
+   2. To install the app on device/emulator
+	  ```sh
+      yarn run android
+      ```
+   
+8. To open the app on an emulator or device. You need to install Expo-Go<br /><br />
+9.  After installing the app, enter in your terminal
    	  ```sh
       yarn start
       ```
-7. Metro will be started and will display a couple of options.
-   1. If you would like to run the code on an emulator
-      a. Opening the app on an Android Emulator: enter
-		```sh
-		a
-      	```
-	  b. Opening the app on an iOS Emulator (FOR MAC ONLY): enter
-	  ```sh
-      i
-      ```
-   2. If you would like to run the app on a physical device 
-      a. Scan the QR-code
-      b. It will automaticly take you to Expo Go and launch the app by itself
 
 
 
@@ -73,6 +77,15 @@ A few of the things you can do with the frontend:
 
 ## Troubleshooting
 1. This project is only for Android
+2. Error: 'Unable to load script. Make sure you're either running Metro (run 'npx react-native start') or that your bundle 'index.android.bundle' is packaged correctly for release.'
+   1. Make sure Metro is running in a terminal (root folder of roject).
+   2. Kill the application on device/emulator.
+   3. Reopen it on device/emulator.
+3. Warning: 'Metro and the client are out of sync. Reload to reconnect.'
+   1. Kill the application on device/emulator.
+   2. Stop Metro from running in a terminal.
+   3. Run Metro again with commmand: 'yarn run start'.
+   4. Reopen the application on device/emulator.
 
 ## Sources
 ### Documentations

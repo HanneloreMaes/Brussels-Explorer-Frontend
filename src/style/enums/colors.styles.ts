@@ -13,6 +13,7 @@ export const BackgroundColor = {
 	light: Colors.smokeWhite,
 	dark: Colors.darkBlack,
 	headerBlack: Colors.headerBlack,
+	opacityGray: Colors.opacityGray,
 	skipBtnWhite: 'rgba(242, 242, 242, 0.7)',
 	onboardingLight: 'rgba(255, 255, 255, 0.75)'
 };

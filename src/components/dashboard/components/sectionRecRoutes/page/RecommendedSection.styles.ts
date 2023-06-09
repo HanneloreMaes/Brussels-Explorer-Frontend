@@ -1,10 +1,11 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
+import { screenHeight, screenWidth } from '@/config';
 import { BorderContainerStyle, DefaultMargins, DefaultShadow, Highlight, TextColor, TextStyles } from '@/style';
 
 export const RecommendedStyles = StyleSheet.create({
 	container: {
-		height: Dimensions.get('window').height/3 + 70,
+		height: screenHeight * 0.18,
 		marginBottom: 30,
 	},
 	title: {
@@ -16,8 +17,8 @@ export const RecommendedStyles = StyleSheet.create({
 		flexDirection: 'row',
 	},
 	allDataParentContainer: {
-		width: 150,
-		marginRight: 10,
+		width: screenWidth * 0.15,
+		marginRight: 15,
 		overflow: 'hidden',
 		paddingBottom: 15,
 	},
@@ -28,21 +29,20 @@ export const RecommendedStyles = StyleSheet.create({
 		borderRadius: BorderContainerStyle.borderRadius,
 	},
 	dataContainer: {
-		width: 150,
+		width: screenWidth * 0.15,
 		height: '100%',
 		flexDirection: 'column',
 		alignItems: 'center',
 		marginRight: DefaultMargins.topMargin,
 		borderWidth: BorderContainerStyle.borderWidth,
 		borderRadius: BorderContainerStyle.borderRadius,
-		borderColor: BorderContainerStyle.borderColor,
 	},
 	imageRoute: {
-		height: 120,
-		width: 148,
+		height: screenHeight * 0.06,
+		width: screenWidth * 0.15 - 3,
 		marginBottom: DefaultMargins.bottomMargin,
-		borderTopLeftRadius: BorderContainerStyle.borderRadius,
-		borderTopRightRadius: BorderContainerStyle.borderRadius
+		borderTopLeftRadius: 13,
+		borderTopRightRadius: 13
 	},
 	nameRoute: {
 		...TextStyles.bodyText,

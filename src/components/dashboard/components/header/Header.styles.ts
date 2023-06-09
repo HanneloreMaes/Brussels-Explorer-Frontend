@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 
+import { screenWidth } from '@/config';
 import { DefaultAppStyling } from '@/style';
 
 export const HeaderStyles = StyleSheet.create({
@@ -8,7 +9,7 @@ export const HeaderStyles = StyleSheet.create({
 		flexDirection: 'column',
 	},
 	headerImage: {
-		width: '100%',
+		width: screenWidth,
 		height: 300,
 		opacity: 0.65
 	},
