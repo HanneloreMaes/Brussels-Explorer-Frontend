@@ -11,6 +11,7 @@ import { MapboxAccesToken } from '@/config';
 import { AllMapNavProps } from '@/lib/navigator/types';
 import { BackgroundColor } from '@/style';
 import { getPoints, getPointsFromSpecRoutes } from '@/utils/redux/Actions';
+import Geolocation from '@react-native-community/geolocation';
 
 MapboxGL.setWellKnownTileServer('Mapbox');
 MapboxGL.setAccessToken(MapboxAccesToken);
@@ -60,6 +61,10 @@ export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation }) => {
 		const routeData = e?.features?.[ 0 ]?.properties?.route;
 		setShowModal(true);
 		setDetailPointRoute(routeData);
+	};
+
+	const testLocation = () => {
+		Geolocation.getCurrentPosition(info => console.log(info));
 	};
 
 	useEffect(() => {
