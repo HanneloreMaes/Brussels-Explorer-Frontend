@@ -118,6 +118,7 @@ export const DetailPage: FC <DetailTypes> = ({ route, navigation }) => {
 										translations={i18n}
 										handleScaleBigMap={handleScaleBigMap}
 										scaleBig={scaleBig}
+										navigation={navigation}
 									/>
 								}
 							</DetailSubStack.Screen>
@@ -132,7 +133,13 @@ export const DetailPage: FC <DetailTypes> = ({ route, navigation }) => {
 				</View>
 			</ScrollView>
 		) : (
-			<DetailMap dataRoute={dataOfCard} handleScaleBigMap={handleScaleBigMap} scaleBig={scaleBig} />
+			<DetailMap
+				dataRoute={dataOfCard}
+				handleScaleBigMap={handleScaleBigMap}
+				scaleBig={scaleBig}
+				navigation={navigation}
+				translation={i18n}
+			/>
 		)
 	);
 };

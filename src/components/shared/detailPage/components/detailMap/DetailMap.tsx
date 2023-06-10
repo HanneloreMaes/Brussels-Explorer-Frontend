@@ -1,13 +1,14 @@
 import React, { FC, useEffect, useState } from 'react';
 
 import MapboxGL, { CircleLayerStyle,SymbolLayerStyle } from '@rnmapbox/maps';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import FontAwsome5 from 'react-native-vector-icons/FontAwesome5';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { DetailMapStyles } from './DetailMap.styles';
 import { DetailMapTypes } from './DetailMap.types';
 import { ModalError } from '../../..';
+import { DescriptionStyles } from '@/components/map/mapView/components/descriptionModal/page/DescriptionModal.styles';
 import { MapboxAccesToken, screenHeight } from '@/config';
 import { BackgroundColor, DefaultShadow, Highlight, TextColor } from '@/style';
 import { getPointsFromSpecRoutes } from '@/utils/redux/Actions';
@@ -24,6 +25,7 @@ export const DetailMap: FC = (props: any) => {
 
 	const [ showName, setShowName ] = useState<boolean>(false);
 	const [ namePoint, setNamePoint ] = useState<string>('');
+	const [ dataPoint, setDataPoint ] = useState<any>();
 
 	const routeId = props?.dataRoute._id;
 
@@ -133,6 +135,7 @@ export const DetailMap: FC = (props: any) => {
 							onPress={(e) => {
 								setShowName(true);
 								setNamePoint(e.features[ 0 ].properties?.point.name);
+								setDataPoint(e.features[ 0 ].properties?.point);
 							}}>
 							<MapboxGL.CircleLayer
 								id="markerCircle"
@@ -203,6 +206,24 @@ export const DetailMap: FC = (props: any) => {
 								}
 							]}
 						>{namePoint}</Text>
+						<TouchableOpacity
+							style={[
+								DescriptionStyles.buttonMoreInfo,
+								{ borderColor: nameMode === 'dark' ? TextColor.grayText : TextColor.darkText }
+							]}
+							onPress={() => props?.navigation.navigate('DetailPointPage', {
+								titleScreen: namePoint,
+								dataOfCard: dataPoint,
+								nameMode,
+							})}
+						>
+							<Text
+								style={[
+									DescriptionStyles.textButton,
+									{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+								]}
+							>{props?.translation.t('mapbox_button_more_info')}</Text>
+						</TouchableOpacity>
 					</View>
 				) : null
 			}

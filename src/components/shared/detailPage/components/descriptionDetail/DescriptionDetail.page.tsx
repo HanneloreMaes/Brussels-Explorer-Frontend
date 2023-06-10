@@ -45,6 +45,8 @@ export const DescriptionDetail: FC = (props: any) => {
 				dataRoute={props?.dataOfCard}
 				handleScaleBigMap={props?.handleScaleBigMap}
 				scaleBig={props?.scaleBig}
+				navigation={props?.navigation}
+				translation={props?.translations}
 			/>
 		</>
 	);
