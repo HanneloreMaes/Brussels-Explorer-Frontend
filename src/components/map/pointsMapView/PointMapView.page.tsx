@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PointMapStyles } from './PointMapView.styles';
 import { IconMarker } from '../components/userLocationIcon/UserLocationIcon.page';
 import { DescriptionModalMarker } from '../mapView/components';
-import { DetailMapStyles, ModalError } from '@/components/shared';
+import { DetailMapStyles, FirebaseModal, ModalError } from '@/components/shared';
 import { AllMapNavProps } from '@/lib/navigator/types';
 import { BackgroundColor } from '@/style';
 import { getPoints } from '@/utils/redux/Actions';
@@ -22,6 +22,8 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 	const [ detailPoint, setDetailPoint ] = useState<any>();
 
 	const [ location, setLocation ] = useState<any>([]);
+
+	const [ showModalFirebase, setShowModalFirebase ] = useState<boolean>(false);
 
 	const dispatch = useDispatch();
 	const { points, nameMode } = useSelector((state: any) => state.allReducer);
@@ -60,6 +62,10 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 		setDetailPoint(pointData);
 	};
 
+	const handleCloseModal = (value: boolean) => {
+		setShowModalFirebase(value);
+	};
+
 	const getCurrentLocation = () => {
 
 		Geolocation.watchPosition(
@@ -72,7 +78,8 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 				]);
 			},
 			error => {
-				console.log(error);
+				console.warn('Error MapView watchPosition', error);
+				setShowModalFirebase(true);
 			},
 			{
 				enableHighAccuracy: true,
@@ -149,6 +156,15 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 			}
 			{
 				showModalError ? <ModalError labelName="mapbox_error_no_points" labelTryAgainText='mapbox_error_try_again' /> : null
+			}
+			{
+				showModalFirebase === true ? (
+					<FirebaseModal
+						labelName='firebase_error'
+						handleCloseModal={handleCloseModal}
+						nameMode={nameMode}
+					/>
+				) : null
 			}
 		</>
 	);
