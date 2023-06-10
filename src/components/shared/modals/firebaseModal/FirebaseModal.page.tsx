@@ -8,7 +8,7 @@ import { FirebaseStyles } from './FirebaseModal.styles';
 import { BackgroundColor, Highlight, TabBarColor, TextColor } from '@/style';
 import i18n from '@/utils/i18n/i18n';
 
-export const FirebaseModal: FC = (props: any) => (
+export const FirebaseModal = (props: any) => (
 	<>
 		<TouchableOpacity
 			style={[
