@@ -2,14 +2,16 @@ import React, { FC, useEffect, useState } from 'react';
 
 import MapboxGL, { CircleLayerStyle,SymbolLayerStyle } from '@rnmapbox/maps';
 import { View, Text, TouchableOpacity } from 'react-native';
+import Geolocation from 'react-native-geolocation-service';
+import { PERMISSIONS, request } from 'react-native-permissions';
 import FontAwsome5 from 'react-native-vector-icons/FontAwesome5';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { DetailMapStyles } from './DetailMap.styles';
-import { DetailMapTypes } from './DetailMap.types';
 import { ModalError } from '../../..';
+import { IconMarker } from '@/components/map/components/userLocationIcon/UserLocationIcon.page';
 import { DescriptionStyles } from '@/components/map/mapView/components/descriptionModal/page/DescriptionModal.styles';
-import { MapboxAccesToken, screenHeight } from '@/config';
+import { MapboxAccesToken } from '@/config';
 import { BackgroundColor, DefaultShadow, Highlight, TextColor } from '@/style';
 import { getPointsFromSpecRoutes } from '@/utils/redux/Actions';
 
@@ -26,6 +28,9 @@ export const DetailMap: FC = (props: any) => {
 	const [ showName, setShowName ] = useState<boolean>(false);
 	const [ namePoint, setNamePoint ] = useState<string>('');
 	const [ dataPoint, setDataPoint ] = useState<any>();
+
+	const [ locationPermissionAllowed, setLocationPermissionAllowed ] = useState<boolean>(false);
+	const [ location, setLocation ] = useState<any>([]);
 
 	const routeId = props?.dataRoute._id;
 
@@ -113,8 +118,50 @@ export const DetailMap: FC = (props: any) => {
 		});
 	};
 
+	const getCurrentLocation = () => {
+
+		Geolocation.watchPosition(
+			position => {
+				const { latitude, longitude, heading } = position.coords;
+				setLocation([
+					longitude,
+					latitude,
+				]);
+			},
+			error => {
+				console.warn('Error MapView watchPosition', error);
+			},
+			{
+				enableHighAccuracy: true,
+				distanceFilter: 0,
+				interval: 10000,
+				fastestInterval: 5000,
+			},
+		);
+	};
+
+	const onHandleSetCurrentLocation = () => {
+		if (locationPermissionAllowed) {
+			getCurrentLocation();
+		} else {
+			const locationPermission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
+			request(locationPermission)
+				.then((status: any) => {
+
+					if (status === 'granted') {
+						setLocationPermissionAllowed(true);
+						getCurrentLocation();
+					}
+				})
+				.catch((error: any) => {
+					console.warn('Error MapView watchPosition', error);
+				});
+		}
+	};
+
 	useEffect(() => {
 		fetchPointsSpecRoute();
+		onHandleSetCurrentLocation();
 	},[ props?.dataRoute ]);
 
 	return (
@@ -125,8 +172,25 @@ export const DetailMap: FC = (props: any) => {
 				style={{ flex: 1 }}
 				styleURL='mapbox://styles/mapbox/streets-v12'
 				onPress={() => setShowName(false)}
+				userTrackingMode={MapboxGL.UserTrackingMode.Follow}
 			>
-				<MapboxGL.Camera zoomLevel={13} centerCoordinate={centerCo} animationMode='none' />
+				<MapboxGL.Camera
+					zoomLevel={13}
+					centerCoordinate={centerCo}
+					animationMode='none'
+					followUserMode='compass'
+					followUserLocation
+				/>
+				{
+					location.length !== 0 &&
+					<MapboxGL.PointAnnotation
+						id='userMarker'
+						coordinate={location}
+					>
+						<IconMarker prevPage='Detail' />
+
+					</MapboxGL.PointAnnotation>
+				}
 				{
 					pointsGeo !== null ? (
 						<MapboxGL.ShapeSource
