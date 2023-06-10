@@ -33,7 +33,7 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 			setShowModalError(false);
 			setPointGeo({
 				type: 'FeatureCollection',
-				features: points.map((point, index) => ({
+				features: points.map((point: any, index: number) => ({
 					type: 'Feature',
 					geometry: {
 						type: 'Point',

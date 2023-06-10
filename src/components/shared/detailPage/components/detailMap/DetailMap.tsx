@@ -42,7 +42,7 @@ export const DetailMap: FC = (props: any) => {
 			setShowModalError(false);
 			setPointsGeo({
 				type: 'FeatureCollection',
-				features: pointsForSpecRoute.map((point, index) => ({
+				features: pointsForSpecRoute.map((point: any, index: number) => ({
 					type: 'Feature',
 					geometry: {
 						type: 'Point',

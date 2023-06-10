@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { FC, useEffect, useRef, useState } from 'react';
 
 import MapboxGL, { CircleLayerStyle, SymbolLayerStyle, OnPressEvent } from '@rnmapbox/maps';
