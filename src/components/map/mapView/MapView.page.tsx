@@ -2,7 +2,7 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 
 import MapboxGL, { CircleLayerStyle, SymbolLayerStyle, OnPressEvent } from '@rnmapbox/maps';
-import { Alert, View } from 'react-native';
+import { View } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import { PERMISSIONS, request } from 'react-native-permissions';
 import { useDispatch, useSelector } from 'react-redux';
