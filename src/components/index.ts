@@ -1,6 +1,5 @@
 // ONBOARDING
 export * from './onboarding/Onboarding.page';
-export * from './onboarding/components/questionRegister/QuestionRegister.page';
 export * from './onboarding/components/infoOnboarding/IntroOnboarding.page';
 
 // MAIN
