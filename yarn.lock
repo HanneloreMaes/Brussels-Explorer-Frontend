@@ -1596,11 +1596,6 @@
   dependencies:
     merge-options "^3.0.4"
 
-"@react-native-community/checkbox@0.5.15":
-  version "0.5.15"
-  resolved "https://registry.yarnpkg.com/@react-native-community/checkbox/-/checkbox-0.5.15.tgz#783255d0886e3eb93fe42f0cef22aeefb8b596a5"
-  integrity sha512-cdg/P4pF8CXd5+6MBIl2luihFTzjfIcKIEVRnF1wgoNoItRVQlyulWYJEPvL2OmdAYTaBsZTXUIdcOkGqpxLZg==
-
 "@react-native-community/cli-clean@^9.2.1":
   version "9.2.1"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-clean/-/cli-clean-9.2.1.tgz#198c5dd39c432efb5374582073065ff75d67d018"
@@ -7397,6 +7392,11 @@ react-native-codegen@^0.70.6:
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
 
+react-native-geolocation-service@5.3.1:
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-geolocation-service/-/react-native-geolocation-service-5.3.1.tgz#4ce1017789da6fdfcf7576eb6f59435622af4289"
+  integrity sha512-LTXPtPNmrdhx+yeWG47sAaCgQc3nG1z+HLLHlhK/5YfOgfLcAb9HAkhREPjQKPZOUx8pKZMIpdGFUGfJYtimXQ==
+
 react-native-gradle-plugin@^0.70.3:
   version "0.70.3"
   resolved "https://registry.yarnpkg.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.70.3.tgz#cbcf0619cbfbddaa9128701aa2d7b4145f9c4fc8"
@@ -7406,6 +7406,11 @@ react-native-pager-view@6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-6.2.0.tgz#51380d93fbe47f6380dc71d613a787bf27a4ca37"
   integrity sha512-pf9OnL/Tkr+5s4Gjmsn7xh91PtJLDa6qxYa/bmtUhd/+s4cQdWQ8DIFoOFghwZIHHHwVdWtoXkp6HtpjN+r20g==
+
+react-native-permissions@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-3.0.1.tgz#7273f7d07701974ef50bf77bb052881846a3bb91"
+  integrity sha512-loCoNEeBeLsrvITZmrkuCUEMFiuwhKuFvkWbC5Imco4bj2hUW7BVI29i8QyxkC53ydRfSR9OtbR3KQIyghWiNQ==
 
 react-native-reanimated@3.1.0:
   version "3.1.0"
