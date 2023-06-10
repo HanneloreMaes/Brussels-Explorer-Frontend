@@ -1,28 +1,34 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 
-import MapboxGL, { CircleLayerStyle, SymbolLayerStyle, OnPressEvent } from '@rnmapbox/maps';
-import { StyleSheet, View } from 'react-native';
+import MapboxGL, { CircleLayerStyle, SymbolLayerStyle, OnPressEvent, Camera } from '@rnmapbox/maps';
+import { Alert, View } from 'react-native';
+import Geolocation from 'react-native-geolocation-service';
+import { PERMISSIONS, request } from 'react-native-permissions';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { DescriptionModalMarker } from './components';
 import { MapStyles } from './MapView.styles';
+import { IconMarker } from '../components/userLocationIcon/UserLocationIcon.page';
 import { DetailMapStyles, ModalError } from '@/components/shared';
 import { MapboxAccesToken } from '@/config';
 import { AllMapNavProps } from '@/lib/navigator/types';
 import { BackgroundColor } from '@/style';
 import { getPoints, getPointsFromSpecRoutes } from '@/utils/redux/Actions';
-import Geolocation from '@react-native-community/geolocation';
 
 MapboxGL.setWellKnownTileServer('Mapbox');
 MapboxGL.setAccessToken(MapboxAccesToken);
 
-export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation }) => {
+export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation, route }) => {
 
 	const coordinates = [ 4.3570964, 50.845504 ];
+
 	const [ firstPointRouteGeo, setFirstPointRouteGeo ] = useState<any>();
 	const [ showModal, setShowModal ] = useState<boolean>(false);
 	const [ showModalError, setShowModalError ] = useState<boolean>(false);
 	const [ detailPointRoute, setDetailPointRoute ] = useState<any>();
+
+	const [ locationPermissionAllowed, setLocationPermissionAllowed ] = useState<boolean>(false);
+	const [ location, setLocation ] = useState<any>([]);
 
 	const dispatch = useDispatch();
 	const { routes, nameMode } = useSelector((state: any) => state.allReducer);
@@ -63,13 +69,57 @@ export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation }) => {
 		setDetailPointRoute(routeData);
 	};
 
-	const testLocation = () => {
-		Geolocation.getCurrentPosition(info => console.log(info));
+	const getCurrentLocation = () => {
+
+		Geolocation.watchPosition(
+			position => {
+				const { latitude, longitude } = position.coords;
+				console.log('Coords', position.coords);
+				setLocation([
+					longitude,
+					latitude,
+				]);
+			},
+			error => {
+				console.log(error);
+			},
+			{
+				enableHighAccuracy: true,
+				distanceFilter: 0,
+				interval: 10000,
+				fastestInterval: 5000,
+			},
+		);
+	};
+
+	const onHandleSetCurrentLocation = () => {
+		if (locationPermissionAllowed) {
+			getCurrentLocation();
+		} else {
+			const locationPermission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
+			request(locationPermission)
+				.then((status: any) => {
+
+					if (status === 'granted') {
+						setLocationPermissionAllowed(true);
+						getCurrentLocation();
+					}
+				})
+				.catch((error: any) => {
+					Alert.alert('Something went wrong', error);
+				});
+		}
 	};
 
 	useEffect(() => {
 		mapRoutes();
+		onHandleSetCurrentLocation();
 	}, []);
+
+	useEffect(() => {
+		onHandleSetCurrentLocation();
+
+	}, [ route.name ]);
 
 	return (
 		<>
@@ -77,8 +127,35 @@ export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation }) => {
 				style={MapStyles.container}
 				styleURL='mapbox://styles/mapbox/streets-v12'
 				onPress={() => setShowModal(false)}
+				compassEnabled
+				compassPosition={{ top: 10, right: 10 }}
+				compassViewPosition={2}
 			>
-				<MapboxGL.Camera zoomLevel={13} centerCoordinate={coordinates} animationMode='none' />
+				{
+					location.length !== 0 ?
+						<MapboxGL.Camera
+							zoomLevel={13}
+							centerCoordinate={location}
+							animationMode='none'
+							followUserLocation
+						/>
+						: <MapboxGL.Camera
+							zoomLevel={13}
+							centerCoordinate={coordinates}
+							animationMode='none'
+							followUserLocation
+						/>
+				}
+				{
+					location.length !== 0 &&
+						<MapboxGL.PointAnnotation
+							id='userMarker'
+							coordinate={location}
+						>
+							<IconMarker prevPage='Map' />
+
+						</MapboxGL.PointAnnotation>
+				}
 				{
 					firstPointRouteGeo !== null ? (
 						<MapboxGL.ShapeSource id="markers" shape={firstPointRouteGeo} onPress={handleModalPress}>

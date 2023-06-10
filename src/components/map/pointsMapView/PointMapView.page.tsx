@@ -2,9 +2,11 @@ import React, { FC, useEffect, useState } from 'react';
 
 import MapboxGL, { CircleLayerStyle, SymbolLayerStyle, OnPressEvent } from '@rnmapbox/maps';
 import { View } from 'react-native';
+import Geolocation from 'react-native-geolocation-service';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { PointMapStyles } from './PointMapView.styles';
+import { IconMarker } from '../components/userLocationIcon/UserLocationIcon.page';
 import { DescriptionModalMarker } from '../mapView/components';
 import { DetailMapStyles, ModalError } from '@/components/shared';
 import { AllMapNavProps } from '@/lib/navigator/types';
@@ -18,6 +20,8 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 	const [ showModal, setShowModal ] = useState<boolean>(false);
 	const [ showModalError, setShowModalError ] = useState<boolean>(false);
 	const [ detailPoint, setDetailPoint ] = useState<any>();
+
+	const [ location, setLocation ] = useState<any>([]);
 
 	const dispatch = useDispatch();
 	const { points, nameMode } = useSelector((state: any) => state.allReducer);
@@ -56,8 +60,32 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 		setDetailPoint(pointData);
 	};
 
+	const getCurrentLocation = () => {
+
+		Geolocation.watchPosition(
+			position => {
+				const { latitude, longitude } = position.coords;
+				console.log('Coords', position.coords);
+				setLocation([
+					longitude,
+					latitude,
+				]);
+			},
+			error => {
+				console.log(error);
+			},
+			{
+				enableHighAccuracy: true,
+				distanceFilter: 0,
+				interval: 10000,
+				fastestInterval: 5000,
+			},
+		);
+	};
+
 	useEffect(() => {
 		fetchPoints();
+		getCurrentLocation();
 	}, [ navigation ]);
 
 	return (
@@ -66,8 +94,23 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 				style={PointMapStyles.container}
 				styleURL='mapbox://styles/mapbox/streets-v12'
 				onPress={() => setShowModal(false)}
+				compassEnabled
 			>
-				<MapboxGL.Camera zoomLevel={13} centerCoordinate={coordinates} animationMode='none' />
+				{
+					location.length !== 0 ?
+						<MapboxGL.Camera zoomLevel={13} centerCoordinate={location} animationMode='none' />
+						: <MapboxGL.Camera zoomLevel={13} centerCoordinate={coordinates} animationMode='none' />
+				}
+				{
+					location.length !== 0 &&
+					<MapboxGL.PointAnnotation
+						id='userMarker'
+						coordinate={location}
+					>
+						<IconMarker prevPage='Map' />
+
+					</MapboxGL.PointAnnotation>
+				}
 				{
 					pointGeo !== null ? (
 						<MapboxGL.ShapeSource id="markers" shape={pointGeo} onPress={handleModalPress}>
