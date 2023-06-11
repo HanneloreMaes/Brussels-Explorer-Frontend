@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 
-import { updateProfile } from 'firebase/auth';
+import { User, updateProfile } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useSelector } from 'react-redux';
@@ -35,7 +35,7 @@ export const UsernameSetting: FC = () => {
 
 	const saveUsername = (newUsernameOfUser: string | null | undefined) => {
 		if (newUsernameOfUser !== oldUsername && newUsernameOfUser !== '') {
-			updateProfile(auth.currentUser, { displayName: newUsernameOfUser })
+			updateProfile(auth.currentUser as User, { displayName: newUsernameOfUser })
 				.then(() => {
 					setShowModal(true);
 					setStringModal('settings_alert_change_name_succes');

@@ -8,16 +8,16 @@
 ## Table of Contents
 
 - [Brussels Explorer Frontend](#brussels-explorer-frontend)
-	- [Table of Contents](#table-of-contents)
-	- [Introduction](#introduction)
-	- [Features](#features)
-	- [Installation](#installation)
-	- [Usage](#usage)
-	- [Troubleshooting](#troubleshooting)
-	- [Sources](#sources)
-		- [Documentations](#documentations)
-		- [Video's](#videos)
-		- [Websites](#websites)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Features](#features)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Troubleshooting](#troubleshooting)
+  - [Sources](#sources)
+    - [Documentations](#documentations)
+    - [Video's](#videos)
+    - [Websites](#websites)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -98,9 +98,11 @@ A few of the things you can do with the frontend:
 7. Documentation SplashScreen - CrazyCodeBoy - [Github](https://github.com/crazycodeboy/react-native-splash-screen)
 8. Documentation React Native Icons - Oblador - [Github](https://github.com/oblador/react-native-vector-icons)
 9. Documentation rnmapbox/maps - rnMapbox - [Github](https://github.com/rnmapbox/maps)
-10. React Native Select Dropdown - AdelRedaa97 - [NPM](https://www.npmjs.com/package/react-native-select-dropdown)
-11. React Native Swiper - Leecade - [Github](https://github.com/leecade/react-native-swiper)
-12. React Native Firebase Error - Invertase - [NativeFirebaseError](https://rnfirebase.io/reference/app/nativefirebaseerror)
+10. Documentation React Native Select Dropdown - AdelRedaa97 - [NPM](https://www.npmjs.com/package/react-native-select-dropdown)
+11. Documentation React Native Swiper - Leecade - [Github](https://github.com/leecade/react-native-swiper)
+12. Documentation React Native Firebase Error - Invertase - [NativeFirebaseError](https://rnfirebase.io/reference/app/nativefirebaseerror)
+13. Documentation React Native Geolocation Service - Agontuk - [Github](https://github.com/Agontuk/react-native-geolocation-service)
+14. Documentation Geolib - Manuel Bieh - [Github](https://github.com/manuelbieh/geolib/tree/master)
    
 
 ### Video's

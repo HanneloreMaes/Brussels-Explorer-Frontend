@@ -7,6 +7,9 @@ export const DetailMapStyles = StyleSheet.create({
 		marginVertical: DefaultAppStyling.globalMargin,
 		height: 280,
 	},
+	mapContainerBig: {
+		height: '100%',
+	},
 	marker: {
 		circleColor: Highlight.tealHighlight,
 		circleRadius: 20,
@@ -32,5 +35,16 @@ export const DetailMapStyles = StyleSheet.create({
 	},
 	nameModalText: {
 		...TextStyles.bodyText,
-	}
+	},
+	scaleMap: {
+		position: 'absolute',
+		top: 5,
+		right: -25,
+		height: 50,
+		width: 50,
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginHorizontal: 30,
+		borderRadius: BorderContainerStyle.borderRadius,
+	},
 });

@@ -1,3 +1,3 @@
 export interface SpinnerTypes {
-	sizeSpinner: string | number;
+	sizeSpinner: 'small' | 'large';
 };

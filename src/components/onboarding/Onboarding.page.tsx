@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import React, { FC, useEffect, useState } from 'react';
 
-import { createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, updateProfile, User } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
 import {
 	View,
@@ -115,11 +115,11 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 	const signUp = () => {
 		createUserWithEmailAndPassword(auth,email, password)
 			.then(() => {
-				updateProfile(auth?.currentUser, {
+				updateProfile(auth?.currentUser as User, {
 					displayName: username,
 				});
 				dispatch(setUnAuth(false));
-				navigation.navigate('QuestionRegister');
+				navigation.navigate('MainStack');
 			}).catch( (error) => {
 				if (error.code === 'auth/invalid-email') {
 					setStringModal('onboarding_firebase_error_email_failed');

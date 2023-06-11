@@ -9,7 +9,7 @@ import '@/utils/i18n/i18n';
 import { TextColor } from '@/style';
 import { auth } from '@/utils/Firebase.config';
 
-export const CardItem: FC = (props: any) => {
+export const CardItem = (props: any) => {
 
 	const{ i18n } = useTranslation();
 	const [ navName, setNavName ] = useState<string>('');
