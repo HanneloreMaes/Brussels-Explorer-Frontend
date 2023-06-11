@@ -3,34 +3,33 @@ import React, { FC, useState, useEffect } from 'react';
 import { Text } from 'react-native';
 import { useSelector } from 'react-redux';
 
-import { DescriptionTypes } from './DescriptionDetail.types';
 import { DetailMap } from '../detailMap/DetailMap';
 import { TextStyles, TextColor } from '@/style';
 
-export const DescriptionDetail: FC <DescriptionTypes> = ({ props, translations }) => {
+export const DescriptionDetail: FC = (props: any) => {
 
 	const { nameMode } = useSelector((state: any) => state.allReducer);
 
 	const [ descriptionInLanguage, setDescriptionInLanguage ] = useState<string>('');
 
 	const checkLanguageDescription = () => {
-		if (translations.language === 'nl') {
-			setDescriptionInLanguage(props.description_nl);
+		if (props?.translations.language === 'nl') {
+			setDescriptionInLanguage(props?.dataOfCard.description_nl);
 		}
-		if (translations.language === 'en') {
-			setDescriptionInLanguage(props.description_en);
+		if (props?.translations.language === 'en') {
+			setDescriptionInLanguage(props?.dataOfCard.description_en);
 		}
-		if (translations.language === 'fr') {
-			setDescriptionInLanguage(props.description_fr);
+		if (props?.translations.language === 'fr') {
+			setDescriptionInLanguage(props?.dataOfCard.description_fr);
 		}
-		if (translations.language === 'de') {
-			setDescriptionInLanguage(props.description_de);
+		if (props?.translations.language === 'de') {
+			setDescriptionInLanguage(props?.dataOfCard.description_de);
 		}
 	};
 
 	useEffect(() => {
 		checkLanguageDescription();
-	}, [ props ]);
+	}, [ props?.dataOfCard ]);
 
 	return (
 		<>
@@ -42,7 +41,14 @@ export const DescriptionDetail: FC <DescriptionTypes> = ({ props, translations }
 			>
 				{descriptionInLanguage}
 			</Text>
-			<DetailMap dataRoute={props} />
+			<DetailMap
+				dataRoute={props?.dataOfCard}
+				handleScaleBigMap={props?.handleScaleBigMap}
+				scaleBig={props?.scaleBig}
+				navigation={props?.navigation}
+				route={props?.route}
+				translation={props?.translations}
+			/>
 		</>
 	);
 };

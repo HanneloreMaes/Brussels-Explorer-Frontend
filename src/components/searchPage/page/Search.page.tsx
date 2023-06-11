@@ -323,7 +323,7 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 				{
 					isLoading ? (
 						<View style={SearchStyles.loadingContainer}>
-							<LoadingSpinner sizeSpinner="large" colorSpinner={Highlight.tealHighlight} />
+							<LoadingSpinner sizeSpinner="large"/>
 						</View>
 					) : (
 						filteredData.length !== 0 ? (

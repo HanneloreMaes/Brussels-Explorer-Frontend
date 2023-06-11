@@ -102,6 +102,7 @@ A few of the things you can do with the frontend:
 11. Documentation React Native Swiper - Leecade - [Github](https://github.com/leecade/react-native-swiper)
 12. Documentation React Native Firebase Error - Invertase - [NativeFirebaseError](https://rnfirebase.io/reference/app/nativefirebaseerror)
 13. Documentation React Native Geolocation Service - Agontuk - [Github](https://github.com/Agontuk/react-native-geolocation-service)
+14. Documentation Geolib - Manuel Bieh - [Github](https://github.com/manuelbieh/geolib/tree/master)
    
 
 ### Video's

@@ -1,15 +1,15 @@
+/* eslint-disable no-console */
 import React, { FC, useEffect, useRef, useState } from 'react';
 
-import MapboxGL, { CircleLayerStyle, SymbolLayerStyle, OnPressEvent, Camera } from '@rnmapbox/maps';
-import { Alert, View } from 'react-native';
+import MapboxGL, { CircleLayerStyle, SymbolLayerStyle, OnPressEvent } from '@rnmapbox/maps';
+import { View } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import { PERMISSIONS, request } from 'react-native-permissions';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { DescriptionModalMarker } from './components';
 import { MapStyles } from './MapView.styles';
-import { IconMarker } from '../components/userLocationIcon/UserLocationIcon.page';
-import { DetailMapStyles, ModalError } from '@/components/shared';
+import { DetailMapStyles, FirebaseModal, ModalError } from '@/components/shared';
 import { MapboxAccesToken } from '@/config';
 import { AllMapNavProps } from '@/lib/navigator/types';
 import { BackgroundColor } from '@/style';
@@ -30,6 +30,12 @@ export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation, route }) =>
 	const [ locationPermissionAllowed, setLocationPermissionAllowed ] = useState<boolean>(false);
 	const [ location, setLocation ] = useState<any>([]);
 
+	const [ showModalFirebase, setShowModalFirebase ] = useState<boolean>(false);
+
+	const handleCloseModal = (value: boolean) => {
+		setShowModalFirebase(value);
+	};
+
 	const dispatch = useDispatch();
 	const { routes, nameMode } = useSelector((state: any) => state.allReducer);
 
@@ -41,7 +47,7 @@ export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation, route }) =>
 			setShowModalError(false);
 			setFirstPointRouteGeo({
 				type: 'FeatureCollection',
-				features: routes.map((route, index) => ({
+				features: routes.map((route: any, index: number) => ({
 					type: 'Feature',
 					geometry: {
 						type: 'Point',
@@ -74,14 +80,14 @@ export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation, route }) =>
 		Geolocation.watchPosition(
 			position => {
 				const { latitude, longitude } = position.coords;
-				console.log('Coords', position.coords);
 				setLocation([
 					longitude,
 					latitude,
 				]);
 			},
 			error => {
-				console.log(error);
+				console.warn('Error MapView watchPosition', error);
+				setShowModalFirebase(true);
 			},
 			{
 				enableHighAccuracy: true,
@@ -106,7 +112,8 @@ export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation, route }) =>
 					}
 				})
 				.catch((error: any) => {
-					Alert.alert('Something went wrong', error);
+					console.warn('Error MapView watchPosition', error);
+					setShowModalFirebase(true);
 				});
 		}
 	};
@@ -147,16 +154,6 @@ export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation, route }) =>
 						/>
 				}
 				{
-					location.length !== 0 &&
-						<MapboxGL.PointAnnotation
-							id='userMarker'
-							coordinate={location}
-						>
-							<IconMarker prevPage='Map' />
-
-						</MapboxGL.PointAnnotation>
-				}
-				{
 					firstPointRouteGeo !== null ? (
 						<MapboxGL.ShapeSource id="markers" shape={firstPointRouteGeo} onPress={handleModalPress}>
 							<MapboxGL.CircleLayer
@@ -193,6 +190,15 @@ export const MapView: FC <AllMapNavProps<'Routes'>> = ({ navigation, route }) =>
 			}
 			{
 				showModalError ? <ModalError labelName="mapbox_error_no_routes" labelTryAgainText='mapbox_error_try_again' /> : null
+			}
+			{
+				showModalFirebase === true ? (
+					<FirebaseModal
+						labelName='firebase_error'
+						handleCloseModal={handleCloseModal}
+						nameMode={nameMode}
+					/>
+				) : null
 			}
 		</>
 	);

@@ -6,7 +6,6 @@ import {
 	PointMapView,
 	SettingsPage,
 	LanguageSettings,
-	QuestionRegister,
 	IntroOnboaridng,
 	UsernameSetting,
 } from '@/components';
@@ -28,11 +27,6 @@ export const ALL_ONBOARDING_ROUTES: IRouteTypes[] = [
 
 export const ONBOARDING_ROUTES: IRouteTypes[] = [
 	SHARED_ROUTES.OnboardingPage,
-	{
-		name: 'QuestionRegister',
-		component: QuestionRegister,
-		label: 'Question',
-	},
 	SHARED_ROUTES.Main,
 ];
 

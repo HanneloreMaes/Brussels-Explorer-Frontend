@@ -5,12 +5,8 @@ import Svg, { Path } from 'react-native-svg';
 
 import { IconTypes } from './UserLocationIcon.types';
 
-export const IconMarker: FC <IconTypes> = ({ heading, cameraHeading, prevPage }) => (
-	<View
-		// style={{
-		// 	transform: [ { rotate: `${heading - cameraHeading}deg` } ],
-		// }}
-	>
+export const IconMarker: FC <IconTypes> = ({ prevPage }) => (
+	<View>
 		{
 			prevPage === 'Detail' ? (
 				<Svg width={40} height={40} viewBox="0 0 1024 1024">

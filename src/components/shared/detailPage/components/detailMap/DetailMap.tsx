@@ -1,33 +1,42 @@
 import React, { FC, useEffect, useState } from 'react';
 
 import MapboxGL, { CircleLayerStyle,SymbolLayerStyle } from '@rnmapbox/maps';
-import { Image, View, Text, Dimensions } from 'react-native';
+import * as geolib from 'geolib';
+import { View, Text, TouchableOpacity } from 'react-native';
+import Geolocation from 'react-native-geolocation-service';
+import { PERMISSIONS, request } from 'react-native-permissions';
+import FontAwsome5 from 'react-native-vector-icons/FontAwesome5';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { DetailMapStyles } from './DetailMap.styles';
-import { DetailMapTypes } from './DetailMap.types';
 import { ModalError } from '../../..';
-import { MapStyles } from '@/components/mapView/MapView.styles';
+import { IconMarker } from '@/components/map/components/userLocationIcon/UserLocationIcon.page';
+import { DescriptionStyles } from '@/components/map/mapView/components/descriptionModal/page/DescriptionModal.styles';
 import { MapboxAccesToken } from '@/config';
-import { BackgroundColor, BorderContainerStyle, DefaultAppStyling, DefaultShadow, Highlight, TextColor } from '@/style';
+import { BackgroundColor, DefaultShadow, Highlight, TextColor } from '@/style';
 import { getPointsFromSpecRoutes } from '@/utils/redux/Actions';
 
 MapboxGL.setWellKnownTileServer('Mapbox');
 MapboxGL.setAccessToken(MapboxAccesToken);
 
-const { height } = Dimensions.get('window');
+export const DetailMap: FC = (props: any) => {
 
-export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
+	const coordinatesPolygonArray: any[] = [];
 
-	const [ centerCo, setCenterCo ] = useState();
+	const [ centerCo, setCenterCo ] = useState<any>();
 	const [ routeGeo, setRouteGeo ] = useState<any>();
 	const [ pointsGeo, setPointsGeo ] = useState<any>();
 	const [ showModalError, setShowModalError ] = useState<boolean>(false);
 
 	const [ showName, setShowName ] = useState<boolean>(false);
 	const [ namePoint, setNamePoint ] = useState<string>('');
+	const [ dataPoint, setDataPoint ] = useState<any>();
 
-	const routeId = dataRoute._id;
+	const [ userInPolygon, setUserInPolygon ] = useState<boolean>(false);
+	const [ locationPermissionAllowed, setLocationPermissionAllowed ] = useState<boolean>(false);
+	const [ location, setLocation ] = useState<any>([]);
+
+	const routeId = props?.dataRoute._id;
 
 	const dispatch = useDispatch();
 	const { pointsForSpecRoute, nameMode } = useSelector((state: any) => state.allReducer);
@@ -40,35 +49,53 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 	const getCoordinatesOfPoints = () => {
 		const coordinatesPointsArray: any[] = [];
 
+		const sortingArr = props?.dataRoute.points;
+
 		if (pointsForSpecRoute?.length > 0) {
 			setShowModalError(false);
 			setPointsGeo({
 				type: 'FeatureCollection',
-				features: pointsForSpecRoute.map((point, index) => ({
-					type: 'Feature',
-					geometry: {
-						type: 'Point',
-						coordinates: [ point.lng, point.lat ],
-					},
-					properties: {
-						poiNumber: index + 1,
-						point,
-					},
-				})),
+				features: pointsForSpecRoute
+					.sort(function(a: any, b: any) {
+						return sortingArr.indexOf(a._id) - sortingArr.indexOf(b._id);
+					})
+					.map((point: any, index: number) => ({
+						type: 'Feature',
+						geometry: {
+							type: 'Point',
+							coordinates: [ point.lng, point.lat ],
+						},
+						properties: {
+							poiNumber: index + 1,
+							point,
+						},
+					})),
 			});
 		} else {
 			setPointsGeo(null);
 			setShowModalError(true);
 		}
 
-		pointsForSpecRoute.map((coordinatePoints: any) => {
-			const lngPoint = coordinatePoints.lng;
-			const latPoint = coordinatePoints.lat;
-			const coordinatesPerPointArray = [ lngPoint, latPoint ];
-			coordinatesPointsArray.push(coordinatesPerPointArray);
+		pointsForSpecRoute
+			.sort(function(a: any, b: any) {
+				return sortingArr.indexOf(a._id) - sortingArr.indexOf(b._id);
+			})
+			.map((coordinatePoints: any, index: number) => {
 
-			return coordinatesPointsArray;
-		});
+				const lngPoint = coordinatePoints.lng;
+				const latPoint = coordinatePoints.lat;
+				const coordinatesPerPointArray = [ lngPoint, latPoint ];
+				coordinatesPointsArray.push(coordinatesPerPointArray);
+
+				const coordinatesPerPointInPolygonObject = { lat: lngPoint, lng: latPoint };
+				coordinatesPolygonArray.push(coordinatesPerPointInPolygonObject);
+
+				return {
+					coordinatesPointsArray,
+					coordinatesPolygonArray
+				};
+			});
+
 		matchRoute(coordinatesPointsArray);
 
 	};
@@ -113,18 +140,101 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 		});
 	};
 
+	const getCurrentLocation = () => {
+
+		Geolocation.watchPosition(
+			position => {
+				const { latitude, longitude, heading } = position.coords;
+				setLocation([
+					longitude,
+					latitude,
+				]);
+			},
+			error => {
+				console.warn('Error MapView watchPosition', error);
+			},
+			{
+				enableHighAccuracy: true,
+				distanceFilter: 0,
+				interval: 10000,
+				fastestInterval: 5000,
+			},
+		);
+	};
+
+	const onHandleSetCurrentLocation = () => {
+		if (locationPermissionAllowed) {
+			getCurrentLocation();
+		} else {
+			const locationPermission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
+			request(locationPermission)
+				.then((status: any) => {
+
+					if (status === 'granted') {
+						setLocationPermissionAllowed(true);
+						getCurrentLocation();
+					}
+				})
+				.catch((error: any) => {
+					console.warn('Error MapView watchPosition', error);
+				});
+		}
+	};
+
+	useEffect(() => {
+		setCenterCo(null);
+		setPointsGeo(null);
+		setRouteGeo(null);
+	}, [ props?.route.name ]);
+
+	useEffect(() => {
+		if ( geolib.isPointInPolygon(location, coordinatesPolygonArray) === true ) {
+			return setUserInPolygon(true);
+		}
+		return setUserInPolygon(false);
+
+	}, [ props?.navigation ]);
+
 	useEffect(() => {
 		fetchPointsSpecRoute();
-	},[ dataRoute ]);
+		onHandleSetCurrentLocation();
+	},[ props?.dataRoute ]);
 
 	return (
-		<View style={DetailMapStyles.mapContainer}>
+		<View style={
+			props?.scaleBig === true ? DetailMapStyles.mapContainerBig : DetailMapStyles.mapContainer
+		}>
 			<MapboxGL.MapView
 				style={{ flex: 1 }}
 				styleURL='mapbox://styles/mapbox/streets-v12'
 				onPress={() => setShowName(false)}
+				userTrackingMode={MapboxGL.UserTrackingMode.Follow}
 			>
-				<MapboxGL.Camera zoomLevel={13} centerCoordinate={centerCo} animationMode='none' />
+				{
+					userInPolygon && location.length !== 0 ?
+						<MapboxGL.Camera
+							zoomLevel={13}
+							centerCoordinate={location}
+							animationMode='none'
+							followUserMode='compass'
+							followUserLocation
+						/>
+						: <MapboxGL.Camera
+							zoomLevel={13}
+							centerCoordinate={centerCo}
+							animationMode='none'
+						/>
+				}
+				{
+					location.length !== 0 &&
+					<MapboxGL.PointAnnotation
+						id='userMarker'
+						coordinate={location}
+					>
+						<IconMarker prevPage='Detail' />
+
+					</MapboxGL.PointAnnotation>
+				}
 				{
 					pointsGeo !== null ? (
 						<MapboxGL.ShapeSource
@@ -133,6 +243,7 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 							onPress={(e) => {
 								setShowName(true);
 								setNamePoint(e.features[ 0 ].properties?.point.name);
+								setDataPoint(e.features[ 0 ].properties?.point);
 							}}>
 							<MapboxGL.CircleLayer
 								id="markerCircle"
@@ -157,6 +268,33 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 					showModalError ? <ModalError labelName="mapbox_error_no_routes" labelTryAgainText='mapbox_error_try_again' /> : null
 				}
 			</MapboxGL.MapView>
+			<View
+				style={[
+					DetailMapStyles.scaleMap,
+					DefaultShadow.bottomShadow,
+					{
+						backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light
+					}
+				]}
+			>
+				{
+					props?.scaleBig === true ? (
+						<FontAwsome5
+							name='compress-arrows-alt'
+							size={25}
+							color={nameMode === 'dark' ? TextColor.lightText : TextColor.darkText}
+							onPress={() => props?.handleScaleBigMap(false)}
+						/>
+					) : (
+						<FontAwsome5
+							name='expand-arrows-alt'
+							size={25}
+							color={nameMode === 'dark' ? TextColor.lightText : TextColor.darkText}
+							onPress={() => props?.handleScaleBigMap(true)}
+						/>
+					)
+				}
+			</View>
 			{
 				showName === true ? (
 					<View
@@ -176,6 +314,24 @@ export const DetailMap: FC <DetailMapTypes> = ({ dataRoute }) => {
 								}
 							]}
 						>{namePoint}</Text>
+						<TouchableOpacity
+							style={[
+								DescriptionStyles.buttonMoreInfo,
+								{ borderColor: nameMode === 'dark' ? TextColor.grayText : TextColor.darkText }
+							]}
+							onPress={() => props?.navigation.navigate('DetailPointPage', {
+								titleScreen: namePoint,
+								dataOfCard: dataPoint,
+								nameMode,
+							})}
+						>
+							<Text
+								style={[
+									DescriptionStyles.textButton,
+									{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+								]}
+							>{props?.translation.t('mapbox_button_more_info')}</Text>
+						</TouchableOpacity>
 					</View>
 				) : null
 			}
