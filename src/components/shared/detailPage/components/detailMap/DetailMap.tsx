@@ -23,7 +23,7 @@ export const DetailMap: FC = (props: any) => {
 
 	const coordinatesPolygonArray: any[] = [];
 
-	const [ centerCo, setCenterCo ] = useState();
+	const [ centerCo, setCenterCo ] = useState<any>();
 	const [ routeGeo, setRouteGeo ] = useState<any>();
 	const [ pointsGeo, setPointsGeo ] = useState<any>();
 	const [ showModalError, setShowModalError ] = useState<boolean>(false);
@@ -49,40 +49,52 @@ export const DetailMap: FC = (props: any) => {
 	const getCoordinatesOfPoints = () => {
 		const coordinatesPointsArray: any[] = [];
 
+		const sortingArr = props?.dataRoute.points;
+
 		if (pointsForSpecRoute?.length > 0) {
 			setShowModalError(false);
 			setPointsGeo({
 				type: 'FeatureCollection',
-				features: pointsForSpecRoute.map((point: any, index: number) => ({
-					type: 'Feature',
-					geometry: {
-						type: 'Point',
-						coordinates: [ point.lng, point.lat ],
-					},
-					properties: {
-						poiNumber: index + 1,
-						point,
-					},
-				})),
+				features: pointsForSpecRoute
+					.sort(function(a: any, b: any) {
+						return sortingArr.indexOf(a._id) - sortingArr.indexOf(b._id);
+					})
+					.map((point: any, index: number) => ({
+						type: 'Feature',
+						geometry: {
+							type: 'Point',
+							coordinates: [ point.lng, point.lat ],
+						},
+						properties: {
+							poiNumber: index + 1,
+							point,
+						},
+					})),
 			});
 		} else {
 			setPointsGeo(null);
 			setShowModalError(true);
 		}
 
-		pointsForSpecRoute.map((coordinatePoints: any) => {
-			const lngPoint = coordinatePoints.lng;
-			const latPoint = coordinatePoints.lat;
-			const coordinatesPerPointArray = [ lngPoint, latPoint ];
-			const coordinatesPerPointInPolygonObject = { lat: lngPoint, lng: latPoint };
-			coordinatesPointsArray.push(coordinatesPerPointArray);
-			coordinatesPolygonArray.push(coordinatesPerPointInPolygonObject);
+		pointsForSpecRoute
+			.sort(function(a: any, b: any) {
+				return sortingArr.indexOf(a._id) - sortingArr.indexOf(b._id);
+			})
+			.map((coordinatePoints: any, index: number) => {
 
-			return {
-				coordinatesPointsArray,
-				coordinatesPolygonArray
-			};
-		});
+				const lngPoint = coordinatePoints.lng;
+				const latPoint = coordinatePoints.lat;
+				const coordinatesPerPointArray = [ lngPoint, latPoint ];
+				coordinatesPointsArray.push(coordinatesPerPointArray);
+
+				const coordinatesPerPointInPolygonObject = { lat: lngPoint, lng: latPoint };
+				coordinatesPolygonArray.push(coordinatesPerPointInPolygonObject);
+
+				return {
+					coordinatesPointsArray,
+					coordinatesPolygonArray
+				};
+			});
 
 		matchRoute(coordinatesPointsArray);
 
@@ -170,11 +182,15 @@ export const DetailMap: FC = (props: any) => {
 	};
 
 	useEffect(() => {
+		setCenterCo(null);
+		setPointsGeo(null);
+		setRouteGeo(null);
+	}, [ props?.route.name ]);
+
+	useEffect(() => {
 		if ( geolib.isPointInPolygon(location, coordinatesPolygonArray) === true ) {
-			console.log('POLYGON', coordinatesPolygonArray);
 			return setUserInPolygon(true);
 		}
-		console.log('POLYGON', coordinatesPolygonArray);
 		return setUserInPolygon(false);
 
 	}, [ props?.navigation ]);
