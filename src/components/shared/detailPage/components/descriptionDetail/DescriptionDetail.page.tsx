@@ -46,6 +46,7 @@ export const DescriptionDetail: FC = (props: any) => {
 				handleScaleBigMap={props?.handleScaleBigMap}
 				scaleBig={props?.scaleBig}
 				navigation={props?.navigation}
+				route={props?.route}
 				translation={props?.translations}
 			/>
 		</>
