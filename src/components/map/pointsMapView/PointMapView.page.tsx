@@ -71,7 +71,6 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 		Geolocation.watchPosition(
 			position => {
 				const { latitude, longitude } = position.coords;
-				console.log('Coords', position.coords);
 				setLocation([
 					longitude,
 					latitude,
