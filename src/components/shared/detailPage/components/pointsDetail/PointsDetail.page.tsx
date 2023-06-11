@@ -10,6 +10,7 @@ import { getPointsFromSpecRoutes } from '@/utils/redux/Actions';
 export const PointsDetail: FC <PointsTypes> = ({ props, navigation }) => {
 
 	const dispatch = useDispatch();
+	const sortingArr = props?.points;
 	const { pointsForSpecRoute, nameMode } = useSelector((state: any) => state.allReducer);
 
 	const getPointById = () => {
@@ -24,16 +25,20 @@ export const PointsDetail: FC <PointsTypes> = ({ props, navigation }) => {
 		<View style={{ flex: 1 }}>
 			<ScrollView nestedScrollEnabled>
 				{
-					pointsForSpecRoute.map((pointOfRoute: any) => {
-						return(
-							<ItemPointOverview
-								key={pointOfRoute._id}
-								nameMode={nameMode}
-								item={pointOfRoute}
-								navigation={navigation}
-							/>
-						);
-					})
+					pointsForSpecRoute
+						.sort(function(a: any, b: any) {
+							return sortingArr.indexOf(a._id) - sortingArr.indexOf(b._id);
+						})
+						.map((pointOfRoute: any) => {
+							return(
+								<ItemPointOverview
+									key={pointOfRoute._id}
+									nameMode={nameMode}
+									item={pointOfRoute}
+									navigation={navigation}
+								/>
+							);
+						})
 				}
 			</ScrollView>
 		</View>
