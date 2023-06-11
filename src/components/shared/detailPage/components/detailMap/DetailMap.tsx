@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 
 import MapboxGL, { CircleLayerStyle,SymbolLayerStyle } from '@rnmapbox/maps';
+import * as geolib from 'geolib';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import { PERMISSIONS, request } from 'react-native-permissions';
@@ -20,6 +21,8 @@ MapboxGL.setAccessToken(MapboxAccesToken);
 
 export const DetailMap: FC = (props: any) => {
 
+	const coordinatesPolygonArray: any[] = [];
+
 	const [ centerCo, setCenterCo ] = useState();
 	const [ routeGeo, setRouteGeo ] = useState<any>();
 	const [ pointsGeo, setPointsGeo ] = useState<any>();
@@ -29,6 +32,7 @@ export const DetailMap: FC = (props: any) => {
 	const [ namePoint, setNamePoint ] = useState<string>('');
 	const [ dataPoint, setDataPoint ] = useState<any>();
 
+	const [ userInPolygon, setUserInPolygon ] = useState<boolean>(false);
 	const [ locationPermissionAllowed, setLocationPermissionAllowed ] = useState<boolean>(false);
 	const [ location, setLocation ] = useState<any>([]);
 
@@ -70,10 +74,16 @@ export const DetailMap: FC = (props: any) => {
 			const lngPoint = coordinatePoints.lng;
 			const latPoint = coordinatePoints.lat;
 			const coordinatesPerPointArray = [ lngPoint, latPoint ];
+			const coordinatesPerPointInPolygonObject = { lat: lngPoint, lng: latPoint };
 			coordinatesPointsArray.push(coordinatesPerPointArray);
+			coordinatesPolygonArray.push(coordinatesPerPointInPolygonObject);
 
-			return coordinatesPointsArray;
+			return {
+				coordinatesPointsArray,
+				coordinatesPolygonArray
+			};
 		});
+
 		matchRoute(coordinatesPointsArray);
 
 	};
@@ -160,6 +170,16 @@ export const DetailMap: FC = (props: any) => {
 	};
 
 	useEffect(() => {
+		if ( geolib.isPointInPolygon(location, coordinatesPolygonArray) === true ) {
+			console.log('POLYGON', coordinatesPolygonArray);
+			return setUserInPolygon(true);
+		}
+		console.log('POLYGON', coordinatesPolygonArray);
+		return setUserInPolygon(false);
+
+	}, [ props?.navigation ]);
+
+	useEffect(() => {
 		fetchPointsSpecRoute();
 		onHandleSetCurrentLocation();
 	},[ props?.dataRoute ]);
@@ -174,13 +194,21 @@ export const DetailMap: FC = (props: any) => {
 				onPress={() => setShowName(false)}
 				userTrackingMode={MapboxGL.UserTrackingMode.Follow}
 			>
-				<MapboxGL.Camera
-					zoomLevel={13}
-					centerCoordinate={centerCo}
-					animationMode='none'
-					followUserMode='compass'
-					followUserLocation
-				/>
+				{
+					userInPolygon && location.length !== 0 ?
+						<MapboxGL.Camera
+							zoomLevel={13}
+							centerCoordinate={location}
+							animationMode='none'
+							followUserMode='compass'
+							followUserLocation
+						/>
+						: <MapboxGL.Camera
+							zoomLevel={13}
+							centerCoordinate={centerCo}
+							animationMode='none'
+						/>
+				}
 				{
 					location.length !== 0 &&
 					<MapboxGL.PointAnnotation
