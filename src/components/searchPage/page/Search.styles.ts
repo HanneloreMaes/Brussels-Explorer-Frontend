@@ -60,12 +60,6 @@ export const SearchStyles = StyleSheet.create({
 		alignItems: 'center',
 		marginBottom: DefaultMargins.bottomMargin,
 	},
-	filterCheckboxContainer: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		marginHorizontal: DefaultMargins.horizontalMargin,
-		marginTop: 10,
-	},
 	checkboxContainer: {
 		flexDirection: 'row',
 		alignItems: 'center',
