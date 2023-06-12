@@ -8,7 +8,7 @@ import { RecommendedStyles } from './RecommendedSection.styles';
 import { RecommendedType } from '../types/Recommended.types';
 import { TitleH2 } from '@/components/shared';
 import { BackgroundColor, ButtonStyles, Highlight, TextColor } from '@/style';
-import { getRoutes } from '@/utils/redux/Actions';
+import { getRoutes, getSpecRoute } from '@/utils/redux/Actions';
 
 export const RecommendedRoutes: FC <RecommendedType> = ({
 	unAuth,
@@ -29,6 +29,10 @@ export const RecommendedRoutes: FC <RecommendedType> = ({
 	const [ checkData, setCheckData ] = useState<any>([]);
 
 	const { preferences, routes } = useSelector((state: any) => state.allReducer);
+
+	const setSpecRoute= (idRoute: string) => {
+		dispatch(getSpecRoute(idRoute));
+	};
 
 	const getValuesFromPreferences = () => {
 		setTheme(preferences[ 0 ]);
@@ -148,12 +152,15 @@ export const RecommendedRoutes: FC <RecommendedType> = ({
 												RecommendedStyles.dataContainer,
 												{ borderColor: mode === 'dark' ? Highlight.lightHighlight : Highlight.darkGrayHighlight }
 											]}
-											onPress={() => navigation.navigate('DetailPage', {
-												titleScreen: recommendedRoute.name,
-												dataOfCard: recommendedRoute,
-												nameMode: mode,
-												navigation
-											})}
+											onPress={() => {
+												navigation.navigate('DetailPage', {
+													titleScreen: recommendedRoute.name,
+													dataOfCard: recommendedRoute,
+													nameMode: mode,
+													navigation
+												});
+												setSpecRoute(recommendedRoute._id);
+											}}
 										>
 											<Image source={{ uri: recommendedRoute.imageUrl }} style={RecommendedStyles.imageRoute} resizeMode='cover' />
 											<Text

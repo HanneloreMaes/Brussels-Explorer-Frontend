@@ -1,26 +1,30 @@
 import React, { FC, useEffect, useState } from 'react';
 
 import MapboxGL, { CircleLayerStyle, SymbolLayerStyle, OnPressEvent } from '@rnmapbox/maps';
+import * as geolib from 'geolib';
 import { View } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
+import { PERMISSIONS, request } from 'react-native-permissions';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { PointMapStyles } from './PointMapView.styles';
 import { IconMarker } from '../components/userLocationIcon/UserLocationIcon.page';
 import { DescriptionModalMarker } from '../mapView/components';
 import { DetailMapStyles, FirebaseModal, ModalError } from '@/components/shared';
+import { centerBrussels, coordinatesBrussels } from '@/config';
 import { AllMapNavProps } from '@/lib/navigator/types';
 import { BackgroundColor } from '@/style';
 import { getPoints } from '@/utils/redux/Actions';
 
-export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
+export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation, route }) => {
 
-	const coordinates = [ 4.3570964, 50.845504 ];
 	const [ pointGeo, setPointGeo ] = useState<any>();
 	const [ showModal, setShowModal ] = useState<boolean>(false);
 	const [ showModalError, setShowModalError ] = useState<boolean>(false);
 	const [ detailPoint, setDetailPoint ] = useState<any>();
 
+	const [ userInPolygon, setUserInPolygon ] = useState<boolean>(false);
+	const [ locationPermissionAllowed, setLocationPermissionAllowed ] = useState<boolean>(false);
 	const [ location, setLocation ] = useState<any>([]);
 
 	const [ showModalFirebase, setShowModalFirebase ] = useState<boolean>(false);
@@ -75,6 +79,12 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 					longitude,
 					latitude,
 				]);
+				const userLocation = { longitude, latitude };
+
+				if ( geolib.isPointInPolygon(userLocation, coordinatesBrussels) === true ) {
+					return setUserInPolygon(true);
+				}
+				return setUserInPolygon(false);
 			},
 			error => {
 				console.warn('Error MapView watchPosition', error);
@@ -89,10 +99,34 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 		);
 	};
 
+	const onHandleSetCurrentLocation = () => {
+		if (locationPermissionAllowed) {
+			getCurrentLocation();
+		} else {
+			const locationPermission = PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
+			request(locationPermission)
+				.then((status: any) => {
+
+					if (status === 'granted') {
+						setLocationPermissionAllowed(true);
+						getCurrentLocation();
+					}
+				})
+				.catch((error: any) => {
+					console.warn('Error MapView watchPosition', error);
+					setShowModalFirebase(true);
+				});
+		}
+	};
+
 	useEffect(() => {
 		fetchPoints();
 		getCurrentLocation();
 	}, [ navigation ]);
+
+	useEffect(() => {
+		onHandleSetCurrentLocation();
+	}, [ route.name ]);
 
 	return (
 		<>
@@ -100,12 +134,19 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation }) => {
 				style={PointMapStyles.container}
 				styleURL='mapbox://styles/mapbox/streets-v12'
 				onPress={() => setShowModal(false)}
-				compassEnabled
 			>
 				{
-					location.length !== 0 ?
-						<MapboxGL.Camera zoomLevel={13} centerCoordinate={location} animationMode='none' />
-						: <MapboxGL.Camera zoomLevel={13} centerCoordinate={coordinates} animationMode='none' />
+					userInPolygon && location.length !== 0 ?
+						<MapboxGL.Camera
+							zoomLevel={13}
+							centerCoordinate={location}
+							animationMode='none'
+						/>
+						: <MapboxGL.Camera
+							zoomLevel={13}
+							centerCoordinate={centerBrussels}
+							animationMode='none'
+						/>
 				}
 				{
 					location.length !== 0 &&
