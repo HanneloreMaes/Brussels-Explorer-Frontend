@@ -79,6 +79,12 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation, route }
 					longitude,
 					latitude,
 				]);
+				const userLocation = { longitude, latitude };
+
+				if ( geolib.isPointInPolygon(userLocation, coordinatesBrussels) === true ) {
+					return setUserInPolygon(true);
+				}
+				return setUserInPolygon(false);
 			},
 			error => {
 				console.warn('Error MapView watchPosition', error);
@@ -116,16 +122,10 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation, route }
 	useEffect(() => {
 		fetchPoints();
 		getCurrentLocation();
-
-		if ( geolib.isPointInPolygon(location, coordinatesBrussels) === true ) {
-			return setUserInPolygon(true);
-		}
-		return setUserInPolygon(false);
 	}, [ navigation ]);
 
 	useEffect(() => {
 		onHandleSetCurrentLocation();
-
 	}, [ route.name ]);
 
 	return (
