@@ -144,11 +144,17 @@ export const DetailMap: FC = (props: any) => {
 
 		Geolocation.watchPosition(
 			position => {
-				const { latitude, longitude, heading } = position.coords;
+				const { latitude, longitude } = position.coords;
 				setLocation([
 					longitude,
 					latitude,
 				]);
+				const userLocation = { longitude, latitude };
+
+				if ( geolib.isPointInPolygon(userLocation, coordinatesPolygonArray) === true ) {
+					return setUserInPolygon(true);
+				}
+				return setUserInPolygon(false);
 			},
 			error => {
 				console.warn('Error MapView watchPosition', error);
@@ -186,14 +192,6 @@ export const DetailMap: FC = (props: any) => {
 		setPointsGeo(null);
 		setRouteGeo(null);
 	}, [ props?.route.name ]);
-
-	useEffect(() => {
-		if ( geolib.isPointInPolygon(location, coordinatesPolygonArray) === true ) {
-			return setUserInPolygon(true);
-		}
-		return setUserInPolygon(false);
-
-	}, [ props?.navigation ]);
 
 	useEffect(() => {
 		fetchPointsSpecRoute();
