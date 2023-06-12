@@ -67,7 +67,7 @@ export const NotFoundText: FC<notFoundTypes> = ({ nameComponent, distance, time 
 							{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 						]}
 					>
-						{i18n.t('search_route_theme_notFound')} {nameComponent} {i18n.t('search_route_and_notFound')} {i18n.t('search_route_time_notFound').toLowerCase()} {time} {i18n.t('search_route_time_notFound').toLowerCase()} {time} {i18n.t('search_notFound')}
+						{i18n.t('search_route_theme_notFound')} {nameComponent} {i18n.t('search_route_and_notFound')} {i18n.t('search_route_time_notFound').toLowerCase()} {time} {i18n.t('search_notFound')}
 					</Text> : null
 			}
 			{
