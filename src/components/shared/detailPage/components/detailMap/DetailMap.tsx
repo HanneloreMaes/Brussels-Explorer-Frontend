@@ -315,6 +315,7 @@ export const DetailMap: FC = (props: any) => {
 						<TouchableOpacity
 							style={[
 								DescriptionStyles.buttonMoreInfo,
+								DetailMapStyles.buttonMoreInfo,
 								{ borderColor: nameMode === 'dark' ? TextColor.grayText : TextColor.darkText }
 							]}
 							onPress={() => props?.navigation.navigate('DetailPointPage', {
@@ -325,7 +326,7 @@ export const DetailMap: FC = (props: any) => {
 						>
 							<Text
 								style={[
-									DescriptionStyles.textButton,
+									DetailMapStyles.textButton,
 									{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 								]}
 							>{props?.translation.t('mapbox_button_more_info')}</Text>
