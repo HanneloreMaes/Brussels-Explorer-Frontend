@@ -17,6 +17,7 @@
 	"onboarding_firebase_error_register_email_in_use": "L'enregistrement a échoué! L'adresse e-mail que vous avez saisie est déjà connue. Veuillez en essayer une autre.",
 	"onboarding_firebase_error_password_weak": "L'enregistrement a échoué! Le mot de passe que vous avez saisi est trop faible.",
 	"onboarding_firebase_forgot_password_succes": "L'email de réinitialisation du mot de passe a été envoyé.",
+	"onboarding_firebase_netwerk_fail": "Assurez-vous que vous êtes connecté à Internet.",
 	"onboarding_logout_button": "Se déconnecter",
 	"onboarding_skip_button": "Skip",
 	"onboarding_placeholder_name": "Nom d'utilisateur",

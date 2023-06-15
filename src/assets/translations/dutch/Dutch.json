@@ -17,6 +17,7 @@
 	"onboarding_firebase_error_register_email_in_use": "Registreren is mislukt! Het emailadres dat je opgaf is al gekend. Probeer een ander.",
 	"onboarding_firebase_error_password_weak": "Registreren is mislukt! Het wachtwoord dat je opgaf is te zwak.",
 	"onboarding_firebase_forgot_password_succes": "E-mail om wachtwoord te resetten is verzonden.",
+	"onboarding_firebase_netwerk_fail": "Zorg ervoor dat je verbonden bent met internet.",
 	"onboarding_logout_button": "Afmelden",
 	"onboarding_skip_button": "Overslaan",
 	"onboarding_placeholder_name": "Gebruikersnaam",
