@@ -41,8 +41,12 @@ export const UsernameSetting: FC = () => {
 					setStringModal('settings_alert_change_name_succes');
 					RootNavigation.navigate('DashboardStack');
 				})
-				.catch(() => {
-					setStringModal('firebase_error');
+				.catch((error) => {
+					if (error.code === 'auth/network-request-failed') {
+						setStringModal('onboarding_firebase_netwerk_fail');
+					} else {
+						setStringModal('firebase_error');
+					}
 					setShowModal(true);
 				});
 		} else if (newUsernameOfUser === '') {
