@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 
 import MapboxGL, { CircleLayerStyle,SymbolLayerStyle } from '@rnmapbox/maps';
 import * as geolib from 'geolib';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ImageStyle } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import { PERMISSIONS, request } from 'react-native-permissions';
 import FontAwsome5 from 'react-native-vector-icons/FontAwesome5';
@@ -304,33 +304,40 @@ export const DetailMap: FC = (props: any) => {
 							}
 						]}
 					>
-						<Text
-							style={[
-								DetailMapStyles.nameModalText,
-								{
-									color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText
-								}
-							]}
-						>{namePoint}</Text>
-						<TouchableOpacity
-							style={[
-								DescriptionStyles.buttonMoreInfo,
-								DetailMapStyles.buttonMoreInfo,
-								{ borderColor: nameMode === 'dark' ? TextColor.grayText : TextColor.darkText }
-							]}
-							onPress={() => props?.navigation.navigate('DetailPointPage', {
-								titleScreen: namePoint,
-								dataOfCard: dataPoint,
-								nameMode,
-							})}
-						>
+						<Image
+							source={{ uri: dataPoint.imageUrl }}
+							style={DetailMapStyles.imagePoint as ImageStyle}
+						/>
+
+						<View style={DetailMapStyles.containerModalPoint}>
 							<Text
 								style={[
-									DetailMapStyles.textButton,
-									{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+									DetailMapStyles.nameModalText,
+									{
+										color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText
+									}
 								]}
-							>{props?.translation.t('mapbox_button_more_info')}</Text>
-						</TouchableOpacity>
+							>{namePoint}</Text>
+							<TouchableOpacity
+								style={[
+									DescriptionStyles.buttonMoreInfo,
+									DetailMapStyles.buttonMoreInfo,
+									{ borderColor: nameMode === 'dark' ? TextColor.grayText : TextColor.darkText }
+								]}
+								onPress={() => props?.navigation.navigate('DetailPointPage', {
+									titleScreen: namePoint,
+									dataOfCard: dataPoint,
+									nameMode,
+								})}
+							>
+								<Text
+									style={[
+										DetailMapStyles.textButton,
+										{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+									]}
+								>{props?.translation.t('mapbox_button_more_info')}</Text>
+							</TouchableOpacity>
+						</View>
 					</View>
 				) : null
 			}
