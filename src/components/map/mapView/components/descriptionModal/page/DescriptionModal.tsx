@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 
 import { DescriptionStyles } from './DescriptionModal.styles';
 import { DescriptionTypes } from '../types/DescriptionModal.types';
-
 import '@/utils/i18n/i18n';
 import { BackgroundColor, TextColor } from '@/style';
 
