@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { BorderContainerStyle, DefaultAppStyling, Highlight, TextColor, TextStyles } from '@/style';
+import { BorderContainerStyle, DefaultAppStyling, DefaultMargins, Highlight, TextColor, TextStyles } from '@/style';
 
 export const DetailMapStyles = StyleSheet.create({
 	mapContainer: {
@@ -25,9 +25,9 @@ export const DetailMapStyles = StyleSheet.create({
 	nameModalContainer: {
 		position: 'absolute',
 		bottom: 10,
-		right: 5,
-		left: 5,
-		height: 75,
+		right: 15,
+		left: 15,
+		height: 80,
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginHorizontal: 30,
@@ -46,5 +46,14 @@ export const DetailMapStyles = StyleSheet.create({
 		alignItems: 'center',
 		marginHorizontal: 30,
 		borderRadius: BorderContainerStyle.borderRadius,
+	},
+	buttonMoreInfo: {
+		marginTop: DefaultMargins.bottomMargin,
+		width: '35%',
+		alignItems: 'center',
+	},
+	textButton: {
+		padding: 5,
+		color: TextColor.darkText,
 	},
 });
