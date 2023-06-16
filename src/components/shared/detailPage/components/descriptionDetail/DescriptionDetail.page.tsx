@@ -4,7 +4,7 @@ import { Text } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import { DetailMap } from '../detailMap/DetailMap';
-import { TextStyles, TextColor } from '@/style';
+import { TextStyles, TextColor, DefaultMargins } from '@/style';
 
 export const DescriptionDetail: FC = (props: any) => {
 
@@ -36,7 +36,10 @@ export const DescriptionDetail: FC = (props: any) => {
 			<Text
 				style={[
 					TextStyles.bodyText,
-					{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+					{
+						color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText,
+						marginBottom: DefaultMargins.topMargin
+					}
 				]}
 			>
 				{descriptionInLanguage}
