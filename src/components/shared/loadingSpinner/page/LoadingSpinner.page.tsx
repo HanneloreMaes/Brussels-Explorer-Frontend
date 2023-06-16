@@ -4,10 +4,10 @@ import { ActivityIndicator, View } from 'react-native';
 
 import { SpinnerStyles } from './LoadingSpinner.styles';
 import { SpinnerTypes } from '../types/LoadingSpinner.types';
-import { Highlight } from '@/style';
+import { BackgroundColor, Highlight } from '@/style';
 
-export const LoadingSpinner: FC <SpinnerTypes> = ({ sizeSpinner }) => (
+export const LoadingSpinner: FC <SpinnerTypes> = ({ sizeSpinner, colorSpinner }) => (
 	<View style={SpinnerStyles.indicatorWrapper}>
-		<ActivityIndicator size={sizeSpinner} color={Highlight.tealHighlight} />
+		<ActivityIndicator size={sizeSpinner} color={colorSpinner === 'light' ? BackgroundColor.light : Highlight.tealHighlight } />
 	</View>
 );
