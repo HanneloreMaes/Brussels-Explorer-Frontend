@@ -154,7 +154,7 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation, route }
 						id='userMarker'
 						coordinate={location}
 					>
-						<IconMarker prevPage='Map' />
+						<IconMarker />
 
 					</MapboxGL.PointAnnotation>
 				}

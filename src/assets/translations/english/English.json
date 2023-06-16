@@ -17,6 +17,7 @@
 	"onboarding_firebase_error_register_email_in_use": "Registration failed! The email address you entered is already known. Please try another one.",
 	"onboarding_firebase_error_password_weak": "Registration failed! The password you entered is too weak.",
 	"onboarding_firebase_forgot_password_succes": "Email to reset password is send.",
+	"onboarding_firebase_netwerk_fail": "Make sure to be connected to internet.",
 	"onboarding_logout_button": "Log out",
 	"onboarding_skip_button": "Skip",
 	"onboarding_placeholder_name": "Username",

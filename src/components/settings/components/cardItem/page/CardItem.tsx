@@ -34,8 +34,12 @@ export const CardItem = (props: any) => {
 					props?.handleStringName('settings_firebase_change_password_succes');
 					props?.handleOpenModal(true);
 				})
-				.catch(() => {
-					props?.handleStringName('firebase_error');
+				.catch((error) => {
+					if (error.code === 'auth/network-request-failed') {
+						props?.handleStringName('onboarding_firebase_netwerk_fail');
+					} else {
+						props?.handleStringName('firebase_error');
+					}
 					props?.handleOpenModal(true);
 				});
 		} else {

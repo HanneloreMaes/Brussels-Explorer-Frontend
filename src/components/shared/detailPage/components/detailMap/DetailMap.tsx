@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 
 import MapboxGL, { CircleLayerStyle,SymbolLayerStyle } from '@rnmapbox/maps';
 import * as geolib from 'geolib';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ImageStyle } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import { PERMISSIONS, request } from 'react-native-permissions';
 import FontAwsome5 from 'react-native-vector-icons/FontAwesome5';
@@ -22,6 +22,7 @@ MapboxGL.setAccessToken(MapboxAccesToken);
 export const DetailMap: FC = (props: any) => {
 
 	const coordinatesPolygonArray: any[] = [];
+	const sortingArr = props?.dataRoute.points;
 
 	const [ centerCo, setCenterCo ] = useState<any>();
 	const [ routeGeo, setRouteGeo ] = useState<any>();
@@ -32,9 +33,9 @@ export const DetailMap: FC = (props: any) => {
 	const [ namePoint, setNamePoint ] = useState<string>('');
 	const [ dataPoint, setDataPoint ] = useState<any>();
 
-	const [ userInPolygon, setUserInPolygon ] = useState<boolean>(false);
 	const [ locationPermissionAllowed, setLocationPermissionAllowed ] = useState<boolean>(false);
-	const [ location, setLocation ] = useState<any>([]);
+	const [ userLocation, setLocation ] = useState<any>([]);
+	const [ inRadius, setInRadius ] = useState<boolean>(false);
 
 	const routeId = props?.dataRoute._id;
 
@@ -48,8 +49,6 @@ export const DetailMap: FC = (props: any) => {
 
 	const getCoordinatesOfPoints = () => {
 		const coordinatesPointsArray: any[] = [];
-
-		const sortingArr = props?.dataRoute.points;
 
 		if (pointsForSpecRoute?.length > 0) {
 			setShowModalError(false);
@@ -95,7 +94,6 @@ export const DetailMap: FC = (props: any) => {
 					coordinatesPolygonArray
 				};
 			});
-
 		matchRoute(coordinatesPointsArray);
 
 	};
@@ -141,6 +139,24 @@ export const DetailMap: FC = (props: any) => {
 	};
 
 	const getCurrentLocation = () => {
+		const firstCoordinates: any[] = [];
+		pointsForSpecRoute
+			.sort(function(a: any, b: any) {
+				return sortingArr.indexOf(a._id) - sortingArr.indexOf(b._id);
+			})
+			.map((coordinatePoints: any, index: number) => {
+
+				const lngPoint = coordinatePoints.lng;
+				const latPoint = coordinatePoints.lat;
+				const coordinatesPerPointArray = [ lngPoint, latPoint ];
+				firstCoordinates.push(coordinatesPerPointArray);
+
+				return {
+					firstCoordinates,
+				};
+			});
+
+		const firstCoordinate = firstCoordinates[ 0 ];
 
 		Geolocation.watchPosition(
 			position => {
@@ -151,10 +167,15 @@ export const DetailMap: FC = (props: any) => {
 				]);
 				const userLocation = { longitude, latitude };
 
-				if ( geolib.isPointInPolygon(userLocation, coordinatesPolygonArray) === true ) {
-					return setUserInPolygon(true);
+				if (userLocation && firstCoordinate && geolib.isPointWithinRadius(
+					userLocation,
+					firstCoordinate,
+					3000) === true
+				) {
+					setInRadius(true);
+				} else {
+					setInRadius(false);
 				}
-				return setUserInPolygon(false);
 			},
 			error => {
 				console.warn('Error MapView watchPosition', error);
@@ -162,8 +183,8 @@ export const DetailMap: FC = (props: any) => {
 			{
 				enableHighAccuracy: true,
 				distanceFilter: 0,
-				interval: 10000,
-				fastestInterval: 5000,
+				interval: 1000,
+				fastestInterval: 1000,
 			},
 		);
 	};
@@ -206,15 +227,13 @@ export const DetailMap: FC = (props: any) => {
 				style={{ flex: 1 }}
 				styleURL='mapbox://styles/mapbox/streets-v12'
 				onPress={() => setShowName(false)}
-				userTrackingMode={MapboxGL.UserTrackingMode.Follow}
 			>
 				{
-					userInPolygon && location.length !== 0 ?
+					inRadius && userLocation.length !== 0 ?
 						<MapboxGL.Camera
 							zoomLevel={13}
-							centerCoordinate={location}
+							centerCoordinate={userLocation}
 							animationMode='none'
-							followUserMode='compass'
 							followUserLocation
 						/>
 						: <MapboxGL.Camera
@@ -224,12 +243,12 @@ export const DetailMap: FC = (props: any) => {
 						/>
 				}
 				{
-					location.length !== 0 &&
+					userLocation.length !== 0 &&
 					<MapboxGL.PointAnnotation
 						id='userMarker'
-						coordinate={location}
+						coordinate={userLocation}
 					>
-						<IconMarker prevPage='Detail' />
+						<IconMarker />
 
 					</MapboxGL.PointAnnotation>
 				}
@@ -304,32 +323,40 @@ export const DetailMap: FC = (props: any) => {
 							}
 						]}
 					>
-						<Text
-							style={[
-								DetailMapStyles.nameModalText,
-								{
-									color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText
-								}
-							]}
-						>{namePoint}</Text>
-						<TouchableOpacity
-							style={[
-								DescriptionStyles.buttonMoreInfo,
-								{ borderColor: nameMode === 'dark' ? TextColor.grayText : TextColor.darkText }
-							]}
-							onPress={() => props?.navigation.navigate('DetailPointPage', {
-								titleScreen: namePoint,
-								dataOfCard: dataPoint,
-								nameMode,
-							})}
-						>
+						<Image
+							source={{ uri: dataPoint.imageUrl }}
+							style={DetailMapStyles.imagePoint as ImageStyle}
+						/>
+
+						<View style={DetailMapStyles.containerModalPoint}>
 							<Text
 								style={[
-									DescriptionStyles.textButton,
-									{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+									DetailMapStyles.nameModalText,
+									{
+										color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText
+									}
 								]}
-							>{props?.translation.t('mapbox_button_more_info')}</Text>
-						</TouchableOpacity>
+							>{namePoint}</Text>
+							<TouchableOpacity
+								style={[
+									DescriptionStyles.buttonMoreInfo,
+									DetailMapStyles.buttonMoreInfo,
+									{ borderColor: nameMode === 'dark' ? TextColor.grayText : TextColor.darkText }
+								]}
+								onPress={() => props?.navigation.navigate('DetailPointPage', {
+									titleScreen: namePoint,
+									dataOfCard: dataPoint,
+									nameMode,
+								})}
+							>
+								<Text
+									style={[
+										DetailMapStyles.textButton,
+										{ color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+									]}
+								>{props?.translation.t('mapbox_button_more_info')}</Text>
+							</TouchableOpacity>
+						</View>
 					</View>
 				) : null
 			}

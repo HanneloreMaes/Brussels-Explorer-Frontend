@@ -133,6 +133,9 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 				if (error.code === 'auth/weak-password') {
 					setStringModal('onboarding_firebase_error_password_weak');
 				}
+				if (error.code === 'auth/network-request-failed') {
+					setStringModal('onboarding_firebase_netwerk_fail');
+				}
 				setShowModal(true);
 			});
 	};
@@ -152,6 +155,9 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 				}
 				if (error.code === 'auth/user-not-found') {
 					setStringModal('onboarding_firebase_error_user_not_found');
+				}
+				if (error.code === 'auth/network-request-failed') {
+					setStringModal('onboarding_firebase_netwerk_fail');
 				}
 				setShowModal(true);
 			});

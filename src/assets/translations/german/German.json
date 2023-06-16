@@ -17,6 +17,7 @@
 	"onboarding_firebase_error_register_email_in_use": "Fehler bei der Registrierung! Die von Ihnen angegebene E-Mail-Adresse ist bereits bekannt. Bitte versuchen Sie eine andere.",
 	"onboarding_firebase_error_password_weak": "Fehler bei der Registrierung! Das von Ihnen eingegebene Passwort ist zu schwach.",
 	"onboarding_firebase_forgot_password_succes": "Die E-Mail zum Zurücksetzen des Passworts wurde gesendet.",
+	"onboarding_firebase_netwerk_fail": "Stellen Sie sicher, dass Sie mit dem Internet verbunden sind.",
 	"onboarding_logout_button": "Abmelden",
 	"onboarding_skip_button": "Überspringen",
 	"onboarding_placeholder_name": "Benutzername",
