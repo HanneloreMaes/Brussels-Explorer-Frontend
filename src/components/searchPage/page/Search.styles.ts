@@ -1,5 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
+import { BARRIER_SCREEN_WIDTH_SMALL, screenHeight } from '@/config';
 import { BorderContainerStyle, ButtonStyles, DefaultMargins, DefaultShadow, TextStyles } from '@/style';
 
 const { width, height } = Dimensions.get('window');
@@ -9,7 +10,7 @@ export const SearchStyles = StyleSheet.create({
 		marginRight: 10,
 		overflow: 'hidden',
 		paddingBottom: 15,
-		height: '40%',
+		height: screenHeight < BARRIER_SCREEN_WIDTH_SMALL ? '40%' : '28%',
 		width: '100%'
 	},
 	isOpenChildContainer: {

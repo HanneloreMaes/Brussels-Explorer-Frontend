@@ -9,8 +9,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SearchStyles } from './Search.styles';
 import { ItemOverview, NotFoundText } from '../components';
 import { LoadingSpinner, RegisterModal } from '@/components/shared';
+import { BARRIER_SCREEN_WIDTH_SMALL, screenWidth } from '@/config';
 import { SearchNavProps } from '@/lib/navigator/types';
-import { BackgroundColor, ButtonStyles, Highlight, TextColor, TextStyles } from '@/style';
+import { BackgroundColor, ButtonStyles, DefaultMargins, Highlight, TextColor, TextStyles } from '@/style';
 import { getRoutes } from '@/utils/redux/Actions';
 import '@/utils/i18n/i18n';
 
@@ -86,7 +87,7 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 		<ScrollView
 			contentInsetAdjustmentBehavior='automatic'
 		>
-			<View style={{ height: Dimensions.get('window').height }}>
+			<View>
 				{
 					isOpen ? (
 						<View style={SearchStyles.isOpenParentContainer}>
@@ -302,7 +303,11 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 									<TouchableOpacity
 										style={[
 											ButtonStyles.buttonContainerPrimary,
-											{ width: '35%' }
+											{
+												width: screenWidth < BARRIER_SCREEN_WIDTH_SMALL ? '50%' : '35%',
+												marginTop: screenWidth < BARRIER_SCREEN_WIDTH_SMALL ?
+													45 : DefaultMargins.bottomMargin,
+											}
 										]}
 										onPress={() => {
 											setDistance(0);
