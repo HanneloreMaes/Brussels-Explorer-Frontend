@@ -38,7 +38,7 @@ export const DashboardScreen: FC <DashboardNavProps<'DashboardScreen'>> = ({ nav
 			{
 				routes.length === 0 ? (
 					<View style={DashboardStyles.loadingContainer}>
-						<LoadingSpinner sizeSpinner='large' />
+						<LoadingSpinner sizeSpinner='large' colorSpinner='teal' />
 					</View>
 				) : (
 					<View style={DashboardStyles.marginContainer}>

@@ -1,12 +1,10 @@
 import { StyleSheet } from 'react-native';
 
-import { BARRIER_SCREEN, screenHeight, screenWidth } from '@/config';
+import { BARRIER_SCREEN_HEIGHT, BARRIER_SCREEN_WIDTH, BARRIER_SCREEN_WIDTH_SMALL, screenHeight, screenWidth } from '@/config';
 import { BorderContainerStyle, DefaultMargins, DefaultShadow, Highlight, TextColor, TextStyles } from '@/style';
 
 export const RecommendedStyles = StyleSheet.create({
 	container: {
-		height: screenWidth > BARRIER_SCREEN ?
-			screenHeight * 0.18 : screenHeight * 0.29,
 		marginBottom: 30,
 	},
 	title: {
@@ -18,8 +16,10 @@ export const RecommendedStyles = StyleSheet.create({
 		flexDirection: 'row',
 	},
 	allDataParentContainer: {
-		width: screenWidth > BARRIER_SCREEN ?
-			screenWidth * 0.15 : screenWidth * 0.2,
+		width: screenWidth > BARRIER_SCREEN_WIDTH ?
+			screenWidth * 0.15
+			: screenWidth < BARRIER_SCREEN_WIDTH_SMALL ?
+				screenWidth * 0.23 : screenWidth * 0.2,
 		marginRight: 15,
 		overflow: 'hidden',
 		paddingBottom: 15,
@@ -31,8 +31,10 @@ export const RecommendedStyles = StyleSheet.create({
 		borderRadius: BorderContainerStyle.borderRadius,
 	},
 	dataContainer: {
-		width: screenWidth > BARRIER_SCREEN ?
-			screenWidth * 0.15 : screenWidth * 0.2,
+		width: screenWidth > BARRIER_SCREEN_WIDTH ?
+			screenWidth * 0.15
+			: screenWidth < BARRIER_SCREEN_WIDTH_SMALL ?
+				screenWidth * 0.23 : screenWidth * 0.2,
 		height: '100%',
 		flexDirection: 'column',
 		alignItems: 'center',
@@ -41,10 +43,12 @@ export const RecommendedStyles = StyleSheet.create({
 		borderRadius: BorderContainerStyle.borderRadius,
 	},
 	imageRoute: {
-		height: screenWidth > BARRIER_SCREEN ?
+		height: screenHeight > BARRIER_SCREEN_HEIGHT ?
 			screenHeight * 0.06 : screenHeight * 0.11,
-		width: screenWidth > BARRIER_SCREEN ?
-			screenWidth * 0.15 - 3 : screenWidth * 0.2 - 3,
+		width: screenWidth > BARRIER_SCREEN_WIDTH ?
+			screenWidth * 0.15 - 3
+			: screenWidth < BARRIER_SCREEN_WIDTH_SMALL ?
+				screenWidth * 0.23 - 3 : screenWidth * 0.2 - 3,
 		marginBottom: DefaultMargins.bottomMargin,
 		borderTopLeftRadius: 13,
 		borderTopRightRadius: 13

@@ -14,7 +14,8 @@ import {
 	Platform,
 	Keyboard,
 	KeyboardAvoidingView,
-	TouchableWithoutFeedback
+	TouchableWithoutFeedback,
+	ScrollView
 } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, interpolate, withTiming, withDelay } from 'react-native-reanimated';
 import { Svg, Image, Ellipse, ClipPath } from 'react-native-svg';
@@ -22,7 +23,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { TitleOnboarding } from './components/title/TitleOnboarding.page';
 import { OnboardingStyles } from './OnboardingScreen.styles';
-import { FirebaseModal, SkipButton } from '@/components/shared';
+import { FirebaseModal, LoadingSpinner, SkipButton } from '@/components/shared';
 import { OnboardingNavProps } from '@/lib/navigator/types';
 import { BackgroundColor, ButtonStyles, Highlight, TextColor } from '@/style';
 import { auth } from '@/utils/Firebase.config';
@@ -111,6 +112,7 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 	const [ email, setEmail ] = useState('');
 	const [ password, setPassword ] = useState('');
 	const [ username, setUsername ] = useState('');
+	const [ isLoading, setIsLoading ] = useState<boolean>(true);
 
 	const signUp = () => {
 		createUserWithEmailAndPassword(auth,email, password)
@@ -176,13 +178,16 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 	};
 
 	useEffect(() => {
-		const unSubscribe = auth.onAuthStateChanged((authUser) => {
+		auth.onAuthStateChanged((authUser) => {
+			setIsLoading(true);
 			if (authUser) {
 				dispatch(setUnAuth(false));
 				navigation.navigate('MainStack');
+				setIsLoading(false);
+			} else {
+				setIsLoading(false);
 			}
 		});
-		return unSubscribe;
 	}, []);
 	// FIREBASE LOGIC END
 	// -----------------------------------------------------------------------------------------------------------
@@ -242,23 +247,26 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 				</Animated.View>
 			</Animated.View>
 			<View style={OnboardingStyles.buttonContainer}>
-				<Animated.View style={animatedButtonStyle}>
-					<Pressable style={ButtonStyles.buttonContainerPrimary} onPress={loginHandler}>
-						<Text style={ButtonStyles.buttonTextPrimary}>{i18n.t('onboarding_login_button')}</Text>
-					</Pressable>
-				</Animated.View>
-				<Animated.View style={animatedButtonStyle}>
-					<Pressable style={ButtonStyles.buttonContainerPrimary} onPress={registerHandler}>
-						<Text style={ButtonStyles.buttonTextPrimary}>{i18n.t('onboarding_register_button')}</Text>
-					</Pressable>
-				</Animated.View>
-				<Animated.View style={animatedButtonStyle}>
-					<SkipButton
-						navigation={navigation}
-						routeName='MainStack'
-						nameButton={i18n.t('onboarding_skip_button')}
-					/>
-				</Animated.View>
+				{
+					isLoading === true ? <LoadingSpinner sizeSpinner='large' colorSpinner='light' /> : (
+						<>
+							<Animated.View style={animatedButtonStyle}>
+								<Pressable style={ButtonStyles.buttonContainerPrimary} onPress={loginHandler}>
+									<Text style={ButtonStyles.buttonTextPrimary}>{i18n.t('onboarding_login_button')}</Text>
+								</Pressable>
+							</Animated.View><Animated.View style={animatedButtonStyle}>
+								<Pressable style={ButtonStyles.buttonContainerPrimary} onPress={registerHandler}>
+									<Text style={ButtonStyles.buttonTextPrimary}>{i18n.t('onboarding_register_button')}</Text>
+								</Pressable>
+							</Animated.View><Animated.View style={animatedButtonStyle}>
+								<SkipButton
+									navigation={navigation}
+									routeName='MainStack'
+									nameButton={i18n.t('onboarding_skip_button')} />
+							</Animated.View>
+						</>
+					)
+				}
 				<Animated.View style={[
 					OnboardingStyles.formInputContainer,
 					animatedFormStyle,
@@ -268,16 +276,51 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 						marginTop: isRegister ? '-13%' : '-10%'
 					}
 				]}>
-					<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-						<View style={{ paddingTop: 5 }}>
-							{isRegister && (
+					<ScrollView>
+						<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+							<View style={{ paddingTop: 5 }}>
+								{isRegister && (
+									<TextInput
+										placeholder={i18n.t('onboarding_placeholder_name') as string | undefined}
+										placeholderTextColor={ nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+										autoCapitalize="none"
+										textContentType="name"
+										value={username}
+										onChangeText={(text) => setUsername(text)}
+										style={[
+											OnboardingStyles.textInput,
+											{
+												backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+												color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText,
+											}
+										]}
+									/>
+								)}
 								<TextInput
-									placeholder={i18n.t('onboarding_placeholder_name') as string | undefined}
+									placeholder={i18n.t('onboarding_placeholder_email') as string | undefined}
 									placeholderTextColor={ nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
 									autoCapitalize="none"
-									textContentType="name"
-									value={username}
-									onChangeText={(text) => setUsername(text)}
+									keyboardType="email-address"
+									textContentType="emailAddress"
+									value={email}
+									onChangeText={(text) => setEmail(text)}
+									style={[
+										OnboardingStyles.textInput,
+										{
+											backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
+											color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText
+										}
+									]}
+								/>
+								<TextInput
+									placeholder={i18n.t('onboarding_placeholder_password') as string | undefined}
+									secureTextEntry
+									placeholderTextColor={ nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
+									autoCapitalize="none"
+									autoCorrect={false}
+									textContentType="password"
+									value={password}
+									onChangeText={(text) => setPassword(text)}
 									style={[
 										OnboardingStyles.textInput,
 										{
@@ -286,73 +329,40 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 										}
 									]}
 								/>
-							)}
-							<TextInput
-								placeholder={i18n.t('onboarding_placeholder_email') as string | undefined}
-								placeholderTextColor={ nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
-								autoCapitalize="none"
-								keyboardType="email-address"
-								textContentType="emailAddress"
-								value={email}
-								onChangeText={(text) => setEmail(text)}
-								style={[
-									OnboardingStyles.textInput,
-									{
-										backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
-										color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText
-									}
-								]}
-							/>
-							<TextInput
-								placeholder={i18n.t('onboarding_placeholder_password') as string | undefined}
-								secureTextEntry
-								placeholderTextColor={ nameMode === 'dark' ? TextColor.lightText : TextColor.darkText }
-								autoCapitalize="none"
-								autoCorrect={false}
-								textContentType="password"
-								value={password}
-								onChangeText={(text) => setPassword(text)}
-								style={[
-									OnboardingStyles.textInput,
-									{
-										backgroundColor: nameMode === 'dark' ? BackgroundColor.dark : BackgroundColor.light,
-										color: nameMode === 'dark' ? TextColor.lightText : TextColor.darkText,
-									}
-								]}
-							/>
-							{
-								!isRegister ? (
+								{
+									!isRegister ? (
+										<TouchableOpacity
+											onPress={forgotPassword}
+											style={OnboardingStyles.forgotBtn}
+										>
+											<Text style={OnboardingStyles.forgotText}>{i18n.t('onboarding_forgot_password')}</Text>
+										</TouchableOpacity>
+									) : null
+								}
+								{isRegister ? (
 									<TouchableOpacity
-										onPress={forgotPassword}
-										style={OnboardingStyles.forgotBtn}
+										style={[
+											OnboardingStyles.formButton,
+											{ shadowColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.darkHighlight }
+										]}
+										onPress={signUp}
 									>
-										<Text style={OnboardingStyles.forgotText}>{i18n.t('onboarding_forgot_password')}</Text>
+										<Text style={ButtonStyles.buttonTextPrimary}>{i18n.t('onboarding_register_button')}</Text>
 									</TouchableOpacity>
-								) : null
-							}
-							{isRegister ? (
-								<TouchableOpacity
-									style={[
-										OnboardingStyles.formButton,
-										{ shadowColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.darkHighlight }
-									]}
-									onPress={signUp}
-								>
-									<Text style={ButtonStyles.buttonTextPrimary}>{i18n.t('onboarding_register_button')}</Text>
-								</TouchableOpacity>
-							) : (
-								<TouchableOpacity
-									style={[
-										OnboardingStyles.formButton,
-										{ shadowColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.darkHighlight }
-									]}
-									onPress={loginUser}
-								>
-									<Text style={ButtonStyles.buttonTextPrimary}>{i18n.t('onboarding_login_button')}</Text>
-								</TouchableOpacity>
-							)}
-						</View>
-					</TouchableWithoutFeedback>
+								) : (
+									<TouchableOpacity
+										style={[
+											OnboardingStyles.formButton,
+											{ shadowColor: nameMode === 'dark' ? Highlight.lightHighlight : Highlight.darkHighlight }
+										]}
+										onPress={loginUser}
+									>
+										<Text style={ButtonStyles.buttonTextPrimary}>{i18n.t('onboarding_login_button')}</Text>
+									</TouchableOpacity>
+								)}
+							</View>
+						</TouchableWithoutFeedback>
+					</ScrollView>
 				</Animated.View>
 			</View>
 		</KeyboardAvoidingView>

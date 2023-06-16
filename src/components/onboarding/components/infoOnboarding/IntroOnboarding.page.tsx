@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { View, Text, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
 import { Svg, Image, Ellipse, ClipPath } from 'react-native-svg';
 import Swiper from 'react-native-swiper';
 import { useDispatch, useSelector } from 'react-redux';
@@ -149,7 +149,7 @@ export const IntroOnboaridng: FC <AllOnboardingNavProps<'IntroOnboarding'>> = ({
 						</Text>
 					</View>
 				</View>
-				<View style={IntroStyles.slideWrapper}>
+				<ScrollView style={IntroStyles.slideWrapper}>
 					<Svg height={svgHeight} width={width}>
 						<ClipPath id='clipPathId'>
 							<Ellipse
@@ -179,10 +179,18 @@ export const IntroOnboaridng: FC <AllOnboardingNavProps<'IntroOnboarding'>> = ({
 							It can be changed in settings and than language.
 						</Text>
 					</View>
-					<TouchableOpacity style={ButtonStyles.buttonContainerPrimary} onPress={nextHandler}>
+					<TouchableOpacity
+						style={[
+							ButtonStyles.buttonContainerPrimary,
+							{
+								marginBottom: 45
+							}
+						]}
+						onPress={nextHandler}
+					>
 						<Text style={ButtonStyles.buttonTextPrimary}>Next</Text>
 					</TouchableOpacity>
-				</View>
+				</ScrollView>
 			</Swiper>
 		</View>
 	);

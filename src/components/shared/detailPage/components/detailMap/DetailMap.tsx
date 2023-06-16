@@ -12,7 +12,7 @@ import { DetailMapStyles } from './DetailMap.styles';
 import { ModalError } from '../../..';
 import { IconMarker } from '@/components/map/components/userLocationIcon/UserLocationIcon.page';
 import { DescriptionStyles } from '@/components/map/mapView/components/descriptionModal/page/DescriptionModal.styles';
-import { MapboxAccesToken } from '@/config';
+import { BARRIER_SCREEN_WIDTH_SMALL, MapboxAccesToken, screenWidth } from '@/config';
 import { BackgroundColor, DefaultShadow, Highlight, TextColor } from '@/style';
 import { getPointsFromSpecRoutes } from '@/utils/redux/Actions';
 
@@ -51,6 +51,7 @@ export const DetailMap: FC = (props: any) => {
 		const coordinatesPointsArray: any[] = [];
 
 		if (pointsForSpecRoute?.length > 0) {
+			setPointsGeo(null);
 			setShowModalError(false);
 			setPointsGeo({
 				type: 'FeatureCollection',
@@ -221,7 +222,10 @@ export const DetailMap: FC = (props: any) => {
 
 	return (
 		<View style={
-			props?.scaleBig === true ? DetailMapStyles.mapContainerBig : DetailMapStyles.mapContainer
+			props?.scaleBig === true ?
+				DetailMapStyles.mapContainerBig
+				: screenWidth < BARRIER_SCREEN_WIDTH_SMALL ?
+					DetailMapStyles.mapContainerSmall : DetailMapStyles.mapContainer
 		}>
 			<MapboxGL.MapView
 				style={{ flex: 1 }}
@@ -281,6 +285,35 @@ export const DetailMap: FC = (props: any) => {
 						</MapboxGL.ShapeSource>
 					) : null
 				}
+				{/* {
+					pointsGeo !== (null || undefined) ? (
+						<MapboxGL.ShapeSource
+							id="markers"
+							shape={pointsGeo}
+							onPress={(e) => {
+								setShowName(true);
+								setNamePoint(e.features[ 0 ].properties?.point.name);
+								setDataPoint(e.features[ 0 ].properties?.point);
+							}}>
+							<MapboxGL.CircleLayer
+								id="markerCircle"
+								belowLayerID="markerText"
+								style={DetailMapStyles.marker as CircleLayerStyle}
+							/>
+							<MapboxGL.SymbolLayer
+								id="markerText"
+								style={DetailMapStyles.markerText as SymbolLayerStyle}
+							/>
+						</MapboxGL.ShapeSource>
+					) : null
+				}
+				{
+					routeGeo !== (null || undefined) ? (
+						<MapboxGL.ShapeSource id='route' shape={routeGeo}>
+							<MapboxGL.LineLayer id='routeLine' style={{ lineColor: Highlight.tealHighlight }} />
+						</MapboxGL.ShapeSource>
+					) : null
+				} */}
 				{
 					showModalError ? <ModalError labelName="mapbox_error_no_routes" labelTryAgainText='mapbox_error_try_again' /> : null
 				}

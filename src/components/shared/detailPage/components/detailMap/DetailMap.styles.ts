@@ -10,6 +10,9 @@ export const DetailMapStyles = StyleSheet.create({
 	mapContainerBig: {
 		height: '100%',
 	},
+	mapContainerSmall: {
+		height: '45%',
+	},
 	marker: {
 		circleColor: Highlight.tealHighlight,
 		circleRadius: 20,
