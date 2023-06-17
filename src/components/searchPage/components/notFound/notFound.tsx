@@ -5,7 +5,7 @@ import { Text, View } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import { notFoundTypes } from './NotFound.types';
-import { TextColor, TextStyles } from '@/style';
+import { DefaultAppStyling, TextColor, TextStyles } from '@/style';
 import '@/utils/i18n/i18n';
 
 export const NotFoundText: FC<notFoundTypes> = ({ nameComponent, distance, time }) => {
@@ -14,7 +14,7 @@ export const NotFoundText: FC<notFoundTypes> = ({ nameComponent, distance, time 
 	const { nameMode } = useSelector( (state: any) => state.allReducer );
 
 	return (
-		<View style={{ alignItems: 'center', marginTop: 30 }}>
+		<View style={{ alignItems: 'center', marginVertical: DefaultAppStyling.globalMargin, marginHorizontal: DefaultAppStyling.globalMargin }}>
 			{
 				nameComponent && !distance && !time ?
 					<Text
