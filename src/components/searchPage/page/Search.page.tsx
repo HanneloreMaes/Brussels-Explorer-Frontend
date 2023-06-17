@@ -59,6 +59,9 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 		navigation.setOptions({
 			headerRight: () => renderFilterButton(),
 		});
+		setDistance(0);
+		setTheme(0);
+		setTime(0);
 	}, []);
 
 	useEffect(() => {
@@ -87,10 +90,18 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 		<ScrollView
 			contentInsetAdjustmentBehavior='automatic'
 		>
-			<View>
+			<View style={{ height: '100%' }}>
 				{
 					isOpen ? (
-						<View style={SearchStyles.isOpenParentContainer}>
+						<View
+							style={[
+								SearchStyles.isOpenParentContainer,
+								{
+									height: distance !== 0 || theme !== 0 || time !== 0 ?
+										'70%' : '28%'
+								}
+							]}
+						>
 							<View
 								style={[
 									SearchStyles.isOpenChildContainer,
