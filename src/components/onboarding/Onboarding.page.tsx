@@ -126,6 +126,9 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 				if (error.code === 'auth/invalid-email') {
 					setStringModal('onboarding_firebase_error_email_failed');
 				}
+				if (error.code === 'auth/wrong-password') {
+					setStringModal('onboarding_firebase_error_email_failed');
+				}
 				if (error.code === 'auth/missing-password') {
 					setStringModal('onboarding_firebase_error_password_failed');
 				}
@@ -147,6 +150,9 @@ export const OnboardingScreen: FC <OnboardingNavProps<'OnboardingScreen'>> = ({ 
 			.then(() => dispatch(setUnAuth(false)))
 			.catch((error) => {
 				if (error.code === 'auth/invalid-email') {
+					setStringModal('onboarding_firebase_error_email_failed');
+				}
+				if (error.code === 'auth/wrong-password') {
 					setStringModal('onboarding_firebase_error_email_failed');
 				}
 				if (error.code === 'auth/user-disabled') {
