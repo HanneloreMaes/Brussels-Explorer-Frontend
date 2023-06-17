@@ -27,8 +27,6 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation, route }
 	const [ locationPermissionAllowed, setLocationPermissionAllowed ] = useState<boolean>(false);
 	const [ location, setLocation ] = useState<any>([]);
 
-	const [ showModalFirebase, setShowModalFirebase ] = useState<boolean>(false);
-
 	const dispatch = useDispatch();
 	const { points, nameMode } = useSelector((state: any) => state.allReducer);
 
@@ -66,10 +64,6 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation, route }
 		setDetailPoint(pointData);
 	};
 
-	const handleCloseModal = (value: boolean) => {
-		setShowModalFirebase(value);
-	};
-
 	const getCurrentLocation = () => {
 
 		Geolocation.watchPosition(
@@ -88,7 +82,6 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation, route }
 			},
 			error => {
 				console.warn('Error MapView watchPosition', error);
-				setShowModalFirebase(true);
 			},
 			{
 				enableHighAccuracy: true,
@@ -114,7 +107,6 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation, route }
 				})
 				.catch((error: any) => {
 					console.warn('Error MapView watchPosition', error);
-					setShowModalFirebase(true);
 				});
 		}
 	};
@@ -196,15 +188,6 @@ export const PointMapView: FC<AllMapNavProps<'Points'>> = ({ navigation, route }
 			}
 			{
 				showModalError ? <ModalError labelName="mapbox_error_no_points" labelTryAgainText='mapbox_error_try_again' /> : null
-			}
-			{
-				showModalFirebase === true ? (
-					<FirebaseModal
-						labelName='firebase_error'
-						handleCloseModal={handleCloseModal}
-						nameMode={nameMode}
-					/>
-				) : null
 			}
 		</>
 	);
