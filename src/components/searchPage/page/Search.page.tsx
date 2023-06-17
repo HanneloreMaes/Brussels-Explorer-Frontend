@@ -122,7 +122,9 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 									style={[
 										SearchStyles.dropdownDataContainer,
 										{
-											height: unAuth === true ? '30%' : Dimensions.get('window').height / 5,
+											height: unAuth === true ? (
+												screenWidth < BARRIER_SCREEN_WIDTH_SMALL ? '10%' : '30%'
+											) : Dimensions.get('window').height / 5,
 										}
 									]}
 								>
@@ -315,7 +317,7 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 										style={[
 											ButtonStyles.buttonContainerPrimary,
 											{
-												width: screenWidth < BARRIER_SCREEN_WIDTH_SMALL ? '50%' : '35%',
+												width: screenWidth < BARRIER_SCREEN_WIDTH_SMALL ? '65%' : '55%',
 												marginTop: screenWidth < BARRIER_SCREEN_WIDTH_SMALL ?
 													45 : DefaultMargins.bottomMargin,
 											}
@@ -329,7 +331,7 @@ export const SearchPage: FC <SearchNavProps<'SearchPage'>> = ({ navigation }) =>
 											timeDropDownRef.current?.reset();
 										}}
 									>
-										<Text style={ButtonStyles.buttonTextPrimary}>Clear filters</Text>
+										<Text style={ButtonStyles.buttonTextPrimary}>{i18n.t('search_route_clear_filter')}</Text>
 									</TouchableOpacity>
 								</View>
 							</View>

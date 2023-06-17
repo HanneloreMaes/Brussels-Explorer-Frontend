@@ -60,6 +60,7 @@
 	"search_route_and_notFound": "und",
 	"search_route_theme_notFound": "Routen mit Thema",
 	"search_route_distance_notFound": "Routen mit Abstand",
+	"search_route_clear_filter": "Filter entfernen",
 	"search_route_time_notFound": "Routen mit Zeir",
 	"settings_language_label_nl": "Niederländisch",
 	"settings_language_label_en": "Englisch",

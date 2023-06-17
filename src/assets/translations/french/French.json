@@ -61,6 +61,7 @@
 	"search_route_theme_notFound": "Les itinéraires avec thème",
 	"search_route_distance_notFound": "Les itinéraires avec distance",
 	"search_route_time_notFound": "Les itinéraires avec temps",
+	"search_route_clear_filter": "Supprimer les filtres",
 	"settings_language_label_nl": "Néerlandais",
 	"settings_language_label_en": "Anglais",
 	"settings_language_label_fr": "Français",
